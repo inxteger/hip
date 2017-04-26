@@ -13,13 +13,13 @@
 	<key>URI</key>
 	<string>https://mobile.fm.energymost.com/api/</string>
 	<key>CFBundleName</key>
-	<string>千里眼</string>
+	<string>灯塔</string>
 	<key>Bundle identifier</key>
-	<string>cn.com.schneider-electric.Disco</string>
+	<string>cn.com.schneider-electric.HipDisco</string>
 	<key>Bundle name</key>
-	<string>千里眼</string>
+	<string>灯塔</string>
 	<key>CFBundleIdentifier</key>
-	<string>cn.com.schneider-electric.Disco</string>
+	<string>cn.com.schneider-electric.HipDisco</string>
 	<key>UpgradeUri</key>
 	<string>https://www.fm.energymost.com/download-app</string>
 </dict>
