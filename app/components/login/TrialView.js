@@ -28,8 +28,7 @@ export default class TrialView extends Component{
             <Icon type='icon_schneider_en' color='transparent' size={125} />
           </View>
           <View style={styles.textContainer}>
-            <Text style={styles.titleText}>{'千里眼'}</Text>
-            <Text style={styles.subTitleText}>{'智能配电数字化服务云平台'}</Text>
+            <Text style={styles.titleText}>{'灯塔云平台'}</Text>
           </View>
         </View>
         <View style={styles.buttonContainer}>
@@ -57,7 +56,7 @@ export default class TrialView extends Component{
       <Image
         sizeMode='contain'
         style={{flex:1,width,height}}
-        source={require('../../images/trial/trial.png')}>
+        source={require('../../images/trial/trial.jpg')}>
         {children}
       </Image>
     )
@@ -93,8 +92,8 @@ var styles = StyleSheet.create({
     // paddingHorizontal:
   },
   textContainer:{
-    position:'absolute',
-    top:53,
+    marginTop:13,
+    alignItems:'center',
   },
   titleText:{
     color:'white',
