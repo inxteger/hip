@@ -13,9 +13,9 @@
 	<key>URI</key>
 	<string></string>
 	<key>CFBundleName</key>
-	<string>Rock_Test</string>
+	<string>灯塔_Test</string>
 	<key>CFBundleIdentifier</key>
-	<string>cn.com.schneider-electric.Rock</string>
+	<string>cn.com.schneider-electric.HipRock</string>
 	<key>UpgradeUri</key>
 	<string>https://sp1.fm.energymost.com/download-app</string>
 </dict>
