@@ -1297,7 +1297,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "cn.com.schneider-electric.Rock";
+				PRODUCT_BUNDLE_IDENTIFIER = "cn.com.schneider-electric.HipRock";
 				PRODUCT_NAME = HipRock;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1346,7 +1346,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "cn.com.schneider-electric.Rock";
+				PRODUCT_BUNDLE_IDENTIFIER = "cn.com.schneider-electric.HipRock";
 				PRODUCT_NAME = HipRock;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
