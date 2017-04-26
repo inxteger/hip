@@ -6,4 +6,4 @@ import {
 
 import Root from './app/containers/Root.js'
 
-AppRegistry.registerComponent('Rock', () => Root);
+AppRegistry.registerComponent('HipRock', () => Root);

@@ -1,1 +1,1 @@
-/usr/libexec/PlistBuddy -c "Merge ./ios/Rock/prod.plist" "./ios/Rock/Info.plist"
+/usr/libexec/PlistBuddy -c "Merge ./ios/HipRock/prod.plist" "./ios/HipRock/Info.plist"

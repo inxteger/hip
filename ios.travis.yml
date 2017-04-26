@@ -1,6 +1,6 @@
 language: objective-c
 sudo: required
-#xcode_project: ios/Rock.xcodeproj # path to your xcodeproj folder
+#xcode_project: ios/HipRock.xcodeproj # path to your xcodeproj folder
 #xcode_scheme: Rock_Test
 install: #1.2
 #  - rmdir node_modules
@@ -10,4 +10,4 @@ install: #1.2
 #  - node_modules
 script:
   - cd ios
-  - xctool -project Rock.xcodeproj -scheme Rock_Test clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+  - xctool -project HipRock.xcodeproj -scheme Rock_Test clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
