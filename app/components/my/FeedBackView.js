@@ -336,7 +336,7 @@ export default class FeedBackView extends Component{
         <KeyboardAwareScrollView
           style={{flex:1,}}
           contentContainerStyle={[contentContainerStyle,{backgroundColor:'white'}]}>
-          {this._getSection('您对千里眼数字运维服务平台的建议:')}
+          {this._getSection('您对灯塔数字运维服务平台的建议:')}
           <View style={{flex:1}}>
             {this._getTextEditView(lines,content,inputStyle)}
           </View>
