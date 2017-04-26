@@ -89,7 +89,7 @@ export default class ImagePicker extends Component {
         }else {
           Alert.alert(
             '',
-            '请在手机的'+'"'+'设置'+'"'+'中，允许千里眼访问您的摄像头',
+            '请在手机的'+'"'+'设置'+'"'+'中，允许灯塔访问您的摄像头',
             [
               {text: '取消', onPress: () => {
                 return;
@@ -227,7 +227,7 @@ export default class ImagePicker extends Component {
           }else {
             Alert.alert(
               '',
-              '请在手机的'+'"'+'设置'+'"'+'中，允许千里眼访问您的相册',
+              '请在手机的'+'"'+'设置'+'"'+'中，允许灯塔访问您的相册',
               [
                 {text: '取消', onPress: () => {
                 }},
