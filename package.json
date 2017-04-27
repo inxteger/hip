@@ -19,7 +19,7 @@
     "moment": "2.13.0",
     "react": "15.3.2",
     "react-mixin": "3.0.5",
-    "react-native": "git+https://github.com/samuelltk/react-native.git#rn036modifyshare",
+    "react-native": "0.36.0",
     "react-native-barcodescanner": "3.0.0",
     "react-native-camera": "0.4.0",
     "react-native-code-push": "1.13.2-beta",
