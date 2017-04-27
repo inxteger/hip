@@ -108,10 +108,10 @@ android {
     }
     signingConfigs {
        release {
-           storeFile file("my.keystore")
-           storePassword "android"
-           keyAlias "androiddebugkey"
-           keyPassword "android"
+           storeFile file("hiprock.jks")
+           storePassword "hiprock"
+           keyAlias "hiprock"
+           keyPassword "hiprock"
        }
    }
     buildTypes {
