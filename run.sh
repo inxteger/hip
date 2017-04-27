@@ -1,6 +1,8 @@
 #echo run build
 rm ../build_file/*.apk
 
+cp ./android/customModules/ShareModule.java ./node_modules/react-native/ReactAndroid/src/main/java/com/facebook/react/modules/share/ShareModule.java
+
 #npm install
 cd android && ./gradlew assembleRelease
 cd ..
