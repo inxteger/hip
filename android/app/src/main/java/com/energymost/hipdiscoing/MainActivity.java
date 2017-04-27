@@ -1,4 +1,4 @@
-package com.energymost.rocking;
+package com.energymost.hipdiscoing;
 
 import com.facebook.react.ReactActivity;
 import com.github.yamill.orientation.OrientationPackage;

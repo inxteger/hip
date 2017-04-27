@@ -1,4 +1,7 @@
-package com.energymost.rocking;
+package com.energymost.hipdiscoing;
+
+import android.content.Intent;
+import android.app.Activity;
 
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.NativeModule;
@@ -14,14 +17,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
 
-public class AppInfoPackage implements ReactPackage {
+public class PushNotificationPackage implements ReactPackage {
+
+  private PushNotificationModule mRNPushNotification;
+  private Activity mActivity;
+  public PushNotificationPackage(Activity activity){
+    super();
+    mActivity = activity;
+  }
 
   @Override
   public List<NativeModule> createNativeModules(
                               ReactApplicationContext reactContext) {
     List<NativeModule> modules = new ArrayList<>();
+    mRNPushNotification = new PushNotificationModule(reactContext,mActivity);
 
-    modules.add(new AppInfoModule(reactContext));
+    modules.add(mRNPushNotification);
 
     return modules;
   }
@@ -34,5 +45,10 @@ public class AppInfoPackage implements ReactPackage {
   @Override
   public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
     return Collections.emptyList();
+  }
+
+  public void newIntent(Intent intent) {
+      if(mRNPushNotification == null){ return; }
+      mRNPushNotification.newIntent(intent);
   }
 }

@@ -1,4 +1,4 @@
-package com.energymost.rocking;
+package com.energymost.hipdiscoing;
 
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -43,9 +43,9 @@ public class AppInfoModule extends ReactContextBaseJavaModule {
       String packageName = packageInfo.packageName;
 
       ApplicationInfo appInfo = context.getPackageManager().getApplicationInfo(pkName,PackageManager.GET_META_DATA);
-      String ossBucket=appInfo.metaData.getString("com.energymost.rocking.oss.bucket");
-      String prodUri = appInfo.metaData.getString("com.energymost.rocking.prodUri");
-      String upgradeUri = appInfo.metaData.getString("com.energymost.rocking.upgradeUri");
+      String ossBucket=appInfo.metaData.getString("com.energymost.hipdiscoing.oss.bucket");
+      String prodUri = appInfo.metaData.getString("com.energymost.hipdiscoing.prodUri");
+      String upgradeUri = appInfo.metaData.getString("com.energymost.hipdiscoing.upgradeUri");
 
       WritableMap map = Arguments.createMap();
       map.putString("packageName",packageName);
