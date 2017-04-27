@@ -1,4 +1,4 @@
-package com.energymost.rocking;
+package com.energymost.hipdiscoing;
 
 import android.app.Activity;
 import android.app.Dialog;

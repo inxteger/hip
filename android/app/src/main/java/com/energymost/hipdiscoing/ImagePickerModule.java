@@ -1,6 +1,6 @@
-// package com.energymost.rocking;
+// package com.energymost.hipdiscoing;
 //
-// import com.energymost.rocking.R;
+// import com.energymost.hipdiscoing.R;
 // import android.util.Log;
 // import android.app.Activity;
 // import android.widget.Toast;

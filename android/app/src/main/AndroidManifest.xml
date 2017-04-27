@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.energymost.rocking">
+    package="com.energymost.hipdiscoing">
 
     <!--阿里移动推送相关权限-->
     <!--Android 6.0版本可去除，用于选举信息（通道复用）的同步-->
@@ -64,10 +64,10 @@
     <meta-data android:name="com.alibaba.app.appkey" android:value="${notificationKey}"/> <!-- 请填写你自己的- appKey -->
     <meta-data android:name="com.alibaba.app.appsecret" android:value="${notificationSecret}"/> <!-- 请填写你自己的appSecret -->
 
-    <meta-data android:name="com.energymost.rocking.oss.bucket" android:value="${oss_bucket}"/>
-    <meta-data android:name="com.energymost.rocking.prodUri" android:value="${prod}"/>
-    <meta-data android:name="com.energymost.rocking.codepushKey" android:value="${codepushKey}"/>
-    <meta-data android:name="com.energymost.rocking.upgradeUri" android:value="${upgradeUri}"/>
+    <meta-data android:name="com.energymost.hipdiscoing.oss.bucket" android:value="${oss_bucket}"/>
+    <meta-data android:name="com.energymost.hipdiscoing.prodUri" android:value="${prod}"/>
+    <meta-data android:name="com.energymost.hipdiscoing.codepushKey" android:value="${codepushKey}"/>
+    <meta-data android:name="com.energymost.hipdiscoing.upgradeUri" android:value="${upgradeUri}"/>
 
     <!-- 通道保持服务 -->
     <service android:name="com.alibaba.sdk.android.push.ChannelService"
@@ -100,7 +100,7 @@
     </receiver>
 
     <!--消息接收监听器-->
-    <receiver android:name="com.energymost.rocking.PushNotificationReceiver">
+    <receiver android:name="com.energymost.hipdiscoing.PushNotificationReceiver">
         <intent-filter>
             <action android:name="com.alibaba.push2.action.NOTIFICATION_OPENED"/>
         </intent-filter>

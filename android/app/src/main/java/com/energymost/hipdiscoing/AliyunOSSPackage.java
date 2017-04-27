@@ -1,4 +1,4 @@
-// package com.energymost.rocking;
+// package com.energymost.hipdiscoing;
 //
 // import android.app.Activity;
 //
@@ -15,13 +15,12 @@
 //
 //
 //
-// public class ImagePickerPackage implements ReactPackage {
+// public class AliyunOSSPackage implements ReactPackage {
 //
 //
-//     private Activity mActivity;
-//     public ImagePickerPackage(){
+//
+//     public AliyunOSSPackage(){
 //       super();
-//       // mActivity = activity;
 //     }
 //
 //     @Override
@@ -29,7 +28,7 @@
 //             ReactApplicationContext reactContext) {
 //         List<NativeModule> modules = new ArrayList<>();
 //
-//         modules.add(new ImagePickerModule(reactContext));
+//         modules.add(new AliyunOSSModule(reactContext));
 //
 //         return modules;
 //     }

@@ -1,4 +1,4 @@
-package com.energymost.rocking;
+package com.energymost.hipdiscoing;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
