@@ -166,7 +166,7 @@ class Entry extends Component{
       // console.warn('real user login success...');
       if(Platform.OS === 'android'){
       // if (appInfo.get().prod) {
-        this.props.checkVersion({type:Platform.OS,env:appInfo.get().prod?'prod':'test'});
+        // this.props.checkVersion({type:Platform.OS,env:appInfo.get().prod?'prod':'test'});
       // }
       }
     }

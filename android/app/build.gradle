@@ -179,9 +179,6 @@ dependencies {
     compile (project(':react-native-code-push')){
       exclude group: 'com.facebook.react', module: 'react-native'
     }
-    compile (project(':react-native-image-picker')){
-      exclude group: 'com.facebook.react', module: 'react-native'
-    }
     /*compile project(':react-native-splashscreen')*/
     /*compile project(':react-native-camera')*/
     compile (project(':react-native-permissions')){

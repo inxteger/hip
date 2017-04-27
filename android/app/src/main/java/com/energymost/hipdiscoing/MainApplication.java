@@ -28,13 +28,12 @@ import java.util.List;
 
 // import com.eguma.barcodescanner.BarcodeScannerPackage;
 import com.microsoft.codepush.react.CodePush;
-import com.imagepicker.ImagePickerPackage;
 import com.fileopener.FileOpenerPackage;
 import com.rnfs.RNFSPackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
-  private static final String TAG = "Rock";
+  private static final String TAG = "HipRock";
 
 
   private String getCodePushKey() {
@@ -75,7 +74,6 @@ public class MainApplication extends Application implements ReactApplication {
           new AppInfoPackage(),
           new CodePush(MainApplication.this.getCodePushKey(), MainApplication.this, BuildConfig.DEBUG),
           new ScannerPackage(),
-          new ImagePickerPackage(),
           new ReactNativePermissionsPackage(),
           new FileOpenerPackage(),
           new RNFSPackage(),
