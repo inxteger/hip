@@ -84,7 +84,7 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
-        return "Rock";
+        return "HipRock";
     }
 
     @Override
