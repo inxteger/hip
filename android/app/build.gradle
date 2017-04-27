@@ -141,7 +141,7 @@ android {
 
     productFlavors {
         prod {
-            applicationId "com.energymost.rock"
+            applicationId "com.energymost.hiprock"
             manifestPlaceholders = [
               prodName:"灯塔",
               oss_bucket:"$prod_oss_bucket",
