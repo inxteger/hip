@@ -83,7 +83,7 @@ class Scan extends Component{
       }
       // Alert.alert(
       //   '',
-      //   '无法识别与千里眼系统不相关的二维码，请确认后再试！',
+      //   '无法识别与灯塔系统不相关的二维码，请确认后再试！',
       //   [
       //     {text: '好', onPress: () => {this.setState({openCamera:true});}}
       //   ]
@@ -149,7 +149,7 @@ class Scan extends Component{
           }else {
             Alert.alert(
               '',
-              '请在手机的'+'"'+'设置'+'"'+'中，允许千里眼访问您的摄像头',
+              '请在手机的'+'"'+'设置'+'"'+'中，允许灯塔访问您的摄像头',
               [
                 {text: '取消', onPress: () => {
                   // Permissions.requestPermission('camera').then(response => {

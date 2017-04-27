@@ -26,7 +26,7 @@ export default class My extends Component{
         <View style={styles.container}>
           <Image style={styles.qrcode} source={require("../../images/qrcode/qrcode.png")} />
           <Text style={styles.text}>使用手机扫描</Text>
-          <Text style={styles.text}>即可立即下载千里眼APP</Text>
+          <Text style={styles.text}>即可立即下载灯塔APP</Text>
         </View>
       </View>
 

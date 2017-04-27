@@ -80,7 +80,7 @@ export default class About extends Component{
           onIconClicked={()=>this.props.onBack()} />
         <View style={styles.container}>
           <Image source={require("../../images/about_logo/about_logo.png")} />
-          <Text style={styles.productNameText}>千里眼</Text>
+          <Text style={styles.productNameText}>灯塔</Text>
           <Text style={styles.versionText}>{`${hasNewVersion?'当前版本':'版本'}:${appInfo.versionName}`}</Text>
           {this._getLatestText(hasNewVersion)}
           {this._renderFooter()}
