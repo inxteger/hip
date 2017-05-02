@@ -120,7 +120,7 @@ function updateAssetDetailData(state,action) {
     '',
     '',
     ' ',
-    '资产统计信息',
+    '统计信息',
     '环境数据',
     ' ',
     ' '

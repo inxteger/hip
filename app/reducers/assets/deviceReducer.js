@@ -106,7 +106,7 @@ function updateAssetDetailData(state,action) {
   var allSecTitle=[
     '',
     '',
-    '配置参数',
+    '设备参数',
     ' ',
     ' '
   ];

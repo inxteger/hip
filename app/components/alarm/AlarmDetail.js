@@ -93,18 +93,22 @@ export default class AlarmDetail extends Component{
     // console.warn('width:%s height%s',width,height);
     return (
       <View style={[styles.header, {backgroundColor:this._getBackgroundColor(),height:height}]}>
-        <View style={styles.headerLeft}>
-          <Text style={styles.datetime}>
-            <Text >{this._getAlarmDate()}</Text>
-            <Text > </Text>
-            <Text style={styles.date}>{this._getAlarmTime()}</Text>
-          </Text>
-          <Text style={styles.codeText} numberOfLines={2}>{this._getAlarmCode()}</Text>
-        </View>
-
-        <View style={styles.headerRight}>
-          <View style={styles.level}>
-              <Text style={styles.levelText}>{this._getAlarmLevel()}</Text>
+        <View style={{
+            flexDirection:'row',
+            justifyContent:'flex-end',
+          }}>
+          <View style={styles.headerLeft}>
+            <View style={styles.level}>
+                <Text style={styles.levelText}>{this._getAlarmLevel()}</Text>
+            </View>
+          </View>
+          <View style={styles.headerRight}>
+            <Text style={styles.datetime}>
+              <Text >{this._getAlarmDate()}</Text>
+              <Text > </Text>
+              <Text style={styles.date}>{this._getAlarmTime()}</Text>
+            </Text>
+            <Text style={styles.codeText} numberOfLines={2}>{this._getAlarmParameter()}</Text>
           </View>
         </View>
       </View>
@@ -198,7 +202,7 @@ export default class AlarmDetail extends Component{
     path += '\n' + this.props.customerName;
     var list = [
       {title:'位置',content:path},
-      {title:'点位',content:rowData.get('Parameter')},
+      {title:'类型',content:this._getAlarmCode()},
       {title:'数据',content:dataText}//数据
     ];
 
@@ -367,26 +371,28 @@ var styles = StyleSheet.create({
   },
   header:{
     // flex:1,//make header too height
-    paddingTop:24,
+    // paddingTop:24,
+    paddingBottom:25,
     paddingLeft:16,
     paddingRight:16,
-    flexDirection:'row'
+    justifyContent:'flex-end',
+    // flexDirection:'row'
   },
   title:{
     fontSize:17,
     color:'white'
   },
   headerLeft:{
-    flex:1,
-    justifyContent:'flex-end',
-    paddingBottom:25,
+    width:80,
+    // paddingBottom:25,
+    justifyContent:'center',
     // backgroundColor:'black'//test
   },
   headerRight:{
-    width:80,
-    paddingBottom:25,
-    alignItems:'flex-end',
-    justifyContent:'flex-end',
+    flex:1,
+    // paddingBottom:25,
+    alignItems:'flex-start',
+    justifyContent:'center',
     // backgroundColor:'#00ff00'//test
   },
   datetime:{
@@ -395,7 +401,7 @@ var styles = StyleSheet.create({
     color:'white',
   },
   codeText:{
-    fontSize: 32,
+    fontSize: 22,
     color:'white',
     // backgroundColor:'red',//test
   },

@@ -59,7 +59,7 @@ export default class TicketFilter extends Component{
       }
       return (
         <StatableSelectorGroup
-          title='建筑'
+          title='位置'
           data={this.props.arrBuildsName}
           selectedIndexes={this.props.selectDatas.get('selectBuilds')}
           onChanged={(index)=>this.props.filterChanged('building',index)} />

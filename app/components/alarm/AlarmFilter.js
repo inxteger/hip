@@ -61,7 +61,7 @@ export default class AlarmFilter extends Component{
       }
       return (
         <StatableSelectorGroup
-          title='建筑'
+          title='位置'
           data={this.props.buildings}
           selectedIndexes={this.props.filter.get('building')}
           onChanged={(index)=>this.props.filterChanged('building',index)} />

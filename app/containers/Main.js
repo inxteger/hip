@@ -78,13 +78,13 @@ class Main extends Component{
       if(selectedIndex === 1){
         component = (<Alarm navigator={this.props.navigator} route={{id:'alarm'}} />);
       }
-      else if (selectedIndex === 2) {
+      else if (selectedIndex === 0) {
         component = (<Assets navigator={this.props.navigator} route={{id:'asset'}}/>);
       }
       else if (selectedIndex === 3) {
         component = (<My navigator={this.props.navigator} route={{id:'my'}}/>);
       }
-      else if (selectedIndex === 0) {
+      else if (selectedIndex === 2) {
         component = (<Ticket navigator={this.props.navigator} route={{id:'ticket'}}/>);
       }
     }
@@ -99,7 +99,7 @@ class Main extends Component{
     // console.warn('remote message',message,typeof notification.getData(),notification.getData());
     var data = notification.getData();
     if(data.Key === 'Ticket'){
-      this._tabChanged(0,()=>{
+      this._tabChanged(2,()=>{
         notificationHelper.setNotification(data);
       });
     }
@@ -332,7 +332,7 @@ class Main extends Component{
     // console.warn('componentWillReceiveProps',nextProps.itemType,this.props.itemId,nextProps.itemId,nextProps.itemId!==this.props.itemId);
     if (nextProps.itemType && nextProps.itemId && (nextProps.itemId!==this.props.itemId)) {
       InteractionManager.runAfterInteractions(()=>{
-          var index=0;
+          var index=2;
           if (nextProps.itemType==='alarm') {
             index=1;
           }
