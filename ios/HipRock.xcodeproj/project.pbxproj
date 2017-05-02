@@ -25,9 +25,7 @@
 		7F82C0611DB605AC0087D17C /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F82C0601DB605A10087D17C /* libRNSVG.a */; };
 		7F831B8F1E129E5800DE5A8F /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F831B791E129E1C00DE5A8F /* libART.a */; };
 		7FAF26FA1EB04193005BF8F1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FAF26EE1EB04193005BF8F1 /* AppDelegate.m */; };
-		7FAF26FB1EB04193005BF8F1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FAF26EF1EB04193005BF8F1 /* LaunchScreen.xib */; };
 		7FAF26FC1EB04193005BF8F1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FAF26F11EB04193005BF8F1 /* Images.xcassets */; };
-		7FAF26FD1EB04193005BF8F1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FAF26F21EB04193005BF8F1 /* Info.plist */; };
 		7FAF26FE1EB04193005BF8F1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FAF26F31EB04193005BF8F1 /* main.m */; };
 		7FAF26FF1EB04193005BF8F1 /* prod.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FAF26F41EB04193005BF8F1 /* prod.plist */; };
 		7FAF27001EB04193005BF8F1 /* REMAppInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FAF26F61EB04193005BF8F1 /* REMAppInfo.m */; };
@@ -1105,10 +1103,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7FAF27021EB04193005BF8F1 /* test.plist in Resources */,
-				7FAF26FD1EB04193005BF8F1 /* Info.plist in Resources */,
 				7FAF26FC1EB04193005BF8F1 /* Images.xcassets in Resources */,
 				7FAF26FF1EB04193005BF8F1 /* prod.plist in Resources */,
-				7FAF26FB1EB04193005BF8F1 /* LaunchScreen.xib in Resources */,
 				B4E1D39E1CDB318200B42638 /* ALBB.bundle in Resources */,
 				7FAF271D1EB042C4005BF8F1 /* fontcustom.ttf in Resources */,
 			);
@@ -1235,6 +1231,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				DEAD_CODE_STRIPPING = NO;
+				DEVELOPMENT_TEAM = 46REERL7A3;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1284,6 +1281,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
+				DEVELOPMENT_TEAM = 46REERL7A3;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
