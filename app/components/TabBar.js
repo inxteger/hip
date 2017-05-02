@@ -26,15 +26,15 @@ export default class TabBar extends Component {
   }
   render () {
     var items = [
-      {text:'工单',
-        normal:require('../images/tab_tickets_normal/tickets_normal.png'),
-        selected:require('../images/tab_tickets_selected/tickets_selected.png')},
+      {text:'资产',
+      normal:require('../images/tab_assets_normal/assets_normal.png'),
+      selected:require('../images/tab_assets_selected/assets_selected.png')},
       {text:'报警',
         normal:require('../images/tab_alarm_normal/alarm_normal.png'),
         selected:require('../images/tab_alarm_selected/alarm_selected.png')},
-      {text:'资产',
-        normal:require('../images/tab_assets_normal/assets_normal.png'),
-        selected:require('../images/tab_assets_selected/assets_selected.png')},
+      {text:'工单',
+        normal:require('../images/tab_tickets_normal/tickets_normal.png'),
+        selected:require('../images/tab_tickets_selected/tickets_selected.png')},
       {text:'我的',
         normal:require('../images/tab_user_normal/user_normal.png'),
         selected:require('../images/tab_user_selected/user_selected.png'),}];
