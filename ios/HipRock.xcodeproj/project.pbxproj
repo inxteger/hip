@@ -24,6 +24,7 @@
 		7F7E14DA1DAF9E9E00D1113D /* libRCTOrientation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F7E14D91DAF9E9500D1113D /* libRCTOrientation.a */; };
 		7F82C0611DB605AC0087D17C /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F82C0601DB605A10087D17C /* libRNSVG.a */; };
 		7F831B8F1E129E5800DE5A8F /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F831B791E129E1C00DE5A8F /* libART.a */; };
+		7F877C4D1EB87A3A005C6EA2 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F877C4A1EB8782F005C6EA2 /* libRNImagePicker.a */; };
 		7FAF26FA1EB04193005BF8F1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FAF26EE1EB04193005BF8F1 /* AppDelegate.m */; };
 		7FAF26FB1EB04193005BF8F1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FAF26EF1EB04193005BF8F1 /* LaunchScreen.xib */; };
 		7FAF26FC1EB04193005BF8F1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FAF26F11EB04193005BF8F1 /* Images.xcassets */; };
@@ -358,6 +359,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F877C4D1EB87A3A005C6EA2 /* libRNImagePicker.a in Frameworks */,
 				7F55746E1E8ACCCC00AA8E3F /* libRNScreenshotDetector.a in Frameworks */,
 				7F55746D1E8ACCC600AA8E3F /* libDetectNewPhoto.a in Frameworks */,
 				7F5574351E8AC34A00AA8E3F /* Photos.framework in Frameworks */,
