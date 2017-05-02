@@ -108,7 +108,7 @@ export default class AlarmDetail extends Component{
               <Text > </Text>
               <Text style={styles.date}>{this._getAlarmTime()}</Text>
             </Text>
-            <Text style={styles.codeText} numberOfLines={2}>{this._getAlarmCode()}</Text>
+            <Text style={styles.codeText} numberOfLines={2}>{this._getAlarmParameter()}</Text>
           </View>
         </View>
       </View>
@@ -202,7 +202,7 @@ export default class AlarmDetail extends Component{
     path += '\n' + this.props.customerName;
     var list = [
       {title:'位置',content:path},
-      {title:'点位',content:rowData.get('Parameter')},
+      {title:'类型',content:this._getAlarmCode()},
       {title:'数据',content:dataText}//数据
     ];
 
