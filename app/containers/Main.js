@@ -99,7 +99,7 @@ class Main extends Component{
     // console.warn('remote message',message,typeof notification.getData(),notification.getData());
     var data = notification.getData();
     if(data.Key === 'Ticket'){
-      this._tabChanged(0,()=>{
+      this._tabChanged(2,()=>{
         notificationHelper.setNotification(data);
       });
     }
