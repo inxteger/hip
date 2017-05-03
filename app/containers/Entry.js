@@ -148,8 +148,8 @@ class Entry extends Component{
   componentWillReceiveProps(nextProps) {
     if(this.props.user.get('user') && !nextProps.user.get('user')){
       console.warn('ready logout');
-      // this.refs.scene.getNavigator().resetTo({component:LoginWithPassword,navigatorBar:false});
-      this.refs.scene.getNavigator().resetTo({component:Trial,navigatorBar:false});
+      this.refs.scene.getNavigator().resetTo({component:LoginWithPassword,navigatorBar:false});
+      // this.refs.scene.getNavigator().resetTo({component:Trial,navigatorBar:false});
     }
 
     if(nextProps.error){
@@ -211,8 +211,8 @@ class Entry extends Component{
       // entry = {component:ImagePicker};
     }
     else {
-      // entry = {component:LoginWithPassword,navigatorBar:false};
-      entry = {component:Trial,navigatorBar:false};
+      entry = {component:LoginWithPassword,navigatorBar:false};
+      // entry = {component:Trial,navigatorBar:false};
     }
 
     return (

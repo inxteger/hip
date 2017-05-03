@@ -21,16 +21,10 @@ export default class Form extends Component{
     this.props.onInputChanged(type,text);
   }
   _getTitle(){
-    var text = '', {type} = this.props;
-    if(type === 'mobile'){
-      text = '手机验证码登录';
-    }
-    else {
-      text = '用户名密码登录';
-    }
+    var text = '灯塔云平台', {type} = this.props;
     return (
-      <View style={{marginBottom:28,flex:1,alignItems:'center'}}>
-        <Text style={{color:BLACK,fontSize:19}}>{text}</Text>
+      <View style={{marginBottom:28,alignItems:'center'}}>
+        <Text style={{color:'white',fontSize:19}}>{text}</Text>
       </View>
     )
   }

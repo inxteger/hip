@@ -39,17 +39,10 @@ export default class Login extends Component{
     }
     return (
       <Image
-        source={require('../../images/app_bg/app_bg.png')}
+        source={require('../../images/trial/trial.jpg')}
         resizeMode="cover"
         style={[{width,height},styles.imageBackground]}>
         <View style={styles.form}>
-          <View style={styles.switcher}>
-            <TouchFeedback style={{flex:1}} onPress={this.props.onBack}>
-              <View style={{flex:1,justifyContent:"center"}}>
-                <Icon type="icon_arrow_left" color='black' size={15}/>
-              </View>
-            </TouchFeedback>
-          </View>
           <Form
             type={this.props.type}
             data={this.props.data}
@@ -88,7 +81,7 @@ var styles = StyleSheet.create({
   },
   switcherText:{
     fontSize:14,
-    color:BLACK,
+    color:'white',
   },
   switcher:{
     marginTop:24,
