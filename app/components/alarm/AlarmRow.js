@@ -53,8 +53,17 @@ export default class AlarmRow extends Component{
   _getPrimaryContent(data){
     return (
       <View style={styles.content}>
-        <Text numberOfLines={1} style={styles.alarmText}>{data.get('DeviceName')}</Text>
-        <Text numberOfLines={1} style={[styles.locationText]}>{this._getBuildingText(data)}</Text>
+        <Text numberOfLines={1} style={styles.alarmText}>{data.get('Parameter')}</Text>
+        <View style={{flexDirection:'row',marginTop:6}}>
+          <View style={{flex:1,flexDirection:'row',alignItems:'center'}}>
+            <Icon type="icon_machine_ol" color={GRAY} size={10} />
+            <Text numberOfLines={1} style={[styles.locationText]}>{data.get('DeviceName')}</Text>
+          </View>
+          <View style={{flex:1,flexDirection:'row',alignItems:'center'}}>
+            <Icon type="icon_build_location" color={GRAY} size={10} />
+            <Text numberOfLines={1} style={[styles.locationText]}>{this._getBuildingText(data)}</Text>
+          </View>
+        </View>
       </View>
     )
   }
@@ -152,7 +161,7 @@ var styles = StyleSheet.create({
   locationText:{
     fontSize:12,
     color:GRAY,
-    marginTop:8,
+    marginLeft:3,
   },
   timeText:{
     fontSize:12,

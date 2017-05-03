@@ -136,6 +136,14 @@ export default class Icon extends Component {
         return (
           <Text style={styles}>&#xf187;</Text>
         )
+      case 'icon_machine_ol':
+        return (
+          <Text style={styles}>&#xf1ad;</Text>
+        )
+      case 'icon_build_location':
+        return (
+          <Text style={styles}>&#xf1ab;</Text>
+        )
     }
   }
 }
