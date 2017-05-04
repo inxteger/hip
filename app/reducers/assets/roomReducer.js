@@ -51,14 +51,12 @@ function updateAssetDetailData(state,action) {
     strCapcity = res.TransformerVoltage + ' kVA';
   }
   var arrPosi=[];
-  if (res.Location) {
-    arrPosi.push({title:'楼层位置',value:res.Location,isNav:false,});
+  var desTitle='生产线描述';
+  if (res.SubType===6) {
+    desTitle='现场描述';
   }
-  if (res.Level) {
-    arrPosi.push({title:'配电室等级',value:strLevel,isNav:false,});
-  }
-  if (res.TransformerVoltage) {
-    arrPosi.push({title:'变压器容量',value:strCapcity,isNav:false,});
+  if (res.Description) {
+    arrPosi.push({title:desTitle,value:res.Description,isNav:false,});
   }
   var arrStatistic = res.StatisticData.BasicStatistic.
                         concat(res.StatisticData.DeviceStatistic).

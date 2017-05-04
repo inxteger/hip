@@ -24,7 +24,7 @@ export default class Form extends Component{
     var text = '灯塔云平台', {type} = this.props;
     return (
       <View style={{marginBottom:28,alignItems:'center'}}>
-        <Text style={{color:'white',fontSize:19}}>{text}</Text>
+        <Text style={{color:'white',fontSize:24}}>{text}</Text>
       </View>
     )
   }
