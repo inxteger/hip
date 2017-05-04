@@ -31,6 +31,7 @@ export default class AssetSelectRow extends Component{
   }
   _getSubHierarchyName(data){
     var type = data.get('Type');
+    var subType = data.get('SubType');
     var isAsset = !!data.get('IsAsset');
     var isOnl = !!data.get('IsOnline')|false;
     var isOnline = false;
@@ -40,13 +41,16 @@ export default class AssetSelectRow extends Component{
       iconType='icon_building';//room
       isOnline=true;
     }else if (type===3) {
-      iconType='icon_room';//room
+      iconType='icon_product_line';//room
+     if (subType===6) {
+       iconType='icon_site';//room
+     }
       isOnline=true;
     }else if (type===4) {
       iconType=isAsset?'icon_panel':'icon_panel_box';
       isOnline=true;
     }else if (type===5) {
-      iconType=isAsset?'icon_device':'icon_device_box';
+      iconType=isAsset?'icon_machine':'icon_machine_ol';
       isOnline=isOnl;
     }
     var onlineColor = isOnline?BLACK:'red';

@@ -10,7 +10,9 @@ export var TOKENHEADER = "disco-token";
 // var _BASEURL = "http://mobile.poptest.energymost.com/pop/v2.8.0/Mobile/api/";
 
 // var _BASEURL = "http://mobiletest.fm.energymost.com/pop/v4.2.0/Mobile/api/";
-var _BASEURL = "http://mobiletest.fm.energymost.com/test/pop/MobileHost/api/";
+// var _BASEURL = "http://mobiletest.fm.energymost.com/test/pop/MobileHost/api/";
+var _BASEURL = "http://114.55.26.137/test/hiphop/mobilehost/api/";
+
 //dev
 // var _BASEURL = 'http://121.41.53.66/pop/v3.9.0/Mobile/api/';
 //xianjing

@@ -38,7 +38,17 @@ function updateAssetDetailData(state,action) {
   ];
   if (res.Description) {
     deviceDescption.splice(0,0,
-      {'title':'设备描述','value':res.Description,'isNav':false,},
+      {'title':'资产描述','value':res.Description,'isNav':false,},
+    );
+  }
+  if (res.FactoryDate) {
+    deviceDescption.splice(0,0,
+      {'title':'出厂日期','value':res.FactoryDate,'isNav':false,},
+    );
+  }
+  if (res.Factory) {
+    deviceDescption.splice(0,0,
+      {'title':'设备厂家','value':res.Factory,'isNav':false,},
     );
   }
   if (res.SerialNumber) {
@@ -46,11 +56,11 @@ function updateAssetDetailData(state,action) {
       {'title':'资产编号','value':res.SerialNumber,'isNav':false,}
     );
   }
-  if(res.Specification){
-    deviceDescption.push({
-      'title':'设备型号','value':res.Specification,'isNav':false,
-    })
-  }
+  // if(res.Specification){
+  //   deviceDescption.push({
+  //     'title':'设备型号','value':res.Specification,'isNav':false,
+  //   })
+  // }
   var strTkdyly=null;
   var classType=res.Class;
   var parameters = res.LedgerParameters.
@@ -64,7 +74,7 @@ function updateAssetDetailData(state,action) {
                               }),
                               empty:'',
                               isNav:true,
-                              type:'parameter'
+                              type:'arrayParamValues'
                             }
                           }
                           else {

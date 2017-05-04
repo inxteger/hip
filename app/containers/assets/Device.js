@@ -91,14 +91,14 @@ class Device extends Component{
   }
   _gotoDetail(data){
     var type = data.get('type');
-// console.warn('_gotoDetail...',data);
-    if(type === 'parameter'){
+console.warn('_gotoDetail...',type);
+    if(type === 'arrayParamValues'){
       this.props.navigator.push({
         id:'assets_parameter',
         component:DeviceParameter,
         passProps:{
           data:data.get('data'),
-          title:'电气附件',
+          title:data.get('title'),
         }
       });
     }
