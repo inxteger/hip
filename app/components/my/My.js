@@ -211,6 +211,8 @@ export default class MyView extends Component{
           <ListSeperator/>
             {this._renderRow(1)}
           <ListSeperator/>
+            {this._renderRow(2)}
+          <ListSeperator/>
             {this._renderRow(3)}
           <ListSeperator/>
             {this._renderRow(4)}
