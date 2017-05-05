@@ -386,7 +386,8 @@ var styles = StyleSheet.create({
     color:BLACK
   },
   moreContent:{
-    margin:16
+    margin:16,
+    backgroundColor:'white'
   },
   bottom:{
     position:'absolute',
