@@ -39,6 +39,11 @@ export default class AssetSelectRow extends Component{
     var iconType = 'icon_panel';
     if (type===2) {
       iconType='icon_building';//room
+      if (subType===3) {
+        iconType='icon_factory';//room
+      }else if (subType===2) {
+        iconType='icon_project';//room
+      }
       isOnline=true;
     }else if (type===3) {
       iconType='icon_product_line';//room
