@@ -10,6 +10,7 @@ import {
 import Toolbar from '../Toolbar';
 import Text from '../Text';
 import {BLACK} from '../../styles/color';
+import appInfo from '../../utils/appInfo.js';
 
 export default class My extends Component{
   constructor(props){
@@ -17,6 +18,10 @@ export default class My extends Component{
   }
 
   render() {
+    var imgUrl=require('../../images/qrcode/qrcode.png');
+    if(!appInfo.get().prod){
+      imgUrl=require('../../images/qrcode/qrcode_test.png');
+    }
     return (
       <View style={{flex:1,backgroundColor:'white'}}>
         <Toolbar
@@ -24,7 +29,7 @@ export default class My extends Component{
           navIcon="back"
           onIconClicked={()=>this.props.onBack()} />
         <View style={styles.container}>
-          <Image style={styles.qrcode} source={require("../../images/qrcode/qrcode.png")} />
+          <Image style={styles.qrcode} source={imgUrl} />
           <Text style={styles.text}>使用手机扫描</Text>
           <Text style={styles.text}>即可立即下载灯塔APP</Text>
         </View>

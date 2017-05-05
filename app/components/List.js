@@ -261,7 +261,7 @@ export default class List extends Component{
         <View style={{flex:1}}>
           {clearFilter}
           <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-            <Text style={{fontSize:17,color:GRAY}}>{text}</Text>
+            <Text style={{fontSize:17,color:GRAY,textAlign:'center'}} numberOfLines={2}>{text}</Text>
           </View>
         </View>
       );
