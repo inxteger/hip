@@ -126,7 +126,7 @@ export default class AssetHierarchyView extends Component{
             hasFilter={false}
             currentPage={1}
             totalPage={1}
-            emptyText='尚无任何资产，请先在云平台上添加资产'
+            emptyText='尚无任何资产可显示'
             onRefresh={this.props.onRefresh}
             renderRow={(rowData,sectionId,rowId)=>this._renderRow(rowData,sectionId,rowId)}
           />
