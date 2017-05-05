@@ -42,7 +42,7 @@ class LoginWithPassword extends Component{
     this.props.loginInfoChanged({type:'password',input,value});
   }
   componentDidMount() {
-    backHelper.init(this.props.navigator,this.props.route.id);
+    // backHelper.init(this.props.navigator,this.props.route.id);
   }
   componentWillReceiveProps(nextProps) {
     if(nextProps.user){
@@ -50,7 +50,7 @@ class LoginWithPassword extends Component{
     }
   }
   componentWillUnmount() {
-    backHelper.destroy(this.props.route.id);
+    // backHelper.destroy(this.props.route.id);
   }
   render() {
     return (
