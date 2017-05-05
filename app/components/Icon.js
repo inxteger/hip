@@ -52,6 +52,14 @@ export default class Icon extends Component {
         return (
           <Text style={styles}>&#xf10a;</Text>
         );
+      case 'icon_project':
+        return (
+          <Text style={styles}>&#xf1b0;</Text>
+        );
+      case 'icon_factory':
+        return (
+          <Text style={styles}>&#xf1aa;</Text>
+        );
       case 'icon_room':
         return (
           <Text style={styles}>&#xf12b;</Text>

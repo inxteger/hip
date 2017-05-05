@@ -9,8 +9,7 @@ export var TOKENHEADER = "disco-token";
 
 // var _BASEURL = "http://mobile.poptest.energymost.com/pop/v2.8.0/Mobile/api/";
 
-// var _BASEURL = "http://mobiletest.fm.energymost.com/pop/v4.2.0/Mobile/api/";
-// var _BASEURL = "http://mobiletest.fm.energymost.com/test/pop/MobileHost/api/";
+// var _BASEURL = 'http://mobiletest.mm.energymost.com/api/';
 var _BASEURL = "http://114.55.26.137/test/hiphop/mobilehost/api/";
 
 //dev

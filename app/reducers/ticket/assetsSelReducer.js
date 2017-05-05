@@ -153,7 +153,7 @@ function changeAssetsHierarchyExpanded(state,action) {
   var index = sectionData.findIndex((item)=>item.get('Id')===buildingId);
   var res = sectionData.get(index).toJS();
   var allHierars = new Array();
-  allHierars.push({Id:res.Id,Name:res.Name,Type:2,showType:2});
+  allHierars.push({Id:res.Id,Name:res.Name,Type:2,showType:2,SubType:res.SubType});
   _addSubElementToList(res.Children, allHierars, 3);
   var arrDatas = Immutable.fromJS(allHierars);
 
