@@ -5,6 +5,7 @@ import {
   TextInput,
   StyleSheet,
   InteractionManager,
+  Platform
 } from 'react-native';
 
 import Text from '../Text.js';
@@ -37,14 +38,17 @@ export default class Form extends Component{
     else {
       counterText = '获取';
     }
-
+    var inputStyle={};
+    if (Platform.OS==='android') {
+      inputStyle={marginTop:8,};
+    }
     return (
       <View style={styles.form}>
         <View style={styles.inputContainer}>
           <Text style={styles.inputLabel}>+86</Text>
           <TextInput
               ref={(input)=>this._firstInput=input}
-              style={styles.input}
+              style={[styles.input,inputStyle]}
               keyboardType={"numeric"}
               autoFocus={false}
               underlineColorAndroid={'transparent'}
@@ -61,7 +65,7 @@ export default class Form extends Component{
           <Text style={styles.inputLabel}>验证码</Text>
           <TextInput
               ref={(input)=>this._secondInput=input}
-              style={styles.input}
+              style={[styles.input,inputStyle]}
               keyboardType={"numeric"}
               underlineColorAndroid={'transparent'}
               textAlign={'left'}
@@ -85,18 +89,22 @@ export default class Form extends Component{
     );
   }
   _getPasswordValidationForm(){
+    var inputStyle={};
+    if (Platform.OS==='android') {
+      inputStyle={marginTop:8,};
+    }
     return (
       <View style={styles.form}>
         <View style={styles.inputContainer}>
           <Text style={styles.inputLabel}>用户名</Text>
           <TextInput
               ref={(input)=>this._firstInput=input}
-              style={styles.input}
+              style={[styles.input,inputStyle]}
               autoFocus={false}
               underlineColorAndroid={'transparent'}
               textAlign={'left'}
               placeholderTextColor="lightgray"
-              textAlignVertical={'bottom'}
+              textAlignVertical={'center'}
               placeholder={"请填写用户名"}
               onChangeText={(text)=>this._codeChanged('userName',text)}
               value={this.props.data.get('userName')}
@@ -107,7 +115,7 @@ export default class Form extends Component{
           <Text style={styles.inputLabel}>密码</Text>
           <TextInput
               ref={(input)=>this._secondInput=input}
-              style={styles.input}
+              style={[styles.input,inputStyle]}
               secureTextEntry={true}
               underlineColorAndroid={'transparent'}
               textAlign={'left'}
@@ -190,26 +198,26 @@ var styles = StyleSheet.create({
 
   },
   inputContainer:{
-
-
     // flex:1,
     // width:200,
     height:46,
     flexDirection:'row',
     justifyContent:'flex-start',
-    alignItems:'center'
+    alignItems:'center',
+    // backgroundColor:'red'
   },
   inputLabel:{
     color:'black',
     fontSize:14,
     width:64,
-    textAlign:'center'
+    textAlign:'center',
   },
   input:{
     flex:1,
     fontSize:14,
-    padding:0,
     marginLeft:10,
+    // height:30,
+    // backgroundColor:'#f0fa'
     // height:48,
   },
   sendButton:{
