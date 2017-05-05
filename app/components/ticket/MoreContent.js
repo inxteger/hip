@@ -31,7 +31,7 @@ export default class MoreContent extends Component {
       return (
         <View style={{flex:1,
             alignItems:'flex-end',
-            position:'absolute',bottom:-20,right:-20,height:44,width:100,
+            position:'absolute',bottom:-8,right:-20,height:44,width:100,
           }}>
           <TouchFeedback onPress={()=>{
               this.setState({lines:null,needMoreButton:false})
@@ -57,15 +57,17 @@ export default class MoreContent extends Component {
     //   if(item.length >
     // });
     var marginBottom = 0;
+    var marginRight = 0;
     if(this.state.needMoreButton){
       marginBottom = 6;
+      marginRight = 30;
     }
     return (
       <View style={this.props.style}>
         <Text style={{fontSize:17,color:BLACK}}>{title}</Text>
         <View style={{flex:1,marginTop:17,marginBottom,position:'relative'}}>
           <Text
-            style={{fontSize:12,color:BLACK,lineHeight:16}}
+            style={{fontSize:12,color:BLACK,lineHeight:16,marginRight}}
             numberOfLines={this.state.lines}
             onLayout={(e)=>{this._checkHeight(e)}}>{content}</Text>
           {this._getMoreButton()}
