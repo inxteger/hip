@@ -216,6 +216,7 @@ var styles = StyleSheet.create({
     flex:1,
     fontSize:14,
     marginLeft:10,
+    paddingTop:0,paddingBottom:0,
     // height:30,
     // backgroundColor:'#f0fa'
     // height:48,
