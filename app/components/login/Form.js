@@ -40,7 +40,7 @@ export default class Form extends Component{
     }
     var inputStyle={};
     if (Platform.OS==='android') {
-      inputStyle={marginTop:8,};
+      // inputStyle={marginTop:8,};
     }
     return (
       <View style={styles.form}>
@@ -54,7 +54,7 @@ export default class Form extends Component{
               underlineColorAndroid={'transparent'}
               textAlign={'left'}
               placeholderTextColor="lightgray"
-              textAlignVertical={'bottom'}
+              textAlignVertical={'center'}
               placeholder={"请填写11位手机号码"}
               onChangeText={(text)=>this._codeChanged('phoneNumber',text)}
               value={this.props.data.get('phoneNumber')}
@@ -70,7 +70,7 @@ export default class Form extends Component{
               underlineColorAndroid={'transparent'}
               textAlign={'left'}
               placeholderTextColor="lightgray"
-              textAlignVertical={'bottom'}
+              textAlignVertical={'center'}
               placeholder={"请填写4位验证码"}
               onChangeText={(text)=>this._codeChanged('validCode',text)}
               value={this.props.data.get('validCode')}
@@ -91,7 +91,7 @@ export default class Form extends Component{
   _getPasswordValidationForm(){
     var inputStyle={};
     if (Platform.OS==='android') {
-      inputStyle={marginTop:8,};
+      // inputStyle={marginTop:18,};
     }
     return (
       <View style={styles.form}>
@@ -120,7 +120,7 @@ export default class Form extends Component{
               underlineColorAndroid={'transparent'}
               textAlign={'left'}
               placeholderTextColor="lightgray"
-              textAlignVertical={'bottom'}
+              textAlignVertical={'center'}
               placeholder={"请填写密码"}
               onChangeText={(text)=>this._codeChanged("password",text)}
               value={this.props.data.get('password')}
@@ -216,6 +216,7 @@ var styles = StyleSheet.create({
     flex:1,
     fontSize:14,
     marginLeft:10,
+    paddingTop:0,paddingBottom:0,
     // height:30,
     // backgroundColor:'#f0fa'
     // height:48,
