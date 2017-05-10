@@ -22,6 +22,7 @@ var defaultState = Immutable.fromJS({
   isFetching:true,
   enableNext:false,
   enablePrview:true,
+  isEnergyData:false,
   filter:{
     StartTime:moment().startOf('d'),
     Step:1,
@@ -31,7 +32,7 @@ var defaultState = Immutable.fromJS({
 
 function setToDefault(state,action)
 {
-  var newState=state.set('data',null).set('isFetching',true).set('enableNext',false).set('enablePrview',true)
+  var newState=state.set('data',null).set('isEnergyData',false).set('isFetching',true).set('enableNext',false).set('enablePrview',true)
   .setIn(['filter','StartTime'],moment().startOf('d')).setIn(['filter','EndTime'],moment().startOf('d').add(1,'d'))
   .setIn(['filter','Step'],1);
   return newState;
@@ -48,7 +49,8 @@ function mergeHistoryDatas(state,action)
   // paraDatas.Id;
   // paraDatas.Step;
   var arrDatas=paraDatas.ParameterData;
-  var newState = state.set('data',Immutable.fromJS(arrDatas)).set('isFetching',false);
+  var isEnergyData=paraDatas.GraphicalType==='Histogram';
+  var newState = state.set('data',Immutable.fromJS(arrDatas)).set('isFetching',false).set('isEnergyData',isEnergyData);
   return newState;
 }
 
