@@ -176,7 +176,7 @@ function mapStateToProps(state,ownProps) {
   return {
     user:state.user.get('user'),
     unit:ownProps.unit,
-    isEnergyData:arrEnergyDatas.indexOf(unit)!==-1,
+    isEnergyData:historyData.get('isEnergyData'),
     isFetching:historyData.get('isFetching'),
     filter:historyData.get('filter'),
     data:historyData.get('data'),

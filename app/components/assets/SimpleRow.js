@@ -40,14 +40,18 @@ export default class SimpleRow extends Component{
             this.props.onRowClick(rowData)
           }}}>
         <View style={[styles.row,styles.rowHeight]}>
-          <Text style={[styles.titleText,textStyle]}>
-            {title}
-          </Text>
-          <View style={{flex:1,alignItems:'center', flexDirection:'row'}}>
+          <View style={{flex:1}}>
+            <Text numberOfLines={1} style={[styles.titleText,textStyle]}>
+              {title}
+            </Text>
+          </View>
+          <View style={{
+              width:142,
+              // backgroundColor:'#ff1d',
+              alignItems:'center', flexDirection:'row'}}>
             <Text numberOfLines={1} style={styles.valueText}>
               {value}
             </Text>
-
             {this._getNavIcon()}
           </View>
 
