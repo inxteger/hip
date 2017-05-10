@@ -47,7 +47,7 @@ export default class SimpleRow extends Component{
           </View>
           <View style={{
               width:142,
-              backgroundColor:'#ff1d',
+              // backgroundColor:'#ff1d',
               alignItems:'center', flexDirection:'row'}}>
             <Text numberOfLines={1} style={styles.valueText}>
               {value}
