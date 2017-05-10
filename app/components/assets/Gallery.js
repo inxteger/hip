@@ -280,7 +280,18 @@ export default class Gallery extends Component {
   onPageScroll(e) {
     this.props.onPageScroll && this.props.onPageScroll(e);
   }
-
+  _renderText(context)
+  {
+    if (context) {
+      return (
+        <View style={styles.bottom}>
+          <Text style={{fontSize:15,color:'white'}} >
+            {context}
+          </Text>
+        </View>
+      );
+    }
+  }
   _renderPage(pageData, pageId, layout) {
     var { onViewTransformed, onTransformGestureReleased, ...other} = this.props;
     // console.warn('_renderPage...',this.props.index,pageId,pageId===String(this.props.index),pageData);
@@ -312,13 +323,7 @@ export default class Gallery extends Component {
           render={pageId===String(this.props.index)}
           name={pageData}>
         </NetworkImage>
-        {context&&(
-          <View style={styles.bottom}>
-            <Text style={{fontSize:15,color:'white'}} >
-              {context}
-            </Text>
-          </View>
-        )}
+        {this._renderText(context)}
       </View>
 
       // <View style={{flex:1,backgroundColor:'black',justifyContent:'center'}}>

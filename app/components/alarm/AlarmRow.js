@@ -57,7 +57,7 @@ export default class AlarmRow extends Component{
         <View style={{flexDirection:'row',marginTop:6}}>
           <View style={{flex:1,flexDirection:'row',alignItems:'center'}}>
             <Icon type="icon_machine_ol" color={GRAY} size={10} />
-            <Text numberOfLines={1} style={[styles.locationText]}>{data.get('DeviceName')}</Text>
+            <Text numberOfLines={1} style={[styles.locationText,{marginRight:16}]}>{data.get('DeviceName')}</Text>
           </View>
           <View style={{flex:1,flexDirection:'row',alignItems:'center'}}>
             <Icon type="icon_build_location" color={GRAY} size={10} />

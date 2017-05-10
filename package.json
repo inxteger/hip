@@ -31,7 +31,7 @@
     "react-native-image-picker": "0.23.0",
     "react-native-keyboard-aware-scroll-view": "^0.2.7",
     "react-native-modal-dropdown": "^0.4.1",
-    "react-native-open-file": "1.0.5",
+    "react-native-open-file": "git+https://github.com/samuelltk/react-native-open-file",
     "react-native-orientation": "git+https://github.com/yamill/react-native-orientation",
     "react-native-permissions": "0.2.5",
     "react-native-root-toast": "1.0.3",
