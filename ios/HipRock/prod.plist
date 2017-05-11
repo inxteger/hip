@@ -11,7 +11,7 @@
 	<key>REMOSSBucket</key>
 	<string>energymost-upload.images.energymost.com</string>
 	<key>URI</key>
-	<string>https://mobile.fm.energymost.com/api/</string>
+	<string>https://mobile.mm.energymost.com/api/</string>
 	<key>CFBundleName</key>
 	<string>灯塔</string>
 	<key>Bundle identifier</key>
