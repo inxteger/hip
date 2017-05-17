@@ -208,7 +208,7 @@ function handleError(state,action) {
   var strError=null;
   switch (Error) {
     case '050001251009':
-      strError = '无查看该资产权限，联系管理员';
+      strError = '无查看资产权限，联系管理员';
       action.error=null;
       break;
   }
