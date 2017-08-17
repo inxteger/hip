@@ -252,16 +252,7 @@ export default class HistoryDataView extends Component{
           style={{
             data: {
               fill: (data) => {
-                if (!data.y&&data.y!==0) {
-                  return 'transparent';
-                }else {
-                  if ((data.y===maxValue&&!this._alreadyShowMaxPointInDay)||this.props.step===0) {
-                    this._alreadyShowMaxPointInDay=true;
-                    return GREEN;
-                  }else {
-                    return 'transparent';
-                  }
-                }
+                return GREEN;
               }
             },
             labels: {
@@ -271,7 +262,18 @@ export default class HistoryDataView extends Component{
               padding:12
             }
           }}
-          size={4}
+          size={(data)=>{
+            if (!data.y&&data.y!==0) {
+              return 0;
+            }else {
+              if ((data.y===maxValue&&!this._alreadyShowMaxPointInDay)||this.props.step===0) {
+                this._alreadyShowMaxPointInDay=true;
+                return 4;
+              }else {
+                return 1;
+              }
+            }
+          }}
           labels={arrPointsText}
           data={datas}
         />
