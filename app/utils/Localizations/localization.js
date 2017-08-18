@@ -7,7 +7,15 @@ let strings = new LocalizedStrings({
  en,zh
 });
 
-export default strings;
+export function localStr(key)
+{
+  return strings[key];
+}
+
+export function localFormatStr(key,...values)
+{
+  return strings.formatString(strings[key],...values);
+}
 
 
 // eg:
