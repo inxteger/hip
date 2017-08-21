@@ -62,7 +62,6 @@ export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 
 export function loginByPassword(body){
   return (dispatch, getState) => {
-
     return dispatch({
         types: [LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE],
         url: 'user/login',

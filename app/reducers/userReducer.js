@@ -41,6 +41,7 @@ function updateUser(state,action)
 
 function logout(state) {
   storage.removeToken();
+  storage.removeDeviceId();
   storage.removeItem('USERNAMEKEY');
   return defaultState.set('hasLogin',false);
 }
