@@ -10,7 +10,7 @@ import {
   DEVICE_EXIT
 } from '../../actions/assetsAction.js';
 
-import {LOGOUT} from '../../actions/loginAction.js';
+import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
 import {findSectioniIndexByType} from '../commonReducer.js';
 import Immutable from 'immutable';
 
@@ -231,7 +231,7 @@ export default function(state=defaultState,action){
     case ASSET_IMAGE_CHANGED_COMPLETE:
       return imageChangedComplete(state,action);
     case DEVICE_EXIT:
-    case LOGOUT:
+    case LOGOUT_SUCCESS:
       return defaultState;
     default:
 

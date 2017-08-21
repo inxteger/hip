@@ -15,7 +15,7 @@ import {
 
 } from '../../actions/ticketAction';
 
-// import {LOGOUT} from '../../actions/loginAction.js';
+// import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
 import {commonReducer} from '../commonReducer.js';
 import Immutable from 'immutable';
 

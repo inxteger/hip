@@ -12,7 +12,7 @@ import {
 }
 from '../../app/actions/ticketAction.js';
 
-import {LOGOUT} from '../../app/actions/loginAction.js';
+import {LOGOUT_SUCCESS} from '../../app/actions/loginAction.js';
 
 import {expectImmutableEqual} from '../util.js';
 import {expect} from 'chai';
@@ -295,7 +295,7 @@ describe('ticketListReducer', () => {
 
     var getLogoutAction = () => {
       return {
-        type:LOGOUT,
+        type:LOGOUT_SUCCESS,
       }
     }
 

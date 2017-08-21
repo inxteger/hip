@@ -6,7 +6,7 @@ import {
   CUSTOMER_LOAD_FAILURE,
 } from '../../actions/ticketAction.js';
 
-import {LOGOUT} from '../../actions/loginAction.js';
+import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
 
 import Immutable from 'immutable';
 
@@ -48,7 +48,7 @@ export default function(state=defaultState,action){
       return updateData(state,action);
     case CUSTOMER_LOAD_FAILURE:
       return handleError(state,action);
-    case LOGOUT:
+    case LOGOUT_SUCCESS:
       return defaultState;
     default:
 

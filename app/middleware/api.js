@@ -61,10 +61,13 @@ var defaultFetch = async function(options){
       body: JSON.stringify(options.body)
     })
     .then((response)=>{
-      // console.warn('response',response);
       if(response.status === 204){
         return new Promise((resolve)=>{
           resolve({Result:true,Error:'0'});
+        })
+      }else if(response.status === 403){
+        return new Promise((resolve)=>{
+          resolve({Result:false,Error:'403'});
         })
       }
       return response.json()

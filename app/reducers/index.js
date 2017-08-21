@@ -14,7 +14,6 @@ import {RESET_ERROR_MESSAGE} from '../actions/errorAction.js';
 // Updates error message to notify about the failed fetches.
 function error(state = null, action) {
   const { type, error } = action
-
   if (type === RESET_ERROR_MESSAGE) {
     return null
   } else if (error) {
@@ -28,6 +27,9 @@ function error(state = null, action) {
         return '加载失败，请检查您的网络设置';
       }
       return error['message'];
+    }
+    else if(error['Error']==='403'){
+      return '登录失效，请重新登录';
     }
     else {
       console.warn('error',action);
