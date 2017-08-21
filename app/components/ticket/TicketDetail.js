@@ -27,6 +27,7 @@ import Icon from '../Icon.js';
 import Bottom from '../Bottom.js';
 import Loading from '../Loading';
 import privilegeHelper from '../../utils/privilegeHelper.js';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 moment.locale('zh-cn');
 
@@ -162,7 +163,7 @@ export default class TicketDetail extends Component{
     }
     var content = [
       {label:'创建用户',value:rowData.get('CreateUserName')},
-      {label:lang_alarm_type,value:type},
+      {label:localStr('lang_alarm_type'),value:type},
       {label:'ID',value:rowData.get('TicketNum')}
     ];
     var style={marginHorizontal:16,marginBottom:16};

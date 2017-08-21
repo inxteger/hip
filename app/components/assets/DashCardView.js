@@ -15,6 +15,7 @@ import Section from '../Section.js';
 import Button from '../Button';
 import Text from '../Text';
 import Loading from '../Loading';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class DashCardView extends Component{
   constructor(props){
@@ -34,7 +35,7 @@ export default class DashCardView extends Component{
         contentView=(
           <View style={{flexDirection:'row',marginTop:10,height:30}}>
             <Text style={styles.invalidText}>
-              {lang_alarm_invalid_value}
+              {localStr('lang_alarm_invalid_value')}
             </Text>
           </View>
         );

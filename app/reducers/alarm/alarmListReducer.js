@@ -41,7 +41,7 @@ function categoryAllDatas(state)
   var allDatas = [];
   if (listStatus1.length>0) {
     allDatas.push(listStatus1);
-    sectionTitle.push('未解除');
+    sectionTitle.push(localStr('lang_alarm_not_resolved'));
   }
   if (listStatus2.length>0) {
     allDatas.push(listStatus2);

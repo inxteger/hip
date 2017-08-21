@@ -100,7 +100,7 @@ export default class AlarmFilter extends Component{
     return (
       <View style={{flex:1,backgroundColor:'white'}}>
         <Toolbar
-          title='报警筛选'
+          title={localStr('lang_alarm_filterdes')}
           navIcon="close"
           onIconClicked={this.props.onClose}
           actions={[{
