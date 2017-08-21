@@ -6,6 +6,7 @@ import appInfo from '../utils/appInfo.js';
 
 
 export var TOKENHEADER = "disco-token";
+export var HEADERDEVICEID = "disco-deviceid";
 
 // var _BASEURL = "http://mobile.poptest.energymost.com/pop/v2.8.0/Mobile/api/";
 
@@ -35,13 +36,16 @@ var defaultFetch = async function(options){
 
 
   var token = await storage.getToken();
-  // console.log(token);
+  storage.createDeviceId();
+  var deviceid=await storage.getDeviceId();
+  // console.log('token,,,deviceid',token,deviceid);
   var headers = {
     "Content-Type":"application/json",
     'Accept': 'application/json',
   };
   if(token){
     headers[TOKENHEADER] = token;
+    headers[HEADERDEVICEID]=deviceid;
   }
 
   var os = Platform.OS;

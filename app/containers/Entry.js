@@ -19,7 +19,7 @@ import Loading from '../components/Loading';
 import Main from './Main';
 import LoginWithPassword from './LoginWithPassword';
 import Trial from './Trial';
-import {loadUser} from '../actions/loginAction.js';
+import {loadUser,logout} from '../actions/loginAction.js';
 import {checkVersion} from '../actions/myAction.js';
 import {resetError} from '../actions/errorAction.js';
 // import ImagePicker from '../components/ImagePicker.js';
@@ -153,14 +153,29 @@ class Entry extends Component{
     }
 
     if(nextProps.error){
+      console.warn('next error...',nextProps.error);
       // console.warn('user',this.props.user.get('user'));
-      Alert.alert(
-        '',
-        nextProps.error,
-        [
-          {text: '好', onPress: () => this.props.resetError()}
-        ]
-      )
+      if (nextProps.error==='403') {
+        Alert.alert(
+          '',
+          '登录失效，请重新登录',
+          [
+            {text: '好', onPress: () =>{
+              this.props.resetError();
+              this.props.logout();
+            }}
+          ]
+        )
+      }else {
+        Alert.alert(
+          '',
+          nextProps.error,
+          [
+            {text: '好', onPress: () => this.props.resetError()}
+          ]
+        )
+      }
+
     }
     if (!this.props.user.get('user')&&nextProps.user.get('user')) {
       // console.warn('real user login success...');
@@ -226,6 +241,7 @@ Entry.propTypes = {
   version:PropTypes.object,
   user:PropTypes.object.isRequired,
   loadUser:PropTypes.func.isRequired,
+  logout:PropTypes.func.isRequired,
   checkVersion:PropTypes.func.isRequired,
   resetError:PropTypes.func.isRequired,
 }
@@ -240,4 +256,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps,{loadUser,resetError,checkVersion})(Entry);
+export default connect(mapStateToProps,{loadUser,logout,resetError,checkVersion})(Entry);

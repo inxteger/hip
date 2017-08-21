@@ -62,7 +62,6 @@ export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 
 export function loginByPassword(body){
   return (dispatch, getState) => {
-
     return dispatch({
         types: [LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE],
         url: 'user/login',
@@ -125,7 +124,7 @@ export const LOGOUT_FAILURE = 'LOGOUT_FAILURE';
 export function logout() {
   return (dispatch, getState) => {
       return dispatch({
-          types: [LOGOUT_REQUEST, LOGOUT_SUCCESS, LOGOUT_FAILURE],
+          types: [LOGOUT_REQUEST, LOGOUT_SUCCESS, LOGOUT_SUCCESS],
           url: 'user/logout',
           body:{}
       });
