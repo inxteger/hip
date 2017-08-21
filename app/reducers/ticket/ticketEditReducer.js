@@ -18,6 +18,7 @@ import {LOGOUT} from '../../actions/loginAction.js';
 
 import Immutable from 'immutable';
 import moment from 'moment';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 moment.locale('zh-cn');
 
@@ -184,13 +185,13 @@ function getAlarmDate(alarm){
 function getAlarmLevel(alarm){
   var level = alarm.get('Level');
   if(level === 1){
-    return '低级';
+    return localStr('lang_alarm_low_level');
   }
   else if(level === 2){
-    return '中级';
+    return localStr('lang_alarm_midd_level');
   }
   else{
-    return '高级';
+    return localStr('lang_alarm_high_level');
   }
 }
 function getAlarmDescri(alarm)
@@ -199,12 +200,12 @@ function getAlarmDescri(alarm)
     return '';
   }
   var des = '时间:'+getAlarmDate(alarm)+'\n';
-  des += '级别:'+getAlarmLevel(alarm)+'\n';
+  des += localStr('lang_alarm_leveldes')+':'+getAlarmLevel(alarm)+'\n';
   des += '类别:'+alarm.get('Code')+'\n';
   des += '点位:'+alarm.get('Parameter')+'\n';
   des += '实际值:'+alarm.get('ActualValue')+'\n';
-  des += '设定值:'+alarm.get('ThresholdValue')+'\n';
-  des += '位置:'+alarm.get('Paths').reverse().join('\n');
+  des += localStr('lang_alarm_setting_value')+':'+alarm.get('ThresholdValue')+'\n';
+  des += localStr('lang_alarm_position')+':'+alarm.get('Paths').reverse().join('\n');
   return des;
 }
 

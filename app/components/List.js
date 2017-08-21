@@ -250,7 +250,7 @@ export default class List extends Component{
               (listData.getRowCount() === 0 && (listData.sectionIdentities[0]==='s1')||listData.sectionIdentities.length===0)){
       var text = '',clearFilter = null;
       if(this.props.hasFilter){
-        text = '没有符合筛选条件的报警';
+        text = lang_alarm_nofilteralarm;
         clearFilter = this._getClearFilterView();
       }
       else {

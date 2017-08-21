@@ -34,7 +34,7 @@ export default class DashCardView extends Component{
         contentView=(
           <View style={{flexDirection:'row',marginTop:10,height:30}}>
             <Text style={styles.invalidText}>
-              {'无效值'}
+              {lang_alarm_invalid_value}
             </Text>
           </View>
         );

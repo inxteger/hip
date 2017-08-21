@@ -8,12 +8,11 @@ import {
 } from 'react-native';
 
 import Toolbar from '../Toolbar';
-
-
 import StatableSelectorGroup from './StatableSelectorGroup';
 import Button from '../Button';
 import {GREEN,} from '../../styles/color.js';
 import Loading from '../Loading';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class AlarmFilter extends Component{
   constructor(props){
@@ -31,8 +30,8 @@ export default class AlarmFilter extends Component{
     if(rowData === 0){
       return (
         <StatableSelectorGroup
-          title='状态'
-          data={['未解除','已解除']}
+          title={localStr('lang_alarm_states')}
+          data={[localStr('lang_alarm_not_resolved'),localStr('lang_alarm_already_resolved')]}
           selectedIndexes={this.props.filter.get('status')}
           onChanged={(index)=>this.props.filterChanged('status',index)} />
       );
@@ -40,8 +39,8 @@ export default class AlarmFilter extends Component{
     else if(rowData === 1){
       return (
         <StatableSelectorGroup
-          title='级别'
-          data={['高级','中级','低级']}
+          title={localStr('lang_alarm_leveldes')}
+          data={[localStr('lang_alarm_high_level'),localStr('lang_alarm_midd_level'),localStr('lang_alarm_low_level')]}
           selectedIndexes={this.props.filter.get('level')}
           onChanged={(index)=>this.props.filterChanged('level',index)} />
       );
@@ -49,7 +48,7 @@ export default class AlarmFilter extends Component{
     else if(rowData === 2){
       return (
         <StatableSelectorGroup
-          title='类别'
+          title={localStr('lang_alarm_category')}
           data={this.props.codes}
           selectedIndexes={this.props.filter.get('code')}
           onChanged={(index)=>this.props.filterChanged('code',index)} />
@@ -61,7 +60,7 @@ export default class AlarmFilter extends Component{
       }
       return (
         <StatableSelectorGroup
-          title='位置'
+          title={localStr('lang_alarm_position')}
           data={this.props.buildings}
           selectedIndexes={this.props.filter.get('building')}
           onChanged={(index)=>this.props.filterChanged('building',index)} />
@@ -105,7 +104,7 @@ export default class AlarmFilter extends Component{
           navIcon="close"
           onIconClicked={this.props.onClose}
           actions={[{
-            title:'筛选',
+            title:localStr('lang_alarm_filter'),
             show: 'always', showWithText:true}]}
             onActionSelected={[this.props.doFilter]}
           />

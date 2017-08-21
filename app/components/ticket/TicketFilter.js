@@ -14,6 +14,7 @@ import StatableInputGroup from './StatableInputGroup';
 import Button from '../Button';
 import {GREEN,} from '../../styles/color.js';
 import Loading from '../Loading';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class TicketFilter extends Component{
   constructor(props){
@@ -38,7 +39,7 @@ export default class TicketFilter extends Component{
     else if(rowData === 1){
       return (
         <StatableSelectorGroup
-          title='状态'
+          title={localStr('lang_alarm_states')}
           data={['未开始','执行中','已完成','逾期']}
           selectedIndexes={this.props.selectDatas.get('ticketStatus')}
           onChanged={(index)=>this.props.filterChanged('status',index)} />
@@ -47,7 +48,7 @@ export default class TicketFilter extends Component{
     else if(rowData === 2){
       return (
         <StatableSelectorGroup
-          title='类型'
+          title={localStr('lang_alarm_type')}
           data={['计划工单','报警工单','现场工单','随工工单']}
           selectedIndexes={this.props.selectDatas.get('ticketTypes')}
           onChanged={(index)=>this.props.filterChanged('types',index)} />
@@ -59,7 +60,7 @@ export default class TicketFilter extends Component{
       }
       return (
         <StatableSelectorGroup
-          title='位置'
+          title={localStr('lang_alarm_position')}
           data={this.props.arrBuildsName}
           selectedIndexes={this.props.selectDatas.get('selectBuilds')}
           onChanged={(index)=>this.props.filterChanged('building',index)} />
@@ -103,7 +104,7 @@ export default class TicketFilter extends Component{
           navIcon="close"
           onIconClicked={this.props.onClose}
           actions={[{
-            title:'筛选',
+            title:localStr('lang_alarm_filter'),
             show: 'always', showWithText:true}]}
             onActionSelected={[this.props.doFilter]}
           />

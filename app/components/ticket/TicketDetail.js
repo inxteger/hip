@@ -162,7 +162,7 @@ export default class TicketDetail extends Component{
     }
     var content = [
       {label:'创建用户',value:rowData.get('CreateUserName')},
-      {label:'类型',value:type},
+      {label:lang_alarm_type,value:type},
       {label:'ID',value:rowData.get('TicketNum')}
     ];
     var style={marginHorizontal:16,marginBottom:16};
