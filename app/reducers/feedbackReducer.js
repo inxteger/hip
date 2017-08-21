@@ -8,7 +8,7 @@ import {
   FEEDBACK_LOG_SAVE_FAILURE
 } from '../actions/myAction';
 
-import {LOGOUT} from '../actions/loginAction.js';
+import {LOGOUT_SUCCESS} from '../actions/loginAction.js';
 
 import Immutable from 'immutable';
 
@@ -100,7 +100,7 @@ export default function(state=defaultState,action){
     case FEEDBACK_LOG_SAVE_SUCCESS:
     case FEEDBACK_LOG_SAVE_FAILURE:
       return saveSuccess(state,action);
-    case LOGOUT:
+    case LOGOUT_SUCCESS:
     case FEEDBACK_LOG_CLEAN:
       return defaultState;
     default:

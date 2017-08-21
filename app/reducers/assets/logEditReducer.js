@@ -6,7 +6,7 @@ import {
   ASSET_LOG_CLEAN
 } from '../../actions/assetsAction';
 
-import {LOGOUT} from '../../actions/loginAction.js';
+import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
 
 import Immutable from 'immutable';
 
@@ -86,7 +86,7 @@ export default function(state=defaultState,action){
   switch (action.type) {
     case ASSET_LOGINFO_CHANGED:
       return infoChanged(state,action);
-    case LOGOUT:
+    case LOGOUT_SUCCESS:
     case ASSET_LOG_CLEAN:
       return defaultState;
     default:

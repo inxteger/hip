@@ -7,7 +7,7 @@ import {
   HISTORY_LOAD_SUCCESS,
 } from '../../actions/historyAction.js';
 
-import {LOGOUT} from '../../actions/loginAction.js';
+import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
 
 import Immutable from 'immutable';
 
@@ -183,7 +183,7 @@ export default function(state=defaultState,action){
     //, HISTORY_LOAD_FAILURE
     case HISTORY_DATA_RESET:
       return setToDefault(state,action);
-    case LOGOUT:
+    case LOGOUT_SUCCESS:
       return defaultState;
     default:
 

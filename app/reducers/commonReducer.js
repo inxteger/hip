@@ -1,6 +1,6 @@
 'use strict';
 
-import {LOGOUT} from '../actions/loginAction.js';
+import {LOGOUT_SUCCESS} from '../actions/loginAction.js';
 
 import unit from '../utils/unit.js';
 
@@ -8,7 +8,7 @@ export function commonReducer(fn,defaultState) {
 
   return (state,action)=>{
     switch (action.type) {
-      case LOGOUT:
+      case LOGOUT_SUCCESS:
         return defaultState;
     }
     return fn(state || defaultState,action);

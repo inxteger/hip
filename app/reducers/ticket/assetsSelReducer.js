@@ -15,7 +15,7 @@ import {
   ASSETS_USERS_FAILURE
 }from '../../actions/ticketAction.js';
 
-import {LOGOUT} from '../../actions/loginAction.js';
+import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
 
 import Immutable from 'immutable';
 
@@ -230,7 +230,7 @@ export default function(state=defaultState,action){
     case ASSETS_USERS_FAILURE:
       return state.set('isPosting',3);
     case CUSTOMER_ASSET_RESET:
-    case LOGOUT:
+    case LOGOUT_SUCCESS:
       return defaultState;
     default:
 

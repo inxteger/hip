@@ -8,7 +8,7 @@ import {
 }
 from '../../app/actions/ticketAction.js';
 
-import {LOGOUT} from '../../app/actions/loginAction.js';
+import {LOGOUT_SUCCESS} from '../../app/actions/loginAction.js';
 
 import {expectImmutableEqual} from '../util.js';
 import {expect} from 'chai';
@@ -95,7 +95,7 @@ describe('ticketLogReducer', () => {
 
   });
 
-  describe('LOGOUT', () => {
+  describe('LOGOUT_SUCCESS', () => {
     var getAction = (data) => {
       return {
         type:TICKET_LOGINFO_CHANGED,
@@ -105,7 +105,7 @@ describe('ticketLogReducer', () => {
 
     var getLogoutAction = () => {
       return {
-        type:LOGOUT,
+        type:LOGOUT_SUCCESS,
       }
     }
 

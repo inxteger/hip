@@ -6,7 +6,7 @@ import {
   TICKET_LOG_CLEAN
 } from '../../actions/ticketAction';
 
-import {LOGOUT} from '../../actions/loginAction.js';
+import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
 
 import Immutable from 'immutable';
 
@@ -88,7 +88,7 @@ export default function(state=defaultState,action){
   switch (action.type) {
     case TICKET_LOGINFO_CHANGED:
       return infoChanged(state,action);
-    case LOGOUT:
+    case LOGOUT_SUCCESS:
     case TICKET_LOG_CLEAN:
       return defaultState;
     default:
