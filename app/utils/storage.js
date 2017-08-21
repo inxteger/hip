@@ -84,20 +84,17 @@ export default {
     this.removeItem(NAMEKEY);
   },
 
-  getDeviceId(cb)
+  async getDeviceId(cb)
   {
     if(tempDeviceid){
       return tempDeviceid;
     }
-    return this.getItem(DEVICEKEY,cb);
-  },
-  createDeviceId(){
-    if (tempDeviceid) {
-      return tempDeviceid;
+    tempDeviceid = await this.getItem(DEVICEKEY,cb);
+    if (!tempDeviceid) {
+      tempDeviceid=createUuid(32,16);
     }
-    var value=createUuid(32,16);
-    tempDeviceid=value;
-    return this.setItem(DEVICEKEY,value);
+    this.setItem(DEVICEKEY,tempDeviceid);
+    return tempDeviceid;
   },
   removeDeviceId(){
     tempDeviceid=null;

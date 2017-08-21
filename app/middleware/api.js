@@ -36,7 +36,6 @@ var defaultFetch = async function(options){
 
 
   var token = await storage.getToken();
-  storage.createDeviceId();
   var deviceid=await storage.getDeviceId();
   // console.log('token,,,deviceid',token,deviceid);
   var headers = {
@@ -45,8 +44,8 @@ var defaultFetch = async function(options){
   };
   if(token){
     headers[TOKENHEADER] = token;
-    headers[HEADERDEVICEID]=deviceid;
   }
+  headers[HEADERDEVICEID]=deviceid;
 
   var os = Platform.OS;
   var {versionName} = appInfo.get();

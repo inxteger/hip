@@ -124,7 +124,7 @@ export const LOGOUT_FAILURE = 'LOGOUT_FAILURE';
 export function logout() {
   return (dispatch, getState) => {
       return dispatch({
-          types: [LOGOUT_REQUEST, LOGOUT_SUCCESS, LOGOUT_SUCCESS],
+          types: [LOGOUT_REQUEST, LOGOUT_SUCCESS, LOGOUT_FAILURE],
           url: 'user/logout',
           body:{}
       });
