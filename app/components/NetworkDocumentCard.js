@@ -65,7 +65,9 @@ export default class NetworkDocumentCard extends Component {
     var downFilePath=`${saveDocumentPath}/${name}`;
     var token = await storage.getToken();
     var deviceid=await storage.getDeviceId();
-    var headers={TOKENHEADER:token,HEADERDEVICEID:deviceid};
+    var headers={};
+    headers[TOKENHEADER]=token;
+    headers[HEADERDEVICEID]=deviceid;
     RNFS.exists(downFilePath).then((result) => {
       if (result) {
         console.warn('will open file...');
