@@ -7,6 +7,8 @@ import Loading from '../Loading';
 
 const SHA1 = require("crypto-js/sha1");
 const URL = require('url-parse');
+import storage from '../../utils/storage.js';
+import {getBaseUri,TOKENHEADER,HEADERDEVICEID} from '../../middleware/api.js';
 
 export default
 class CacheableImage extends React.Component {
@@ -104,6 +106,8 @@ class CacheableImage extends React.Component {
     async checkImageCache(imageUri, cachePath, cacheKey) {
         const dirPath = DocumentDirectoryPath+'/'+cachePath;
         const filePath = dirPath+'/'+cacheKey;
+        var token = await storage.getToken();
+        var deviceid=await storage.getDeviceId();
         // console.warn('start check file path...',filePath);
         RNFS
         .exists(filePath)
@@ -152,13 +156,16 @@ class CacheableImage extends React.Component {
                     // console.warn('If already downloading, cancel the job',this.jobId);
                     this._stopDownload();
                 }
-
+                var headers={};
+                headers[TOKENHEADER]=token;
+                headers[HEADERDEVICEID]=deviceid;
                 let downloadOptions = {
                     fromUrl: imageUri,
                     toFile: filePath,
                     background: this.props.downloadInBackground,
                     begin: this.imageDownloadBegin,
-                    progress: this.imageDownloadProgress
+                    progress: this.imageDownloadProgress,
+                    headers
                 };
 
                 // directory exists.. begin download

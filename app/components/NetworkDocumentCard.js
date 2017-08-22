@@ -8,12 +8,13 @@ import {
   // Linking
 } from 'react-native';
 import Text from './Text.js';
-import {getBaseUri} from '../middleware/api.js';
+import {getBaseUri,TOKENHEADER,HEADERDEVICEID} from '../middleware/api.js';
 import Toast from 'react-native-root-toast';
 import {openFile} from '../utils/openFile';
 import TouchFeedback from './TouchFeedback.js';
 import {BLACK,GRAY} from './../styles/color.js';
 import Icon from './Icon.js';
+import storage from '../utils/storage.js';
 
 const RNFS = require('react-native-fs');
 
@@ -28,7 +29,7 @@ export default class NetworkDocumentCard extends Component {
     // this.stopDownloadTest=this.stopDownloadTest.bind(this);
   }
 
-  downloadNetFile(name,id) {
+  async downloadNetFile(name,id) {
     if (jobId !== -1) {
       return;
     }
@@ -62,13 +63,17 @@ export default class NetworkDocumentCard extends Component {
     // var url = 'http://www.pdf995.com/samples/pdf.pdf';
     var url = `${baseUri}/common/file/download/${id}`;
     var downFilePath=`${saveDocumentPath}/${name}`;
-
+    var token = await storage.getToken();
+    var deviceid=await storage.getDeviceId();
+    var headers={};
+    headers[TOKENHEADER]=token;
+    headers[HEADERDEVICEID]=deviceid;
     RNFS.exists(downFilePath).then((result) => {
       if (result) {
         console.warn('will open file...');
         this.fileOpen(downFilePath,type);
       }else {
-        const ret = RNFS.downloadFile({ fromUrl: url, toFile: downFilePath, begin, progress, false, progressDivider });
+        const ret = RNFS.downloadFile({ fromUrl: url, toFile: downFilePath, begin, progress, false, progressDivider,headers});
 
         console.warn('start down load file with id:',ret.jobId);
         jobId = ret.jobId;
