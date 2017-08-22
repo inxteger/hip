@@ -9,7 +9,7 @@ import {
 
 import Text from './Text.js';
 import {getBaseUri} from '../middleware/api.js';
-import {TOKENHEADER} from '../middleware/api.js';
+import {TOKENHEADER,HEADERDEVICEID} from '../middleware/api.js';
 import storage from '../utils/storage.js';
 
 class UploadableImage extends Component {
@@ -20,6 +20,7 @@ class UploadableImage extends Component {
       this.state.loaded = true;
     }
   }
+
   async _uploadImage() {
     // console.warn('UploadableImage');
     var xhr = new XMLHttpRequest();
@@ -29,12 +30,15 @@ class UploadableImage extends Component {
     }
     xhr.open('POST', postUri);
     xhr.setRequestHeader(TOKENHEADER,await storage.getToken());
+    xhr.setRequestHeader(HEADERDEVICEID,await storage.getDeviceId());
 
     xhr.onload = () => {
       if (xhr.status !== 200) {
         console.warn(
           'Upload failed',
-          'Expected HTTP 200 OK response, got ' + xhr.status
+          'Expected HTTP 200 OK response, got ' + xhr.status,
+          this.props.name,
+          this.props.uri
         );
         return;
       }
