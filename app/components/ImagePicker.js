@@ -19,6 +19,7 @@ import Text from './Text';
 import ImagePickerItem from './ImagePickerItem.js';
 import Toast from 'react-native-root-toast';
 import fileHelper from '../utils/fileHelper.js';
+import {localStr,localFormatStr} from '../utils/Localizations/localization.js';
 
 var {ImagePickerManager} = NativeModules;
 var Permissions = require('react-native-permissions');
@@ -201,7 +202,7 @@ export default class ImagePicker extends Component {
       <Toolbar title={title}
         navIcon="back"
         actions={[{
-          title:'完成',
+          title:localStr('lang_common_finish'),
           show: 'always', showWithText: true
         }]}
         onIconClicked={()=>this.props.onBack()}

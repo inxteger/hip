@@ -30,6 +30,7 @@ import TouchFeedback from './TouchFeedback.js';
 import PrivilegePanel from './PrivilegePanel.js';
 import NetworkDocumentCard from './NetworkDocumentCard.js';
 import Immutable from 'immutable';
+import {localStr,localFormatStr} from '../utils/Localizations/localization.js';
 
 import {checkFileNameIsImage} from '../utils/fileHelper.js';
 // import NetworkText from './ticket/NetworkText.js';
@@ -228,7 +229,7 @@ export default class LogEditView extends Component{
   _getToolbar(){
     var actions = null;
     if(this.props.canEdit){
-      actions = [{title:'完成',show:'always',code:this.props.privilegeCode}]
+      actions = [{title:localStr('lang_common_finish'),show:'always',code:this.props.privilegeCode}]
     }
     var {log,user} = this.props;
 

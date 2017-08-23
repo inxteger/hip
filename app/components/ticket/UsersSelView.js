@@ -35,7 +35,7 @@ export default class UsersSelView extends Component{
     // if (!this.props.data&&!this.props.isFetching) {
     //   return (
     //     <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-    //       <Text style={{fontSize:17,color:GRAY}}>{'请先选择资产范围'}</Text>
+    //       <Text style={{fontSize:17,color:GRAY}}>{''}</Text>
     //     </View>
     //   )
     // }else {
@@ -56,7 +56,7 @@ export default class UsersSelView extends Component{
   }
   render() {
     var disable = !this.props.data || !this.props.selectUsers || this.props.selectUsers.size===0;
-    var actions = [{title:'完成',show:'always',disable:disable}];
+    var actions = [{title:localStr('lang_common_finish'),show:'always',disable:disable}];
     return (
       <View style={{flex:1,backgroundColor:'white'}}>
         <Toolbar title={this.props.title}

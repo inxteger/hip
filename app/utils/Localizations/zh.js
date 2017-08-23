@@ -55,7 +55,7 @@ export default {
   lang_alarm_create_ticket:'创建报警工单',
   lang_alarm_view_ticket:'查看工单',
 
-  lang_ticket_finish:'完成',
+  lang_common_finish:'完成',
   lang_ticket_remove:'删除',
   lang_ticket_customer_name:'客户名称',
   lang_ticket_start_time:'开始时间',

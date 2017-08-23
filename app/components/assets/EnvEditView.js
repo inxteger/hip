@@ -26,7 +26,7 @@ export default class EnvEditView extends Component{
         <Toolbar
           title={this.props.data.get('title')}
           navIcon="back"
-          actions={[{title:'完成',show:'always'}]}
+          actions={[{title:localStr('lang_common_finish'),show:'always'}]}
           onIconClicked={this.props.onBack}
           onActionSelected={[()=>{
             this.props.save(this.state.text)

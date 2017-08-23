@@ -36,9 +36,9 @@ export default class TaskDesEditView extends Component{
     }
     var disable = !this.state.text || this.state.text.length === 0;
     console.warn('state.text',disable,this.state.text);
-    var actions = [{title:'完成',show:'always',disable:disable}];
+    var actions = [{title:localStr('lang_common_finish'),show:'always',disable:disable}];
     if(Platform.OS === 'android'){
-      actions = [{title:'完成',show:'always'}];
+      actions = [{title:localStr('lang_common_finish'),show:'always'}];
     }
     return (
       <View style={{flex:1,backgroundColor:'white'}}>

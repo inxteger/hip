@@ -7,6 +7,7 @@ import TouchFeedback from './TouchFeedback';
 import Text from './Text';
 // import Icon from './Icon.js';
 import {TAB,TAB_BORDER,GREEN,TAB_TEXT} from '../styles/color';
+import {localStr,localFormatStr} from '../utils/Localizations/localization.js';
 
 export default class TabBar extends Component {
   constructor(props){
@@ -26,7 +27,7 @@ export default class TabBar extends Component {
   }
   render () {
     var items = [
-      {text:'资产',
+      {text:localStr('lang_alarm_assetdes'),
       normal:require('../images/tab_assets_normal/assets_normal.png'),
       selected:require('../images/tab_assets_selected/assets_selected.png')},
       {text:'报警',

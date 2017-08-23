@@ -21,7 +21,8 @@ export default class TicketRow extends Component{
   }
   _getTime(){
     var {rowData} = this.props;
-    return moment(rowData.get('StartTime')).format('MM-DD')+'至'+moment(rowData.get('EndTime')).format('MM-DD');
+    // return moment(rowData.get('StartTime')).format('MM-DD')+'至'+moment(rowData.get('EndTime')).format('MM-DD');
+    return localFormatStr('lang_ticket_finish_time_format',moment(rowData.get('StartTime')).format('MM-DD'),moment(rowData.get('EndTime')).format('MM-DD'));
   }
   _getContent(){
     var {rowData} = this.props;
