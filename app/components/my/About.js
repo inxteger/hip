@@ -13,6 +13,7 @@ import Toolbar from '../Toolbar';
 import Text from '../Text';
 import {BLACK,GREEN} from '../../styles/color';
 import Button from '../Button';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class About extends Component{
   constructor(props){
@@ -23,14 +24,14 @@ export default class About extends Component{
   {
     var spName=this.props.user.get('SpFullName');
     if (!spName) {
-      spName='施耐德电气（中国）有限公司 版权所有';
+      spName=localStr('lang_my_des0');
     }
     return spName;
   }
   _getIsSpCustomer()
   {
     var spName=this._getSpFullName();
-    return spName.indexOf('施耐德')===-1;
+    return spName.indexOf(localStr('lang_my_des1'))===-1;
   }
   _renderFooter(){
     var hasNewVersion=this.props.version.get('hasNewVersion');
@@ -52,14 +53,14 @@ export default class About extends Component{
           fontSize:15,
           color:'#ffffff'
         }}
-        text={"下载新版本 "+version} onClick={()=>this.props.updateClick()} />
+        text={localFormatStr('lang_my_des2',version)} onClick={()=>this.props.updateClick()} />
     );
   }
   _getLatestText(hasNewVersion)
   {
     if (!hasNewVersion&&Platform.OS==='android') {
       return (
-        <Text style={styles.versionText}>{`${'(已为最新版本)'}`}</Text>
+        <Text style={styles.versionText}>{`${localStr('lang_my_des3')}`}</Text>
       );
     }else {
       return null;
@@ -75,13 +76,13 @@ export default class About extends Component{
     return (
       <View style={{flex:1,backgroundColor:'white'}}>
         <Toolbar
-          title={Platform.OS==='android'?'版本信息':'关于'}
+          title={Platform.OS==='android'?localStr('lang_my_des4'):localStr('lang_my_des5')}
           navIcon="back"
           onIconClicked={()=>this.props.onBack()} />
         <View style={styles.container}>
           <Image source={require("../../images/about_logo/about_logo.png")} />
-          <Text style={styles.productNameText}>灯塔</Text>
-          <Text style={styles.versionText}>{`${hasNewVersion?'当前版本':'版本'}:${appInfo.versionName}`}</Text>
+          <Text style={styles.productNameText}>{localStr('lang_my_des6')}</Text>
+          <Text style={styles.versionText}>{`${hasNewVersion?localStr('lang_my_des7'):localStr('lang_my_des8')}:${appInfo.versionName}`}</Text>
           {this._getLatestText(hasNewVersion)}
           {this._renderFooter()}
           <View style={styles.bottom}>

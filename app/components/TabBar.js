@@ -36,7 +36,7 @@ export default class TabBar extends Component {
       {text:'工单',
         normal:require('../images/tab_tickets_normal/tickets_normal.png'),
         selected:require('../images/tab_tickets_selected/tickets_selected.png')},
-      {text:'我的',
+      {text:localStr('lang_my_des25'),
         normal:require('../images/tab_user_normal/user_normal.png'),
         selected:require('../images/tab_user_selected/user_selected.png'),}];
     var content = items.map((item,key) => {
@@ -50,7 +50,7 @@ export default class TabBar extends Component {
           <View style={[styles.tab,{flexDirection:'column'}]}>
             <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
               {
-                this._getNewVersionIcon(item.text==='我的')
+                this._getNewVersionIcon(item.text===localStr('lang_my_des25'))
               }
               <Image
                 source={image}

@@ -65,10 +65,10 @@ export default class UserSelectRow extends Component{
             </View>
             <View style={{flexDirection:'row'}}>
               {this.props.rowData.get('InProcessTicketCount')===null?null:<Text numberOfLines={1} style={styles.subTitleText}>
-                {'执行中 : '+this._formatValue(this.props.rowData.get('InProcessTicketCount'))}
+                {localStr('lang_ticket_going')+' : '+this._formatValue(this.props.rowData.get('InProcessTicketCount'))}
               </Text>}
               {this.props.rowData.get('NotStartedTicketCount')===null?null:<Text numberOfLines={1} style={styles.subTitleText}>
-                {'未开始 : '+this._formatValue(this.props.rowData.get('NotStartedTicketCount'))}
+                {localStr('lang_ticket_not_start')+' : '+this._formatValue(this.props.rowData.get('NotStartedTicketCount'))}
               </Text>}
             </View>
           </View>

@@ -274,7 +274,7 @@ class Main extends Component{
               '',
               '请在手机的'+'"'+'设置'+'"'+'中，允许灯塔访问您的相册',
               [
-                {text: '取消', onPress: () => {
+                {text: localStr('lang_ticket_cancel'), onPress: () => {
                 }},
                 {text: '允许', onPress: () => {
                   if (Permissions.canOpenSettings()) {
@@ -342,7 +342,7 @@ class Main extends Component{
               '',
               this.props.content,
               [
-                {text: '取消', onPress: () => {
+                {text: localStr('lang_ticket_cancel'), onPress: () => {
                   this.props.emptyClipboard();
                   return;
                 }},

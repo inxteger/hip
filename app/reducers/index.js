@@ -25,7 +25,7 @@ function error(state = null, action) {
     else if(error['message']){
       // console.warn('error message',error['message']);
       if(error['message'] === 'Network request failed'){
-        return '加载失败，请检查您的网络设置';
+        return localStr('lang_commons_notice3');
       }
       return error['message'];
     }
@@ -34,7 +34,7 @@ function error(state = null, action) {
     }
     else {
       console.warn('error',action);
-      return '未知错误';
+      return localStr('lang_commons_notice2');
     }
 
   }

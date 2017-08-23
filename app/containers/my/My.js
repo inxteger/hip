@@ -24,10 +24,10 @@ class My extends Component{
   _logout(){
     Alert.alert(
       '',
-      '您要退出这个账号吗？',
+      localStr('lang_my_des27'),
       [
-        {text: '取消', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-        {text: '退出', onPress: () => {
+        {text: localStr('lang_ticket_cancel'), onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+        {text: localStr('lang_my_des28'), onPress: () => {
 
           notificationHelper.unbind();
           this.props.logout();

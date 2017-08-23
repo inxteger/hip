@@ -136,6 +136,58 @@ export default {
 
   lang_commons_notice0:'无数据可显示，请在网页端进行配置',
   lang_commons_notice1:'无查看资产权限，联系管理员',
+  lang_commons_yes:'是',
+  lang_commons_no:'否',
+  lang_commons_notice2:'未知错误',
+  lang_commons_notice3:'加载失败，请检查您的网络设置',
+
+  lang_commons_see:'{0}\n是否查看？',
 
   lang_ticket_OK:'好',
+
+  lang_ticket_notice14:'您有一条新工单',
+  lang_ticket_notice15:'您有一条新设备报警',
+
+
+  lang_login_des0:'该手机号在系统内未注册',
+  lang_login_des1:'该用户不存在',
+  lang_login_des2:'密码输入有误',
+  lang_login_des3:'验证码输入有误',
+  lang_login_des4:'验证码已过期，请重新获取',
+
+  lang_my_des0:'施耐德电气（中国）有限公司 版权所有',
+  lang_my_des1:'施耐德',
+  lang_my_des2:'下载新版本{0}',
+  lang_my_des3:'(已为最新版本)',
+  lang_my_des4:'版本信息',
+  lang_my_des5:'关于',
+  lang_my_des6:'灯塔',
+  lang_my_des7:'当前版本',
+  lang_my_des8:'版本',
+  lang_my_des9:'删除这张图片吗？',
+  lang_my_des10:'删除这个文件吗？',
+  lang_my_des11:'添加照片',
+  lang_my_des12:'提交',
+  lang_my_des13:'意见反馈',
+  lang_my_des14:'请输入您的问题或建议',
+  lang_my_des15:'电话或邮箱，便于我们和您取得联系',
+  lang_my_des16:'您对灯塔云平台的建议:',
+  lang_my_des17:'您的联系方式（选填）',
+  lang_my_des18:'修改昵称',
+  lang_my_des19:'使用手机扫描',
+  lang_my_des20:'即可立即下载灯塔APP',
+  lang_my_des21:'二维码',
+  lang_my_des22:'昵称',
+  lang_my_des23:'APP二维码',
+  lang_my_des24:'退出登录',
+
+  lang_my_des25:'我的',
+  lang_my_des26:'请输入您的问题或建议...',
+  lang_my_des27:'您要退出这个账号吗？',
+  lang_my_des28:'退出',
+  lang_my_des29:'昵称不能为空',
+  lang_my_des30:'提交中...',
+  lang_my_des31:'反馈提交成功!',
+  lang_my_des32:'绑定成功!',
+
 };

@@ -92,7 +92,7 @@ export default class ImagePicker extends Component {
             '',
             '请在手机的'+'"'+'设置'+'"'+'中，允许灯塔访问您的摄像头',
             [
-              {text: '取消', onPress: () => {
+              {text: localStr('lang_ticket_cancel'), onPress: () => {
                 return;
               }},
               {text: '允许', onPress: () => {
@@ -108,7 +108,7 @@ export default class ImagePicker extends Component {
     });
     var options = {
       title: '', // specify null or empty string to remove the title
-      cancelButtonTitle: '取消',
+      cancelButtonTitle: localStr('lang_ticket_cancel'),
       takePhotoButtonTitle: '打开照相机', // specify null or empty string to remove this button
       chooseFromLibraryButtonTitle: '从手机相册获取', // specify null or empty string to remove this button
       cameraType: 'back', // 'front' or 'back'
@@ -230,7 +230,7 @@ export default class ImagePicker extends Component {
               '',
               '请在手机的'+'"'+'设置'+'"'+'中，允许灯塔访问您的相册',
               [
-                {text: '取消', onPress: () => {
+                {text: localStr('lang_ticket_cancel'), onPress: () => {
                 }},
                 {text: '允许', onPress: () => {
                   if (Permissions.canOpenSettings()) {

@@ -10,6 +10,7 @@ import {
 
 import {compose} from 'redux';
 import storage from '../utils/storage.js';
+import {localStr,localFormatStr} from '../utils/Localizations/localization.js';
 
 
 var defaultState = Immutable.fromJS({
@@ -151,19 +152,19 @@ function handleError(state,action) {
 
   switch (Error) {
     case '050001212602':
-      action.error = '该手机号在系统内未注册';
+      action.error = localStr('lang_login_des0');
       break;
     case '050001212008':
-      action.error = '该用户不存在';
+      action.error = localStr('lang_login_des1');
       break;
     case '050001212003':
-      action.error = '密码输入有误'
+      action.error = localStr('lang_login_des2');
       break;
     case '050001212601':
-      action.error = '验证码输入有误'
+      action.error = localStr('lang_login_des3');
       break;
     case '050001212600':
-      action.error = '验证码已过期，请重新获取';
+      action.error = localStr('lang_login_des4');
       break;
     default:
 

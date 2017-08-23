@@ -9,12 +9,8 @@ import {
   DEVICE_EXIT
 } from '../../actions/assetsAction.js';
 
-<<<<<<< HEAD
-import {LOGOUT} from '../../actions/loginAction.js';
-=======
-import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
 
->>>>>>> origin/master
+import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
 import Immutable from 'immutable';
 import utils from '../../utils/unit.js';
 import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';

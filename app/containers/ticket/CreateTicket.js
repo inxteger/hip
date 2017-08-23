@@ -157,7 +157,7 @@ class CreateTicket extends Component{
       '',
       alertText,
       [
-        {text: '取消', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+        {text: localStr('lang_ticket_cancel'), onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
         {text: localStr('lang_ticket_remove'), onPress: () => {
 
           this.props.deleteTicket(ticketInfo.get('Id'));
