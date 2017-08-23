@@ -27,6 +27,7 @@ import Icon from '../Icon.js';
 import Bottom from '../Bottom.js';
 import Loading from '../Loading';
 import privilegeHelper from '../../utils/privilegeHelper.js';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 moment.locale('zh-cn');
 
@@ -55,7 +56,7 @@ export default class TicketDetail extends Component{
                 width,height,paddingBottom:28,paddingHorizontal:16}}
               source={require('../../images/black_gradient/gradient.png')} >
               <Text style={{marginBottom:11,fontSize:12,color:'white'}}>
-                资产位置
+                {localStr('lang_ticket_asset_position')}
               </Text>
               <Text numberOfLines={1} style={{fontSize:20,color:'white'}}>
                 {rowData.get('BuildingNames').join('、')}
@@ -79,11 +80,11 @@ export default class TicketDetail extends Component{
     }
     if(startTime || endTime){
       if(!endTime){
-        text = `${startTime} 开始`;
+        text = localFormatStr('lang_ticket_start_time_format',startTime);//`${startTime} 开始`;
         type = 'ticket_processing';
       }
       else {
-        text = `${startTime} 至 ${endTime}`;
+        text = localFormatStr('lang_ticket_finish_time_format',startTime,endTime);//`${startTime} 至 ${endTime}`;
         type = 'ticket_finished';
       }
       textView = (
@@ -107,14 +108,14 @@ export default class TicketDetail extends Component{
     var {rowData} = this.props;
     var content = rowData.get('AssetNames').join('\n');
     return (
-      <MoreContent style={styles.moreContent} title="资产范围" content={content}/>
+      <MoreContent style={styles.moreContent} title={localStr('lang_ticket_asset_range')} content={content}/>
     );
   }
   _getTaskView(){
     var {rowData} = this.props;
 
     return (
-      <MoreContent style={styles.moreContent} title="任务描述" content={rowData.get('Content')} />
+      <MoreContent style={styles.moreContent} title={localStr('lang_ticket_task_des')} content={rowData.get('Content')} />
     );
   }
   _getTimeView(){
@@ -124,9 +125,9 @@ export default class TicketDetail extends Component{
     var executor = rowData.get('ExecutorNames').join('、');
     var documents = rowData.get('Documents').map((item)=> {return {name:item.get('DocumentName'),id:item.get('DocumentId'),size:item.get('Size')}}).toArray();
     var content = [
-      {label:'执行时间',value:`${startTime} 至 ${endTime}`},
-      {label:'执行人',value:executor},
-      {label:'作业文档',value:documents}
+      {label:localStr('lang_ticket_run_time'),value:localFormatStr('lang_ticket_finish_time_format',startTime,endTime)},
+      {label:localStr('lang_ticket_executer'),value:executor},
+      {label:localStr('lang_ticket_document'),value:documents}
     ];
     var style={marginHorizontal:16,marginBottom:16};
     if (Platform.OS === 'ios') {
@@ -149,20 +150,20 @@ export default class TicketDetail extends Component{
     var {rowData} = this.props;
     var type = rowData.get('TicketType');
     if(type === 1){
-      type = '计划工单';
+      type = localStr('lang_ticket_ticket_planning');
     }
     else if (type === 2) {
-      type = '报警工单';
+      type = localStr('lang_ticket_ticket_alarm');
     }
     else if (type === 3) {
-      type = '随工工单';
+      type = localStr('lang_ticket_ticket_folow');
     }
     else if (type === 4) {
-      type = '现场工单';
+      type = localStr('lang_ticket_ticket_scene');
     }
     var content = [
-      {label:'创建用户',value:rowData.get('CreateUserName')},
-      {label:'类型',value:type},
+      {label:localStr('lang_ticket_create_user'),value:rowData.get('CreateUserName')},
+      {label:localStr('lang_alarm_type'),value:type},
       {label:'ID',value:rowData.get('TicketNum')}
     ];
     var style={marginHorizontal:16,marginBottom:16};
@@ -229,7 +230,7 @@ export default class TicketDetail extends Component{
               fontSize:15,
               color:'#ffffff'
             }}
-            text='开始执行' onClick={() => this.props.execute(this.props.rowData.get('Id'))} />
+            text={localStr('lang_ticket_start_execute')} onClick={() => this.props.execute(this.props.rowData.get('Id'))} />
         </Bottom>
       );
     }
@@ -244,7 +245,7 @@ export default class TicketDetail extends Component{
               fontSize:15,
               color:'#ffffff'
             }}
-            text='完成工单' onClick={() => this.props.finish(this.props.rowData.get('Id'))} />
+            text={localStr('lang_ticket_finish_ticket')} onClick={() => this.props.finish(this.props.rowData.get('Id'))} />
         </Bottom>
       );
     }else if (status === 2 && isScollView) {
@@ -259,7 +260,7 @@ export default class TicketDetail extends Component{
             fontSize:15,
             color:'#ffffff'
           }}
-          text='完成工单' onClick={() => this.props.finish(this.props.rowData.get('Id'))} />
+          text={localStr('lang_ticket_finish_ticket')} onClick={() => this.props.finish(this.props.rowData.get('Id'))} />
       </View>
     }
     return null;
@@ -273,7 +274,7 @@ export default class TicketDetail extends Component{
       var status = data.get('Status');
       if(status !== 3){
         actions = [{
-        title:'编辑',
+        title:localStr('lang_ticket_ticket_edit'),
         code:'TicketEditPrivilegeCode',
         iconType:'edit',
         show: 'always', showWithText: false}];
@@ -282,7 +283,7 @@ export default class TicketDetail extends Component{
 
     return (
         <Toolbar
-          title='工单详情'
+          title={localStr('lang_ticket_ticket_detail')}
           navIcon="back"
           onIconClicked={()=>{
             this.props.onBack();
@@ -295,13 +296,13 @@ export default class TicketDetail extends Component{
   static getStatusText(rowData) {
     var status = rowData.get('Status'),statusText='';
     if(status === 1){
-      statusText = '未开始';
+      statusText = localStr('lang_ticket_not_start');
     }
     else if (status === 2) {
-      statusText = '执行中';
+      statusText = localStr('lang_ticket_going');
     }
     else {
-      statusText = '已完成';
+      statusText = localStr('lang_ticket_finished');
     }
     return statusText;
   }

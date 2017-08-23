@@ -9,6 +9,7 @@ import Toolbar from '../Toolbar';
 import List from '../List.js';
 import AlarmRow from './AlarmRow.js';
 import Section from '../Section.js';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class Alarm extends Component{
   constructor(props){
@@ -33,9 +34,9 @@ export default class Alarm extends Component{
   render() {
     return (
       <View style={{flex:1,backgroundColor:'white'}}>
-        <Toolbar title='故障报警'
+        <Toolbar title={localStr('lang_alarm_problem_alarm')}
           actions={[{
-            title:'筛选',
+            title:localStr('lang_alarm_filter'),
             icon:require('../../images/filter/filter.png'),
             show: 'always', showWithText: false}]}
           onActionSelected={[this.props.onFilterClick]} />
@@ -52,8 +53,8 @@ export default class Alarm extends Component{
             onFilterClick={this.props.onFilterClick}
             renderRow={(rowData,sectionId,rowId)=>this._renderRow(rowData,sectionId,rowId)}
             renderSectionHeader={(sectionData,sectionId)=>this._renderSection(sectionData,sectionId)}
-            emptyText='暂无报警'
-            filterEmptyText='没有符合筛选条件的报警'
+            emptyText={localStr('lang_alarm_noalarm')}
+            filterEmptyText={localStr('lang_alarm_nofilteralarm')}
           />
       </View>
 

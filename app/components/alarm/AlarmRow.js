@@ -12,6 +12,7 @@ import ClickableRow from '../ClickableRow.js';
 import {GRAY,BLACK,ALARM_RED} from '../../styles/color';
 import moment from 'moment';
 import Icon from '../Icon.js';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class AlarmRow extends Component{
   constructor(props){
@@ -21,13 +22,13 @@ export default class AlarmRow extends Component{
     var level = data.get('Level'),secureTime = data.get('SecureTime');
     var ret = {text:level,style:null};
     if(level === 3){
-      ret.text = '高';
+      ret.text = localStr('lang_alarm_highdes');
     }
     else if (level === 2) {
-      ret.text = '中';
+      ret.text = localStr('lang_alarm_midddes');
     }
     else {
-      ret.text = '低';
+      ret.text = localStr('lang_alarm_lowdes');
     }
     if(secureTime){
       ret.style=styles.securedAlarm;

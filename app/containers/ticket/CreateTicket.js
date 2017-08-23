@@ -15,6 +15,7 @@ import CreateTicketView from '../../components/ticket/CreateTicketView';
 import TicketTaskDesEdit from './TicketTaskDesEdit';
 import UsersSelect from './UsersSelect';
 import AssetsSelect from './AssetsSelect';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 class CreateTicket extends Component{
   static contextTypes = {
@@ -49,7 +50,7 @@ class CreateTicket extends Component{
         component:TicketTaskDesEdit,
         passProps:{
           content:this.props.data.get('Content'),
-          title:'任务描述',
+          title:localStr('lang_ticket_task_des'),
         }
       });
     }
@@ -63,7 +64,7 @@ class CreateTicket extends Component{
           startTime:this.props.data.get('StartTime'),
           endTime:this.props.data.get('EndTime'),
           selectAssets:this.props.selectAssets,
-          title:'执行人',
+          title:localStr('lang_ticket_executer'),
         }
       });
       // console.warn('this.props.selectUsers',this.props.selectUsers);
@@ -79,7 +80,7 @@ class CreateTicket extends Component{
           customerId:this.props.customer.get('CustomerId'),
           startTime:this.props.data.get('StartTime'),
           endTime:this.props.data.get('EndTime'),
-          title:'资产范围',
+          title:localStr('lang_ticket_asset_range'),
         }
       });
       this.props.updateAssetsSelectInfo({type:'assetInit',value:this.props.selectAssets});
@@ -104,9 +105,9 @@ class CreateTicket extends Component{
     if(StartTime > EndTime){
       Alert.alert(
         '',
-        '开始时间不能晚于结束时间',
+        localStr('lang_ticket_starttimeerr0'),
         [
-          {text: '好', onPress: () => console.log('Cancel Pressed')}
+          {text: localStr('lang_ticket_OK'), onPress: () => console.log('Cancel Pressed')}
         ]
       )
       return false;
@@ -150,13 +151,14 @@ class CreateTicket extends Component{
   }
   _onDeleteTicket(){
     var {ticketInfo} = this.props;
-    var alertText = '工单'+'"'+ticketInfo.get('TicketNum')+'"'+'将被删除?';
+    var alertText = localFormatStr('lang_ticket_remove_notice',ticketInfo.get('TicketNum'));
+    //'工单'+'"'+ticketInfo.get('TicketNum')+'"'+'将被删除?';
     Alert.alert(
       '',
       alertText,
       [
         {text: '取消', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-        {text: '删除', onPress: () => {
+        {text: localStr('lang_ticket_remove'), onPress: () => {
 
           this.props.deleteTicket(ticketInfo.get('Id'));
           this.props.onPostingCallback('delete');
@@ -189,7 +191,7 @@ class CreateTicket extends Component{
   render() {
     return (
       <CreateTicketView
-        title={this.props.ticketInfo?'编辑工单':'创建工单'}
+        title={this.props.ticketInfo?localStr('lang_ticket_edit_ticket'):localStr('lang_ticket_create_ticket')}
         customer={this.props.customer}
         ticketInfo={this.props.ticketInfo}
         onBack={()=>this._onBackClick()}

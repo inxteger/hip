@@ -9,6 +9,7 @@ import Toolbar from '../Toolbar';
 import List from '../List.js';
 import CustomerRow from './CustomerRow';
 import Section from '../Section.js';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class CustomerSelView extends Component{
   constructor(props){
@@ -29,7 +30,7 @@ export default class CustomerSelView extends Component{
   render() {
     return (
       <View style={{flex:1,backgroundColor:'white'}}>
-        <Toolbar title='创建工单'
+        <Toolbar title={localStr('lang_ticket_create_ticket')}
           navIcon="close"
           onIconClicked={()=>this.props.onBack()}
         />
@@ -39,7 +40,7 @@ export default class CustomerSelView extends Component{
           hasFilter={false}
           currentPage={1}
           totalPage={1}
-          emptyText='未关联任何客户，请联系管理员'
+          emptyText={localStr('lang_ticket_notice0')}
           onRefresh={this.props.onRefresh}
           renderRow={(rowData,sectionId,rowId)=>this._renderRow(rowData,sectionId,rowId)}
           renderSectionHeader={(sectionData,sectionId)=>this._renderSection(sectionData,sectionId)}

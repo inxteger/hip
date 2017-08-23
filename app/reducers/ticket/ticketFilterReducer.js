@@ -14,6 +14,8 @@ import {
   TICKET_FILTER_FAILURE,
 } from '../../actions/ticketAction';
 
+import {LOGOUT} from '../../actions/loginAction.js';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
 
 import Immutable from 'immutable';
@@ -217,15 +219,15 @@ function categoryAllDatas(state)
   var allDatas = [];
   if (listStatus1.length>0) {
     allDatas.push(listStatus1);
-    sectionTitle.push('未开始');
+    sectionTitle.push(localStr('lang_ticket_not_start'));
   }
   if (listStatus2.length>0) {
     allDatas.push(listStatus2);
-    sectionTitle.push('执行中');
+    sectionTitle.push(localStr('lang_ticket_going'));
   }
   if (listStatus3.length>0) {
     allDatas.push(listStatus3);
-    sectionTitle.push('已完成');
+    sectionTitle.push(localStr('lang_ticket_finished'));
   }
   newState=newState.set('sectionData',Immutable.fromJS(sectionTitle)).set('allDatas',Immutable.fromJS(allDatas));
   return newState;

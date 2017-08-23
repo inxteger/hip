@@ -21,6 +21,7 @@ import privilegeHelper from '../../utils/privilegeHelper.js';
 import Icon from '../Icon.js';
 import TouchFeedback from '../TouchFeedback';
 import unit from '../../utils/unit.js';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 // import num
 moment.locale('zh-cn');
 
@@ -43,13 +44,13 @@ export default class AlarmDetail extends Component{
   _getAlarmLevel(){
     var level = this.props.rowData.get('Level');
     if(level === 1){
-      return '低';
+      return localStr('lang_alarm_lowdes');
     }
     else if(level === 2){
-      return '中';
+      return localStr('lang_alarm_midddes');
     }
     else{
-      return '高';
+      return localStr('lang_alarm_highdes');
     }
   }
   _getAlarmCode(){
@@ -64,7 +65,7 @@ export default class AlarmDetail extends Component{
   }
   _getAlarmDate(){
     var obj = moment(this.props.rowData.get('AlarmTime'));
-    return obj.format("YYYY年M月D日")
+    return obj.format(localStr('lang_alarm_midd_date'))
   }
   _getAlarmParameter(){
     return this.props.rowData.get('Parameter');
@@ -148,7 +149,7 @@ export default class AlarmDetail extends Component{
     if(!type){ // could be null
       return '-';
     }
-    if(type.indexOf('功率因数') >= 0){
+    if(type.indexOf(localStr('lang_alarm_power_factor')) >= 0){
       return this._formatNumber(v.toString(),2);
     }
     else {
@@ -157,7 +158,7 @@ export default class AlarmDetail extends Component{
   }
   _isCode303(rowData)
   {
-    return rowData.get('Code')==='故障跳闸';
+    return rowData.get('Code')===localStr('lang_alarm_reason0');
   }
     // {this._getPathRows(item.content)}
   _getDeviceNameView(rowData){
@@ -187,7 +188,7 @@ export default class AlarmDetail extends Component{
   {
     if (!value) {
       value='--';
-    }else if (value==='无效值') {
+    }else if (value===localStr('lang_alarm_invalid_value')) {
       value='--';
     }
 
@@ -196,23 +197,23 @@ export default class AlarmDetail extends Component{
   _getDetailView(rowData){
     var actualValue = this._format(rowData.get('ActualValue'),rowData.get('Parameter'));
     var uom = rowData.get('Uom') || '';
-    var dataText = `${actualValue}${uom}（设定值:${rowData.get('ThresholdValue')}${uom}）`;
+    var dataText = `${actualValue}${uom}（${localStr('lang_alarm_setting_value')}:${rowData.get('ThresholdValue')}${uom}）`;
     // var path = rowData.get('DeviceName') + '\n';
     var path = rowData.get('Paths').reverse().join('\n');
     path += '\n' + this.props.customerName;
     var list = [
-      {title:'位置',content:path},
-      {title:'类型',content:this._getAlarmCode()},
-      {title:'数据',content:dataText}//数据
+      {title:localStr('lang_alarm_position'),content:path},
+      {title:localStr('lang_alarm_type'),content:this._getAlarmCode()},
+      {title:localStr('lang_alarm_datas'),content:dataText}//数据
     ];
 
     if (this._isCode303(rowData)) {
       var reason='';
       var details='';
       rowData.get('TripDetails').forEach((item,index)=>{
-        if (item.get('Key')==='故障原因') {
+        if (item.get('Key')===localStr('lang_alarm_problem_reason')) {
           reason=item.get('Value');
-          list.splice(0,0,{title:'原因',content:this._formatValue(reason)});
+          list.splice(0,0,{title:localStr('lang_alarm_reason'),content:this._formatValue(reason)});
         }else {
           details+=(item.get('Key')+':'+this._formatValue(item.get('Value')));
           if (index!==rowData.get('TripDetails').size-1) {
@@ -221,7 +222,7 @@ export default class AlarmDetail extends Component{
         }
       });
       if (details) {
-        list.splice(1,0,{title:'详情',content:details});
+        list.splice(1,0,{title:localStr('lang_alarm_detail'),content:details});
       }
     }
     return list.map((item,index)=>{
@@ -246,7 +247,7 @@ export default class AlarmDetail extends Component{
     var ticketLink = null;
     if(rowData.get('TicketId')){
       ticketLink = (
-        <Text onPress={this.props.viewTicket} style={styles.viewTicket}>查看工单</Text>
+        <Text onPress={this.props.viewTicket} style={styles.viewTicket}>{localStr('lang_alarm_view_ticket')}</Text>
       );
     }
     var list = statusList.reverse();
@@ -291,7 +292,7 @@ export default class AlarmDetail extends Component{
             fontSize:15,
             color:'#ffffff'
           }}
-          text='创建报警工单' onClick={()=>this.props.createOrEditTicket(this.props.rowData)} />
+          text={localStr('lang_alarm_create_ticket')} onClick={()=>this.props.createOrEditTicket(this.props.rowData)} />
       </Bottom>
     );
   }
@@ -343,7 +344,7 @@ export default class AlarmDetail extends Component{
     return (
       <View style={{flex:1,backgroundColor:this._getBackgroundColor()}}>
         <Toolbar
-          title='报警详情'
+          title={localStr('lang_alarm_alarmdetail')}
           titleColor='white'
           tintColor='white'
           color='transparent'

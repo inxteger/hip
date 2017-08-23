@@ -14,6 +14,7 @@ import {BLACK} from '../../styles/color.js';
 import Text from '../Text.js';
 import TouchFeedback from '../TouchFeedback';
 var dismissKeyboard = require('dismissKeyboard');
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class Login extends Component{
   constructor(props){
@@ -32,10 +33,10 @@ export default class Login extends Component{
     var {width,height} = this.state;
     var {type} = this.props,text;
     if(type === 'mobile'){
-      text = '用户名密码登录';
+      text = localStr('lang_login_usernamedes');
     }
     else {
-      text = '手机验证码登录';
+      text = localStr('lang_login_mobiledes');
     }
     return (
       <Image

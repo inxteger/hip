@@ -11,6 +11,7 @@ import {
 import Toolbar from '../Toolbar';
 import Gallery from './Gallery';
 import PhotoRow from './PhotoRow.js';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class PhotoShowView extends Component{
   constructor(props){
@@ -65,7 +66,7 @@ export default class PhotoShowView extends Component{
       }
       // var code = this.props.type === 'ticketLogPhoto'?'TicketExecutePrivilegeCode':'AssetEditPrivilegeCode';
       actions = [{
-        title:'删除',
+        title:localStr('lang_ticket_remove'),
         iconType:'delete',
         code:code,
         show: 'always', showWithText: false}];

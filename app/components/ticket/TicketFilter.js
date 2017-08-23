@@ -14,6 +14,7 @@ import StatableInputGroup from './StatableInputGroup';
 import Button from '../Button';
 import {GREEN,} from '../../styles/color.js';
 import Loading from '../Loading';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class TicketFilter extends Component{
   constructor(props){
@@ -30,7 +31,7 @@ export default class TicketFilter extends Component{
     if(rowData === 0){
       return (
         <StatableInputGroup
-          title='工单ID'
+          title={localStr('lang_ticket_ticketid')}
           text={this.props.selectDatas.get('ticketStrId')}
           onChanged={(text)=>this.props.filterChanged('ticketStrId',text)} />
       );
@@ -38,8 +39,8 @@ export default class TicketFilter extends Component{
     else if(rowData === 1){
       return (
         <StatableSelectorGroup
-          title='状态'
-          data={['未开始','执行中','已完成','逾期']}
+          title={localStr('lang_alarm_states')}
+          data={[localStr('lang_ticket_not_start'),localStr('lang_ticket_going'),localStr('lang_ticket_finished'),localStr('lang_ticket_expired')]}
           selectedIndexes={this.props.selectDatas.get('ticketStatus')}
           onChanged={(index)=>this.props.filterChanged('status',index)} />
       );
@@ -47,8 +48,8 @@ export default class TicketFilter extends Component{
     else if(rowData === 2){
       return (
         <StatableSelectorGroup
-          title='类型'
-          data={['计划工单','报警工单','现场工单','随工工单']}
+          title={localStr('lang_alarm_type')}
+          data={[localStr('lang_ticket_ticket_planning'),localStr('lang_ticket_ticket_alarm'),localStr('lang_ticket_ticket_scene'),localStr('lang_ticket_ticket_folow')]}
           selectedIndexes={this.props.selectDatas.get('ticketTypes')}
           onChanged={(index)=>this.props.filterChanged('types',index)} />
       );
@@ -59,7 +60,7 @@ export default class TicketFilter extends Component{
       }
       return (
         <StatableSelectorGroup
-          title='位置'
+          title={localStr('lang_alarm_position')}
           data={this.props.arrBuildsName}
           selectedIndexes={this.props.selectDatas.get('selectBuilds')}
           onChanged={(index)=>this.props.filterChanged('building',index)} />
@@ -99,11 +100,11 @@ export default class TicketFilter extends Component{
     return (
       <View style={{flex:1,backgroundColor:'white'}}>
         <Toolbar
-          title='工单筛选'
+          title={localStr('lang_ticket_filter')}
           navIcon="close"
           onIconClicked={this.props.onClose}
           actions={[{
-            title:'筛选',
+            title:localStr('lang_alarm_filter'),
             show: 'always', showWithText:true}]}
             onActionSelected={[this.props.doFilter]}
           />

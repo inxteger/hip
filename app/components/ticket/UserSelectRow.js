@@ -10,6 +10,7 @@ import Text from '../Text';
 import TouchFeedback from '../TouchFeedback';
 import Icon from '../Icon.js';
 import {BLACK,GRAY,GREEN} from '../../styles/color';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class UserSelectRow extends Component{
   constructor(props){

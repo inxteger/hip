@@ -14,6 +14,7 @@ import TicketLogEdit from './TicketLogEdit';
 import LogsView from '../../components/LogsView';
 import privilegeHelper from '../../utils/privilegeHelper.js';
 import {deleteLog,saveLog,loadTicketLogs} from '../../actions/ticketAction.js';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 class TicketLog extends Component{
   constructor(props){
@@ -31,7 +32,7 @@ class TicketLog extends Component{
       return false;
     }
     if(!this.props.canEdit){
-      Alert.alert('','仅执行中的工单可以编辑这一日志');
+      Alert.alert('',localStr('lang_ticket_notice4'));
       return false;
     }
     return true;
@@ -57,7 +58,7 @@ class TicketLog extends Component{
   _delete(log){
     // console.warn('user',log.get('CreateUserName'),this.props.user.get('RealName'));
     if(log.get('CreateUserName') !== this.props.user.get('RealName')){
-      Alert.alert('','仅创建者可以删除这一日志');
+      Alert.alert('',localStr('lang_ticket_notice5'));
       return;
     }
     if(!this._showAuth()){
@@ -65,10 +66,10 @@ class TicketLog extends Component{
     }
     Alert.alert(
       '',
-      '删除这条日志吗？',
+      localStr('lang_ticket_remove_log'),
       [
         {text: '取消', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-        {text: '删除', onPress: () => {
+        {text: localStr('lang_ticket_remove'), onPress: () => {
           this.props.deleteLog(this.props.ticketId,log.get('Id'));
         }}
       ]
@@ -115,13 +116,13 @@ class TicketLog extends Component{
     // TicketEditPrivilegeCode====>TicketExecutePrivilegeCode
     return (
       <LogsView
-        title={'工单日志'}
+        title={localStr('lang_ticket_ticket_log')}
         logs={this.state.dataSource}
         privilegeCode='TicketExecutePrivilegeCode'
         showAdd={this._canShowAdd()}
         isFetching={this.props.isFetching}
         onRefresh={()=>this._loadLogs()}
-        emptyText='无工单日志'
+        emptyText={localStr('lang_ticket_nolog')}
         createLog={()=>this._gotoEdit()}
         onRowClick={(log)=>this._gotoEdit(log)}
         onRowLongPress={(log)=>this._delete(log)}

@@ -17,6 +17,7 @@ import Toolbar from '../Toolbar';
 import PagerBar from '../PagerBar.js';
 import {GREEN,TAB_BORDER,LINE} from '../../styles/color.js';
 import HistoryControl from './HistoryControl.js';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 import moment from 'moment';
 
@@ -72,7 +73,7 @@ export default class HistoryView extends Component{
         '',
         '不能选择未来日期',
         [
-          {text: '好', onPress: () => console.log('Cancel Pressed')}
+          {text: localStr('lang_ticket_OK'), onPress: () => console.log('Cancel Pressed')}
         ]
       )
       return false;

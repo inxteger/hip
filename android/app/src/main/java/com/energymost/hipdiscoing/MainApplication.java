@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.content.Intent;
 
 import com.facebook.react.ReactApplication;
+import com.babisoft.ReactNativeLocalization.ReactNativeLocalizationPackage;
 import fr.bamlab.rncameraroll.CameraRollPackage;
 import com.devialab.detectNewPhoto.RCTDetectNewPhotoPackage;
 import com.horcrux.svg.RNSvgPackage;
@@ -72,6 +73,7 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
           new SplashScreenPackage(),
           new MainReactPackage(),
+            new ReactNativeLocalizationPackage(),
           new AppInfoPackage(),
           new CodePush(MainApplication.this.getCodePushKey(), MainApplication.this, BuildConfig.DEBUG),
           new ScannerPackage(),

@@ -13,6 +13,7 @@ import Toolbar from '../Toolbar';
 // import Loading from '../Loading';
 import PagerBar from '../PagerBar.js';
 import {GREEN,TAB_BORDER} from '../../styles/color.js';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class Ticket extends Component{
   constructor(props){
@@ -35,7 +36,7 @@ export default class Ticket extends Component{
     }
   }
   _getTabArray(){
-    var array = ['以往','今天','未来'];
+    var array = [localStr('lang_ticket_last'),localStr('lang_ticket_today'),localStr('lang_ticket_future')];
     return array;
   }
   _getTabControl(){
@@ -118,12 +119,12 @@ export default class Ticket extends Component{
   render() {
     return (
       <View style={{flex:1,backgroundColor:'white'}}>
-        <Toolbar title='我的工单'
+        <Toolbar title={localStr('lang_ticket_myticket')}
           actions={[{
-          title:'筛选工单',
+          title:localStr('lang_ticket_filter_ticket'),
           iconType:'filter',
           show: 'always', showWithText: false},
-          {title:'创建工单',
+          {title:localStr('lang_ticket_create_ticket'),
           iconType:'add',
           code:'TicketEditPrivilegeCode',
           show: 'always', showWithText: false}

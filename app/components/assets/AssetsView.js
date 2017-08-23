@@ -8,6 +8,7 @@ import {
 import Toolbar from '../Toolbar';
 import List from '../List.js';
 import AssetRow from './AssetRow';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class AssetsView extends Component{
   constructor(props){
@@ -23,7 +24,7 @@ export default class AssetsView extends Component{
       <View style={{flex:1,backgroundColor:'white'}}>
         <Toolbar title='资产'
           actions={[{
-            title:'筛选',
+            title:localStr('lang_alarm_filter'),
             icon:require('../../images/scan/scan.png'),
             show: 'always', showWithText: false}]}
           onActionSelected={[this.props.onScanClick]}/>

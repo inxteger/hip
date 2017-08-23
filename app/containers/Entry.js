@@ -168,14 +168,13 @@ class Entry extends Component{
         )
       }else {
         Alert.alert(
-          '',
-          nextProps.error,
-          [
-            {text: '好', onPress: () => this.props.resetError()}
-          ]
-        )
+        '',
+        nextProps.error,
+        [
+          {text: localStr('lang_ticket_OK'), onPress: () => this.props.resetError()}
+        ]
+      )
       }
-
     }
     if (!this.props.user.get('user')&&nextProps.user.get('user')) {
       // console.warn('real user login success...');

@@ -9,6 +9,7 @@ import {
 
 import TitleComponent from '../alarm/TitleComponent.js';
 import {GRAY,BLACK,ALARM_FILTER_BUTTON_BORDER} from '../../styles/color.js';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 // import KeyboardSpacer from '../KeyboardSpacer.js';
 
 export default class StatableInputGroup extends Component{
@@ -27,7 +28,7 @@ export default class StatableInputGroup extends Component{
           multiline={false}
           numberOfLines={1}
           placeholderTextColor={GRAY}
-          placeholder={'请输入'}
+          placeholder={localStr('lang_ticket_input2')}
           onChangeText={(text)=>this.props.onChanged(text)}
           value={this.props.text}
           />

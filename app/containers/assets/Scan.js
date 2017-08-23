@@ -17,6 +17,7 @@ import Panel from './Panel';
 
 import {loadPanelHierarchy,updateScanDeviceData,updateSpHttpInfo,bindAssetHierarchy,loadAssetWithQrcode,exitScan,resetScanError} from '../../actions/assetsAction';
 import ScanView from '../../components/assets/ScanView';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 var Permissions = require('react-native-permissions');
 
@@ -85,7 +86,7 @@ class Scan extends Component{
       //   '',
       //   '无法识别与灯塔系统不相关的二维码，请确认后再试！',
       //   [
-      //     {text: '好', onPress: () => {this.setState({openCamera:true});}}
+      //     {text: localStr('lang_ticket_OK'), onPress: () => {this.setState({openCamera:true});}}
       //   ]
       // )
       // this.setState({openCamera:false});
@@ -213,7 +214,7 @@ class Scan extends Component{
         '',
         nextProps.errorMessage,
         [
-          {text: '好', onPress: () =>{
+          {text: localStr('lang_ticket_OK'), onPress: () =>{
             this.setState({openCamera:true});
             this.props.resetScanError();
           }}//

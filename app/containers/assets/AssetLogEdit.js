@@ -14,6 +14,7 @@ import {deleteImages} from '../../actions/imageAction';
 import privilegeHelper from '../../utils/privilegeHelper.js';
 import PhotoShow from './PhotoShow';
 import ImagePicker from '../ImagePicker.js';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 const MAX = 100;
 
@@ -27,7 +28,7 @@ class AssetLogEdit extends Component{
 
     // this.props.navigator.pop();
     if(!this.props.assetLog.get('Content') && this.props.assetLog.get('Pictures').size === 0){
-      Alert.alert('','请填写日志内容或上传照片');
+      Alert.alert('',localStr('lang_ticket_notice6'));
       return ;
     }
     this.context.showSpinner();
@@ -64,7 +65,7 @@ class AssetLogEdit extends Component{
       return false;
     }
     if(!this.props.isSameUser){
-      Alert.alert('','仅创建者可以编辑这一日志');
+      Alert.alert('',localStr('lang_ticket_notice7'));
       return false;
     }
 

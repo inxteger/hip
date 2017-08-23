@@ -12,6 +12,7 @@ import {
 import {commonReducer} from '../commonReducer.js';
 
 import Immutable from 'immutable';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 
 var defaultState = Immutable.fromJS({
@@ -40,11 +41,11 @@ function categoryAllDatas(state)
   var allDatas = [];
   if (listStatus1.length>0) {
     allDatas.push(listStatus1);
-    sectionTitle.push('未解除');
+    sectionTitle.push(localStr('lang_alarm_not_resolved'));
   }
   if (listStatus2.length>0) {
     allDatas.push(listStatus2);
-    sectionTitle.push('已解除');
+    sectionTitle.push(localStr('lang_alarm_already_resolved'));
   }
   // console.warn('categoryAllDatas',allDatas);
   newState=newState.set('sectionData',Immutable.fromJS(sectionTitle)).set('allDatas',Immutable.fromJS(allDatas));
@@ -58,9 +59,9 @@ function mergeData(state,action) {
 
   var items = response.Items;
   items.forEach((item)=>{
-    item.Status.push({'Timestamp':item.AlarmTime, 'Content':'发生报警',User:'self'});
+    item.Status.push({'Timestamp':item.AlarmTime, 'Content':localStr('lang_alarm_create'),User:'self'});
     if (!!item.SecureTime) {
-      item.Status.unshift({'Timestamp':item.SecureTime, 'Content':'报警已解除，现场数据已正常',User:'self'});
+      item.Status.unshift({'Timestamp':item.SecureTime, 'Content':localStr('lang_alarm_des0'),User:'self'});
     }
   })
 
