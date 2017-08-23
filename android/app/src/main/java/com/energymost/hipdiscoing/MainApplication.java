@@ -28,7 +28,7 @@ import java.util.List;
 
 
 // import com.eguma.barcodescanner.BarcodeScannerPackage;
-import com.microsoft.codepush.react.CodePush;
+// import com.microsoft.codepush.react.CodePush;
 import com.imagepicker.ImagePickerPackage;
 import com.fileopener.FileOpenerPackage;
 import com.rnfs.RNFSPackage;
@@ -38,19 +38,19 @@ public class MainApplication extends Application implements ReactApplication {
   private static final String TAG = "HipRock";
 
 
-  private String getCodePushKey() {
-    try{
-      String pkName = this.getPackageName();
-      ApplicationInfo appInfo = this.getPackageManager().getApplicationInfo(pkName,PackageManager.GET_META_DATA);
-      String codepushKey=appInfo.metaData.getString("com.energymost.hipdiscoing.codepushKey");
-      return codepushKey;
-    }
-    catch(NameNotFoundException exc){
-      Log.e(TAG,"getCodePushKey error",exc);
-    }
-    return "";
-
-  }
+  // private String getCodePushKey() {
+  //   try{
+  //     String pkName = this.getPackageName();
+  //     ApplicationInfo appInfo = this.getPackageManager().getApplicationInfo(pkName,PackageManager.GET_META_DATA);
+  //     String codepushKey=appInfo.metaData.getString("com.energymost.hipdiscoing.codepushKey");
+  //     return codepushKey;
+  //   }
+  //   catch(NameNotFoundException exc){
+  //     Log.e(TAG,"getCodePushKey error",exc);
+  //   }
+  //   return "";
+  //
+  // }
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
 
@@ -60,10 +60,10 @@ public class MainApplication extends Application implements ReactApplication {
       return BuildConfig.DEBUG;
     }
 
-    @Override
-    protected String getJSBundleFile() {
-        return CodePush.getBundleUrl();
-    }
+    // @Override
+    // protected String getJSBundleFile() {
+    //     return CodePush.getBundleUrl();
+    // }
 
 
 
@@ -71,8 +71,8 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
-          new SplashScreenPackage(),
           new MainReactPackage(),
+          new SplashScreenPackage(),
           new ReactNativeLocalizationPackage(),
           new AppInfoPackage(),
           new ScannerPackage(),
