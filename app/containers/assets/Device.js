@@ -212,7 +212,7 @@ console.warn('_gotoDetail...',type);
       ownData:this.props.ownData,
       changeImageComplete:(data)=>this._onChangeImageComplete(data),
       onRowClick:(rowData)=>this._gotoDetail(rowData),
-      emptyText:'无数据可显示，请在网页端进行配置'
+      emptyText:localStr('lang_commons_notice0')
     }
     // if(this._viewCache[type]){
     //   return this._viewCache[type];

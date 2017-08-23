@@ -77,7 +77,7 @@ class TicketLogEdit extends Component{
       return false;
     }
     if(!this.props.hasAuth){
-      // Alert.alert('','您没有这一项的操作权限，请联系系统管理员');
+      // Alert.alert('',localStr('lang_alarm_des1'));
       return false;
     }
     return true;

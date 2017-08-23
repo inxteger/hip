@@ -164,7 +164,7 @@ export default class AlarmDetail extends Component{
   _getDeviceNameView(rowData){
     var path = rowData.get('DeviceName');
     var list = [
-      {title:'资产',content:path,isNav:true},
+      {title:localStr('lang_alarm_assetdes'),content:path,isNav:true},
     ];
     return list.map((item,index)=>{
       return (
@@ -204,7 +204,7 @@ export default class AlarmDetail extends Component{
     var list = [
       {title:localStr('lang_alarm_position'),content:path},
       {title:localStr('lang_alarm_type'),content:this._getAlarmCode()},
-      {title:localStr('lang_alarm_datas'),content:dataText}//数据
+      {title:localStr('lang_alarm_datas'),content:dataText}
     ];
 
     if (this._isCode303(rowData)) {

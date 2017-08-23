@@ -22,7 +22,7 @@ export default class AssetsView extends Component{
   render() {
     return (
       <View style={{flex:1,backgroundColor:'white'}}>
-        <Toolbar title='资产'
+        <Toolbar title={localStr('lang_alarm_assetdes')}
           actions={[{
             title:localStr('lang_alarm_filter'),
             icon:require('../../images/scan/scan.png'),

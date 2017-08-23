@@ -18,6 +18,7 @@ import {GRAY} from '../../styles/color.js';
 import Text from '../Text.js';
 import UploadableImage from '../UploadableImage';
 import Toast from 'react-native-root-toast';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class DetailView extends Component{
   constructor(props){
@@ -108,7 +109,7 @@ export default class DetailView extends Component{
     }
   }
   _showToast(){
-    Toast.show('您没有这一项的操作权限，请联系系统管理员', {
+    Toast.show(localStr('lang_alarm_des1'), {
         duration: Toast.durations.LONG,
         position: Toast.positions.BOTTOM,
     });

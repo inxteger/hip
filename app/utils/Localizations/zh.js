@@ -55,7 +55,7 @@ export default {
   lang_alarm_create_ticket:'创建报警工单',
   lang_alarm_view_ticket:'查看工单',
 
-  lang_ticket_finish:'完成',
+  lang_common_finish:'完成',
   lang_ticket_remove:'删除',
   lang_ticket_customer_name:'客户名称',
   lang_ticket_start_time:'开始时间',
@@ -133,6 +133,9 @@ export default {
   lang_ticket_notice11:'抱歉，您查看的工单已被删除',
   lang_ticket_notice12:'抱歉，您没有查看该工单权限',
   lang_ticket_notice13:'将设备上二维码放入框内,\n自动扫描后即可绑定!',
+
+  lang_commons_notice0:'无数据可显示，请在网页端进行配置',
+  lang_commons_notice1:'无查看资产权限，联系管理员',
 
   lang_ticket_OK:'好',
 };

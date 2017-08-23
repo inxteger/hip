@@ -17,6 +17,7 @@ import Immutable from 'immutable';
 import unit from '../../utils/unit.js';
 import privilegeHelper from '../../utils/privilegeHelper.js';
 import {formatNumber} from '../commonReducer.js';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 var defaultState = Immutable.fromJS({
   roomId:null,
@@ -215,7 +216,7 @@ function handleError(state,action) {
 
   switch (Error) {
     case '040001307022':
-      action.error = '您没有这一项的操作权限，请联系系统管理员';
+      action.error = localStr('lang_alarm_des1');
       break;
   }
   return state.set('isFetching',false);

@@ -16,6 +16,7 @@ import {
 import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
 
 import Immutable from 'immutable';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 var defaultState = Immutable.fromJS({
   dataPanel:null,
@@ -100,11 +101,11 @@ function handleError(state,action) {
   switch (Error) {
     case '040001307022':
     case '050001207024':
-      strError = '您没有这一项的操作权限，请联系系统管理员';
+      strError = localStr('lang_alarm_des1');
       break;
     case '040000307009':
     case '050001251009':
-      strError = '无查看资产权限，联系管理员';
+      strError = localStr('lang_commons_notice1');
       break;
     case '050001201010':
       strError = '您扫的二维码不是灯塔资产二维码，请确认';

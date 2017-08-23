@@ -164,7 +164,7 @@ var {typeTicketTask}=action;
       action.error = localStr('lang_ticket_notice9');
       break;
     case '040001307022':
-      action.error = '您没有这一项的操作权限，请联系系统管理员';
+      action.error = localStr('lang_alarm_des1');
       state=state.setIn([typeTicketTask,'data'],null)
       .setIn([typeTicketTask,'allDatas'],Immutable.fromJS([]))
       .setIn([typeTicketTask,'isFetching'],false);

@@ -78,7 +78,7 @@ function handleError(state,action) {
   var {Error} = action.error;
   switch (Error) {
     case '040001307022':
-      Error = '您没有这一项的操作权限，请联系系统管理员';
+      Error = localStr('lang_alarm_des1');
       break;
     case '050001251500':
       Error = localStr('lang_ticket_notice11');

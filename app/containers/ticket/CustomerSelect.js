@@ -13,6 +13,7 @@ import backHelper from '../../utils/backHelper';
 import {getCustomer} from '../../actions/ticketAction';
 import CustomerSelView from '../../components/ticket/CustomerSelView';
 import CreateTicket from './CreateTicket';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 
 class CustomerSelect extends Component{
@@ -54,7 +55,7 @@ class CustomerSelect extends Component{
       return false;
     }
     if(this.props.hasAuth === false){
-      Alert.alert('','您没有这一项的操作权限，请联系系统管理员');
+      Alert.alert('',localStr('lang_alarm_des1'));
       return false;
     }
     return true;

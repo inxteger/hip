@@ -201,7 +201,7 @@ export default class TicketDetail extends Component{
                 flexDirection:'row',
                 alignItems:'center',
                 paddingHorizontal:16}}>
-            <Text style={{fontSize:17,color:BLACK}}>工单日志</Text>
+            <Text style={{fontSize:17,color:BLACK}}>localStr('lang_ticket_ticket_log')</Text>
             <View style={{flexDirection:'row',alignItems:'center'}}>
               <Text style={{fontSize:16,color:GRAY,marginRight:4}}>{count}</Text>
               <Icon type='arrow_right' size={16} color={GRAY} />

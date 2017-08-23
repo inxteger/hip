@@ -13,6 +13,7 @@ import {
 import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
 import {findSectioniIndexByType} from '../commonReducer.js';
 import Immutable from 'immutable';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 var defaultState = Immutable.fromJS({
   deviceId:null,
@@ -208,7 +209,7 @@ function handleError(state,action) {
   var strError=null;
   switch (Error) {
     case '050001251009':
-      strError = '无查看资产权限，联系管理员';
+      strError = localStr('lang_commons_notice1');
       action.error=null;
       break;
   }

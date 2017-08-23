@@ -73,7 +73,7 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
           new SplashScreenPackage(),
           new MainReactPackage(),
-            new ReactNativeLocalizationPackage(),
+          new ReactNativeLocalizationPackage(),
           new AppInfoPackage(),
           new CodePush(MainApplication.this.getCodePushKey(), MainApplication.this, BuildConfig.DEBUG),
           new ScannerPackage(),

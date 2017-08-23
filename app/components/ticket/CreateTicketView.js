@@ -116,20 +116,20 @@ export default class CreateTicketView extends Component{
   }
   _getCustomerRow()
   {
-    return this._getSimpleRow({'title':'客户名称','value':this.props.customer.get('CustomerName'),'isNav':false});
+    return this._getSimpleRow({'title':localStr('lang_ticket_customer_name'),'value':this.props.customer.get('CustomerName'),'isNav':false});
   }
   _getStartTimeRow()
   {
-    return this._getSimpleRow({'title':'开始时间','value':this.props.data.get('StartTime'),'isNav':false,type:'StartTime'});
+    return this._getSimpleRow({'title':localStr('lang_ticket_start_time'),'value':this.props.data.get('StartTime'),'isNav':false,type:'StartTime'});
   }
   _getEndTimeRow()
   {
-    return this._getSimpleRow({'title':'结束时间','value':this.props.data.get('EndTime'),'isNav':false,type:'EndTime'});
+    return this._getSimpleRow({'title':localStr('lang_ticket_end_time'),'value':this.props.data.get('EndTime'),'isNav':false,type:'EndTime'});
   }
   _getAssetsRow()
   {
     var arrAssets = this.props.data.get('Assets');
-    var value = '请选择';
+    var value = localStr('lang_ticket_please_choice');
     if (arrAssets && arrAssets.size >= 1) {
       value = arrAssets.map((item)=>item.get('Name')).join(',');
     }
@@ -138,7 +138,7 @@ export default class CreateTicketView extends Component{
   _getExecutersRow()
   {
     var arrUsers = this.props.data.get('Executors');
-    var value = '请选择';
+    var value = localStr('lang_ticket_please_choice');
     if (arrUsers && arrUsers.size >= 1) {
       value = arrUsers.map((item)=>item.get('RealName')).join(',');
     }
@@ -146,10 +146,10 @@ export default class CreateTicketView extends Component{
   }
   _getDescriptionRow()
   {
-    var strDes = '请输入详细内容';
+    var strDes = localStr('lang_ticket_input_detail');
     var content = this.props.data.get('Content');
     strDes = content&&content.length>0?content:strDes;
-    return this._getSimpleRow({'title':'工单任务','value':strDes,'isNav':true,'type':'Content'});
+    return this._getSimpleRow({'title':localStr('lang_ticket_ticket_tash'),'value':strDes,'isNav':true,'type':'Content'});
   }
   _getTicketTypeRow()
   {

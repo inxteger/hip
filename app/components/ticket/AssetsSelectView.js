@@ -31,7 +31,7 @@ export default class AssetsSelectView extends Component{
   render() {
     // console.warn('AssetsSelectView...',this.props.isFetching);
     var disable = !this.props.data || !this.props.selectAssets || this.props.selectAssets.size===0;
-    var actions = [{title:'完成',show:'always',disable}];
+    var actions = [{title:localStr('lang_common_finish'),show:'always',disable}];
     return (
       <View style={{flex:1,backgroundColor:'white'}}>
         <Toolbar title={this.props.title}
