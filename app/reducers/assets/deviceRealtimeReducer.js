@@ -12,6 +12,7 @@ import {LOGOUT} from '../../actions/loginAction.js';
 import Immutable from 'immutable';
 
 import {round} from 'lodash/math';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 var defaultState = Immutable.fromJS({
   data:null,
@@ -119,7 +120,7 @@ function handleError(state,action) {
   //    sourceURL: 'http://localhost:8081/index.ios.bundle?platform=ios&dev=true' } }
   console.warn('handleError...',action);
   if(!error){
-    action.error = '无数据可显示，请在网页端进行配置';
+    action.error = localStr('lang_commons_notice0');
   }else {
     // action.error = '无相关权限';
     action.error=null;

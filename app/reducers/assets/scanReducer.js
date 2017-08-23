@@ -105,7 +105,7 @@ function handleError(state,action) {
       break;
     case '040000307009':
     case '050001251009':
-      strError = '无查看资产权限，联系管理员';
+      strError = localStr('lang_commons_notice1');
       break;
     case '050001201010':
       strError = '您扫的二维码不是灯塔资产二维码，请确认';

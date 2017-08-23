@@ -134,5 +134,8 @@ export default {
   lang_ticket_notice12:'抱歉，您没有查看该工单权限',
   lang_ticket_notice13:'将设备上二维码放入框内,\n自动扫描后即可绑定!',
 
+  lang_commons_notice0:'无数据可显示，请在网页端进行配置',
+  lang_commons_notice1:'无查看资产权限，联系管理员',
+
   lang_ticket_OK:'好',
 };

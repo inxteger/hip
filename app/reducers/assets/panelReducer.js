@@ -217,7 +217,7 @@ function handleError(state,action) {
       action.error=null;
       break;
     case '040000307009':
-      strError = '无查看资产权限，联系管理员';
+      strError = localStr('lang_commons_notice1');
       action.error=null;
       break;
   }

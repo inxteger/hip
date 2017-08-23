@@ -10,9 +10,9 @@ import {
 } from '../../actions/assetsAction.js';
 
 import {LOGOUT} from '../../actions/loginAction.js';
-
 import Immutable from 'immutable';
 import utils from '../../utils/unit.js';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 import moment from 'moment';
 moment.locale('zh-cn');
 var today = moment().format('YYYY-MM-DD');
@@ -159,7 +159,7 @@ function handleError(state,action) {
   var error = action.error;
   // console.warn('handleError...',action);
   if(!error){
-    action.error = '无数据可显示，请在网页端进行配置';
+    action.error = localStr('lang_commons_notice0');
   }else {
     // action.error = '无相关权限';
     action.error=null;
