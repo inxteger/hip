@@ -75,7 +75,6 @@ public class MainApplication extends Application implements ReactApplication {
           new MainReactPackage(),
           new ReactNativeLocalizationPackage(),
           new AppInfoPackage(),
-          new CodePush(MainApplication.this.getCodePushKey(), MainApplication.this, BuildConfig.DEBUG),
           new ScannerPackage(),
           new ImagePickerPackage(),
           new ReactNativePermissionsPackage(),
