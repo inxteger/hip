@@ -5,7 +5,7 @@ import {
   HIERARCHY_BIND_QR_SUCCESS
 } from '../../actions/assetsAction.js';
 
-import {LOGOUT} from '../../actions/loginAction.js';
+import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
 
 import Immutable from 'immutable';
 import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
@@ -109,7 +109,7 @@ export default function(state=defaultState,action){
       return updateAssetBindInfo(state,action);
     case BINDHIERARCHY_LOAD_FAILURE:
       return handleError(state,action);
-    case LOGOUT:
+    case LOGOUT_SUCCESS:
       return defaultState;
     default:
 

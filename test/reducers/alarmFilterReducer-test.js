@@ -13,7 +13,7 @@ import {
   ALARM_FILTER_CLEAR,
 }
 from '../../app/actions/alarmAction.js';
-import {LOGOUT} from '../../app/actions/loginAction.js';
+import {LOGOUT_SUCCESS} from '../../app/actions/loginAction.js';
 import {expectImmutableEqual} from '../util.js';
 import {expect} from 'chai';
 
@@ -388,7 +388,7 @@ describe('alarmFilterReducer', () => {
 
       var getLogoutAction = () => {
         return {
-          type:LOGOUT,
+          type:LOGOUT_SUCCESS,
         }
       }
 

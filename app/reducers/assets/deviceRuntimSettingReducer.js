@@ -8,7 +8,7 @@ import {
   DEVICE_EXIT,
 } from '../../actions/assetsAction.js';
 
-import {LOGOUT} from '../../actions/loginAction.js';
+import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
 
 import Immutable from 'immutable';
 
@@ -386,7 +386,7 @@ export default function(state=defaultState,action){
       return maintenParaSelectInfoChange(state,action);
     case DEVICE_EXIT:
       return resetDeviceRuntimeInfo(state,action);
-    case LOGOUT:
+    case LOGOUT_SUCCESS:
       return defaultState;
     default:
 

@@ -13,7 +13,7 @@ import {
   ASSET_QR_REQUEST, ASSET_QR_SUCCESS, ASSET_QR_FAILURE,
 } from '../../actions/assetsAction.js';
 
-import {LOGOUT} from '../../actions/loginAction.js';
+import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
 
 import Immutable from 'immutable';
 import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
@@ -144,7 +144,7 @@ export default function(state=defaultState,action){
     //   return updateDeviceData(state,action);
     case SCAN_RESET_ERROR:
     case SCAN_EXIT:
-    case LOGOUT:
+    case LOGOUT_SUCCESS:
       return defaultState;
     default:
 

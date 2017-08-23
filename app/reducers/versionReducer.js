@@ -4,7 +4,7 @@
 import {
   VERSION_SUCCESS
 } from '../actions/myAction';
-import {LOGOUT} from '../actions/loginAction';
+import {LOGOUT_SUCCESS} from '../actions/loginAction';
 import appInfo from '../utils/appInfo.js';
 import Immutable from 'immutable';
 import semver from 'semver';
@@ -36,7 +36,7 @@ export default function(state=defaultState,action){
   switch (action.type) {
     case VERSION_SUCCESS:
       return checkVersion(defaultState,action);
-    case LOGOUT:
+    case LOGOUT_SUCCESS:
       return defaultState;
     default:
 

@@ -10,7 +10,7 @@ import {
   TICKET_LOG_DELETE_FAILURE,
 } from '../../actions/ticketAction.js';
 
-import {LOGOUT} from '../../actions/loginAction.js';
+import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
 
 import Immutable from 'immutable';
 import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
@@ -63,7 +63,7 @@ export default function(state=defaultState,action){
     case TICKET_LOG_SAVE_SUCCESS:
     case TICKET_LOG_DELETE_SUCCESS:
       return mergeLog(state,action);
-    case LOGOUT:
+    case LOGOUT_SUCCESS:
       return defaultState;
     default:
 

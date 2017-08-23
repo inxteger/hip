@@ -10,7 +10,7 @@ import {
 }
 from '../../app/actions/ticketAction.js';
 
-import {LOGOUT} from '../../app/actions/loginAction.js';
+import {LOGOUT_SUCCESS} from '../../app/actions/loginAction.js';
 
 import {expectImmutableEqual} from '../util.js';
 import {expect} from 'chai';
@@ -154,7 +154,7 @@ describe('ticketReducer', () => {
     });
   });
 
-  describe('LOGOUT', () => {
+  describe('LOGOUT_SUCCESS', () => {
     var getAction = (ticketId) => {
       return {
         type:TICKET_LOAD_BYID_SUCCESS,
@@ -169,7 +169,7 @@ describe('ticketReducer', () => {
 
     var getLogoutAction = () => {
       return {
-        type:LOGOUT,
+        type:LOGOUT_SUCCESS,
       }
     }
 

@@ -20,6 +20,7 @@ import {
 
 import {LOGOUT} from '../../actions/loginAction.js';
 import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
+import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
 
 import Immutable from 'immutable';
 
@@ -121,7 +122,7 @@ export default function(state=defaultState,action){
     case TICKET_CREATE_FAILURE:
       return state.set('isPosting',3);
     case TICKET_RESET:
-    case LOGOUT:
+    case LOGOUT_SUCCESS:
       return defaultState;
     default:
 

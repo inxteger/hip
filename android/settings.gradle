@@ -1,8 +1,5 @@
 rootProject.name = 'HipRock'
 
-include ':app',':OneSDK'
-
-
 include ':ReactNativeBarcodescanner'
 project(':ReactNativeBarcodescanner').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-barcodescanner/android')
 
@@ -47,3 +44,6 @@ project(':react-native-localization').projectDir = new File(rootProject.projectD
 
 include ':ReactAndroid'
 project(':ReactAndroid').projectDir = new File(rootProject.projectDir, '../node_modules/react-native/ReactAndroid')
+
+include ':react-native-localization'
+project(':react-native-localization').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-localization/android')

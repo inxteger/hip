@@ -11,7 +11,7 @@ import {
   ASSET_IMAGE_CHANGED_COMPLETE
 } from '../../actions/assetsAction.js';
 
-import {LOGOUT} from '../../actions/loginAction.js';
+import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
 
 import Immutable from 'immutable';
 import unit from '../../utils/unit.js';
@@ -242,7 +242,7 @@ export default function(state=defaultState,action){
       return imageChanged(state,action);
     case ASSET_IMAGE_CHANGED_COMPLETE:
       return imageChangedComplete(state,action);
-    case LOGOUT:
+    case LOGOUT_SUCCESS:
       return defaultState;
     default:
 
