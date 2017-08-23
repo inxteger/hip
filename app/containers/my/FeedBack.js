@@ -130,7 +130,7 @@ class FeedBack extends Component{
 
   }
   render() {
-    var placeholder = this.props.canEdit?'请输入您的问题或建议...':'';
+    var placeholder = this.props.canEdit?localStr('lang_my_des26'):'';
     return (
       <FeedBackView
         log={this.props.feedBackLog}

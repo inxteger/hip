@@ -10,6 +10,7 @@ import {
 import {BLACK,GRAY,ENV_EDIT_LINE,LIST_BG} from '../../styles/color';
 import Toolbar from '../Toolbar';
 import Loading from '../Loading';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class NameEditView extends Component{
   constructor(props){
@@ -24,7 +25,7 @@ export default class NameEditView extends Component{
       return  (
         <View style={styles.container}>
           <Toolbar
-            title={'修改昵称'}
+            title={localStr('lang_my_des18')}
             navIcon="back"
             actions={[{title:localStr('lang_common_finish'),show:'always'}]}
             onIconClicked={this.props.onBack}
@@ -39,7 +40,7 @@ export default class NameEditView extends Component{
     return (
       <View style={styles.container}>
         <Toolbar
-          title={'修改昵称'}
+          title={localStr('lang_my_des18')}
           navIcon="back"
           actions={[{title:localStr('lang_common_finish'),show:'always'}]}
           onIconClicked={this.props.onBack}

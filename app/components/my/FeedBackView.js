@@ -67,9 +67,9 @@ export default class FeedBackView extends Component{
     }
     Alert.alert(
       '',
-      checkFileNameIsImage(item.get('FileName'))?'删除这张图片吗？':'删除这个文件吗？',
+      checkFileNameIsImage(item.get('FileName'))?localStr('lang_my_des9'):localStr('lang_my_des10'),
       [
-        {text: '取消', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+        {text: localStr('lang_ticket_cancel'), onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
         {text: localStr('lang_ticket_remove'), onPress: () => {
           this.props.dataChanged('image','delete',item);
           // AliyunOSS.delete(appInfo.get().ossBucket,item.get('PictureId'));
@@ -222,7 +222,7 @@ export default class FeedBackView extends Component{
             style={{flexDirection:'row',height:48,justifyContent:'center',alignItems:'center'}}>
             <Icon type="photo" color={BLACK} size={18} />
             <Text style={{fontSize:15,color:BLACK,marginLeft:16}}>
-              添加照片
+              {localStr('lang_my_des11')}
             </Text>
           </View>
         </TouchFeedback>
@@ -230,14 +230,14 @@ export default class FeedBackView extends Component{
     );
   }
   _getToolbar(){
-    var actions = actions = [{title:'提交',show:'always'}];
+    var actions = actions = [{title:localStr('lang_my_des12'),show:'always'}];
 
     var content = this.props.log.get('Content');
     var images=this.props.log.get('Pictures');
     var {log} = this.props;
     return (
       <Toolbar
-        title={'意见反馈'}
+        title={localStr('lang_my_des13')}
         navIcon="back"
         actions={actions}
         onIconClicked={this.props.onBack}
@@ -246,7 +246,7 @@ export default class FeedBackView extends Component{
           if(content||images.size>0){
             this._saveLog();
           }else {
-            Alert.alert('','请输入您的问题或建议');
+            Alert.alert('',localStr('lang_my_des14'));
           }
         }]} />
     );
@@ -265,7 +265,7 @@ export default class FeedBackView extends Component{
           numberOfLines={1}
           placeholderTextColor={GRAY}
           textAlignVertical={'top'}
-          placeholder={'电话或邮箱，便于我们和您取得联系'}
+          placeholder={localStr('lang_my_des15')}
           onChangeText={(text)=>this._logChanged('contacts',text)}
           value={contact} />
       );
@@ -337,14 +337,14 @@ export default class FeedBackView extends Component{
         <KeyboardAwareScrollView
           style={{flex:1,}}
           contentContainerStyle={[contentContainerStyle,{backgroundColor:'white'}]}>
-          {this._getSection('您对灯塔云平台的建议:')}
+          {this._getSection(localStr('lang_my_des16'))}
           <View style={{flex:1}}>
             {this._getTextEditView(lines,content,inputStyle)}
           </View>
           <View style={{marginHorizontal:8}}>
             {imagesView}
           </View>
-          {this._getSection('您的联系方式（选填）')}
+          {this._getSection(localStr('lang_my_des17'))}
           <View style={{flex:1}}>
             {this._getContactEditView(lines,contact)}
           </View>

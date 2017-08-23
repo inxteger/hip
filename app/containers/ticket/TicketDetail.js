@@ -36,7 +36,7 @@ class TicketDetail extends Component{
       '',
       localStr('lang_ticket_start_notice0'),
       [
-        {text: '取消', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+        {text: localStr('lang_ticket_cancel'), onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
         {text: '开始执行', onPress: () => {
           // this.context.showSpinner();
 
@@ -51,7 +51,7 @@ class TicketDetail extends Component{
       '',
       localStr('lang_ticket_finish_notice1'),
       [
-        {text: '取消', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+        {text: localStr('lang_ticket_cancel'), onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
         {text: localStr('lang_ticket_finish_ticket'), onPress: () => {
           // this.context.showSpinner();
           this.props.finish(id);

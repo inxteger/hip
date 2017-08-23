@@ -191,7 +191,7 @@ class Entry extends Component{
         '发现新版本',
         `请更新至灯塔v${nextProps.version.get('version')}，马上体验！`,
         [
-          {text: '取消', onPress: () => {}, style:'cancel'},
+          {text: localStr('lang_ticket_cancel'), onPress: () => {}, style:'cancel'},
           {text: '立即更新', onPress: () => this._showUpgradeWebPage()}
         ]
       )

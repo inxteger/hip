@@ -60,7 +60,7 @@ class AssetLogs extends Component{
       '',
       localStr('lang_ticket_remove_log'),
       [
-        {text: '取消', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+        {text: localStr('lang_ticket_cancel'), onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
         {text: localStr('lang_ticket_remove'), onPress: () => {
           this.props.deleteLog(log.get('Id'));
         }}

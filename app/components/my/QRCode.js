@@ -11,6 +11,7 @@ import Toolbar from '../Toolbar';
 import Text from '../Text';
 import {BLACK} from '../../styles/color';
 import appInfo from '../../utils/appInfo.js';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class My extends Component{
   constructor(props){
@@ -25,13 +26,13 @@ export default class My extends Component{
     return (
       <View style={{flex:1,backgroundColor:'white'}}>
         <Toolbar
-          title='二维码'
+          title={localStr('lang_my_des21')}
           navIcon="back"
           onIconClicked={()=>this.props.onBack()} />
         <View style={styles.container}>
           <Image style={styles.qrcode} source={imgUrl} />
-          <Text style={styles.text}>使用手机扫描</Text>
-          <Text style={styles.text}>即可立即下载灯塔APP</Text>
+          <Text style={styles.text}>{localStr('lang_my_des19')}</Text>
+          <Text style={styles.text}>{localStr('lang_my_des20')}</Text>
         </View>
       </View>
 

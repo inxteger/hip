@@ -23,7 +23,7 @@ import Ticket from './ticket/Ticket';
 import Assets from './assets/Assets';
 import notificationHelper from '../utils/notificationHelper.js';
 import ViewPager from '../components/ViewPager';
-import codePush from "react-native-code-push";
+// import codePush from "react-native-code-push";
 import privilegeHelper from '../utils/privilegeHelper.js';
 import {detectClipboard,emptyClipboard} from '../actions/appAction.js';
 // console.warn('ViewPager',ViewPager);
@@ -92,7 +92,7 @@ class Main extends Component{
     return component;
   }
   _checkCodePushUpgrade(){
-    codePush.sync();
+    // codePush.sync();
   }
   _onNotification(notification){
     // var message = notification.getMessage();
@@ -274,7 +274,7 @@ class Main extends Component{
               '',
               '请在手机的'+'"'+'设置'+'"'+'中，允许灯塔访问您的相册',
               [
-                {text: '取消', onPress: () => {
+                {text: localStr('lang_ticket_cancel'), onPress: () => {
                 }},
                 {text: '允许', onPress: () => {
                   if (Permissions.canOpenSettings()) {
@@ -342,7 +342,7 @@ class Main extends Component{
               '',
               this.props.content,
               [
-                {text: '取消', onPress: () => {
+                {text: localStr('lang_ticket_cancel'), onPress: () => {
                   this.props.emptyClipboard();
                   return;
                 }},

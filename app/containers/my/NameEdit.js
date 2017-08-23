@@ -17,7 +17,7 @@ class NameEdit extends Component{
     this.state={isFetching:false};
   }
   _showToast(){
-    Toast.show('昵称不能为空', {
+    Toast.show(localStr('lang_my_des29'), {
         duration: Toast.durations.LONG,
         position: Toast.positions.BOTTOM,
     });

@@ -15,6 +15,7 @@ import TouchFeedback from '../TouchFeedback';
 import {LINE,LOGOUT_RED,LIST_BG,GRAY} from '../../styles/color';
 import ListSeperator from '../ListSeperator';
 import Icon from '../Icon.js';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class MyView extends Component{
   constructor(props){
@@ -32,7 +33,7 @@ export default class MyView extends Component{
 
     return (
       <View style={styles.row}>
-        <Text style={styles.rowPrimaryText}>用户名</Text>
+        <Text style={styles.rowPrimaryText}>{localStr('lang_login_nameinputdes')}</Text>
         <Text style={styles.rowSecondaryText}>{text}</Text>
       </View>
     )
@@ -53,7 +54,7 @@ export default class MyView extends Component{
           }}}>
         <View style={[styles.row]}>
           <Text style={styles.rowPrimaryText}>
-            {'昵称'}
+            {localStr('lang_my_des22')}
           </Text>
           <View style={{flex:1,alignItems:'center', flexDirection:'row'}}>
             <Text numberOfLines={1} lineBreakModel='charWrapping' style={styles.valueText}>
@@ -69,7 +70,7 @@ export default class MyView extends Component{
     return (
       <TouchFeedback onPress={()=>{this.props.onRowClick(1)}}>
         <View style={styles.row}>
-          <Text style={styles.rowPrimaryText}>APP二维码</Text>
+          <Text style={styles.rowPrimaryText}>{localStr('lang_my_des23')}</Text>
           <Image style={styles.qrcode} source={require("../../images/qrcode/qrcode.png")} />
         </View>
       </TouchFeedback>
@@ -102,7 +103,7 @@ export default class MyView extends Component{
         }}>
         <View style={[styles.row]}>
           <Text style={styles.rowPrimaryText}>
-            {'意见反馈'}
+            {localStr('lang_my_des13')}
           </Text>
           <View style={{flex:1,alignItems:'center',justifyContent:'flex-end',flexDirection:'row'}}>
             <Text numberOfLines={1} lineBreakModel='charWrapping' style={styles.versionText}>
@@ -121,7 +122,7 @@ export default class MyView extends Component{
         }}>
         <View style={[styles.row]}>
           <Text style={styles.rowPrimaryText}>
-            {Platform.OS==='android'?'版本信息':'关于'}
+            {Platform.OS==='android'?localStr('lang_my_des4'):localStr('lang_my_des5')}
           </Text>
           <View style={{flex:1,alignItems:'center',justifyContent:'flex-end',flexDirection:'row'}}>
             {this._getNeedUpgradeIcon()}
@@ -167,14 +168,14 @@ export default class MyView extends Component{
           fontSize:15,
           color:'#ffffff'
         }}
-        text="退出登录" onClick={()=>this._logout()} />
+        text={localStr('lang_my_des24')} onClick={()=>this._logout()} />
     );
   }
   // render() {
   //   console.warn('view render');
   //   return (
   //     <View style={{flex:1,backgroundColor:'white'}}>
-  //       <Toolbar title='我的'  />
+  //       <Toolbar title=localStr('lang_my_des25')  />
   //       <ListView
   //         style={{flex:1,backgroundColor:'transparent'}}
   //         contentContainerStyle={{flex:1,backgroundColor:'transparent'}}
@@ -198,7 +199,7 @@ export default class MyView extends Component{
   }
   _getToolbar(data){
     return (
-      <Toolbar title='我的'  />
+      <Toolbar title={localStr('lang_my_des25')}  />
     );
   }
   render() {

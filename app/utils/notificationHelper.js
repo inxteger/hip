@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 
 var {REMPushNotification} = NativeModules;
-
+import {localStr,localFormatStr} from './Localizations/localization.js';
 
 var _data = null;
 var _map = {};
@@ -69,17 +69,17 @@ export default {
         if(data.foreground){
           var title = '';
           if(data.Key === 'Ticket'){
-            title = '您有一条新工单'
+            title = localStr('lang_ticket_notice14');
           }
           else if (data.Key === 'Alarm') {
-            title = '您有一条新设备报警'
+            title = localStr('lang_ticket_notice15');
           }
           Alert.alert(
             title,
-            `${notification.getMessage()}\n是否查看？`,
+            localFormatStr('lang_commons_see',notification.getMessage()),
             [
-              {text: '否', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-              {text: '是', onPress: () => fn(notification)},
+              {text: localStr('lang_commons_no'), onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+              {text: localStr('lang_commons_yes'), onPress: () => fn(notification)},
             ]
           )
         }

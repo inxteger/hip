@@ -152,7 +152,7 @@ class Scan extends Component{
               '',
               '请在手机的'+'"'+'设置'+'"'+'中，允许灯塔访问您的摄像头',
               [
-                {text: '取消', onPress: () => {
+                {text: localStr('lang_ticket_cancel'), onPress: () => {
                   // Permissions.requestPermission('camera').then(response => {
                   //   console.warn('requestPermission camera',response);
                   //   //returns once the user has chosen to 'allow' or to 'not allow' access
