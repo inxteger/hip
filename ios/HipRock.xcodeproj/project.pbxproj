@@ -30,7 +30,6 @@
 		7FAF26FE1EB04193005BF8F1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FAF26F31EB04193005BF8F1 /* main.m */; };
 		7FAF26FF1EB04193005BF8F1 /* prod.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FAF26F41EB04193005BF8F1 /* prod.plist */; };
 		7FAF27001EB04193005BF8F1 /* REMAppInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FAF26F61EB04193005BF8F1 /* REMAppInfo.m */; };
-		7FAF27011EB04193005BF8F1 /* REMPushNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FAF26F81EB04193005BF8F1 /* REMPushNotification.m */; };
 		7FAF27021EB04193005BF8F1 /* test.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FAF26F91EB04193005BF8F1 /* test.plist */; };
 		7FAF271D1EB042C4005BF8F1 /* fontcustom.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7FAF271C1EB042C4005BF8F1 /* fontcustom.ttf */; };
 		7FB22A581D87EA9B009F4EB4 /* libRNFileOpener.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FB22A551D87E9D8009F4EB4 /* libRNFileOpener.a */; };
@@ -38,19 +37,15 @@
 		7FBD428E1D190F860070747F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FBD428D1D190F860070747F /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		7FD7759F1D617E3D00549270 /* libReactNativePermissions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FD7759D1D617E1000549270 /* libReactNativePermissions.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
-		B46E97431CDB3BF900BEE306 /* ALBBSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E1D38C1CDB30BC00B42638 /* ALBBSDK.framework */; };
 		B46E97531CDC687E00BEE306 /* libCodePush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B46E97521CDC686D00BEE306 /* libCodePush.a */; };
 		B46E975A1CE1CD7300BEE306 /* libRCTPushNotification.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B46E97591CE1CD2200BEE306 /* libRCTPushNotification.a */; };
 		B4E1D3511CD3513D00B42638 /* libRCTCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E1D3471CD3512400B42638 /* libRCTCamera.a */; };
 		B4E1D36E1CD37AF700B42638 /* libRCTCameraRoll.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E1D36D1CD37AE600B42638 /* libRCTCameraRoll.a */; };
-		B4E1D3931CDB30BC00B42638 /* ALBBSessionSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E1D38D1CDB30BC00B42638 /* ALBBSessionSDK.framework */; };
-		B4E1D3941CDB30BC00B42638 /* CloudPushSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E1D38E1CDB30BC00B42638 /* CloudPushSDK.framework */; };
 		B4E1D3951CDB30BC00B42638 /* UTDID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E1D38F1CDB30BC00B42638 /* UTDID.framework */; };
 		B4E1D3961CDB30BC00B42638 /* UTMini.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E1D3901CDB30BC00B42638 /* UTMini.framework */; };
 		B4E1D3981CDB30DD00B42638 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E1D3971CDB30DD00B42638 /* CoreTelephony.framework */; };
 		B4E1D39B1CDB311F00B42638 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E1D39A1CDB311F00B42638 /* libz.tbd */; };
 		B4E1D39D1CDB314400B42638 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E1D39C1CDB314400B42638 /* SystemConfiguration.framework */; };
-		B4E1D39E1CDB318200B42638 /* ALBB.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B4E1D38B1CDB30BC00B42638 /* ALBB.bundle */; };
 		EF3C5158491747B597A4383E /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 98D7E9165BB147AB97F3EEA1 /* libRNDeviceInfo.a */; };
 		FB3D1149AA654D0C8C6F6A78 /* libReactNativeLocalization.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 486FCDFF171E463B84915D8A /* libReactNativeLocalization.a */; };
 /* End PBXBuildFile section */
@@ -328,8 +323,6 @@
 		7FAF26F41EB04193005BF8F1 /* prod.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = prod.plist; sourceTree = "<group>"; };
 		7FAF26F51EB04193005BF8F1 /* REMAppInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REMAppInfo.h; sourceTree = "<group>"; };
 		7FAF26F61EB04193005BF8F1 /* REMAppInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REMAppInfo.m; sourceTree = "<group>"; };
-		7FAF26F71EB04193005BF8F1 /* REMPushNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REMPushNotification.h; sourceTree = "<group>"; };
-		7FAF26F81EB04193005BF8F1 /* REMPushNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REMPushNotification.m; sourceTree = "<group>"; };
 		7FAF26F91EB04193005BF8F1 /* test.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test.plist; sourceTree = "<group>"; };
 		7FAF271C1EB042C4005BF8F1 /* fontcustom.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = fontcustom.ttf; path = ../../android/app/src/main/assets/fonts/fontcustom.ttf; sourceTree = "<group>"; };
 		7FB22A411D87E9D8009F4EB4 /* RNFileOpener.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNFileOpener.xcodeproj; path = "../node_modules/react-native-file-opener/ios/RNFileOpener.xcodeproj"; sourceTree = "<group>"; };
@@ -343,10 +336,6 @@
 		B46E97541CE1CD2200BEE306 /* RCTPushNotification.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTPushNotification.xcodeproj; path = "../node_modules/react-native/Libraries/PushNotificationIOS/RCTPushNotification.xcodeproj"; sourceTree = "<group>"; };
 		B4E1D3411CD3512400B42638 /* RCTCamera.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RCTCamera.xcodeproj"; sourceTree = "<group>"; };
 		B4E1D3681CD37AE600B42638 /* RCTCameraRoll.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCameraRoll.xcodeproj; path = "../node_modules/react-native/Libraries/CameraRoll/RCTCameraRoll.xcodeproj"; sourceTree = "<group>"; };
-		B4E1D38B1CDB30BC00B42638 /* ALBB.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = ALBB.bundle; path = libs/ALBB.bundle; sourceTree = "<group>"; };
-		B4E1D38C1CDB30BC00B42638 /* ALBBSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ALBBSDK.framework; path = libs/ALBBSDK.framework; sourceTree = "<group>"; };
-		B4E1D38D1CDB30BC00B42638 /* ALBBSessionSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ALBBSessionSDK.framework; path = libs/ALBBSessionSDK.framework; sourceTree = "<group>"; };
-		B4E1D38E1CDB30BC00B42638 /* CloudPushSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudPushSDK.framework; path = libs/CloudPushSDK.framework; sourceTree = "<group>"; };
 		B4E1D38F1CDB30BC00B42638 /* UTDID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UTDID.framework; path = libs/UTDID.framework; sourceTree = "<group>"; };
 		B4E1D3901CDB30BC00B42638 /* UTMini.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UTMini.framework; path = libs/UTMini.framework; sourceTree = "<group>"; };
 		B4E1D3971CDB30DD00B42638 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -381,12 +370,9 @@
 				7FBD428E1D190F860070747F /* UIKit.framework in Frameworks */,
 				B46E975A1CE1CD7300BEE306 /* libRCTPushNotification.a in Frameworks */,
 				B46E97531CDC687E00BEE306 /* libCodePush.a in Frameworks */,
-				B46E97431CDB3BF900BEE306 /* ALBBSDK.framework in Frameworks */,
 				B4E1D39D1CDB314400B42638 /* SystemConfiguration.framework in Frameworks */,
 				B4E1D39B1CDB311F00B42638 /* libz.tbd in Frameworks */,
 				B4E1D3981CDB30DD00B42638 /* CoreTelephony.framework in Frameworks */,
-				B4E1D3931CDB30BC00B42638 /* ALBBSessionSDK.framework in Frameworks */,
-				B4E1D3941CDB30BC00B42638 /* CloudPushSDK.framework in Frameworks */,
 				B4E1D3951CDB30BC00B42638 /* UTDID.framework in Frameworks */,
 				B4E1D3961CDB30BC00B42638 /* UTMini.framework in Frameworks */,
 				B4E1D36E1CD37AF700B42638 /* libRCTCameraRoll.a in Frameworks */,
@@ -589,8 +575,6 @@
 				7FAF26F41EB04193005BF8F1 /* prod.plist */,
 				7FAF26F51EB04193005BF8F1 /* REMAppInfo.h */,
 				7FAF26F61EB04193005BF8F1 /* REMAppInfo.m */,
-				7FAF26F71EB04193005BF8F1 /* REMPushNotification.h */,
-				7FAF26F81EB04193005BF8F1 /* REMPushNotification.m */,
 				7FAF26F91EB04193005BF8F1 /* test.plist */,
 			);
 			path = HipRock;
@@ -724,10 +708,6 @@
 				B4E1D39C1CDB314400B42638 /* SystemConfiguration.framework */,
 				B4E1D39A1CDB311F00B42638 /* libz.tbd */,
 				B4E1D3971CDB30DD00B42638 /* CoreTelephony.framework */,
-				B4E1D38B1CDB30BC00B42638 /* ALBB.bundle */,
-				B4E1D38C1CDB30BC00B42638 /* ALBBSDK.framework */,
-				B4E1D38D1CDB30BC00B42638 /* ALBBSessionSDK.framework */,
-				B4E1D38E1CDB30BC00B42638 /* CloudPushSDK.framework */,
 				B4E1D38F1CDB30BC00B42638 /* UTDID.framework */,
 				B4E1D3901CDB30BC00B42638 /* UTMini.framework */,
 			);
@@ -1166,7 +1146,6 @@
 				7FAF27021EB04193005BF8F1 /* test.plist in Resources */,
 				7FAF26FC1EB04193005BF8F1 /* Images.xcassets in Resources */,
 				7FAF26FF1EB04193005BF8F1 /* prod.plist in Resources */,
-				B4E1D39E1CDB318200B42638 /* ALBB.bundle in Resources */,
 				7FAF271D1EB042C4005BF8F1 /* fontcustom.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1206,7 +1185,6 @@
 				7FAF26FE1EB04193005BF8F1 /* main.m in Sources */,
 				7FAF27001EB04193005BF8F1 /* REMAppInfo.m in Sources */,
 				7FAF26FA1EB04193005BF8F1 /* AppDelegate.m in Sources */,
-				7FAF27011EB04193005BF8F1 /* REMPushNotification.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,10 +10,6 @@
 #import "AppDelegate.h"
 #import "RCTBundleURLProvider.h"
 #import "RCTRootView.h"
-#import <ALBBSDK/ALBBSDK.h>
-#import <CloudPushSDK/CloudPushSDK.h>
-#import "CodePush.h"
-#import "RCTPushNotificationManager.h"
 #import "Orientation.h"
 #import <RNScreenshotDetector/RNScreenshotDetector.h>
 
@@ -28,7 +24,7 @@
 //  [[RCTBundleURLProvider sharedSettings] setDefaults];
 //  jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
   #else
-    jsCodeLocation = [CodePush bundleURL];
+    jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
   #endif
 
 
@@ -83,38 +79,8 @@
   return [Orientation getOrientation];
 }
 
-- (void)initPush:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
-  [self registerAPNS:application :launchOptions];
-  [self init_albb];
-  [self registerMsgReceive];
-}
-
-- (void)init_albb{
-  NSString *appKey = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"PushAppKey"];
-  NSString *appSecret = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"PushAppSecret"];
-
-  //sdk初始化
-  [[ALBBSDK sharedInstance] asyncInit:appKey appSecret:appSecret :^{
-    NSLog(@"初始化成功");
-  } failedCallback:^(NSError *error) {
-    NSLog(@"初始化失败:%@",error);
-  }];
-}
-
 #pragma mark 注册苹果的推送
 -(void) registerAPNS :(UIApplication *)application :(NSDictionary *)launchOptions{
-  if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
-  {
-    // iOS 8 Notifications
-    [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
-    [application registerForRemoteNotifications];
-  }
-  else
-  {
-    // iOS < 8 Notifications
-    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound)];
-  }
-  [CloudPushSDK handleLaunching:launchOptions]; // 作为 apns 消息统计
 }
 
 #pragma mark 注册接收CloudChannel 推送下来的消息
@@ -145,20 +111,10 @@
 #pragma marker 注册deviceToken
 // 苹果推送服务回调，注册 deviceToken
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-  [CloudPushSDK registerDevice:deviceToken];
 }
 
 // 通知统计回调
 - (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary*)userInfo {
-  [CloudPushSDK handleReceiveRemoteNotification:userInfo];
-  BOOL foregroud = NO;
-  if(application.applicationState == UIApplicationStateActive){
-    foregroud = YES;
-  }
-  NSMutableDictionary* dic = [[NSMutableDictionary alloc] initWithDictionary:userInfo];
-  dic[@"foreground"] = @(foregroud);
-
-  [RCTPushNotificationManager didReceiveRemoteNotification:dic];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------

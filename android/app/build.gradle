@@ -173,7 +173,6 @@ dependencies {
     compile project(':ReactAndroid')
     /*compile "cn.finalteam:galleryfinal:1.4.8.7"*/
     /*compile "com.aliyun.dpa:oss-android-sdk:2.2.0"*/
-    compile project(':OneSDK')
     compile (project(':ReactNativeBarcodescanner')){
       exclude group: 'com.facebook.react', module: 'react-native'
     }
