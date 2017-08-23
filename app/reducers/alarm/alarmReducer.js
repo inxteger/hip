@@ -13,7 +13,6 @@ import {LOGOUT} from '../../actions/loginAction.js';
 import Immutable from 'immutable';
 import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
-
 var defaultState = Immutable.fromJS({
   isFetching:false,
   data:null,
@@ -37,7 +36,7 @@ function handleError(state,action) {
   var {Error} = action.error;
   switch (Error) {
     case '040001307022':
-      action.error = '您没有这一项的操作权限，请联系系统管理员';
+      action.error = localStr('lang_alarm_des1');
       break;
     case '050001251009'://009是没有数据权限， 501是报警设备移除
     case '050001251501':
