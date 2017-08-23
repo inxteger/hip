@@ -9,6 +9,7 @@ import {
 import Section from '../Section.js';
 import List from '../List.js';
 import TicketRow from './TicketRow.js';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class TicketSubView extends Component{
   constructor(props){
@@ -39,7 +40,7 @@ export default class TicketSubView extends Component{
         onRefresh={this.props.onRefresh}
         nextPage={this.props.nextPage}
         totalPage={this.props.totalPage}
-        emptyText='暂无工单'
+        emptyText={localStr('lang_ticket_noticket')}
         renderSectionHeader={(sectionData,sectionId)=>this._renderSection(sectionData,sectionId)}
         renderRow={(rowData,sectionId,rowId)=>this._renderRow(rowData,sectionId,rowId)}
       />

@@ -17,6 +17,7 @@ import Scan from './Scan.js';
 import Room from './Room';
 import Panel from './Panel';
 import Device from './Device';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 
 class AssetBindHierarchy extends Component{
@@ -37,7 +38,7 @@ class AssetBindHierarchy extends Component{
       id:'scan_from_hierarchy',
       component:Scan,
       passProps:{
-        scanText:'将设备上二维码放入框内,\n自动扫描后即可绑定!',
+        scanText:localStr('lang_ticket_notice13'),
         scanTitle:rowData.get('Name'),
         hierarchyId:rowData.get('Id'),
       }

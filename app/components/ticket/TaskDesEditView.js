@@ -13,6 +13,7 @@ import {
 
 import Toolbar from '../Toolbar';
 import KeyboardSpacer from '../KeyboardSpacer.js';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 import {GRAY,BLACK} from '../../styles/color.js';
 export default class TaskDesEditView extends Component{
@@ -62,7 +63,7 @@ export default class TaskDesEditView extends Component{
             numberOfLines={lines}
             placeholderTextColor={GRAY}
             textAlignVertical={'top'}
-            placeholder={"输入创建工单任务描述"}
+            placeholder={localStr('lang_ticket_notice3')}
             onChangeText={(text)=>this._logChanged(text)}
             value={this.state.text} />
         </View>

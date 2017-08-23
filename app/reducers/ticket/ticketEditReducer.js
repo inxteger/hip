@@ -180,7 +180,7 @@ function assetsSelectInfoChange(state,action){
 
 function getAlarmDate(alarm){
   var obj = moment(alarm.get('AlarmTime'));
-  return obj.format("YYYY年M月D日 HH:mm:ss")
+  return obj.format(localStr('lang_ticket_timeformat'))
 }
 function getAlarmLevel(alarm){
   var level = alarm.get('Level');
@@ -199,11 +199,11 @@ function getAlarmDescri(alarm)
   if (!alarm) {
     return '';
   }
-  var des = '时间:'+getAlarmDate(alarm)+'\n';
+  var des = localStr('lang_ticket_time')+getAlarmDate(alarm)+'\n';
   des += localStr('lang_alarm_leveldes')+':'+getAlarmLevel(alarm)+'\n';
-  des += '类别:'+alarm.get('Code')+'\n';
-  des += '点位:'+alarm.get('Parameter')+'\n';
-  des += '实际值:'+alarm.get('ActualValue')+'\n';
+  des += localStr('lang_ticket_type')+alarm.get('Code')+'\n';
+  des += localStr('lang_ticket_point')+alarm.get('Parameter')+'\n';
+  des += localStr('lang_ticket_acture_value')+alarm.get('ActualValue')+'\n';
   des += localStr('lang_alarm_setting_value')+':'+alarm.get('ThresholdValue')+'\n';
   des += localStr('lang_alarm_position')+':'+alarm.get('Paths').reverse().join('\n');
   return des;

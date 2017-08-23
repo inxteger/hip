@@ -11,6 +11,7 @@ import Text from '../Text.js';
 import {getBaseUri} from '../../middleware/api.js';
 import Toast from 'react-native-root-toast';
 import {openFile} from '../../utils/openFile';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 const RNFS = require('react-native-fs');
 
@@ -97,7 +98,7 @@ export default class NetworkText extends Component {
   fileOpen(downFilePath,type)
   {
     openFile(downFilePath,type,()=>{
-      Toast.show('无法打开此文件', {
+      Toast.show(localStr('lang_ticket_notice2'), {
         duration: 5000,
         position: -80,
       });

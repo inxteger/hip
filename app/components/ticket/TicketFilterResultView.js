@@ -10,6 +10,7 @@ import Section from '../Section.js';
 import List from '../List.js';
 import TicketRow from './TicketRow.js';
 import Toolbar from '../Toolbar';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class TicketFilterResultView extends Component{
   constructor(props){
@@ -32,7 +33,7 @@ export default class TicketFilterResultView extends Component{
     // console.warn('TicketFilterResultView render listData...',this.props.isFetching,this.props.listData);
     return (
       <View style={{flex:1,backgroundColor:'white'}}>
-        <Toolbar title='筛选结果'
+        <Toolbar title={localStr('lang_ticket_filter_result')}
           navIcon="back"
           onIconClicked={()=>this.props.onBack()}
           />
@@ -44,7 +45,7 @@ export default class TicketFilterResultView extends Component{
            onRefresh={this.props.onRefresh}
            nextPage={this.props.nextPage}
            totalPage={this.props.totalPage}
-           emptyText='没有符合筛选条件的工单'
+           emptyText={localStr('lang_ticket_filter_noresult')}
            needGotoTop={true}
            renderSectionHeader={(sectionData,sectionId)=>this._renderSection(sectionData,sectionId)}
            renderRow={(rowData,sectionId,rowId)=>this._renderRow(rowData,sectionId,rowId)}

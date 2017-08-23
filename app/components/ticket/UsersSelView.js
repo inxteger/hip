@@ -12,6 +12,7 @@ import SelectRow from './UserSelectRow.js';
 import Section from '../Section.js';
 import Text from '../Text';
 import {GRAY} from '../../styles/color';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class UsersSelView extends Component{
   constructor(props){
@@ -45,7 +46,7 @@ export default class UsersSelView extends Component{
           hasFilter={false}
           currentPage={1}
           totalPage={1}
-          emptyText='请先选择资产范围'
+          emptyText={localStr('lang_ticket_select_range')}
           onRefresh={this.props.onRefresh}
           renderRow={(rowData,sectionId,rowId)=>this._renderRow(rowData,sectionId,rowId)}
           renderSectionHeader={(sectionData,sectionId)=>this._renderSection(sectionData,sectionId)}

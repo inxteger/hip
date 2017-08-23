@@ -10,6 +10,7 @@ import {
 import List from '../List.js';
 import TicketDateRow from './TicketDateRow.js';
 import Toolbar from '../Toolbar';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class TicketDateEditView extends Component{
   constructor(props){
@@ -42,7 +43,7 @@ export default class TicketDateEditView extends Component{
     return (
       <View style={{flex:1,backgroundColor:'white'}}>
         <Toolbar
-          title="执行时间"
+          title={localStr('lang_ticket_run_time')}
           navIcon="back"
           onIconClicked={this.props.onBack} />
         <List

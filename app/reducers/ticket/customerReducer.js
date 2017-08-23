@@ -7,6 +7,7 @@ import {
 } from '../../actions/ticketAction.js';
 
 import {LOGOUT} from '../../actions/loginAction.js';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 import Immutable from 'immutable';
 
@@ -20,7 +21,7 @@ function updateData(state,action) {
   var response = action.response.Result;
   var allElements = [response];
   var allSecTitle=[
-    '选择客户',
+    localStr('lang_ticket_select_customer'),
   ];
   if (!response) {
     allElements=[];
