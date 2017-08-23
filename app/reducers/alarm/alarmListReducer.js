@@ -8,7 +8,7 @@ import {
   ALARM_FILTER_DIDCHANGED,
 } from '../../actions/alarmAction';
 
-// import {LOGOUT} from '../../actions/loginAction.js';
+// import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
 import {commonReducer} from '../commonReducer.js';
 
 import Immutable from 'immutable';

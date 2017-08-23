@@ -16,6 +16,7 @@ import {
 
 import {LOGOUT} from '../../actions/loginAction.js';
 import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
+import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
 
 import Immutable from 'immutable';
 
@@ -286,7 +287,7 @@ export default function(state=defaultState,action){
       return state.set('isFilterFetching',true);
     case TICKET_FILTER_SUCCESS:
       return mergeTicketData(state,action);
-    case LOGOUT:
+    case LOGOUT_SUCCESS:
       return defaultState;
     default:
   }

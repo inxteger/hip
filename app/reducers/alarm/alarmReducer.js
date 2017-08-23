@@ -8,7 +8,7 @@ import {
   ALARM_RESET,
 } from '../../actions/alarmAction';
 
-import {LOGOUT} from '../../actions/loginAction.js';
+import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
 
 import Immutable from 'immutable';
 import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
@@ -57,7 +57,7 @@ export default function(state=defaultState,action){
     case ALARM_LOAD_BYID_FAILURE:
       return handleError(state,action);
     case ALARM_RESET:
-    case LOGOUT:
+    case LOGOUT_SUCCESS:
       return defaultState;
     default:
 

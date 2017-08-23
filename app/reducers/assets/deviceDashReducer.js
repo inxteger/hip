@@ -9,7 +9,7 @@ import {
   DEVICE_EXIT
 } from '../../actions/assetsAction.js';
 
-import {LOGOUT} from '../../actions/loginAction.js';
+import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
 
 import Immutable from 'immutable';
 import utils from '../../utils/unit.js';
@@ -183,7 +183,7 @@ export default function(state=defaultState,action){
       return updateDashCondition(state,action);
     case DEVICE_EXIT:
       return defaultState;
-    case LOGOUT:
+    case LOGOUT_SUCCESS:
       return defaultState;
     default:
 

@@ -9,13 +9,13 @@ import version from './versionReducer';
 import boot from './bootReducer';
 import feedBack from './feedbackReducer';
 import {RESET_ERROR_MESSAGE} from '../actions/errorAction.js';
+import {LOGOUT_REQUEST,LOGOUT_SUCCESS} from '../actions/loginAction.js';
 
 
 // Updates error message to notify about the failed fetches.
 function error(state = null, action) {
   const { type, error } = action
-
-  if (type === RESET_ERROR_MESSAGE) {
+  if (type === RESET_ERROR_MESSAGE || type===LOGOUT_REQUEST|| type===LOGOUT_SUCCESS) {
     return null
   } else if (error) {
     if(typeof error === 'string'){
@@ -28,6 +28,9 @@ function error(state = null, action) {
         return '加载失败，请检查您的网络设置';
       }
       return error['message'];
+    }
+    else if(error['Error']==='403'){
+      return '403';//登录失效，请重新登录
     }
     else {
       console.warn('error',action);

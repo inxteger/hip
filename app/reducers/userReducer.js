@@ -1,7 +1,7 @@
 'use strict';
 
 
-import {NO_TOKEN,LOGOUT,LOGIN_SUCCESS,USER_SUCCESS,USER_FAILURE,USER_REQUEST,USER_UPDATE_REQUEST,USER_UPDATE_SUCCESS} from '../actions/loginAction';
+import {NO_TOKEN,LOGOUT_SUCCESS,LOGIN_SUCCESS,USER_SUCCESS,USER_FAILURE,USER_REQUEST,USER_UPDATE_REQUEST,USER_UPDATE_SUCCESS} from '../actions/loginAction';
 
 import Immutable from 'immutable';
 import storage from '../utils/storage.js';
@@ -41,6 +41,7 @@ function updateUser(state,action)
 
 function logout(state) {
   storage.removeToken();
+  storage.removeDeviceId();
   storage.removeItem('USERNAMEKEY');
   return defaultState.set('hasLogin',false);
 }
@@ -83,7 +84,7 @@ export default function(state=defaultState,action){
     //   return state.set('isFetching',true);
     case USER_UPDATE_SUCCESS:
       return updateUser(state,action);
-    case LOGOUT:
+    case LOGOUT_SUCCESS:
       return logout(defaultState,action);
     default:
 

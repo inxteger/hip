@@ -4,7 +4,7 @@ import Immutable from 'immutable';
 
 import {
   LOGIN_INFO_CHANGED,AUTHCODE_SUCCESS,COUNTER_CHANGED,
-  LOGOUT,
+  LOGOUT_SUCCESS,
   AUTHCODE_FAILURE,LOGIN_FAILURE,LOGIN_REQUEST,LOGIN_SUCCESS
 } from '../actions/loginAction';
 
@@ -207,7 +207,7 @@ export default function(state=defaultState,action){
       return handleRequest(state,action);
     case LOGIN_SUCCESS:
       return defaultState;
-    case LOGOUT:
+    case LOGOUT_SUCCESS:
       return defaultState;
     default:
 

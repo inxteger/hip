@@ -14,7 +14,7 @@ import {
   ASSETS_USERS_FAILURE,
 } from '../../actions/ticketAction.js';
 
-import {LOGOUT} from '../../actions/loginAction.js';
+import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
 
 import Immutable from 'immutable';
 import moment from 'moment';
@@ -228,7 +228,7 @@ export default function(state=defaultState,action){
     case TICKET_CREATE_FAILURE:
       return state.set('isPosting',3);
     case TICKET_CREATE_RESET:
-    case LOGOUT:
+    case LOGOUT_SUCCESS:
       return defaultState;
     default:
 

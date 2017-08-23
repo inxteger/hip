@@ -16,7 +16,7 @@ import {
   // ALARM_LOAD_SUCCESS
 } from '../../actions/alarmAction';
 
-import {LOGOUT} from '../../actions/loginAction.js';
+import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
 
 import {compose} from 'redux';
 import Immutable from 'immutable';
@@ -276,7 +276,7 @@ export default function(state=defaultState,action){
       return handleError(state,action);
     case ALARM_FILTER_RESET:
       return resetFilter(state,action);
-    case LOGOUT:
+    case LOGOUT_SUCCESS:
       return defaultState;
     default:
 
