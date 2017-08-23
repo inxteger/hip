@@ -134,6 +134,5 @@ export default {
   lang_ticket_notice12:'抱歉，您没有查看该工单权限',
   lang_ticket_notice13:'将设备上二维码放入框内,\n自动扫描后即可绑定!',
 
-
   lang_ticket_OK:'好',
 };

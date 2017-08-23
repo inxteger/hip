@@ -107,7 +107,7 @@ class CreateTicket extends Component{
         '',
         localStr('lang_ticket_starttimeerr0'),
         [
-          {text: '好', onPress: () => console.log('Cancel Pressed')}
+          {text: localStr('lang_ticket_OK'), onPress: () => console.log('Cancel Pressed')}
         ]
       )
       return false;
@@ -158,7 +158,7 @@ class CreateTicket extends Component{
       alertText,
       [
         {text: '取消', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-        {text: '删除', onPress: () => {
+        {text: localStr('lang_ticket_remove'), onPress: () => {
 
           this.props.deleteTicket(ticketInfo.get('Id'));
           this.props.onPostingCallback('delete');

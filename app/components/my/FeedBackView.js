@@ -26,6 +26,7 @@ import TouchFeedback from '../TouchFeedback.js';
 import PrivilegePanel from '../PrivilegePanel.js';
 import NetworkDocumentCard from '../NetworkDocumentCard.js';
 import Immutable from 'immutable';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 import {checkFileNameIsImage} from '../../utils/fileHelper.js';
 
@@ -69,7 +70,7 @@ export default class FeedBackView extends Component{
       checkFileNameIsImage(item.get('FileName'))?'删除这张图片吗？':'删除这个文件吗？',
       [
         {text: '取消', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-        {text: '删除', onPress: () => {
+        {text: localStr('lang_ticket_remove'), onPress: () => {
           this.props.dataChanged('image','delete',item);
           // AliyunOSS.delete(appInfo.get().ossBucket,item.get('PictureId'));
           // this.props.deleteImage([item.get('PictureId')]);

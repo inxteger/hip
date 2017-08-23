@@ -6,6 +6,7 @@ import {View,} from 'react-native'
 
 import Text from './Text.js';
 import TouchFeedback from './TouchFeedback';
+import {localStr,localFormatStr} from '../utils/Localizations/localization.js';
 
 export default (props) => {
   return (
@@ -25,7 +26,7 @@ export default (props) => {
         alignItems:'center'}}>
           <Text style={{
               color:'white'
-            }}>{'删除'}</Text>
+            }}>{localStr('lang_ticket_remove')}</Text>
         </View>
 
       </TouchFeedback>

@@ -100,7 +100,7 @@ export default class CreateTicketView extends Component{
 
       if(status !== 2 && status !== 3 && type !== 1 && type !== 2){
         actions = [{
-        title:'删除',
+        title:localStr('lang_ticket_remove'),
         iconType:'delete',
         show: 'always', showWithText: false}];
       }

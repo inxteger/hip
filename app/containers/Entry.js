@@ -158,7 +158,7 @@ class Entry extends Component{
         '',
         nextProps.error,
         [
-          {text: '好', onPress: () => this.props.resetError()}
+          {text: localStr('lang_ticket_OK'), onPress: () => this.props.resetError()}
         ]
       )
     }
