@@ -20,6 +20,7 @@ import Icon from '../Icon.js';
 import {MENU_GRAY,ALARM_RED,BLACK,LIST_BG} from '../../styles/color';
 
 import ModalDropdown from 'react-native-modal-dropdown';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class AssetHierarchyView extends Component{
   constructor(props){
@@ -37,7 +38,7 @@ export default class AssetHierarchyView extends Component{
               }}>
               <View style={{flexDirection:'row',alignItems:'center',marginHorizontal:14,height:42}}>
                 <Icon type='icon_scan' size={15} color={MENU_GRAY} />
-                <Text style={{fontSize:14,color:MENU_GRAY,marginLeft:8}}>{'扫一扫'}</Text>
+                <Text style={{fontSize:14,color:MENU_GRAY,marginLeft:8}}>{localStr('lang_asset_des2')}</Text>
               </View>
             </TouchFeedback>
           </View>
@@ -52,7 +53,7 @@ export default class AssetHierarchyView extends Component{
             }}>
             <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center',marginHorizontal:14,height:42}}>
               <Icon type='icon_bind' size={15} color={MENU_GRAY} />
-              <Text style={{fontSize:14,color:MENU_GRAY,marginLeft:8}}>{'绑定二维码'}</Text>
+              <Text style={{fontSize:14,color:MENU_GRAY,marginLeft:8}}>{localStr('lang_asset_des3')}</Text>
             </View>
           </TouchFeedback>
         </View>
@@ -103,7 +104,7 @@ export default class AssetHierarchyView extends Component{
     var actions = null;
     if(this.props.isFromScan !== true){
       actions = [{
-        title:'扫一扫',
+        title:localStr('lang_asset_des2'),
         icon:require('../../images/scan_more/scan_more.png'),
         show: 'always', showWithText: false}];
     }
@@ -112,7 +113,7 @@ export default class AssetHierarchyView extends Component{
       <View style={{flex:1,backgroundColor:'white',
       }}>
         <Toolbar
-          title={this.props.isFromScan?'扫描结果':this.props.buildData.get('Name')}
+          title={this.props.isFromScan?localStr('lang_asset_des4'):this.props.buildData.get('Name')}
           navIcon="back"
           actions={actions}
           onActionSelected={[()=>{
@@ -126,7 +127,7 @@ export default class AssetHierarchyView extends Component{
             hasFilter={false}
             currentPage={1}
             totalPage={1}
-            emptyText='尚无任何资产可显示'
+            emptyText={localStr('lang_asset_des5')}
             onRefresh={this.props.onRefresh}
             renderRow={(rowData,sectionId,rowId)=>this._renderRow(rowData,sectionId,rowId)}
           />

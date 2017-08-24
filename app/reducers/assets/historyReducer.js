@@ -99,7 +99,6 @@ function updateStepData(state,action) {
   var {data:{uniqueId,type,index,isEnergyData,newDate}} = action;
   var StartTime=newState.getIn(['filter','StartTime']);
   var EndTime=newState.getIn(['filter','EndTime']);
-  //moment(StartTime).endOf('day').format("YYYY年M月D日/HH:mm:ss")
   // console.warn('updateStepData',type);
   if (type==='left') {
     if (index===0) {

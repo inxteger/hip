@@ -15,6 +15,7 @@ import {GREEN,GRAY,LINE_HISTORY} from '../../styles/color.js';
 import Immutable from 'immutable';
 import Text from '../Text';
 import utils from '../../utils/unit.js';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 // import {
 //   NativeHelpers,
@@ -283,9 +284,10 @@ export default class HistoryDataView extends Component{
   }
   _getNoDatasView()
   {
+    var text=this.props.isEnergyData?localStr('lang_asset_des25'):localStr('lang_asset_des26');
     return (
       <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-        <Text style={{fontSize:17,color:GRAY}}>{`此时间段内无${this.props.isEnergyData?'能耗数据':'历史数据'}`}</Text>
+        <Text style={{fontSize:17,color:GRAY}}>{localFormatStr('lang_asset_des24',text)}</Text>
       </View>
     );
   }

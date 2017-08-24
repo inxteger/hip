@@ -126,22 +126,22 @@ function categoryDatas(state,response)
     var errStr=null;
     switch (status) {
       case -1:
-        errStr='该型号的断路器不支持老化参数计算';
+        errStr=localStr('lang_asset_des51');
         break;
       case -2:
-        errStr='环境参数配置不全，请检查断路器所在配电柜信息的【环境参数】';
+        errStr=localStr('lang_asset_des52');
         break;
       case -4:
-        errStr='断路器负载率运行时间为无效值，请检查断路器的【维护参数】';
+        errStr=localStr('lang_asset_des53');
         break;
       case -5:
-        errStr='断路器老化参数计算初始化异常';
+        errStr=localStr('lang_asset_des54');
         break;
       case -6:
-        errStr='断路器老化参数计算出现异常';
+        errStr=localStr('lang_asset_des55');
         break;
       case -8:
-        errStr='断路器触头磨损率为无效值，请检查断路器的【维护参数】';
+        errStr=localStr('lang_asset_des56');
         break;
       default:
         errStr=null;
@@ -154,7 +154,7 @@ function categoryDatas(state,response)
       errStr
     });
     data.push(settDatas);
-    newSecData.push({title:'设备老化参数计算',isExpanded:null});
+    newSecData.push({title:localStr('lang_asset_des57'),isExpanded:null});
   }
 
   var aValue=null;

@@ -122,7 +122,6 @@ function handleError(state,action) {
   if(!error){
     action.error = localStr('lang_commons_notice0');
   }else {
-    // action.error = '无相关权限';
     action.error=null;
   }
 

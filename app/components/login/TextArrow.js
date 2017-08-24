@@ -9,7 +9,7 @@ import Text from '../Text';
 import TouchFeedback from '../TouchFeedback';
 // import Icon from '../Icon';
 import {LOGIN_SWITCHER} from '../../styles/color.js';
-
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class TextArrow extends Component{
   constructor(props){
@@ -18,7 +18,7 @@ export default class TextArrow extends Component{
   render(){
     var {onClick} = this.props;
 
-    var text = '产品试用';
+    var text = localStr('lang_commons_notice22');
     // if(type === 'mobile'){
     //   text = '密码登录';
     // }

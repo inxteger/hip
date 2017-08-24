@@ -11,6 +11,7 @@ import Toolbar from '../Toolbar';
 
 import List from '../List.js';
 import PhotoThuNaiRow from './PhotoThuNaiRow.js';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class SinglePhotosView extends Component{
   constructor(props){
@@ -29,7 +30,7 @@ export default class SinglePhotosView extends Component{
   _getToolbar(){
     return (
       <Toolbar
-        title='图纸'
+        title={localStr('lang_asset_des28')}
         navIcon="back"
         onIconClicked={this.props.onBack}
         />
@@ -51,7 +52,7 @@ export default class SinglePhotosView extends Component{
           hasFilter={false}
           currentPage={1}
           totalPage={1}
-          emptyText='没有图纸'
+          emptyText={localStr('lang_asset_des29')}
           renderRow={(rowData,sectionId,rowId)=>this._renderRow(rowData,sectionId,rowId)}
         />
       </View>

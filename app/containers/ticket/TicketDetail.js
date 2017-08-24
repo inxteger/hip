@@ -37,7 +37,7 @@ class TicketDetail extends Component{
       localStr('lang_ticket_start_notice0'),
       [
         {text: localStr('lang_ticket_cancel'), onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-        {text: '开始执行', onPress: () => {
+        {text: localStr('lang_ticket_start_execute'), onPress: () => {
           // this.context.showSpinner();
 
           this.props.execute(id);

@@ -150,7 +150,7 @@ class Scan extends Component{
           }else {
             Alert.alert(
               '',
-              '请在手机的'+'"'+'设置'+'"'+'中，允许灯塔访问您的摄像头',
+              localStr('lang_commons_notice14'),
               [
                 {text: localStr('lang_ticket_cancel'), onPress: () => {
                   // Permissions.requestPermission('camera').then(response => {
@@ -159,7 +159,7 @@ class Scan extends Component{
                   //   //response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
                   // });
                 }},
-                {text: '允许', onPress: () => {
+                {text: localStr('lang_commons_notice15'), onPress: () => {
                   if (Permissions.canOpenSettings()) {
                     Permissions.openSettings();
                   }

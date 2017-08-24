@@ -152,7 +152,6 @@ class CreateTicket extends Component{
   _onDeleteTicket(){
     var {ticketInfo} = this.props;
     var alertText = localFormatStr('lang_ticket_remove_notice',ticketInfo.get('TicketNum'));
-    //'工单'+'"'+ticketInfo.get('TicketNum')+'"'+'将被删除?';
     Alert.alert(
       '',
       alertText,

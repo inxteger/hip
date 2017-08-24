@@ -59,7 +59,7 @@ export default class ImagePicker extends Component {
     else {
     // console.warn('image choose ',image);
       if(ret.length === this.props.max){
-        Toast.show(`最多只能选择${this.props.max}张图片`, {
+        Toast.show(localFormatStr('lang_commons_notice20',this.props.max),{
             duration: Toast.durations.LONG,
             position: Toast.positions.BOTTOM,
         });
@@ -90,12 +90,12 @@ export default class ImagePicker extends Component {
         }else {
           Alert.alert(
             '',
-            '请在手机的'+'"'+'设置'+'"'+'中，允许灯塔访问您的摄像头',
+            localStr('lang_commons_notice14'),
             [
-              {text: localStr('lang_ticket_cancel'), onPress: () => {
+              {text:localStr('lang_ticket_cancel'), onPress: () => {
                 return;
               }},
-              {text: '允许', onPress: () => {
+              {text:localStr('lang_commons_notice15'), onPress: () => {
                 if (Permissions.canOpenSettings()) {
                   Permissions.openSettings();
                 }
@@ -109,8 +109,8 @@ export default class ImagePicker extends Component {
     var options = {
       title: '', // specify null or empty string to remove the title
       cancelButtonTitle: localStr('lang_ticket_cancel'),
-      takePhotoButtonTitle: '打开照相机', // specify null or empty string to remove this button
-      chooseFromLibraryButtonTitle: '从手机相册获取', // specify null or empty string to remove this button
+      takePhotoButtonTitle: localStr('lang_commons_notice16'), // specify null or empty string to remove this button
+      chooseFromLibraryButtonTitle: localStr('lang_commons_notice17'), // specify null or empty string to remove this button
       cameraType: 'back', // 'front' or 'back'
       mediaType: 'photo', // 'photo' or 'video'
       // aspectX: 2, // android only - aspectX:aspectY, the cropping image's ratio of width to height
@@ -186,7 +186,7 @@ export default class ImagePicker extends Component {
         <TouchFeedback onPress={()=>this._takePhoto()} style={{flex:1}}>
           <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
             <Icon type="photo" color={'white'} size={whStyle.width/3} />
-            <Text style={{color:'white',marginTop:6}}>拍照</Text>
+            <Text style={{color:'white',marginTop:6}}>{localStr('lang_commons_notice21')}</Text>
           </View>
         </TouchFeedback>
       </View>
@@ -194,7 +194,7 @@ export default class ImagePicker extends Component {
     return listOfImage;
   }
   _getToolbar(){
-    var title = '图片';
+    var title = localStr('lang_commons_notice18');
     if(this.state.chosenImages.length > 0){
       title = `${title}（${this.state.chosenImages.length}/${this.props.max}）`;
     }
@@ -228,11 +228,11 @@ export default class ImagePicker extends Component {
           }else {
             Alert.alert(
               '',
-              '请在手机的'+'"'+'设置'+'"'+'中，允许灯塔访问您的相册',
+              localStr('lang_commons_notice19'),
               [
                 {text: localStr('lang_ticket_cancel'), onPress: () => {
                 }},
-                {text: '允许', onPress: () => {
+                {text: localStr('lang_commons_notice15'), onPress: () => {
                   if (Permissions.canOpenSettings()) {
                     Permissions.openSettings();
                   }

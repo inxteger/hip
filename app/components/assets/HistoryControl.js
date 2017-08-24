@@ -13,6 +13,7 @@ import {GRAY,LINE_HISTORY} from '../../styles/color.js';
 import IconButton from '../IconButton.js';
 import Button from '../Button.js';
 import moment from 'moment';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class HistoryControl extends Component{
   constructor(props){
@@ -25,18 +26,16 @@ export default class HistoryControl extends Component{
     var EndTime=this.props.filter.get('EndTime');
     var step=this.props.filter.get('Step');
     if (step===1) {
-      return StartTime.format("YYYY年MM月DD日");
+      return StartTime.format(localStr('lang_asset_des19'));
     }else if (step===0) {
-      return `${StartTime.format("YYYY年MM月DD日 HH:mm")}~${EndTime.format("HH:mm")}`;
-      // return `${StartTime.format("M月D日 HH:mm")}~${EndTime.format("HH:mm")}`;
-      //.format("M月D日 MM:SS");
+      return `${StartTime.format(localStr('lang_asset_des20'))}~${EndTime.format("HH:mm")}`;
     }else if (step===2) {
       var tempEndT=moment(EndTime).subtract(1,'s');
-      return `${StartTime.format("YYYY年MM月DD日")}~${tempEndT.format("MM月DD日")}`;
+      return `${StartTime.format(localStr('lang_asset_des19'))}~${tempEndT.format(localStr('lang_asset_des21'))}`;
     }else if (step===3) {
-      return `${StartTime.format("YYYY年MM月")}`;
+      return `${StartTime.format(localStr('lang_asset_des22'))}`;
     }else if (step===5) {
-      return `${StartTime.format("YYYY年")}`;
+      return `${StartTime.format(localStr('lang_asset_des23'))}`;
     }
   }
   render(){

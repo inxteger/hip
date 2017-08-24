@@ -146,7 +146,7 @@ export default class DetailView extends Component{
             hasFilter={false}
             currentPage={1}
             totalPage={1}
-            emptyText='该建筑下无配电室和设备'
+            emptyText={localStr('lang_asset_des8')}
             onRefresh={this.props.onRefresh}
             renderRow={(rowData,sectionId,rowId)=>this._renderRow(rowData,sectionId,rowId)}
             renderSectionHeader={(sectionData,sectionId)=>this._renderSection(sectionData,sectionId)}

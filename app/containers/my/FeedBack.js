@@ -85,7 +85,6 @@ class FeedBack extends Component{
     //   return false;
     // }
     // if(!this.props.isSameUser){
-    //   Alert.alert('','仅创建者可以编辑这一日志');
     //   return false;
     // }
     // if(!this.props.hasAuth){

@@ -10,6 +10,7 @@ import Scanner from '../Scanner';
 import Text from '../Text.js';
 import Loading from '../Loading.js';
 import Toolbar from '../Toolbar';
+import {localStr,localFormatStr} from '../utils/Localizations/localization.js';
 
 export default class CameraView extends Component{
   constructor(props){
@@ -47,7 +48,7 @@ export default class CameraView extends Component{
           }}>
           <Text style={{
               fontSize:17,color:'white'
-            }}>将二维码放入框内，即可自动扫描</Text>
+            }}>{localStr('lang_commons_notice13')}</Text>
         </View>
       </View>
 

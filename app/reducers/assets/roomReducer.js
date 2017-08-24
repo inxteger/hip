@@ -45,16 +45,17 @@ function updateAssetDetailData(state,action) {
   // let {url,body,types} = action;
   var res = Result;
   var arrPosi = [];
-  var arrLevels = ["零级","一级","二级","三级","四级","五级"];
+  var arrLevels = [localStr('lang_asset_des76'),localStr('lang_asset_des77'),localStr('lang_asset_des78'),localStr('lang_asset_des79'),localStr('lang_asset_des80'),
+localStr('lang_asset_des81')];
   var strLevel = res.Level ? arrLevels[res.Level] : '';
   var strCapcity = '';
   if (!!res.TransformerVoltage) {
     strCapcity = res.TransformerVoltage + ' kVA';
   }
   var arrPosi=[];
-  var desTitle='生产线描述';
+  var desTitle=localStr('lang_asset_des82');
   if (res.SubType===6) {
-    desTitle='现场描述';
+    desTitle=localStr('lang_asset_des83');
   }
   if (res.Description) {
     arrPosi.push({title:desTitle,value:res.Description,isNav:false,});
@@ -84,9 +85,9 @@ function updateAssetDetailData(state,action) {
 
 
   var arrEnvDatas = [
-    {title:'室内温度',value: unit.combineUnit(formatNumber(temperature,0),'temperature'),rvalue:[formatNumber(temperature,0),unit.get('temperature')],isNav:envNav,type:'temperature'},
-    {title:'室内湿度',value: unit.combineUnit(formatNumber(humidity,0),'humidity'),rvalue:[formatNumber(humidity,0),unit.get('humidity')],isNav:envNav,type:'humidity'},
-    {title:'室内粉尘浓度',value: unit.combineUnit(formatNumber(dust,1,true),'dust'),rvalue:[formatNumber(dust,1,true),unit.get('dust')],isNav:envNav,type:'dust'},
+    {title:localStr('lang_asset_des85'),value: unit.combineUnit(formatNumber(temperature,0),'temperature'),rvalue:[formatNumber(temperature,0),unit.get('temperature')],isNav:envNav,type:'temperature'},
+    {title:localStr('lang_asset_des86'),value: unit.combineUnit(formatNumber(humidity,0),'humidity'),rvalue:[formatNumber(humidity,0),unit.get('humidity')],isNav:envNav,type:'humidity'},
+    {title:localStr('lang_asset_des87'),value: unit.combineUnit(formatNumber(dust,1,true),'dust'),rvalue:[formatNumber(dust,1,true),unit.get('dust')],isNav:envNav,type:'dust'},
   ];
 
   var envObj = {
@@ -101,7 +102,7 @@ function updateAssetDetailData(state,action) {
 
   // var arrLogPhoto = [
   //   {'title':'现场照片','value':'','isNav':false,},
-  //   {'title':'现场日志','value':'','isNav':false,},
+  //   {'title':localStr('lang_asset_des31'),'value':'','isNav':false,},
   // ];
   var logCount = res.SceneLogs.length;
   var tendingCount=res.HistoryTicketsCount;
@@ -109,25 +110,25 @@ function updateAssetDetailData(state,action) {
   var allElements=[
     [{title:'',value:res.LogoKey,pendingImageUri:''}],
     arrPosi,
-    [{title:'图纸',value:singleLineCount,isNav:true,type:'singleLine'}],
+    [{title:localStr('lang_asset_des28'),value:singleLineCount,isNav:true,type:'singleLine'}],
     arrStatistic,
     arrEnvDatas,
-    [{title:'现场日志',value:logCount,isNav:true,type:'log'}],
-    [{title:'维护历史',value:tendingCount,isNav:true,type:'tending'}]
+    [{title:localStr('lang_asset_des31'),value:logCount,isNav:true,type:'log'}],
+    [{title:localStr('lang_asset_des34'),value:tendingCount,isNav:true,type:'tending'}]
   ];
   var allSecTitle=[
     '',
     '',
     ' ',
-    '统计信息',
-    '环境数据',
+    localStr('lang_asset_des88'),
+    localStr('lang_asset_des89'),
     ' ',
     ' '
   ];
   //missing log
   if(arrAdmins.length > 0){
     allElements.push(arrAdmins);
-    allSecTitle.push('维护负责人');
+    allSecTitle.push(localStr('lang_asset_des90'));
   }
   return Immutable.fromJS({
     data:Immutable.fromJS(allElements),

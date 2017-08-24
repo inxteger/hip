@@ -12,6 +12,7 @@ import {
 import Circle from './Circle';
 import Text from '../Text';
 import {BLACK,GRAY,LINE_HISTORY,CHART_RED,CHART_NGRAY,CHART_OFFSET_COLOR,CHART_GREEN} from '../../styles/color';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class AgeingView extends Component{
   constructor(props){
@@ -60,7 +61,7 @@ export default class AgeingView extends Component{
           textStyle={{color:textColor,fontSize:showValueText?20:16}}
           textIconStyle={{color:showValueText?textColor:'transparent',fontSize:7}}
           formatText={(progress)=>{
-            return showValueText?`${Math.round(progress * 100)}`:`无效值`;
+            return showValueText?`${Math.round(progress * 100)}`:localStr('lang_alarm_invalid_value');
           }}
           formatIconText={(progress)=>{
             return showValueText?`%`:'';
