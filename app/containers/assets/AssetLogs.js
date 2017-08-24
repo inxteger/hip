@@ -105,11 +105,11 @@ class AssetLogs extends Component{
   render() {
     return (
       <LogsView
-        title={'现场日志'}
+        title={localStr('lang_asset_des31')}
         logs={this.state.dataSource}
         isFetching={this.props.isFetching}
         privilegeCode='AssetEditPrivilegeCode'
-        emptyText='无现场日志'
+        emptyText={localStr('lang_asset_des32')}
         showAdd={true}
         onRefresh={()=>this._loadLogs()}
         createLog={()=>this._gotoEdit()}

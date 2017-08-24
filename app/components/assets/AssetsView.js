@@ -34,7 +34,7 @@ export default class AssetsView extends Component{
             hasFilter={this.props.hasFilter}
             currentPage={this.props.currentPage}
             totalPage={this.props.totalPage}
-            emptyText='暂未关联任何建筑，请联系管理员'
+            emptyText={localStr('lang_asset_des6')}
             onRefresh={this.props.onRefresh}
             renderRow={(rowData,sectionId,rowId)=>this._renderRow(rowData,sectionId,rowId)}
           />

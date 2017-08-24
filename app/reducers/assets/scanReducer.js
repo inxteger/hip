@@ -55,7 +55,7 @@ function updateAssetData(state,action) {
   var response = action.response.Result;
   var newState = state;
   if (!response.Type) {
-    newState = newState.set('errorMessage','无法识别与灯塔系统不相关的二维码，请确认后再试！')
+    newState = newState.set('errorMessage',localStr('lang_asset_des91'))
   }else if (response.Type===5) {
     newState = newState.set('dataDevice',Immutable.fromJS({'Id':response.HierarchyId,'Name':response.Name}));
   }else if (response.Type===4) {
@@ -108,7 +108,7 @@ function handleError(state,action) {
       strError = localStr('lang_commons_notice1');
       break;
     case '050001201010':
-      strError = '您扫的二维码不是灯塔资产二维码，请确认';
+      strError = localStr('lang_asset_des92');
       break;
   }
   if (strError) {

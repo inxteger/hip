@@ -13,6 +13,7 @@ import TendingView from '../../components/assets/TendingView.js';
 import TicketDetail from '../ticket/TicketDetail.js';
 import privilegeHelper from '../../utils/privilegeHelper.js';
 import {loadTendingHistory} from '../../actions/assetsAction.js';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 class TendingHistory extends Component{
   constructor(props){
@@ -63,10 +64,10 @@ class TendingHistory extends Component{
   render() {
     return (
       <TendingView
-        title={'维护历史'}
+        title={localStr('lang_asset_des34')}
         tickets={this.state.dataSource}
         isFetching={this.props.isFetching}
-        emptyText='暂无维护历史纪录'
+        emptyText={localStr('lang_asset_des35')}
         onRefresh={()=>this._loadTendHistory()}
         onRowClick={(rowData)=>this._gotoDetail(rowData)}
         onBack={()=>this.props.navigator.pop()} />

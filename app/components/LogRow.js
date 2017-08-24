@@ -12,6 +12,7 @@ import TouchFeedback from './TouchFeedback';
 import NetworkImage from './NetworkImage';
 import {BLACK,ASSET_IMG_BORDER} from '../styles/color';
 import moment from 'moment';
+import {localStr,localFormatStr} from '../utils/Localizations/localization.js';
 
 export default class LogRow extends Component{
   constructor(props){
@@ -20,7 +21,7 @@ export default class LogRow extends Component{
   _getContentImageView(){
     var {rowData} = this.props;
     var time = moment(rowData.get('UpdateTime')).format("YYYY-MM-DD HH:mm");
-    var content = rowData.get('Content') || '无附加文本';
+    var content = rowData.get('Content') || localStr('lang_commons_notice23');
     return (
       <View style={[styles.row,styles.rowHeight,{flexDirection:'row',justifyContent:'space-between'}]}>
         <View style={{flex:1,marginTop:16,marginRight:16}}>
@@ -44,7 +45,7 @@ export default class LogRow extends Component{
   _getContentView(){
     var {rowData} = this.props;
     var time = moment(rowData.get('UpdateTime')).format("YYYY-MM-DD HH:mm");
-    var content = rowData.get('Content') || '无附加文本';
+    var content = rowData.get('Content') || localStr('lang_commons_notice23');
     // console.warn('contentview',time,content);
     var conText = time.toString() + ' ' + content.toString();
     return (

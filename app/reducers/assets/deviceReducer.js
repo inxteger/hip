@@ -34,27 +34,27 @@ function updateAssetDetailData(state,action) {
   // let {url,body,types} = action;
   var res = Result;
   var deviceDescption = [
-    {'title':'设备总称','value':res.Class,'isNav':false,},
-    {'title':'设备类型','value':res.DeviceType,'isNav':false,},
+    {'title':localStr('lang_asset_des43'),'value':res.Class,'isNav':false,},
+    {'title':localStr('lang_asset_des44'),'value':res.DeviceType,'isNav':false,},
   ];
   if (res.Description) {
     deviceDescption.splice(0,0,
-      {'title':'资产描述','value':res.Description,'isNav':false,},
+      {'title':localStr('lang_asset_des45'),'value':res.Description,'isNav':false,},
     );
   }
   if (res.FactoryDate) {
     deviceDescption.splice(0,0,
-      {'title':'出厂日期','value':res.FactoryDate,'isNav':false,},
+      {'title':localStr('lang_asset_des46'),'value':res.FactoryDate,'isNav':false,},
     );
   }
   if (res.Factory) {
     deviceDescption.splice(0,0,
-      {'title':'设备厂家','value':res.Factory,'isNav':false,},
+      {'title':localStr('lang_asset_des47'),'value':res.Factory,'isNav':false,},
     );
   }
   if (res.SerialNumber) {
     deviceDescption.splice(0,0,
-      {'title':'资产编号','value':res.SerialNumber,'isNav':false,}
+      {'title':localStr('lang_asset_des48'),'value':res.SerialNumber,'isNav':false,}
     );
   }
   // if(res.Specification){
@@ -94,14 +94,14 @@ function updateAssetDetailData(state,action) {
   var runtimeSetting = res.RuntimeSettingParameter;
   if((runtimeSetting.MaintenanceParameters && runtimeSetting.MaintenanceParameters.length > 0)
       || (runtimeSetting.SettingParameters && runtimeSetting.SettingParameters.length > 0)){
-    runtimeSetting = [{title:'运维参数',value:'',isNav:true,type:'runtimeSetting'}];
+    runtimeSetting = [{title:localStr('lang_asset_des15'),value:'',isNav:true,type:'runtimeSetting'}];
   }
   else {
     runtimeSetting = null;
   }
   // var arrLogPhoto = [
   //   {'title':'现场照片','value':'','isNav':false,},
-  //   {'title':'现场日志','value':'','isNav':false,},
+  //   {'title':localStr('lang_asset_des31'),'value':'','isNav':false,},
   // ];
   var logCount = res.SceneLogs.length;
   var tendingCount=res.HistoryTicketsCount;
@@ -110,14 +110,14 @@ function updateAssetDetailData(state,action) {
     [{title:'',value:res.LogoKey}],
     deviceDescption,
     parameters,
-    [{title:'现场日志',value:logCount,isNav:true,type:'log',secType:'logSection'}],
-    [{title:'维护历史',value:tendingCount,isNav:true,type:'tending'}]
+    [{title:localStr('lang_asset_des31'),value:logCount,isNav:true,type:'log',secType:'logSection'}],
+    [{title:localStr('lang_asset_des34'),value:tendingCount,isNav:true,type:'tending'}]
   ];
 
   var allSecTitle=[
     '',
     '',
-    '设备参数',
+    localStr('lang_asset_des50'),
     ' ',
     ' '
   ];

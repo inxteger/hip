@@ -8,6 +8,7 @@ import {
 import Toolbar from '../Toolbar';
 import List from '../List.js';
 import HierarchyBindRow from './HierarchyBindRow';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class BindHierarchyView extends Component{
   constructor(props){
@@ -28,7 +29,7 @@ export default class BindHierarchyView extends Component{
     return (
       <View style={{flex:1,backgroundColor:'white'}}>
         <Toolbar
-          title={'选择设备'}
+          title={localStr('lang_asset_des7')}
           navIcon="back"
           actions={actions}
           onActionSelected={[this.props.onScanClick]}
@@ -39,7 +40,7 @@ export default class BindHierarchyView extends Component{
             hasFilter={false}
             currentPage={1}
             totalPage={1}
-            emptyText='尚无任何资产可显示'
+            emptyText={localStr('lang_asset_des5')}
             onRefresh={this.props.onRefresh}
             renderRow={(rowData,sectionId,rowId)=>this._renderRow(rowData,sectionId,rowId)}
           />

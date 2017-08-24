@@ -17,6 +17,7 @@ import ListSeperator from './ListSeperator';
 import {GRAY,LINE,GREEN,LIST_BG, CLEAN_FILTER_BORDER,CLEAN_FILTER_BG,CLEAN_FILTER_TEXT} from '../styles/color';
 // import ClickableRow from './ClickableRow.js';
 import { SwipeRow } from 'react-native-swipe-list-view';
+import {localStr,localFormatStr} from '../utils/Localizations/localization.js';
 
 export default class List extends Component{
   static contextTypes = {
@@ -90,7 +91,7 @@ export default class List extends Component{
           (this.props.totalPage !== this.props.currentPage)){
       return (
         <View style={{height:40,justifyContent:'center',alignItems:'center'}}>
-          <Text style={{color:'black'}}>加载中，请稍候...</Text>
+          <Text style={{color:'black'}}>{localStr('lang_commons_notice11')}</Text>
         </View>
       )
     }
@@ -103,7 +104,7 @@ export default class List extends Component{
         <View style={styles.clearFilterContainer}>
           <TouchFeedback onPress={()=>this.props.clearFilter()}>
             <View style={styles.clearFilter}>
-              <Text style={{fontSize:12,color:CLEAN_FILTER_TEXT}}>清空筛选条件</Text>
+              <Text style={{fontSize:12,color:CLEAN_FILTER_TEXT}}>{localStr('lang_commons_notice12')}</Text>
             </View>
           </TouchFeedback>
         </View>
@@ -195,7 +196,7 @@ export default class List extends Component{
           refreshing={this.props.isFetching}
           onRefresh={this.props.onRefresh}
           tintColor={GREEN}
-          title="加载中，请稍候..."
+          title={localStr('lang_commons_notice11')}
           colors={[GREEN]}
           progressBackgroundColor={'white'}
         />

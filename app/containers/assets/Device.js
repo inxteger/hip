@@ -25,6 +25,7 @@ import ImagePicker from '../ImagePicker.js';
 import privilegeHelper from '../../utils/privilegeHelper.js';
 import History from './History.js';
 var Orientation = require('react-native-orientation');
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 class Device extends Component{
   constructor(props){
@@ -206,7 +207,7 @@ console.warn('_gotoDetail...',type);
       onRefresh:()=>this._onRefresh(),
       stateData,
       hasToolbar:false,
-      emptyImageText:"添加一张资产照片",
+      emptyImageText:localStr('lang_asset_des33'),
       changeImage:()=>this._onChangeImage(),
       canEdit:privilegeHelper.hasAuth('AssetEditPrivilegeCode'),
       ownData:this.props.ownData,

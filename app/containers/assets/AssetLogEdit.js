@@ -136,7 +136,7 @@ class AssetLogEdit extends Component{
         save={(data)=>this._save(data)}
         checkAuth={()=>this._checkAuth()}
         canEdit={this.props.isSameUser&&this.props.hasAuth}
-        inputPlaceholder="输入现场日志"
+        inputPlaceholder={localStr('lang_asset_des30')}
         gotoDetail={(items,index,thumbImageInfo)=>this._goToDetail(items,String(index),thumbImageInfo)}
         deleteImage={(imageId)=>this._deleteImage(imageId)}
         dataChanged={(type,action,value)=>this._dataChanged(type,action,value)}

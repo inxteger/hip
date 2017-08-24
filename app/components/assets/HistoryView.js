@@ -71,7 +71,7 @@ export default class HistoryView extends Component{
       // console.warn('不能选择未来日期',this.state.newDate,moment());
       Alert.alert(
         '',
-        '不能选择未来日期',
+        localStr('lang_asset_des27'),
         [
           {text: localStr('lang_ticket_OK'), onPress: () => console.log('Cancel Pressed')}
         ]
@@ -125,9 +125,9 @@ export default class HistoryView extends Component{
   //   REMTimeStepDay = 1,
   //   REMTimeStepHour = 0,
   _getTabArray(){
-    var array = ['天','小时'];
+    var array = [localStr('lang_asset_step_day'),localStr('lang_asset_step_hours')];
     if (this.props.isEnergyData) {
-      array = ['天','周','月','年'];
+      array = [localStr('lang_asset_step_day'),localStr('lang_asset_step_weeks'),localStr('lang_asset_step_month'),localStr('lang_asset_step_year')];
     }
     return array;
   }
@@ -264,7 +264,7 @@ export default class HistoryView extends Component{
     return (
       <View style={{flex:1,backgroundColor:'white'}}>
         <Toolbar
-          title={`${this.props.name}-${this.props.isEnergyData?'能耗数据':'历史数据'}(${this.props.unit})`}
+          title={`${this.props.name}-${this.props.isEnergyData?localStr('lang_asset_des25'):localStr('lang_asset_des26')}(${this.props.unit})`}
           navIcon="back"
           noShadow={true}
           onIconClicked={()=>this.props.onBack()}

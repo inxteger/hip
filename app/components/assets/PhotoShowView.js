@@ -72,7 +72,7 @@ export default class PhotoShowView extends Component{
         show: 'always', showWithText: false}];
     }
     var numIndex = parseInt(this.props.index)+1;
-    var title=this.props.type !== 'singlePhoto'?'图片':'图纸';
+    var title=this.props.type !== 'singlePhoto'?localStr('lang_commons_notice18'):localStr('lang_asset_des28');
     return (
       <Toolbar
         title={title+'('+(numIndex)+'/'+this.props.data.size+')'}
