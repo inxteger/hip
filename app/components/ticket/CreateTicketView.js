@@ -177,9 +177,6 @@ export default class CreateTicketView extends Component{
       }
       return this._getSimpleRow({'title':localStr('lang_ticket_ticket_type'),'value':ticketValue,'isNav':false,'type':'TicketType'});
     }
-    // if (this.props.isAlarm || type===2) {
-    //   return this._getSimpleRow({'title':'工单类型','value':'报警','isNav':false,'type':'TicketType'});
-    // }
     return (
         <View style={[styles.row,styles.rowHeight]}>
           <Text style={styles.titleText}>

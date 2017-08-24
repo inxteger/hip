@@ -68,7 +68,6 @@ export default class HistoryView extends Component{
   _checkDateIsValid()
   {
     if(this.state.newDate>moment()){
-      // console.warn('不能选择未来日期',this.state.newDate,moment());
       Alert.alert(
         '',
         localStr('lang_asset_des27'),

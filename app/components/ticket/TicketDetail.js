@@ -80,11 +80,11 @@ export default class TicketDetail extends Component{
     }
     if(startTime || endTime){
       if(!endTime){
-        text = localFormatStr('lang_ticket_start_time_format',startTime);//`${startTime} 开始`;
+        text = localFormatStr('lang_ticket_start_time_format',startTime);
         type = 'ticket_processing';
       }
       else {
-        text = localFormatStr('lang_ticket_finish_time_format',startTime,endTime);//`${startTime} 至 ${endTime}`;
+        text = localFormatStr('lang_ticket_finish_time_format',startTime,endTime);
         type = 'ticket_finished';
       }
       textView = (
@@ -201,7 +201,7 @@ export default class TicketDetail extends Component{
                 flexDirection:'row',
                 alignItems:'center',
                 paddingHorizontal:16}}>
-            <Text style={{fontSize:17,color:BLACK}}>localStr('lang_ticket_ticket_log')</Text>
+            <Text style={{fontSize:17,color:BLACK}}>{localStr('lang_ticket_ticket_log')}</Text>
             <View style={{flexDirection:'row',alignItems:'center'}}>
               <Text style={{fontSize:16,color:GRAY,marginRight:4}}>{count}</Text>
               <Icon type='arrow_right' size={16} color={GRAY} />

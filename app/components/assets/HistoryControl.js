@@ -29,8 +29,6 @@ export default class HistoryControl extends Component{
       return StartTime.format(localStr('lang_asset_des19'));
     }else if (step===0) {
       return `${StartTime.format(localStr('lang_asset_des20'))}~${EndTime.format("HH:mm")}`;
-      // return `${StartTime.format("M月D日 HH:mm")}~${EndTime.format("HH:mm")}`;
-      //.format("M月D日 MM:SS");
     }else if (step===2) {
       var tempEndT=moment(EndTime).subtract(1,'s');
       return `${StartTime.format(localStr('lang_asset_des19'))}~${tempEndT.format(localStr('lang_asset_des21'))}`;
