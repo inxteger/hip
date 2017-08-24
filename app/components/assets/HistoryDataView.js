@@ -284,9 +284,10 @@ export default class HistoryDataView extends Component{
   }
   _getNoDatasView()
   {
+    var text=this.props.isEnergyData?localStr('lang_asset_des25'):localStr('lang_asset_des26');
     return (
       <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-        <Text style={{fontSize:17,color:GRAY}}>{localStr('lang_asset_des24',this.props.isEnergyData?localStr('lang_asset_des25'):localStr('lang_asset_des26'))}</Text>
+        <Text style={{fontSize:17,color:GRAY}}>{localFormatStr('lang_asset_des24',text)}</Text>
       </View>
     );
   }
