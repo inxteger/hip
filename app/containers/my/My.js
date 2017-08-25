@@ -16,6 +16,7 @@ import MyView from '../../components/my/My';
 import notificationHelper from '../../utils/notificationHelper';
 import appInfo from '../../utils/appInfo.js';
 import FeedBack from './FeedBack.js';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 class My extends Component{
   constructor(props){
