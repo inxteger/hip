@@ -46,6 +46,8 @@
         android:name=".MainActivity"
         android:label="${prodName}"
         android:screenOrientation="portrait"
+        android:exported="true"
+        android:launchMode="singleTop"
         android:configChanges="keyboard|keyboardHidden|orientation|screenSize">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
