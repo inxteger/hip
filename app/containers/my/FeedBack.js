@@ -27,7 +27,13 @@ class FeedBack extends Component{
   _save(){
     dismissKeyboard();
     if(!this.props.feedBackLog.get('Content') && this.props.feedBackLog.get('Pictures').size === 0){
-      Alert.alert('',localStr('lang_ticket_notice6'));
+      Alert.alert(
+        '',
+        localStr('lang_ticket_notice6'),
+        [
+          {text: localStr('lang_ticket_OK'), onPress: () =>{}}
+        ]
+      )
       return ;
     }
     var images=[];

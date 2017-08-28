@@ -246,7 +246,13 @@ export default class FeedBackView extends Component{
           if(content||images.size>0){
             this._saveLog();
           }else {
-            Alert.alert('',localStr('lang_my_des14'));
+            Alert.alert(
+              '',
+              localStr('lang_my_des14'),
+              [
+                {text: localStr('lang_ticket_OK'), onPress: () =>{}}
+              ]
+            )
           }
         }]} />
     );

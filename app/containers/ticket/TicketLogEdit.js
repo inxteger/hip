@@ -24,7 +24,13 @@ class TicketLogEdit extends Component{
   }
   _save(){
     if(!this.props.ticketLog.get('Content') && this.props.ticketLog.get('Pictures').size === 0){
-      Alert.alert('',localStr('lang_ticket_notice6'));
+      Alert.alert(
+        '',
+        localStr('lang_ticket_notice6'),
+        [
+          {text: localStr('lang_ticket_OK'), onPress: () =>{}}
+        ]
+      )
       return ;
     }
 
@@ -69,11 +75,23 @@ class TicketLogEdit extends Component{
   }
   _checkAuth(){
     if(!this.props.canEdit){
-      Alert.alert('',localStr('lang_ticket_notice4'));
+      Alert.alert(
+        '',
+        localStr('lang_ticket_notice4'),
+        [
+          {text: localStr('lang_ticket_OK'), onPress: () =>{}}
+        ]
+      )
       return false;
     }
     if(!this.props.isSameUser){
-      Alert.alert('',localStr('lang_ticket_notice7'));
+      Alert.alert(
+        '',
+        localStr('lang_ticket_notice7'),
+        [
+          {text: localStr('lang_ticket_OK'), onPress: () =>{}}
+        ]
+      )
       return false;
     }
     if(!this.props.hasAuth){

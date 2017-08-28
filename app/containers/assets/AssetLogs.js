@@ -26,7 +26,13 @@ class AssetLogs extends Component{
       return false;
     }
     if(this.props.hasAuth === false){
-      Alert.alert('',localStr('lang_alarm_des1'));
+      Alert.alert(
+        '',
+        localStr('lang_alarm_des1'),
+        [
+          {text: localStr('lang_ticket_OK'), onPress: () =>{}}
+        ]
+      )
       return false;
     }
     return true;
@@ -49,7 +55,13 @@ class AssetLogs extends Component{
   }
   _delete(log){
     if(log.get('CreateUserName') !== this.props.user.get('RealName')){
-      Alert.alert('',localStr('lang_ticket_notice5'));
+      Alert.alert(
+        '',
+        localStr('lang_ticket_notice5'),
+        [
+          {text: localStr('lang_ticket_OK'), onPress: () =>{}}
+        ]
+      )
       return;
     }
     if(!this._showAuth()){
