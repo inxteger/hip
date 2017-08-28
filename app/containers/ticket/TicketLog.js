@@ -27,11 +27,23 @@ class TicketLog extends Component{
       return false;
     }
     if(this.props.hasAuth === false){
-      Alert.alert('',localStr('lang_alarm_des1'));
+      Alert.alert(
+        '',
+        localStr('lang_alarm_des1'),
+        [
+          {text: localStr('lang_ticket_OK'), onPress: () =>{}}
+        ]
+      )
       return false;
     }
     if(!this.props.canEdit){
-      Alert.alert('',localStr('lang_ticket_notice4'));
+      Alert.alert(
+        '',
+        localStr('lang_ticket_notice4'),
+        [
+          {text: localStr('lang_ticket_OK'), onPress: () =>{}}
+        ]
+      )
       return false;
     }
     return true;
@@ -57,7 +69,13 @@ class TicketLog extends Component{
   _delete(log){
     // console.warn('user',log.get('CreateUserName'),this.props.user.get('RealName'));
     if(log.get('CreateUserName') !== this.props.user.get('RealName')){
-      Alert.alert('',localStr('lang_ticket_notice5'));
+      Alert.alert(
+        '',
+        localStr('lang_ticket_notice5'),
+        [
+          {text: localStr('lang_ticket_OK'), onPress: () =>{}}
+        ]
+      )
       return;
     }
     if(!this._showAuth()){

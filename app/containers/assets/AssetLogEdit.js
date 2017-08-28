@@ -28,7 +28,13 @@ class AssetLogEdit extends Component{
 
     // this.props.navigator.pop();
     if(!this.props.assetLog.get('Content') && this.props.assetLog.get('Pictures').size === 0){
-      Alert.alert('',localStr('lang_ticket_notice6'));
+      Alert.alert(
+        '',
+        localStr('lang_ticket_notice6'),
+        [
+          {text: localStr('lang_ticket_OK'), onPress: () =>{}}
+        ]
+      )
       return ;
     }
     this.context.showSpinner();
@@ -65,7 +71,13 @@ class AssetLogEdit extends Component{
       return false;
     }
     if(!this.props.isSameUser){
-      Alert.alert('',localStr('lang_ticket_notice7'));
+      Alert.alert(
+        '',
+        localStr('lang_ticket_notice7'),
+        [
+          {text: localStr('lang_ticket_OK'), onPress: () =>{}}
+        ]
+      )
       return false;
     }
 
