@@ -11,6 +11,7 @@ import Text from '../Text';
 
 import {BLACK,GRAY,ENV_EDIT_LINE} from '../../styles/color';
 import Toolbar from '../Toolbar';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class EnvEditView extends Component{
   constructor(props){

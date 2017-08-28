@@ -36,7 +36,7 @@ export default class AdminListView extends Component{
             </Text>
           </View>
           <View style={styles.connection}>
-            <Text style={styles.sectionTitle}>localStr('lang_asset_des0')</Text>
+            <Text style={styles.sectionTitle}>{localStr('lang_asset_des0')}</Text>
             <View style={styles.connectionContainer}>
               <TouchFeedback onPress={()=>this._openMobile()}>
                 <View style={styles.connectionRow}>

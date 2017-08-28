@@ -29,7 +29,9 @@ var defaultState = Immutable.fromJS({
     buildings:null,
     filterBuildings:[],
     filterCodes: [localStr('lang_alarm_reason0'),localStr('lang_alarm_reason1'),
-                      localStr('lang_alarm_reason2'),localStr('lang_alarm_reason3'),localStr('lang_alarm_reason4'),localStr('lang_alarm_reason5'),localStr('lang_alarm_reason6')],
+    localStr('lang_alarm_reason2'),localStr('lang_alarm_reason3'),
+    localStr('lang_alarm_reason4'),localStr('lang_alarm_reason5'),
+    localStr('lang_alarm_reason6')],
     stable:{
       CurrentPage:1,
       ItemsPerPage:20,

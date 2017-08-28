@@ -149,7 +149,7 @@ export default class AlarmDetail extends Component{
     if(!type){ // could be null
       return '-';
     }
-    if(type.indexOf(localStr('lang_alarm_power_factor')) >= 0){
+    if(type.indexOf('功率因数') >= 0){
       return this._formatNumber(v.toString(),2);
     }
     else {
