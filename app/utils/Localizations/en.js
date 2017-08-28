@@ -31,7 +31,7 @@ export default {
   lang_alarm_position:'Location',
   lang_alarm_filterdes:'Filter Alarm',
   lang_alarm_midd_date:'YYYY-M-D',
-  lang_alarm_power_factor:'Power Factor',
+  lang_alarm_power_factor:'功率因数',//'Power Factor',
   lang_alarm_assetdes:'Asset',
   lang_alarm_setting_value:'Set Value',
   lang_alarm_type:'Type',
