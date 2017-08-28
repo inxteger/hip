@@ -158,7 +158,7 @@ export default class AlarmDetail extends Component{
   }
   _isCode303(rowData)
   {
-    return rowData.get('Code')==='故障跳闸';
+    return rowData.get('Code')===localStr('lang_alarm_reason0');
   }
     // {this._getPathRows(item.content)}
   _getDeviceNameView(rowData){
