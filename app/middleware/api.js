@@ -8,13 +8,9 @@ import appInfo from '../utils/appInfo.js';
 export var TOKENHEADER = "disco-token";
 export var HEADERDEVICEID = "disco-deviceid";
 
-// var _BASEURL = "http://mobile.poptest.energymost.com/pop/v2.8.0/Mobile/api/";
-
-var _BASEURL = 'http://mobiletest.mm.energymost.com/api/';
-// var _BASEURL = "http://114.55.26.137/test/hiphop/mobilehost/api/";
-
+var _BASEURL = "http://mobiletest.mm.energymost.com/api/";
 //dev
-// var _BASEURL = 'http://121.41.53.66/pop/v3.9.0/Mobile/api/';
+// var _BASEURL = 'http://10.177.173.197/hiphop/mobile/api/';
 //xianjing
 // var _BASEURL = 'http://10.177.122.73/mobile/api/';
 //pro
