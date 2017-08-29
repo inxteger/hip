@@ -46,6 +46,7 @@ export default class HistoryView extends Component{
         var value=this.props.filter.get('StartTime');
         var date = moment(value);
         var options = {date:date.toDate()}
+
         var {action, year, month, day} = await DatePickerAndroid.open(options);
         // console.warn('date',year,month,day);
 
@@ -57,8 +58,8 @@ export default class HistoryView extends Component{
             return;
           this.props.onDateChanged(this.state.newDate);
         }
-
-        this.setState({openDatePicker:!this.state.openDatePicker});
+        // console.warn('ddd',this.state.openDatePicker);
+        this.setState({openDatePicker:false});
 
       } catch ({code, message}) {
         // console.warn(`Error in example '${stateKey}': `, message);
@@ -72,7 +73,9 @@ export default class HistoryView extends Component{
         '',
         localStr('lang_asset_des27'),
         [
-          {text: localStr('lang_ticket_OK'), onPress: () => console.log('Cancel Pressed')}
+          {text: localStr('lang_ticket_OK'), onPress: () =>{
+            this.setState({openDatePicker:false});
+          }}
         ]
       )
       return false;
