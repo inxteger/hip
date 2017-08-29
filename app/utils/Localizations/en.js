@@ -85,14 +85,14 @@ export default {
   lang_ticket_future:'Future',
   lang_ticket_myticket:'My Ticket',
   lang_ticket_filter_ticket:'Filter ticket',
-  lang_ticket_run_time:'Execution',
+  lang_ticket_run_time:'Time',
   lang_ticket_asset_position:'Asset Location',
   lang_ticket_start_time_format:'Start from {0}',//text = `${startTime} 开始`;
   lang_ticket_finish_time_format:'{0} to {1}',//${startTime} 至 ${endTime}
 
   lang_ticket_asset_range:'Asset Range',
   lang_ticket_task_des:'Task Description',
-  lang_ticket_document:'Document',
+  lang_ticket_document:'File',
   lang_ticket_create_user:'Create User',
   lang_ticket_ticket_log:'Ticket Log',
   lang_ticket_start_execute:'Start Execution',
