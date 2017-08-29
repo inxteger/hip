@@ -296,7 +296,7 @@ export default {
   lang_asset_des65:'相电流最大需量',//server
 
   lang_asset_des66:'过大',
-  lang_asset_des67:'过小',
+  lang_asset_des670:'过小',
 
   lang_asset_des67:'需量与保护定值比',
   lang_asset_des68:'保护设定值',
