@@ -21,13 +21,14 @@ import privilegeHelper from '../../utils/privilegeHelper.js';
 import Icon from '../Icon.js';
 import TouchFeedback from '../TouchFeedback';
 import unit from '../../utils/unit.js';
-import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
+import {localStr,localFormatStr,getLanguage} from '../../utils/Localizations/localization.js';
 // import num
 moment.locale('zh-cn');
 
 export default class AlarmDetail extends Component{
   constructor(props){
     super(props);
+    this._width=getLanguage()==='en'?60:30;
   }
   _hasResolved(){
     var hasTime = false;
@@ -160,19 +161,19 @@ export default class AlarmDetail extends Component{
   {
     return rowData.get('Code')==='故障跳闸';
   }
-    // {this._getPathRows(item.content)}
   _getDeviceNameView(rowData){
     var path = rowData.get('DeviceName');
     var list = [
       {title:localStr('lang_alarm_assetdes'),content:path,isNav:true},
     ];
+    var minWidth=this._width;
     return list.map((item,index)=>{
       return (
         <TouchFeedback style={[{flex:1,backgroundColor:'white'}]} onPress={()=>{
           this.props.onAssetClick(rowData);
         }}>
         <View key={index} style={[styles.detailRow]}>
-          <Text style={[styles.detailTitleText]}>{item.title}</Text>
+          <Text style={[styles.detailTitleText,{minWidth}]}>{item.title}</Text>
           <View style={{flex:1,justifyContent:'flex-start'}}>
             <Text key={index} style={[styles.detailText]} numberOfLines={1}>{item.content}</Text>
           </View>
@@ -225,6 +226,7 @@ export default class AlarmDetail extends Component{
         list.splice(1,0,{title:localStr('lang_alarm_detail'),content:details});
       }
     }
+    var minWidth=this._width;
     return list.map((item,index)=>{
       var bottom = 14;
       if (index === (list.length - 1)) {
@@ -233,9 +235,9 @@ export default class AlarmDetail extends Component{
       return (
         <View key={index} style={[styles.detailRow, {paddingBottom:bottom}]}>
           <View style={{}}>
-            <Text style={[styles.detailTitleText]}>{item.title}</Text>
+            <Text style={[styles.detailTitleText,{minWidth}]}>{item.title}</Text>
           </View>
-          <View style={{flex:1,justifyContent:'flex-start',}}>
+          <View style={{flex:1,justifyContent:'flex-start',marginTop:0}}>
             {this._getPathRows(item.content)}
           </View>
         </View>

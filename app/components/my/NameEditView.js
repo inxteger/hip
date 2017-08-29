@@ -15,7 +15,7 @@ import {localStr,localFormatStr} from '../../utils/Localizations/localization.js
 export default class NameEditView extends Component{
   constructor(props){
     super(props);
-    this.state = {text:props.user.get('RealName')};
+    this.state = {text:props.user.get('RealName'),autoFocus:true};
   }
   _textChanged(text){
     this.setState({text});
@@ -45,12 +45,13 @@ export default class NameEditView extends Component{
           actions={[{title:localStr('lang_common_finish'),show:'always'}]}
           onIconClicked={this.props.onBack}
           onActionSelected={[()=>{
+            this.setState({autoFocus:false});
             this.props.save(this.state.text)
           }]} />
         <View style={styles.inputContainer}>
           <TextInput
               style={styles.input}
-              autoFocus={true}
+              autoFocus={this.state.autoFocus}
               underlineColorAndroid={'transparent'}
               textAlign={'left'}
               multiline={false}
