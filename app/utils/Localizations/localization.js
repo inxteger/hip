@@ -17,6 +17,10 @@ export function localFormatStr(key,...values)
   return strings.formatString(strings[key],...values);
 }
 
+export function getLanguage() {
+  return strings.getLanguage();
+}
+
 
 // eg:
 // import local from '../utils/Localizations/localization.js';
