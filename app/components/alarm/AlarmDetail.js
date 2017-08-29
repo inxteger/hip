@@ -160,7 +160,6 @@ export default class AlarmDetail extends Component{
   {
     return rowData.get('Code')==='故障跳闸';
   }
-    // {this._getPathRows(item.content)}
   _getDeviceNameView(rowData){
     var path = rowData.get('DeviceName');
     var list = [
@@ -235,7 +234,7 @@ export default class AlarmDetail extends Component{
           <View style={{}}>
             <Text style={[styles.detailTitleText]}>{item.title}</Text>
           </View>
-          <View style={{flex:1,justifyContent:'flex-start',}}>
+          <View style={{flex:1,justifyContent:'flex-start',marginTop:0}}>
             {this._getPathRows(item.content)}
           </View>
         </View>
@@ -427,6 +426,7 @@ var styles = StyleSheet.create({
   detailTitleText:{
     color:GRAY,
     fontSize:14,
+    minWidth:60,
     // height:17,
   },
   detailText:{
