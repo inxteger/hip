@@ -20,7 +20,7 @@ export default class TaskDesEditView extends Component{
   constructor(props){
     super(props);
     var text = this.props.content;
-    this.state = {text};
+    this.state = {text:''};
   }
   _logChanged(text){
     this.setState({text});
@@ -34,8 +34,10 @@ export default class TaskDesEditView extends Component{
         lines++;
       });
     }
-    var disable = !this.state.text || this.state.text.length === 0;
-    console.warn('state.text',disable,this.state.text);
+    if (lines===0) {
+      lines=1;
+    }
+    var disable = true;//!content || content.length === 0;
     var actions = [{title:localStr('lang_common_finish'),show:'always',disable:disable}];
     if(Platform.OS === 'android'){
       actions = [{title:localStr('lang_common_finish'),show:'always'}];
@@ -48,13 +50,12 @@ export default class TaskDesEditView extends Component{
           actions={actions}
           onIconClicked={this.props.onBack}
           onActionSelected={[()=>{
-            this.props.onSave(this.state.text);
+            this.props.onSave(content);
           }]}
           />
 
         <View style={{flex:1}}>
           <TextInput
-            ref={(input)=>this._input=input}
             style={styles.input}
             autoFocus={this.props.content ? false : true}
             underlineColorAndroid={'transparent'}
@@ -65,7 +66,7 @@ export default class TaskDesEditView extends Component{
             textAlignVertical={'top'}
             placeholder={localStr('lang_ticket_notice3')}
             onChangeText={(text)=>this._logChanged(text)}
-            value={this.state.text} />
+            value={content} />
         </View>
         <KeyboardSpacer />
       </View>

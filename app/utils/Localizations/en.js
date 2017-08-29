@@ -296,7 +296,7 @@ export default {
   lang_asset_des65:'Max Demand of Current',//server
 
   lang_asset_des66:'Too Big',
-  lang_asset_des67:'Too Small',
+  lang_asset_des670:'Too Small',
 
   lang_asset_des67:'Demand to Ir Ratio',
   lang_asset_des68:'Protection Set Value',

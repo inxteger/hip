@@ -288,12 +288,12 @@ function categoryDatas(state,response)
     if (settDatas.length>0||abcDatas.length>0) {
       data.push(arrSetts);
       var strTkdyly=state.get('strTkdyly');
-      var strTitle='需量与保护定值比';
+      var strTitle=localStr('lang_asset_des67');
       if (abcDatas.length>0&&isContainIrPoint&&isCommonDevice) {
-        strTitle='需量与保护定值比';
+        strTitle=localStr('lang_asset_des67');
       }else {
         if (strTkdyly&&strTkdyly.length>0) {
-          strTitle='保护设定值'+'-'+strTkdyly;
+          strTitle=localStr('lang_asset_des68')+'-'+strTkdyly;
         }
       }
       newSecData.push({title:strTitle,isExpanded:null});
