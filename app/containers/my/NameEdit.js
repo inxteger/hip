@@ -8,6 +8,7 @@ import backHelper from '../../utils/backHelper';
 import {updateUser} from '../../actions/loginAction';
 import NameEditView from '../../components/my/NameEditView';
 import Toast from 'react-native-root-toast';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 var dismissKeyboard = require('dismissKeyboard');
 
