@@ -1,10 +1,10 @@
 export default {
-  lang_login_title:'Machine Advisor Cloud Platform',
+  lang_login_title:'Machine Advisor',
   lang_login_code_getdes:'Send',
   lang_login_mobile_placeholder:'Enter 11-digit phone number',
   lang_login_code_des:'Code',
-  lang_login_mobilecode_placeholder:'Enter 4-digit verification code',
-  lang_login_nameinputdes:'Username',
+  lang_login_mobilecode_placeholder:'Enter 4-digit code',
+  lang_login_nameinputdes:'User ID',
   lang_login_name_placeholder:'Enter username',
   lang_login_passdes:'Password',
   lang_login_pass_placeholder:'Enter password',
@@ -55,7 +55,7 @@ export default {
   lang_alarm_create_ticket:'Create alarm ticket',
   lang_alarm_view_ticket:'View ticket',
 
-  lang_common_finish:'Finish',
+  lang_common_finish:'Done',
   lang_ticket_remove:'Delete',
   lang_ticket_customer_name:'Customer Name',
   lang_ticket_start_time:'Start Date',
@@ -93,7 +93,7 @@ export default {
   lang_ticket_asset_range:'Asset Range',
   lang_ticket_task_des:'Task Description',
   lang_ticket_document:'File',
-  lang_ticket_create_user:'Create User',
+  lang_ticket_create_user:'Username',
   lang_ticket_ticket_log:'Ticket Log',
   lang_ticket_start_execute:'Start Execution',
   lang_ticket_finish_ticket:'Finish Ticket',
@@ -148,7 +148,7 @@ export default {
   lang_commons_notice9:'Click again to exit',
   lang_commons_notice10:'Your network has recovered',
   lang_commons_notice11:'Loading, please wait...',
-  lang_commons_notice12:'Clear filtering conditions',
+  lang_commons_notice12:'Clear filters',
   lang_commons_notice13:'Align QR Code within frame to scan',
   lang_commons_notice14:'Allow machine advisor to access camera in the "Settings" of your phone',
   lang_commons_notice15:'Allow',
@@ -213,7 +213,7 @@ export default {
   lang_my_des28:'Log out',
   lang_my_des29:'Nickname cannot be empty',
   lang_my_des30:'Submitting...',
-  lang_my_des31:'Feedback submitted successfully.',
+  lang_my_des31:'Submitted.',
   lang_my_des32:'Bound successfully.',
 
   lang_asset_des0:'Contact him/her',
@@ -289,13 +289,13 @@ export default {
   lang_asset_des59:'Max Demand of Current B',//server
   lang_asset_des60:'Max Demand of Current C',//server
   lang_asset_des61:'Ir',//server
-  lang_asset_des62:'Ir Setting',//server
+  lang_asset_des62:'Ir is set too small',
 
-  lang_asset_des63:'Ir is empty',//?
-  lang_asset_des64:'Ir is invalid',//?
+  lang_asset_des63:'Ir is empty',
+  lang_asset_des64:'Ir is invalid',
   lang_asset_des65:'Max Demand of Current',//server
 
-  lang_asset_des66:'Too Big',
+  lang_asset_des66:'Ir is set too big',
   lang_asset_des670:'Too Small',
 
   lang_asset_des67:'Demand to Ir Ratio',

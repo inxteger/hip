@@ -289,13 +289,13 @@ export default {
   lang_asset_des59:'B相电流最大需量',//server
   lang_asset_des60:'C相电流最大需量',//server
   lang_asset_des61:'长延时保护电流',//server
-  lang_asset_des62:'长延时保护电流(lr)设定',//server
+  lang_asset_des62:'长延时保护电流（Ir）设定过小',
 
-  lang_asset_des63:'长延时保护电流(lr)为空',//?
-  lang_asset_des64:'长延时保护电流(lr)为无效值',//?
+  lang_asset_des63:'长延时保护电流(lr)为空',
+  lang_asset_des64:'长延时保护电流(lr)为无效值',
   lang_asset_des65:'相电流最大需量',//server
 
-  lang_asset_des66:'过大',
+  lang_asset_des66:'长延时保护电流（Ir）设定过大',
   lang_asset_des670:'过小',
 
   lang_asset_des67:'需量与保护定值比',
