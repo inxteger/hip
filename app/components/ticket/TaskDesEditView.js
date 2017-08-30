@@ -20,7 +20,7 @@ export default class TaskDesEditView extends Component{
   constructor(props){
     super(props);
     var text = this.props.content;
-    this.state = {text:''};
+    this.state = {text:text};
   }
   _logChanged(text){
     this.setState({text});

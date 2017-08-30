@@ -93,7 +93,7 @@ export default {
   lang_ticket_asset_range:'Asset Range',
   lang_ticket_task_des:'Task Description',
   lang_ticket_document:'File',
-  lang_ticket_create_user:'Username',
+  lang_ticket_create_user:'Creator',
   lang_ticket_ticket_log:'Ticket Log',
   lang_ticket_start_execute:'Start Execution',
   lang_ticket_finish_ticket:'Finish Ticket',

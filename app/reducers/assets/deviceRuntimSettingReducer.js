@@ -13,6 +13,7 @@ import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
 import Immutable from 'immutable';
 
 import {round} from 'lodash/math';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 var defaultState = Immutable.fromJS({
   data:null,

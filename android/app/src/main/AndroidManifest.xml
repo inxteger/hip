@@ -36,7 +36,7 @@
       android:name=".MainApplication"
       android:allowBackup="true"
       android:label="${prodName}"
-        android:largeHeap="true"
+      android:largeHeap="true"
       android:icon="@mipmap/ic_launcher"
       android:configChanges="orientation"
       android:screenOrientation="portrait"
