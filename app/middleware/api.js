@@ -4,9 +4,11 @@ import storage from '../utils/storage';
 import {Platform} from 'react-native';
 import appInfo from '../utils/appInfo.js';
 
+import {getInterfaceLanguage} from '../utils/Localizations/localization.js';
 
 export var TOKENHEADER = "disco-token";
 export var HEADERDEVICEID = "disco-deviceid";
+export var HEADERLANGUAGE = "Language";
 
 var _BASEURL = "http://mobiletest.mm.energymost.com/api/";
 //dev
@@ -42,6 +44,7 @@ var defaultFetch = async function(options){
     headers[TOKENHEADER] = token;
   }
   headers[HEADERDEVICEID]=deviceid;
+  headers[HEADERLANGUAGE]=getInterfaceLanguage();
 
   var os = Platform.OS;
   var {versionName} = appInfo.get();

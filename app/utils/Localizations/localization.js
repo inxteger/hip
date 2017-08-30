@@ -21,6 +21,10 @@ export function getLanguage() {
   return strings.getLanguage();
 }
 
+export function getInterfaceLanguage() {
+  return strings.getInterfaceLanguage();
+}
+
 
 // eg:
 // import local from '../utils/Localizations/localization.js';
