@@ -143,6 +143,7 @@ android {
             applicationId "com.energymost.hiprock"
             manifestPlaceholders = [
               prodName:"灯塔",
+              prodName:"@string/app_name_prod",
               oss_bucket:"$prod_oss_bucket",
               prod:"$prod_uri",
               codepushKey:"$prod_codepushKey",
@@ -152,7 +153,7 @@ android {
         }
         internal {
             manifestPlaceholders = [
-              prodName:"灯塔测试",
+              prodName:"@string/app_name_test",
               oss_bucket:"$oss_bucket",
               prod:"",
               codepushKey:"$codepushKey",
