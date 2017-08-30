@@ -1,9 +1,8 @@
 /* 
-  langInfo.strings
+  InfoPlist.strings
   HipRock
 
   Created by SamuelMac on 2017/8/30.
   Copyright © 2017年 Facebook. All rights reserved.
 */
-
-CFBundleDisplayName = "Machine Advisor Test";
+"CFBundleDisplayName" = "MA_Test";
