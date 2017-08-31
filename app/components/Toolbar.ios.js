@@ -76,7 +76,7 @@ export default class Toolbar extends Component {
         else {
           width = null;
           imageOrText = (
-            <Text style={{color:enabled?tintColor:'rgba(0, 0, 0, .12)',fontSize:15}}>{item.title}</Text>
+            <Text style={{color:enabled?tintColor:'rgba(0, 0, 0, .12)',fontSize:15,width:50,}}>{item.title}</Text>
           );
         }
         return (

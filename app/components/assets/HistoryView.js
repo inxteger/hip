@@ -174,7 +174,7 @@ export default class HistoryView extends Component{
                 barStyle={{
                   borderBottomWidth:1,
                   borderColor:TAB_BORDER,
-                  width:200,
+                  width:220,
                 }}
                 array={array}
                 currentIndex={this.props.currentIndex}
