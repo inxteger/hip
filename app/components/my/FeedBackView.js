@@ -230,7 +230,7 @@ export default class FeedBackView extends Component{
     );
   }
   _getToolbar(){
-    var actions = actions = [{title:localStr('lang_my_des12'),show:'always'}];
+    var actions = [{title:localStr('lang_my_des12'),show:'always'}];
 
     var content = this.props.log.get('Content');
     var images=this.props.log.get('Pictures');
