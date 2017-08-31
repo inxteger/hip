@@ -224,7 +224,7 @@ var styles = StyleSheet.create({
   },
   sendButton:{
     backgroundColor:GREEN,
-    width:80,
+    width:70,
     height:34,
     borderRadius:2,
   },
