@@ -230,7 +230,7 @@ export default {
   lang_asset_des11:'Cannot choose a future date',
   lang_asset_des12:'View',
   lang_asset_des13:'Device Info',
-  lang_asset_des14:'Data Monitoring',
+  lang_asset_des14:'Monitoring',
   lang_asset_des15:'Parameter',
   lang_asset_des16:'Operation Indicator',
   lang_asset_des17:'Bound',
