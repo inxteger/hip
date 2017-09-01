@@ -66,7 +66,7 @@ export default {
   lang_ticket_ticket_tash:'Ticket Task',
   lang_ticket_scene:'On-site',
   lang_ticket_random:'Provisional',
-  lang_ticket_ticket_type:'Ticket Type',
+  lang_ticket_ticket_type:'Type',
   lang_ticket_ticket_planning:'Plan Ticket',
   lang_ticket_ticket_alarm:'Alarm Ticket',
   lang_ticket_ticket_folow:'Provisional Ticket',
