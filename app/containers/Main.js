@@ -23,7 +23,7 @@ import Ticket from './ticket/Ticket';
 import Assets from './assets/Assets';
 import notificationHelper from '../utils/notificationHelper.js';
 import ViewPager from '../components/ViewPager';
-import codePush from "react-native-code-push";
+// import codePush from "react-native-code-push";
 import privilegeHelper from '../utils/privilegeHelper.js';
 import {detectClipboard,emptyClipboard} from '../actions/appAction.js';
 // console.warn('ViewPager',ViewPager);
@@ -36,6 +36,7 @@ import RNFS, { DocumentDirectoryPath } from 'react-native-fs';
 
 import TicketDetail from './ticket/TicketDetail';
 import AlarmDetail from './alarm/AlarmDetail';
+import {localStr,localFormatStr} from '../utils/Localizations/localization.js';
 
 var AlertManager = require('NativeModules').AlertManager;
 var DeviceInfo = require('react-native-device-info');
@@ -92,7 +93,7 @@ class Main extends Component{
     return component;
   }
   _checkCodePushUpgrade(){
-    codePush.sync();
+    // codePush.sync();
   }
   _onNotification(notification){
     // var message = notification.getMessage();
@@ -272,11 +273,11 @@ class Main extends Component{
           }else {
             Alert.alert(
               '',
-              '请在手机的'+'"'+'设置'+'"'+'中，允许灯塔访问您的相册',
+              localStr('lang_commons_notice19'),
               [
-                {text: '取消', onPress: () => {
+                {text: localStr('lang_ticket_cancel'), onPress: () => {
                 }},
-                {text: '允许', onPress: () => {
+                {text:localStr('lang_commons_notice15'), onPress: () => {
                   if (Permissions.canOpenSettings()) {
                     Permissions.openSettings();
                   }
@@ -342,11 +343,11 @@ class Main extends Component{
               '',
               this.props.content,
               [
-                {text: '取消', onPress: () => {
+                {text: localStr('lang_ticket_cancel'), onPress: () => {
                   this.props.emptyClipboard();
                   return;
                 }},
-                {text: '立即查看', onPress: () => {
+                {text:localStr('lang_commons_notice28'), onPress: () => {
                   this.props.emptyClipboard();
                   if (nextProps.itemType==='alarm') {
                     this._gotoAlarmDetail(nextProps.itemId,true);

@@ -17,6 +17,7 @@ import Panel from './Panel';
 
 import {loadPanelHierarchy,updateScanDeviceData,updateSpHttpInfo,bindAssetHierarchy,loadAssetWithQrcode,exitScan,resetScanError} from '../../actions/assetsAction';
 import ScanView from '../../components/assets/ScanView';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 var Permissions = require('react-native-permissions');
 
@@ -85,7 +86,7 @@ class Scan extends Component{
       //   '',
       //   '无法识别与灯塔系统不相关的二维码，请确认后再试！',
       //   [
-      //     {text: '好', onPress: () => {this.setState({openCamera:true});}}
+      //     {text: localStr('lang_ticket_OK'), onPress: () => {this.setState({openCamera:true});}}
       //   ]
       // )
       // this.setState({openCamera:false});
@@ -149,16 +150,16 @@ class Scan extends Component{
           }else {
             Alert.alert(
               '',
-              '请在手机的'+'"'+'设置'+'"'+'中，允许灯塔访问您的摄像头',
+              localStr('lang_commons_notice14'),
               [
-                {text: '取消', onPress: () => {
+                {text: localStr('lang_ticket_cancel'), onPress: () => {
                   // Permissions.requestPermission('camera').then(response => {
                   //   console.warn('requestPermission camera',response);
                   //   //returns once the user has chosen to 'allow' or to 'not allow' access
                   //   //response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
                   // });
                 }},
-                {text: '允许', onPress: () => {
+                {text: localStr('lang_commons_notice15'), onPress: () => {
                   if (Permissions.canOpenSettings()) {
                     Permissions.openSettings();
                   }
@@ -213,7 +214,7 @@ class Scan extends Component{
         '',
         nextProps.errorMessage,
         [
-          {text: '好', onPress: () =>{
+          {text: localStr('lang_ticket_OK'), onPress: () =>{
             this.setState({openCamera:true});
             this.props.resetScanError();
           }}//

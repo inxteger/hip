@@ -9,6 +9,7 @@ import Toolbar from '../Toolbar';
 import List from '../List.js';
 import SelectRow from './AssetSelectRow.js';
 import SectionTouch from '../SectionTouch.js';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class AssetsSelectView extends Component{
   constructor(props){
@@ -30,7 +31,7 @@ export default class AssetsSelectView extends Component{
   render() {
     // console.warn('AssetsSelectView...',this.props.isFetching);
     var disable = !this.props.data || !this.props.selectAssets || this.props.selectAssets.size===0;
-    var actions = [{title:'完成',show:'always',disable}];
+    var actions = [{title:localStr('lang_common_finish'),show:'always',disable}];
     return (
       <View style={{flex:1,backgroundColor:'white'}}>
         <Toolbar title={this.props.title}
@@ -47,7 +48,7 @@ export default class AssetsSelectView extends Component{
           hasFilter={false}
           currentPage={1}
           totalPage={1}
-          emptyText='没有资产'
+          emptyText={localStr('lang_ticket_notice1')}
           onRefresh={this.props.onRefresh}
           renderRow={(rowData,sectionId,rowId)=>this._renderRow(rowData,sectionId,rowId)}
           renderSectionHeader={(sectionData,sectionId)=>this._renderSection(sectionData,sectionId)}

@@ -66,7 +66,6 @@ import com.android.build.OutputFile
  */
 
 apply from: "../../node_modules/react-native/react.gradle"
-apply from: "../../node_modules/react-native-code-push/android/codepush.gradle"
 
 /**
  * Set this to true to create two separate APKs instead of one:
@@ -143,7 +142,7 @@ android {
         prod {
             applicationId "com.energymost.hiprock"
             manifestPlaceholders = [
-              prodName:"灯塔",
+              prodName:"@string/app_name_prod",
               oss_bucket:"$prod_oss_bucket",
               prod:"$prod_uri",
               codepushKey:"$prod_codepushKey",
@@ -153,7 +152,7 @@ android {
         }
         internal {
             manifestPlaceholders = [
-              prodName:"灯塔测试",
+              prodName:"@string/app_name_test",
               oss_bucket:"$oss_bucket",
               prod:"",
               codepushKey:"$codepushKey",
@@ -172,11 +171,7 @@ dependencies {
     compile project(':ReactAndroid')
     /*compile "cn.finalteam:galleryfinal:1.4.8.7"*/
     /*compile "com.aliyun.dpa:oss-android-sdk:2.2.0"*/
-    compile project(':OneSDK')
     compile (project(':ReactNativeBarcodescanner')){
-      exclude group: 'com.facebook.react', module: 'react-native'
-    }
-    compile (project(':react-native-code-push')){
       exclude group: 'com.facebook.react', module: 'react-native'
     }
     compile (project(':react-native-image-picker')){
@@ -206,6 +201,9 @@ dependencies {
       exclude group: 'com.facebook.react', module: 'react-native'
     }
     compile (project(':react-native-device-info')){
+      exclude group: 'com.facebook.react', module: 'react-native'
+    }
+    compile (project(':react-native-localization')){
       exclude group: 'com.facebook.react', module: 'react-native'
     }
 }

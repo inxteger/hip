@@ -10,11 +10,12 @@ import {
 import {BLACK,GRAY,ENV_EDIT_LINE,LIST_BG} from '../../styles/color';
 import Toolbar from '../Toolbar';
 import Loading from '../Loading';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class NameEditView extends Component{
   constructor(props){
     super(props);
-    this.state = {text:props.user.get('RealName')};
+    this.state = {text:props.user.get('RealName'),autoFocus:true};
   }
   _textChanged(text){
     this.setState({text});
@@ -24,9 +25,9 @@ export default class NameEditView extends Component{
       return  (
         <View style={styles.container}>
           <Toolbar
-            title={'修改昵称'}
+            title={localStr('lang_my_des18')}
             navIcon="back"
-            actions={[{title:'完成',show:'always'}]}
+            actions={[{title:localStr('lang_common_finish'),show:'always'}]}
             onIconClicked={this.props.onBack}
             onActionSelected={[()=>{
               this.props.save(this.state.text)
@@ -39,17 +40,18 @@ export default class NameEditView extends Component{
     return (
       <View style={styles.container}>
         <Toolbar
-          title={'修改昵称'}
+          title={localStr('lang_my_des18')}
           navIcon="back"
-          actions={[{title:'完成',show:'always'}]}
+          actions={[{title:localStr('lang_common_finish'),show:'always'}]}
           onIconClicked={this.props.onBack}
           onActionSelected={[()=>{
+            this.setState({autoFocus:false});
             this.props.save(this.state.text)
           }]} />
         <View style={styles.inputContainer}>
           <TextInput
               style={styles.input}
-              autoFocus={true}
+              autoFocus={this.state.autoFocus}
               underlineColorAndroid={'transparent'}
               textAlign={'left'}
               multiline={false}

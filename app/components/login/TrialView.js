@@ -14,6 +14,7 @@ import TouchFeedback from '../TouchFeedback';
 import Button from '../Button';
 import {GREEN} from '../../styles/color.js';
 import Icon from '../Icon.js';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class TrialView extends Component{
   constructor(props){
@@ -28,19 +29,19 @@ export default class TrialView extends Component{
             <Icon type='icon_schneider_en' color='transparent' size={125} />
           </View>
           <View style={styles.textContainer}>
-            <Text style={styles.titleText}>{'灯塔云平台'}</Text>
+            <Text style={styles.titleText}>{localStr('lang_login_title')}</Text>
           </View>
         </View>
         <View style={styles.buttonContainer}>
           <Button
-            text={'产品试用'}
+            text={localStr('lang_commons_notice22')}
             textStyle={styles.trialButtonText}
             style={styles.trialButton}
             onClick={this.props.trialLogin} />
           <View style={styles.loginButton}>
             <TouchFeedback style={{flex:1,}} onPress={this.props.login}>
               <View style={{flex:1,paddingVertical:21,flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
-                <Text style={styles.loginButtonText}>{'已有账号，去登录'}</Text>
+                <Text style={styles.loginButtonText}>{localStr('lang_commons_notice27')}</Text>
                 <Icon type='arrow_right' color='white' size={12} />
               </View>
             </TouchFeedback>

@@ -17,6 +17,7 @@ import Loading from '../Loading';
 import PagerBar from '../PagerBar.js';
 import {GREEN,TAB_BORDER,GRAY} from '../../styles/color.js';
 // import ViewPager from '../ViewPager.android.js';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class DeviceDetailView extends Component{
   constructor(props){
@@ -46,15 +47,15 @@ export default class DeviceDetailView extends Component{
     // console.warn('hasRealtime',this.props.hasRealtime);
     // console.warn('hasRuntime',this.props.hasRuntime);
 
-    var array = ['设备信息'];
+    var array = [localStr('lang_asset_des13')];
     if(this.props.hasRealtime){
-      array.push('数据监视');
+      array.push(localStr('lang_asset_des14'));
     }
     if(this.props.hasRuntime){
-      array.push('运维参数');
+      array.push(localStr('lang_asset_des15'));
     }
     if(this.props.has6Dashboard){
-      array.push('运行指标');
+      array.push(localStr('lang_asset_des16'));
     }
     return array;
   }

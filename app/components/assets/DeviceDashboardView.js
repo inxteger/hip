@@ -20,6 +20,7 @@ import Text from '../Text';
 import DashCardView from './DashCardView.js';
 import Toast from 'react-native-root-toast';
 import moment from 'moment';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class DeviceDashboardView extends Component{
   constructor(props){
@@ -111,11 +112,11 @@ export default class DeviceDashboardView extends Component{
       if (!this.state.openDatePicker) {
         var toastText=null;
         if(startTime > endTime){
-          toastText='结束时间不能小于开始的时间';
+          toastText=localStr('lang_asset_des9');
         }else if(mNextYearStartTime<mET){
-          toastText='时间选择范围不能超过一年';
+          toastText=localStr('lang_asset_des10');
         }else if(mST>moment()||mET>moment()){
-          toastText='不能选择未来日期';
+          toastText=localStr('lang_asset_des11');
         }else {
           btnSearchEnable=true;
           startBorderColor='transparent';
@@ -168,7 +169,7 @@ export default class DeviceDashboardView extends Component{
             disabled={!btnSearchEnable}
             disabledStyle={[styles.buttonSearch,{backgroundColor:GRAY}]}
 
-            text='查看' onClick={() => {
+            text={localStr('lang_asset_des12')} onClick={() => {
               if (!btnSearchEnable) {
                 return;
               }

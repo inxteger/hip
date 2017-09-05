@@ -18,6 +18,8 @@ import {
   TICKET_RESET
 } from '../../actions/ticketAction';
 
+import {LOGOUT} from '../../actions/loginAction.js';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
 
 import Immutable from 'immutable';
@@ -76,13 +78,13 @@ function handleError(state,action) {
   var {Error} = action.error;
   switch (Error) {
     case '040001307022':
-      Error = '您没有这一项的操作权限，请联系系统管理员';
+      Error = localStr('lang_alarm_des1');
       break;
     case '050001251500':
-      Error = '抱歉，您查看的工单已被删除';
+      Error = localStr('lang_ticket_notice11');
       break;
     case '050001251009':
-      Error = '抱歉，您没有查看该工单权限';
+      Error = localStr('lang_ticket_notice12');
       break;
   }
   if (Error) {

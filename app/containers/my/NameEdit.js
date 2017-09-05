@@ -8,7 +8,10 @@ import backHelper from '../../utils/backHelper';
 import {updateUser} from '../../actions/loginAction';
 import NameEditView from '../../components/my/NameEditView';
 import Toast from 'react-native-root-toast';
-
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
+import {
+  InteractionManager
+} from 'react-native';
 var dismissKeyboard = require('dismissKeyboard');
 
 class NameEdit extends Component{
@@ -17,7 +20,7 @@ class NameEdit extends Component{
     this.state={isFetching:false};
   }
   _showToast(){
-    Toast.show('昵称不能为空', {
+    Toast.show(localStr('lang_my_des29'), {
         duration: Toast.durations.LONG,
         position: Toast.positions.BOTTOM,
     });
@@ -49,7 +52,9 @@ class NameEdit extends Component{
     // console.warn('componentWillReceiveProps...',nextProps.user.get('RealName'),this.props.user.get('RealName'));
     if (this.props.user && (nextProps.user.get('RealName')!==this.props.user.get('RealName')) ){
       this.setState({isFetching:false});
-      this.props.navigator.pop();
+      InteractionManager.runAfterInteractions(()=>{
+        this.props.navigator.pop();
+      });
     }
   }
 

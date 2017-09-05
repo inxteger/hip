@@ -18,6 +18,7 @@ import unit from '../../utils/unit.js';
 import privilegeHelper from '../../utils/privilegeHelper.js';
 import {findSectioniIndexByType} from '../commonReducer.js';
 import {formatNumber} from '../commonReducer.js';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 var defaultState = Immutable.fromJS({
   panelId:null,
@@ -36,10 +37,10 @@ function updateAssetDetailData(state,action) {
   var panelType = [
   ];
   if (res.SerialNumber) {
-    panelType.push({'title':'资产编号','value':res.SerialNumber,'isNav':false,});
+    panelType.push({'title':localStr('lang_asset_des48'),'value':res.SerialNumber,'isNav':false,});
   }
   if (res.PanelType) {
-    panelType.push({title:'型号',value:res.PanelType,isNav:false,});
+    panelType.push({title:localStr('lang_asset_des69'),value:res.PanelType,isNav:false,});
   }
   var arrStatistic = res.StatisticData.BasicStatistic.
                         concat(res.StatisticData.DeviceStatistic).
@@ -67,10 +68,10 @@ function updateAssetDetailData(state,action) {
   }
 
   var arrEnvDatas = [
-    {title:'母排温度',value: unit.combineUnit(busTemperature,'temperature'),rvalue:[busTemperature,unit.get('temperature')],isNav:envNav,type:'busTemperature',secType:'envSection'},
-    {title:'柜内温度',value: unit.combineUnit(temperature,'temperature'),rvalue:[temperature,unit.get('temperature')],isNav:envNav,type:'temperature',secType:'envSection'},
-    {title:'柜内湿度','value': unit.combineUnit(humidity,'humidity'),rvalue:[humidity,unit.get('humidity')],isNav:envNav,type:'humidity',secType:'envSection'},
-    {title:'柜内粉尘浓度',value:unit.combineUnit(dust,'dust'),rvalue:[dust,unit.get('dust')],isNav:envNav,type:'dust',secType:'envSection'},
+    {title:localStr('lang_asset_des70'),value: unit.combineUnit(busTemperature,'temperature'),rvalue:[busTemperature,unit.get('temperature')],isNav:envNav,type:'busTemperature',secType:'envSection'},
+    {title:localStr('lang_asset_des71'),value: unit.combineUnit(temperature,'temperature'),rvalue:[temperature,unit.get('temperature')],isNav:envNav,type:'temperature',secType:'envSection'},
+    {title:localStr('lang_asset_des72'),'value': unit.combineUnit(humidity,'humidity'),rvalue:[humidity,unit.get('humidity')],isNav:envNav,type:'humidity',secType:'envSection'},
+    {title:localStr('lang_asset_des73'),value:unit.combineUnit(dust,'dust'),rvalue:[dust,unit.get('dust')],isNav:envNav,type:'dust',secType:'envSection'},
   ];
 
   var envObj = {
@@ -92,22 +93,22 @@ function updateAssetDetailData(state,action) {
   var allElements=[
     [{title:'',value:res.LogoKey}],
     panelType,
-    [{title:'图纸',value:singleLineCount,isNav:true,type:'singleLine'}],
+    [{title:localStr('lang_asset_des28'),value:singleLineCount,isNav:true,type:'singleLine'}],
     arrEnvDatas,
-    [{title:'现场日志',value:logCount,isNav:true,type:'log',secType:'logSection'}],
-    [{title:'维护历史',value:tendingCount,isNav:true,type:'tending'}]
+    [{title:localStr('lang_asset_des31'),value:logCount,isNav:true,type:'log',secType:'logSection'}],
+    [{title:localStr('lang_asset_des34'),value:tendingCount,isNav:true,type:'tending'}]
   ];
   var allSecTitle=[
     '',
     '',
     ' ',
-    '环境数据',
+    localStr('lang_asset_des74'),
     ' ',
     ' '
   ];
   //missing log
   if (arrStatistic.length>0) {
-    allSecTitle.splice(3,0,'设备统计信息');
+    allSecTitle.splice(3,0,localStr('lang_asset_des75'));
     allElements.splice(3,0,arrStatistic);
   }
 
@@ -212,11 +213,11 @@ function handleError(state,action) {
   var strError=null;
   switch (Error) {
     case '040001307022':
-      strError = '您没有这一项的操作权限，请联系系统管理员';
+      strError = localStr('lang_alarm_des1');
       action.error=null;
       break;
     case '040000307009':
-      strError = '无查看资产权限，联系管理员';
+      strError = localStr('lang_commons_notice1');
       action.error=null;
       break;
   }

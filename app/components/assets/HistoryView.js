@@ -17,6 +17,7 @@ import Toolbar from '../Toolbar';
 import PagerBar from '../PagerBar.js';
 import {GREEN,TAB_BORDER,LINE} from '../../styles/color.js';
 import HistoryControl from './HistoryControl.js';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 import moment from 'moment';
 
@@ -45,6 +46,7 @@ export default class HistoryView extends Component{
         var value=this.props.filter.get('StartTime');
         var date = moment(value);
         var options = {date:date.toDate()}
+
         var {action, year, month, day} = await DatePickerAndroid.open(options);
         // console.warn('date',year,month,day);
 
@@ -56,8 +58,8 @@ export default class HistoryView extends Component{
             return;
           this.props.onDateChanged(this.state.newDate);
         }
-
-        this.setState({openDatePicker:!this.state.openDatePicker});
+        // console.warn('ddd',this.state.openDatePicker);
+        this.setState({openDatePicker:false});
 
       } catch ({code, message}) {
         // console.warn(`Error in example '${stateKey}': `, message);
@@ -67,12 +69,13 @@ export default class HistoryView extends Component{
   _checkDateIsValid()
   {
     if(this.state.newDate>moment()){
-      // console.warn('不能选择未来日期',this.state.newDate,moment());
       Alert.alert(
         '',
-        '不能选择未来日期',
+        localStr('lang_asset_des27'),
         [
-          {text: '好', onPress: () => console.log('Cancel Pressed')}
+          {text: localStr('lang_ticket_OK'), onPress: () =>{
+            this.setState({openDatePicker:false});
+          }}
         ]
       )
       return false;
@@ -124,9 +127,9 @@ export default class HistoryView extends Component{
   //   REMTimeStepDay = 1,
   //   REMTimeStepHour = 0,
   _getTabArray(){
-    var array = ['天','小时'];
+    var array = [localStr('lang_asset_step_day'),localStr('lang_asset_step_hours')];
     if (this.props.isEnergyData) {
-      array = ['天','周','月','年'];
+      array = [localStr('lang_asset_step_day'),localStr('lang_asset_step_weeks'),localStr('lang_asset_step_month'),localStr('lang_asset_step_year')];
     }
     return array;
   }
@@ -171,7 +174,7 @@ export default class HistoryView extends Component{
                 barStyle={{
                   borderBottomWidth:1,
                   borderColor:TAB_BORDER,
-                  width:200,
+                  width:220,
                 }}
                 array={array}
                 currentIndex={this.props.currentIndex}
@@ -263,7 +266,7 @@ export default class HistoryView extends Component{
     return (
       <View style={{flex:1,backgroundColor:'white'}}>
         <Toolbar
-          title={`${this.props.name}-${this.props.isEnergyData?'能耗数据':'历史数据'}(${this.props.unit})`}
+          title={`${this.props.name}-${this.props.isEnergyData?localStr('lang_asset_des25'):localStr('lang_asset_des26')}(${this.props.unit})`}
           navIcon="back"
           noShadow={true}
           onIconClicked={()=>this.props.onBack()}

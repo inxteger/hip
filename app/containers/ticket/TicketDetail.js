@@ -14,6 +14,7 @@ import {execute,finish,loadTicketById,resetTicket} from '../../actions/ticketAct
 import CreateTicket from '../ticket/CreateTicket.js';
 import Immutable from 'immutable';
 import Toast from 'react-native-root-toast';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 import Orientation from 'react-native-orientation';
 
@@ -33,10 +34,10 @@ class TicketDetail extends Component{
   _execute(id){
     Alert.alert(
       '',
-      '开始执行工单吗？',
+      localStr('lang_ticket_start_notice0'),
       [
-        {text: '取消', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-        {text: '开始执行', onPress: () => {
+        {text: localStr('lang_ticket_cancel'), onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+        {text: localStr('lang_ticket_start_execute'), onPress: () => {
           // this.context.showSpinner();
 
           this.props.execute(id);
@@ -48,10 +49,10 @@ class TicketDetail extends Component{
   _finish(id){
     Alert.alert(
       '',
-      '工单完成后将无法编辑或添加日志，是否完成？ ',
+      localStr('lang_ticket_finish_notice1'),
       [
-        {text: '取消', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-        {text: '完成工单', onPress: () => {
+        {text: localStr('lang_ticket_cancel'), onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+        {text: localStr('lang_ticket_finish_ticket'), onPress: () => {
           // this.context.showSpinner();
           this.props.finish(id);
           this.props.onPostingCallback();
@@ -140,7 +141,7 @@ class TicketDetail extends Component{
       this.props.onPostingCallback('finish');
     }
     if (this.props.rowData && nextProps.rowData&&this.props.rowData.get('Status')===1&&nextProps.rowData.get('Status')===2) {
-      Toast.show(`开始执行,请添加工单日志`, {
+      Toast.show(localStr('lang_ticket_start_notice1'), {
           duration: 5000,
           position: -80,
       });

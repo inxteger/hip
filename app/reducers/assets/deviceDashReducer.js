@@ -9,10 +9,11 @@ import {
   DEVICE_EXIT
 } from '../../actions/assetsAction.js';
 
-import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
 
+import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
 import Immutable from 'immutable';
 import utils from '../../utils/unit.js';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 import moment from 'moment';
 moment.locale('zh-cn');
 var today = moment().format('YYYY-MM-DD');
@@ -65,12 +66,12 @@ function combineUnit(value,unit) {
 function generateItemFromEnumValue(calType)
 {
   var arrIndexs=[
-    {Name:'平均运行频率',Unit:'Hz'},
-    {Name:'平均电机电流',Unit:'A'},
-    {Name:'平均节电率',Unit:'%'},
-    {Name:'瞬时节电率',Unit:'%'},
-    {Name:'累积运行时间',Unit:'h'},
-    {Name:'重故障次数',Unit:'次'}
+    {Name:localStr('lang_asset_des37'),Unit:'Hz'},
+    {Name:localStr('lang_asset_des38'),Unit:'A'},
+    {Name:localStr('lang_asset_des39'),Unit:'%'},
+    {Name:localStr('lang_asset_des40'),Unit:'%'},
+    {Name:localStr('lang_asset_des41'),Unit:'h'},
+    {Name:localStr('lang_asset_des42'),Unit:localStr('lang_asset_des36')}
   ];
   return arrIndexs[calType-1];
 }
@@ -94,9 +95,6 @@ function generateDashDatas(state,action) {
     });
     state=state.set('arrDashDatas',Immutable.fromJS(arrCanCalcu));
   }
- //  （1）【平均运⾏频率 】【 平均电机电流】
- // （2）【 平均节点率】【 瞬时节电率】
- // （3）【累积运⾏时间 】【 重故障次数
   return state;
 }
 
@@ -159,9 +157,8 @@ function handleError(state,action) {
   var error = action.error;
   // console.warn('handleError...',action);
   if(!error){
-    action.error = '无数据可显示，请在网页端进行配置';
+    action.error = localStr('lang_commons_notice0');
   }else {
-    // action.error = '无相关权限';
     action.error=null;
   }
 

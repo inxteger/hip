@@ -18,6 +18,7 @@ import TendingHistory from './TendingHistory.js';
 import SinglePhotos from './SinglePhotos.js';
 import ImagePicker from '../ImagePicker.js';
 import privilegeHelper from '../../utils/privilegeHelper.js';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 class Room extends Component{
   constructor(props){
@@ -144,7 +145,7 @@ class Room extends Component{
       <DetailView
         ownData={this.props.ownData}
         onBack={()=>this._onBackClick()}
-        emptyImageText="添加一张资产照片"
+        emptyImageText={localStr('lang_asset_des33')}
         changeImage={()=>this._onChangeImage()}
         canEdit={privilegeHelper.hasAuth('AssetEditPrivilegeCode')}
         changeImageComplete={(data)=>this._onChangeImageComplete(data)}

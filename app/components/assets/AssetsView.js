@@ -8,6 +8,7 @@ import {
 import Toolbar from '../Toolbar';
 import List from '../List.js';
 import AssetRow from './AssetRow';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class AssetsView extends Component{
   constructor(props){
@@ -21,9 +22,9 @@ export default class AssetsView extends Component{
   render() {
     return (
       <View style={{flex:1,backgroundColor:'white'}}>
-        <Toolbar title='资产'
+        <Toolbar title={localStr('lang_alarm_assetdes')}
           actions={[{
-            title:'筛选',
+            title:localStr('lang_alarm_filter'),
             icon:require('../../images/scan/scan.png'),
             show: 'always', showWithText: false}]}
           onActionSelected={[this.props.onScanClick]}/>
@@ -33,7 +34,7 @@ export default class AssetsView extends Component{
             hasFilter={this.props.hasFilter}
             currentPage={this.props.currentPage}
             totalPage={this.props.totalPage}
-            emptyText='暂未关联任何建筑，请联系管理员'
+            emptyText={localStr('lang_asset_des6')}
             onRefresh={this.props.onRefresh}
             renderRow={(rowData,sectionId,rowId)=>this._renderRow(rowData,sectionId,rowId)}
           />

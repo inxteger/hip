@@ -13,6 +13,7 @@ import LogEditView from '../../components/LogEditView';
 
 import ImagePicker from '../ImagePicker.js';
 import PhotoShow from '../assets/PhotoShow';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 const MAX = 100;
 
@@ -23,7 +24,13 @@ class TicketLogEdit extends Component{
   }
   _save(){
     if(!this.props.ticketLog.get('Content') && this.props.ticketLog.get('Pictures').size === 0){
-      Alert.alert('','请填写日志内容或上传照片');
+      Alert.alert(
+        '',
+        localStr('lang_ticket_notice6'),
+        [
+          {text: localStr('lang_ticket_OK'), onPress: () =>{}}
+        ]
+      )
       return ;
     }
 
@@ -68,15 +75,27 @@ class TicketLogEdit extends Component{
   }
   _checkAuth(){
     if(!this.props.canEdit){
-      Alert.alert('','仅执行中的工单可以编辑这一日志');
+      Alert.alert(
+        '',
+        localStr('lang_ticket_notice4'),
+        [
+          {text: localStr('lang_ticket_OK'), onPress: () =>{}}
+        ]
+      )
       return false;
     }
     if(!this.props.isSameUser){
-      Alert.alert('','仅创建者可以编辑这一日志');
+      Alert.alert(
+        '',
+        localStr('lang_ticket_notice7'),
+        [
+          {text: localStr('lang_ticket_OK'), onPress: () =>{}}
+        ]
+      )
       return false;
     }
     if(!this.props.hasAuth){
-      // Alert.alert('','您没有这一项的操作权限，请联系系统管理员');
+      // Alert.alert('',localStr('lang_alarm_des1'));
       return false;
     }
     return true;
@@ -116,7 +135,7 @@ class TicketLogEdit extends Component{
 
   }
   render() {
-    var placeholder = this.props.canEdit?'输入工单执行日志':'';
+    var placeholder = this.props.canEdit?localStr('lang_ticket_notice8'):'';
     return (
       <LogEditView
         log={this.props.ticketLog}

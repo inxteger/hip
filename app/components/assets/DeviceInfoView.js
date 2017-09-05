@@ -12,6 +12,7 @@ import List from '../List.js';
 import SimpleRow from './SimpleRow';
 import NetworkImage from '../NetworkImage.js';
 import Section from '../Section.js';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class DeviceInfoView extends Component{
   constructor(props){
@@ -51,7 +52,7 @@ export default class DeviceInfoView extends Component{
         hasFilter={false}
         currentPage={1}
         totalPage={1}
-        emptyText='该建筑下无配电室和设备'
+        emptyText={localStr('lang_asset_des8')}
         onRefresh={this.props.onRefresh}
         renderRow={(rowData,sectionId,rowId)=>this._renderRow(rowData,sectionId,rowId)}
         renderSectionHeader={(sectionData,sectionId)=>this._renderSection(sectionData,sectionId)}

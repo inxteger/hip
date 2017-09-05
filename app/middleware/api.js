@@ -4,17 +4,15 @@ import storage from '../utils/storage';
 import {Platform} from 'react-native';
 import appInfo from '../utils/appInfo.js';
 
+import {getInterfaceLanguage} from '../utils/Localizations/localization.js';
 
 export var TOKENHEADER = "disco-token";
 export var HEADERDEVICEID = "disco-deviceid";
+export var HEADERLANGUAGE = "Language";
 
-// var _BASEURL = "http://mobile.poptest.energymost.com/pop/v2.8.0/Mobile/api/";
-
-var _BASEURL = 'http://mobiletest.mm.energymost.com/api/';
-// var _BASEURL = "http://114.55.26.137/test/hiphop/mobilehost/api/";
-
+var _BASEURL = "http://mobiletest.mm.energymost.com/api/";
 //dev
-// var _BASEURL = 'http://121.41.53.66/pop/v3.9.0/Mobile/api/';
+// var _BASEURL = 'http://10.177.173.197/hiphop/mobile/api/';
 //xianjing
 // var _BASEURL = 'http://10.177.122.73/mobile/api/';
 //pro
@@ -46,6 +44,7 @@ var defaultFetch = async function(options){
     headers[TOKENHEADER] = token;
   }
   headers[HEADERDEVICEID]=deviceid;
+  headers[HEADERLANGUAGE]=getInterfaceLanguage();
 
   var os = Platform.OS;
   var {versionName} = appInfo.get();

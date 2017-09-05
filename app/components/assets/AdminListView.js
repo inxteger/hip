@@ -12,6 +12,7 @@ import TouchFeedback from '../TouchFeedback.js';
 import {BLACK,GRAY,LIST_BG} from '../../styles/color';
 import Toolbar from '../Toolbar';
 import ListSeperator from '../ListSeperator.js';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class AdminListView extends Component{
   constructor(props){
@@ -35,7 +36,7 @@ export default class AdminListView extends Component{
             </Text>
           </View>
           <View style={styles.connection}>
-            <Text style={styles.sectionTitle}>联系他/她</Text>
+            <Text style={styles.sectionTitle}>{localStr('lang_asset_des0')}</Text>
             <View style={styles.connectionContainer}>
               <TouchFeedback onPress={()=>this._openMobile()}>
                 <View style={styles.connectionRow}>

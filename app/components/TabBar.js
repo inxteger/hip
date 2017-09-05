@@ -7,6 +7,7 @@ import TouchFeedback from './TouchFeedback';
 import Text from './Text';
 // import Icon from './Icon.js';
 import {TAB,TAB_BORDER,GREEN,TAB_TEXT} from '../styles/color';
+import {localStr,localFormatStr} from '../utils/Localizations/localization.js';
 
 export default class TabBar extends Component {
   constructor(props){
@@ -26,16 +27,16 @@ export default class TabBar extends Component {
   }
   render () {
     var items = [
-      {text:'资产',
+      {text:localStr('lang_alarm_assetdes'),
       normal:require('../images/tab_assets_normal/assets_normal.png'),
       selected:require('../images/tab_assets_selected/assets_selected.png')},
-      {text:'报警',
+      {text:localStr('lang_commons_notice25'),
         normal:require('../images/tab_alarm_normal/alarm_normal.png'),
         selected:require('../images/tab_alarm_selected/alarm_selected.png')},
-      {text:'工单',
+      {text:localStr('lang_commons_notice26'),
         normal:require('../images/tab_tickets_normal/tickets_normal.png'),
         selected:require('../images/tab_tickets_selected/tickets_selected.png')},
-      {text:'我的',
+      {text:localStr('lang_my_des25'),
         normal:require('../images/tab_user_normal/user_normal.png'),
         selected:require('../images/tab_user_selected/user_selected.png'),}];
     var content = items.map((item,key) => {
@@ -49,7 +50,7 @@ export default class TabBar extends Component {
           <View style={[styles.tab,{flexDirection:'column'}]}>
             <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
               {
-                this._getNewVersionIcon(item.text==='我的')
+                this._getNewVersionIcon(item.text===localStr('lang_my_des25'))
               }
               <Image
                 source={image}

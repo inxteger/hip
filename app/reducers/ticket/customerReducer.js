@@ -6,6 +6,8 @@ import {
   CUSTOMER_LOAD_FAILURE,
 } from '../../actions/ticketAction.js';
 
+import {LOGOUT} from '../../actions/loginAction.js';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
 
 import Immutable from 'immutable';
@@ -20,7 +22,7 @@ function updateData(state,action) {
   var response = action.response.Result;
   var allElements = [response];
   var allSecTitle=[
-    '选择客户',
+    localStr('lang_ticket_select_customer'),
   ];
   if (!response) {
     allElements=[];

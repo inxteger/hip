@@ -14,6 +14,7 @@ import {openFile} from '../utils/openFile';
 import TouchFeedback from './TouchFeedback.js';
 import {BLACK,GRAY} from './../styles/color.js';
 import Icon from './Icon.js';
+import {localStr,localFormatStr} from '../utils/Localizations/localization.js';
 import storage from '../utils/storage.js';
 
 const RNFS = require('react-native-fs');
@@ -103,7 +104,7 @@ export default class NetworkDocumentCard extends Component {
   fileOpen(downFilePath,type)
   {
     openFile(downFilePath,type,()=>{
-      Toast.show('无法打开此文件', {
+      Toast.show(localStr('lang_ticket_notice2'), {
         duration: 5000,
         position: -80,
       });

@@ -13,6 +13,7 @@ import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
 import Immutable from 'immutable';
 
 import {round} from 'lodash/math';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 var defaultState = Immutable.fromJS({
   data:null,
@@ -126,22 +127,22 @@ function categoryDatas(state,response)
     var errStr=null;
     switch (status) {
       case -1:
-        errStr='该型号的断路器不支持老化参数计算';
+        errStr=localStr('lang_asset_des51');
         break;
       case -2:
-        errStr='环境参数配置不全，请检查断路器所在配电柜信息的【环境参数】';
+        errStr=localStr('lang_asset_des52');
         break;
       case -4:
-        errStr='断路器负载率运行时间为无效值，请检查断路器的【维护参数】';
+        errStr=localStr('lang_asset_des53');
         break;
       case -5:
-        errStr='断路器老化参数计算初始化异常';
+        errStr=localStr('lang_asset_des54');
         break;
       case -6:
-        errStr='断路器老化参数计算出现异常';
+        errStr=localStr('lang_asset_des55');
         break;
       case -8:
-        errStr='断路器触头磨损率为无效值，请检查断路器的【维护参数】';
+        errStr=localStr('lang_asset_des56');
         break;
       default:
         errStr=null;
@@ -154,7 +155,7 @@ function categoryDatas(state,response)
       errStr
     });
     data.push(settDatas);
-    newSecData.push({title:'设备老化参数计算',isExpanded:null});
+    newSecData.push({title:localStr('lang_asset_des57'),isExpanded:null});
   }
 
   var aValue=null;
@@ -203,18 +204,24 @@ function categoryDatas(state,response)
   var itemRatio=null;
   var demandRatio=response.DemandRequestRatio?Math.round(response.DemandRequestRatio*100):null;
   demandRatio=demandRatio>100?100:demandRatio;
-  var bigOrSmallStr=demandRatio>=80?'过小':(demandRatio<=30?'过大':null);
+  // var bigOrSmallStr=demandRatio>=80?'过小':(demandRatio<=30?'过大':null);
   var errStr=null;
   // console.warn('valiable...',isValilable(vIrValue,response.SettingParameters),isValilable(response.DemandRequestRatio,response.SettingParameters),response.DemandRequestRatio);
   if (isValilable(vIrValue,response.SettingParameters)) {
     if (isValilable(response.DemandRequestRatio,response.SettingParameters)) {
-      errStr=bigOrSmallStr?'长延时保护电流(lr)设定'+bigOrSmallStr:null;
+      // errStr=bigOrSmallStr?'长延时保护电流(lr)设定'+bigOrSmallStr:null;
+      if (demandRatio>=80) {
+        errStr=localStr('lang_asset_des62');
+      }
+      if (demandRatio<=30) {
+        errStr=localStr('lang_asset_des66');
+      }
     }else {
       errStr=null;
     }
   }else {
     if (response.DemandRequestRatio==='') {
-      errStr=vIrValue===''?'长延时保护电流(lr)为空':'长延时保护电流(lr)为无效值';
+      errStr=vIrValue===''?localStr('lang_asset_des63'):localStr('lang_asset_des64');
     }
   }
   if (aValue||bValue||cValue) {
@@ -288,12 +295,12 @@ function categoryDatas(state,response)
     if (settDatas.length>0||abcDatas.length>0) {
       data.push(arrSetts);
       var strTkdyly=state.get('strTkdyly');
-      var strTitle='需量与保护定值比';
+      var strTitle=localStr('lang_asset_des67');
       if (abcDatas.length>0&&isContainIrPoint&&isCommonDevice) {
-        strTitle='需量与保护定值比';
+        strTitle=localStr('lang_asset_des67');
       }else {
         if (strTkdyly&&strTkdyly.length>0) {
-          strTitle='保护设定值'+'-'+strTkdyly;
+          strTitle=localStr('lang_asset_des68')+'-'+strTkdyly;
         }
       }
       newSecData.push({title:strTitle,isExpanded:null});

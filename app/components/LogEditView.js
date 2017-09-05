@@ -30,6 +30,7 @@ import TouchFeedback from './TouchFeedback.js';
 import PrivilegePanel from './PrivilegePanel.js';
 import NetworkDocumentCard from './NetworkDocumentCard.js';
 import Immutable from 'immutable';
+import {localStr,localFormatStr} from '../utils/Localizations/localization.js';
 
 import {checkFileNameIsImage} from '../utils/fileHelper.js';
 // import NetworkText from './ticket/NetworkText.js';
@@ -72,10 +73,10 @@ export default class LogEditView extends Component{
     }
     Alert.alert(
       '',
-      checkFileNameIsImage(item.get('FileName'))?'删除这张图片吗？':'删除这个文件吗？',
+      checkFileNameIsImage(item.get('FileName'))?localStr('lang_my_des9'):localStr('lang_my_des10'),
       [
-        {text: '取消', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-        {text: '删除', onPress: () => {
+        {text: localStr('lang_ticket_cancel'), onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+        {text: localStr('lang_ticket_remove'), onPress: () => {
           this.props.dataChanged('image','delete',item);
           // AliyunOSS.delete(appInfo.get().ossBucket,item.get('PictureId'));
           this.props.deleteImage([item.get('PictureId')]);
@@ -218,7 +219,7 @@ export default class LogEditView extends Component{
             style={{flexDirection:'row',height:48,justifyContent:'center',alignItems:'center'}}>
             <Icon type="photo" color={BLACK} size={18} />
             <Text style={{fontSize:15,color:BLACK,marginLeft:16}}>
-              添加照片
+              {localStr('lang_my_des11')}
             </Text>
           </View>
         </TouchFeedback>
@@ -228,7 +229,7 @@ export default class LogEditView extends Component{
   _getToolbar(){
     var actions = null;
     if(this.props.canEdit){
-      actions = [{title:'完成',show:'always',code:this.props.privilegeCode}]
+      actions = [{title:localStr('lang_common_finish'),show:'always',code:this.props.privilegeCode}]
     }
     var {log,user} = this.props;
 

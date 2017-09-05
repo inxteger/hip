@@ -7,6 +7,7 @@ import {connect} from 'react-redux';
 import backHelper from '../../utils/backHelper';
 import TaskDesEditView from '../../components/ticket/TaskDesEditView';
 import {ticketCreateConditionChange} from '../../actions/ticketAction';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 class TicketTaskDesEdit extends Component{
   constructor(props){
@@ -37,7 +38,7 @@ class TicketTaskDesEdit extends Component{
   render() {
     return (
       <TaskDesEditView
-        title={'任务描述'}
+        title={localStr('lang_ticket_task_des')}
         content={this.props.content}
         user={null}
         isSameUser={this.props.isSameUser}

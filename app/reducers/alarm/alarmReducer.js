@@ -11,7 +11,7 @@ import {
 import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
 
 import Immutable from 'immutable';
-
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 var defaultState = Immutable.fromJS({
   isFetching:false,
@@ -22,9 +22,9 @@ var defaultState = Immutable.fromJS({
 function alarmLoaded(state,action) {
   var {data:{alarmId}} = action;
   var alarm = action.response.Result;
-  alarm.Status.push({'Timestamp':alarm.AlarmTime, 'Content':'发生报警',User:'self'});
+  alarm.Status.push({'Timestamp':alarm.AlarmTime, 'Content':localStr('lang_alarm_create'),User:'self'});
   if (!!alarm.SecureTime) {
-    alarm.Status.unshift({'Timestamp':alarm.SecureTime, 'Content':'报警已解除，现场数据已正常',User:'self'});
+    alarm.Status.unshift({'Timestamp':alarm.SecureTime, 'Content':localStr('lang_alarm_des0'),User:'self'});
   }
   alarm.Status.sort(function(x,y){
     return x.Timestamp<y.Timestamp?1:-1;
@@ -36,11 +36,11 @@ function handleError(state,action) {
   var {Error} = action.error;
   switch (Error) {
     case '040001307022':
-      action.error = '您没有这一项的操作权限，请联系系统管理员';
+      action.error = localStr('lang_alarm_des1');
       break;
     case '050001251009'://009是没有数据权限， 501是报警设备移除
     case '050001251501':
-      action.error = '抱歉，您没有查看该报警权限';
+      action.error = localStr('lang_alarm_des2');
       break;
   }
   return defaultState;

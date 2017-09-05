@@ -29,6 +29,7 @@ import Orientation from 'react-native-orientation';
 
 import storage from '../utils/storage.js';
 import appInfo from '../utils/appInfo.js';
+import {localStr,localFormatStr} from '../utils/Localizations/localization.js';
 
 var _exitHandler = null;
 var _exitFlag = false;
@@ -59,7 +60,7 @@ class Entry extends Component{
     }
     _exitFlag = true;
     //exitApp
-    ToastAndroid.show('再按一次退出应用', ToastAndroid.SHORT);
+    ToastAndroid.show(localStr('lang_commons_notice9'), ToastAndroid.SHORT);
     setTimeout(()=>{
       _exitFlag = false;
     },2000);
@@ -69,12 +70,12 @@ class Entry extends Component{
   _showNetworkToast(isConnected){
     var text = '';
     if(!isConnected){
-      text = '您的网络出现了问题，可能无法连接到系统';
+      text = localStr('lang_commons_notice8');
       this._isConnected = false;
     }
     else {
       if(this._isConnected === false){
-        text = '您的网络已恢复';
+        text = localStr('lang_commons_notice10');
         this._isConnected = true;
         this._checkCurrentUser();
       }
@@ -158,9 +159,9 @@ class Entry extends Component{
       if (nextProps.error==='403') {
         Alert.alert(
           '',
-          '登录失效，请重新登录',
+          localStr('lang_commons_notice4'),
           [
-            {text: '好', onPress: () =>{
+            {text:localStr('lang_ticket_OK'), onPress: () =>{
               this.props.resetError();
               this.props.logout();
             }}
@@ -168,32 +169,31 @@ class Entry extends Component{
         )
       }else {
         Alert.alert(
-          '',
-          nextProps.error,
-          [
-            {text: '好', onPress: () => this.props.resetError()}
-          ]
-        )
+        '',
+        nextProps.error,
+        [
+          {text: localStr('lang_ticket_OK'), onPress: () => this.props.resetError()}
+        ]
+      )
       }
-
     }
     if (!this.props.user.get('user')&&nextProps.user.get('user')) {
       // console.warn('real user login success...');
       if(Platform.OS === 'android'){
-      // if (appInfo.get().prod) {
-        // this.props.checkVersion({type:Platform.OS,env:appInfo.get().prod?'prod':'test'});
-      // }
+        if (appInfo.get().prod) {
+          this.props.checkVersion({type:Platform.OS,env:appInfo.get().prod?'prod':'test'});
+        }
       }
     }
     if(!this.props.version.get('hasNewVersion')
           && nextProps.version.get('hasNewVersion')){
             // console.warn('version',this.props.version.toJSON());
       Alert.alert(
-        '发现新版本',
-        `请更新至灯塔v${nextProps.version.get('version')}，马上体验！`,
+        localStr('lang_commons_notice5'),
+        localFormatStr('lang_commons_notice6',nextProps.version.get('version')),
         [
-          {text: '取消', onPress: () => {}, style:'cancel'},
-          {text: '立即更新', onPress: () => this._showUpgradeWebPage()}
+          {text: localStr('lang_ticket_cancel'), onPress: () => {}, style:'cancel'},
+          {text: localStr('lang_commons_notice7'), onPress: () => this._showUpgradeWebPage()}
         ]
       )
     }

@@ -9,6 +9,7 @@ import Text from '../Text';
 import ClickableRow from '../ClickableRow';
 import Icon from '../Icon';
 import {BLACK,GREEN,LIST_BG} from '../../styles/color';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class HierarchyBindRow extends Component{
   constructor(props){
@@ -19,7 +20,7 @@ export default class HierarchyBindRow extends Component{
     if (isBind) {
       return (
         <View style={{alignItems:'center',justifyContent:'center',marginRight:16}}>
-          <Text numberOfLines={1} style={[styles.offlineText]}>{'已绑定'}</Text>
+          <Text numberOfLines={1} style={[styles.offlineText]}>{localStr('lang_asset_des17')}</Text>
         </View>
       );
     }else {

@@ -14,6 +14,8 @@ import Toolbar from './Toolbar';
 import List from './List.js';
 import LogRow from './LogRow.js';
 import RowDelete from './RowDelete.js'
+import {localStr,localFormatStr} from '../utils/Localizations/localization.js';
+
 export default class AssetLogsView extends Component{
   constructor(props){
     super(props);
@@ -44,7 +46,7 @@ export default class AssetLogsView extends Component{
     var actions = null;
     if(this.props.showAdd !== false){
       actions = [{
-        title:'添加',
+        title:localStr('lang_commons_notice24'),
         iconType:'add',
         code:this.props.privilegeCode,
         show:'always'}];

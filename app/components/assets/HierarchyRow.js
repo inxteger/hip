@@ -9,6 +9,7 @@ import Text from '../Text';
 import ClickableRow from '../ClickableRow';
 import Icon from '../Icon';
 import {BLACK,GREEN} from '../../styles/color';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class HierarchyRow extends Component{
   constructor(props){
@@ -19,7 +20,7 @@ export default class HierarchyRow extends Component{
     if (isGateway&&isOnline===false) {
       return (
         <View style={{alignItems:'center',justifyContent:'center',backgroundColor:'#fdece5',borderRadius:3}}>
-          <Text numberOfLines={1} style={[styles.offlineText]}>{'网关离线'}</Text>
+          <Text numberOfLines={1} style={[styles.offlineText]}>{localStr('lang_asset_des18')}</Text>
         </View>
       );
     }else {

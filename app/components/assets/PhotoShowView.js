@@ -11,6 +11,7 @@ import {
 import Toolbar from '../Toolbar';
 import Gallery from './Gallery';
 import PhotoRow from './PhotoRow.js';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class PhotoShowView extends Component{
   constructor(props){
@@ -65,13 +66,13 @@ export default class PhotoShowView extends Component{
       }
       // var code = this.props.type === 'ticketLogPhoto'?'TicketExecutePrivilegeCode':'AssetEditPrivilegeCode';
       actions = [{
-        title:'删除',
+        title:localStr('lang_ticket_remove'),
         iconType:'delete',
         code:code,
         show: 'always', showWithText: false}];
     }
     var numIndex = parseInt(this.props.index)+1;
-    var title=this.props.type !== 'singlePhoto'?'图片':'图纸';
+    var title=this.props.type !== 'singlePhoto'?localStr('lang_commons_notice18'):localStr('lang_asset_des28');
     return (
       <Toolbar
         title={title+'('+(numIndex)+'/'+this.props.data.size+')'}

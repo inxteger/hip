@@ -5,6 +5,8 @@ import {View,} from 'react-native';
 import Text from '../Text.js';
 import {BLACK,GREEN} from '../../styles/color.js';
 import TouchFeedback from '../TouchFeedback';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
+
 export default class MoreContent extends Component {
   constructor(props){
     super(props);
@@ -37,7 +39,7 @@ export default class MoreContent extends Component {
               this.setState({lines:null,needMoreButton:false})
             }} style={{flex:1,width:100,}} >
             <View style={{flex:1,marginBottom:8,marginRight:20,justifyContent:'flex-end',alignItems:'flex-end'}}>
-              <Text style={{fontSize:12,color:GREEN}}>{'更多'}
+              <Text style={{fontSize:12,color:GREEN}}>{localStr('lang_ticket_more')}
               </Text>
             </View>
 

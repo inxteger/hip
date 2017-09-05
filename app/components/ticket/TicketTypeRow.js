@@ -38,8 +38,6 @@ export default class TicketTypeRow extends Component{
   render(){
     var {rowData} = this.props;
     var value = rowData.get('value');
-    // [{'title':'现场工单','value':'','isSelect':false,'type':0},
-    //             {'title':'随工工单','value':'','isSelect':false,'type':1}];
     if (!value || value.size!==2) {
       return null;
     }

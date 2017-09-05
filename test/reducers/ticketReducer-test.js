@@ -149,7 +149,7 @@ describe('ticketReducer', () => {
       var action = getAction();
       var actualState = ticketReducer(undefined,action);
       expectImmutableEqual(actualState,defaultState);
-      expect(action.error).to.equal('您没有这一项的操作权限，请联系系统管理员');
+      expect(action.error).to.equal(localStr('lang_alarm_des1'));
 
     });
   });

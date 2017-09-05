@@ -13,13 +13,14 @@ import {
 
 import Toolbar from '../Toolbar';
 import KeyboardSpacer from '../KeyboardSpacer.js';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 import {GRAY,BLACK} from '../../styles/color.js';
 export default class TaskDesEditView extends Component{
   constructor(props){
     super(props);
     var text = this.props.content;
-    this.state = {text};
+    this.state = {text:text};
   }
   _logChanged(text){
     this.setState({text});
@@ -33,11 +34,13 @@ export default class TaskDesEditView extends Component{
         lines++;
       });
     }
-    var disable = !this.state.text || this.state.text.length === 0;
-    console.warn('state.text',disable,this.state.text);
-    var actions = [{title:'完成',show:'always',disable:disable}];
+    if (lines===0) {
+      lines=1;
+    }
+    var disable = true;//!content || content.length === 0;
+    var actions = [{title:localStr('lang_common_finish'),show:'always',disable:disable}];
     if(Platform.OS === 'android'){
-      actions = [{title:'完成',show:'always'}];
+      actions = [{title:localStr('lang_common_finish'),show:'always'}];
     }
     return (
       <View style={{flex:1,backgroundColor:'white'}}>
@@ -47,13 +50,12 @@ export default class TaskDesEditView extends Component{
           actions={actions}
           onIconClicked={this.props.onBack}
           onActionSelected={[()=>{
-            this.props.onSave(this.state.text);
+            this.props.onSave(content);
           }]}
           />
 
         <View style={{flex:1}}>
           <TextInput
-            ref={(input)=>this._input=input}
             style={styles.input}
             autoFocus={this.props.content ? false : true}
             underlineColorAndroid={'transparent'}
@@ -62,9 +64,9 @@ export default class TaskDesEditView extends Component{
             numberOfLines={lines}
             placeholderTextColor={GRAY}
             textAlignVertical={'top'}
-            placeholder={"输入创建工单任务描述"}
+            placeholder={localStr('lang_ticket_notice3')}
             onChangeText={(text)=>this._logChanged(text)}
-            value={this.state.text} />
+            value={content} />
         </View>
         <KeyboardSpacer />
       </View>

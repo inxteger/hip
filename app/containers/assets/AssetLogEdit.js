@@ -14,6 +14,7 @@ import {deleteImages} from '../../actions/imageAction';
 import privilegeHelper from '../../utils/privilegeHelper.js';
 import PhotoShow from './PhotoShow';
 import ImagePicker from '../ImagePicker.js';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 const MAX = 100;
 
@@ -27,7 +28,13 @@ class AssetLogEdit extends Component{
 
     // this.props.navigator.pop();
     if(!this.props.assetLog.get('Content') && this.props.assetLog.get('Pictures').size === 0){
-      Alert.alert('','请填写日志内容或上传照片');
+      Alert.alert(
+        '',
+        localStr('lang_ticket_notice6'),
+        [
+          {text: localStr('lang_ticket_OK'), onPress: () =>{}}
+        ]
+      )
       return ;
     }
     this.context.showSpinner();
@@ -60,11 +67,17 @@ class AssetLogEdit extends Component{
   }
   _checkAuth(){
     if(!this.props.hasAuth){
-      // Alert.alert('','您没有这一项的操作权限，请联系系统管理员');
+      // Alert.alert('',localStr('lang_alarm_des1'));
       return false;
     }
     if(!this.props.isSameUser){
-      Alert.alert('','仅创建者可以编辑这一日志');
+      Alert.alert(
+        '',
+        localStr('lang_ticket_notice7'),
+        [
+          {text: localStr('lang_ticket_OK'), onPress: () =>{}}
+        ]
+      )
       return false;
     }
 
@@ -135,7 +148,7 @@ class AssetLogEdit extends Component{
         save={(data)=>this._save(data)}
         checkAuth={()=>this._checkAuth()}
         canEdit={this.props.isSameUser&&this.props.hasAuth}
-        inputPlaceholder="输入现场日志"
+        inputPlaceholder={localStr('lang_asset_des30')}
         gotoDetail={(items,index,thumbImageInfo)=>this._goToDetail(items,String(index),thumbImageInfo)}
         deleteImage={(imageId)=>this._deleteImage(imageId)}
         dataChanged={(type,action,value)=>this._dataChanged(type,action,value)}

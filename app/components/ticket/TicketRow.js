@@ -13,6 +13,7 @@ import ClickableRow from '../ClickableRow.js';
 import Icon from '../Icon.js';
 import {GRAY,BLACK,ALARM_RED} from '../../styles/color';
 import moment from 'moment';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class TicketRow extends Component{
   constructor(props){
@@ -20,7 +21,7 @@ export default class TicketRow extends Component{
   }
   _getTime(){
     var {rowData} = this.props;
-    return moment(rowData.get('StartTime')).format('MM-DD')+'至'+moment(rowData.get('EndTime')).format('MM-DD');
+    return localFormatStr('lang_ticket_finish_time_format',moment(rowData.get('StartTime')).format('MM-DD'),moment(rowData.get('EndTime')).format('MM-DD'));
   }
   _getContent(){
     var {rowData} = this.props;
@@ -48,7 +49,7 @@ export default class TicketRow extends Component{
       return(
         <View style={styles.expireView}>
           <Icon type='icon_over_due' size={18} color={ALARM_RED} />
-          <Text style={styles.expireText}>{'逾期'}</Text>
+          <Text style={styles.expireText}>{localStr('lang_ticket_expired')}</Text>
         </View>
       );
     }

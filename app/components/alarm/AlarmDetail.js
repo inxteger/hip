@@ -21,12 +21,14 @@ import privilegeHelper from '../../utils/privilegeHelper.js';
 import Icon from '../Icon.js';
 import TouchFeedback from '../TouchFeedback';
 import unit from '../../utils/unit.js';
+import {localStr,localFormatStr,getLanguage} from '../../utils/Localizations/localization.js';
 // import num
 moment.locale('zh-cn');
 
 export default class AlarmDetail extends Component{
   constructor(props){
     super(props);
+    this._width=getLanguage()==='en'?60:30;
   }
   _hasResolved(){
     var hasTime = false;
@@ -43,13 +45,13 @@ export default class AlarmDetail extends Component{
   _getAlarmLevel(){
     var level = this.props.rowData.get('Level');
     if(level === 1){
-      return '低';
+      return localStr('lang_alarm_lowdes');
     }
     else if(level === 2){
-      return '中';
+      return localStr('lang_alarm_midddes');
     }
     else{
-      return '高';
+      return localStr('lang_alarm_highdes');
     }
   }
   _getAlarmCode(){
@@ -64,7 +66,7 @@ export default class AlarmDetail extends Component{
   }
   _getAlarmDate(){
     var obj = moment(this.props.rowData.get('AlarmTime'));
-    return obj.format("YYYY年M月D日")
+    return obj.format(localStr('lang_alarm_midd_date'))
   }
   _getAlarmParameter(){
     return this.props.rowData.get('Parameter');
@@ -159,19 +161,19 @@ export default class AlarmDetail extends Component{
   {
     return rowData.get('Code')==='故障跳闸';
   }
-    // {this._getPathRows(item.content)}
   _getDeviceNameView(rowData){
     var path = rowData.get('DeviceName');
     var list = [
-      {title:'资产',content:path,isNav:true},
+      {title:localStr('lang_alarm_assetdes'),content:path,isNav:true},
     ];
+    var minWidth=this._width;
     return list.map((item,index)=>{
       return (
         <TouchFeedback style={[{flex:1,backgroundColor:'white'}]} onPress={()=>{
           this.props.onAssetClick(rowData);
         }}>
         <View key={index} style={[styles.detailRow]}>
-          <Text style={[styles.detailTitleText]}>{item.title}</Text>
+          <Text style={[styles.detailTitleText,{minWidth}]}>{item.title}</Text>
           <View style={{flex:1,justifyContent:'flex-start'}}>
             <Text key={index} style={[styles.detailText]} numberOfLines={1}>{item.content}</Text>
           </View>
@@ -187,7 +189,7 @@ export default class AlarmDetail extends Component{
   {
     if (!value) {
       value='--';
-    }else if (value==='无效值') {
+    }else if (value===localStr('lang_alarm_invalid_value')) {
       value='--';
     }
 
@@ -196,23 +198,23 @@ export default class AlarmDetail extends Component{
   _getDetailView(rowData){
     var actualValue = this._format(rowData.get('ActualValue'),rowData.get('Parameter'));
     var uom = rowData.get('Uom') || '';
-    var dataText = `${actualValue}${uom}（设定值:${rowData.get('ThresholdValue')}${uom}）`;
+    var dataText = `${actualValue}${uom}（${localStr('lang_alarm_setting_value')}:${rowData.get('ThresholdValue')}${uom}）`;
     // var path = rowData.get('DeviceName') + '\n';
     var path = rowData.get('Paths').reverse().join('\n');
     path += '\n' + this.props.customerName;
     var list = [
-      {title:'位置',content:path},
-      {title:'类型',content:this._getAlarmCode()},
-      {title:'数据',content:dataText}//数据
+      {title:localStr('lang_alarm_position'),content:path},
+      {title:localStr('lang_alarm_type'),content:this._getAlarmCode()},
+      {title:localStr('lang_alarm_datas'),content:dataText}
     ];
 
     if (this._isCode303(rowData)) {
       var reason='';
       var details='';
       rowData.get('TripDetails').forEach((item,index)=>{
-        if (item.get('Key')==='故障原因') {
+        if (item.get('Key')===localStr('lang_alarm_problem_reason')) {
           reason=item.get('Value');
-          list.splice(0,0,{title:'原因',content:this._formatValue(reason)});
+          list.splice(0,0,{title:localStr('lang_alarm_reason'),content:this._formatValue(reason)});
         }else {
           details+=(item.get('Key')+':'+this._formatValue(item.get('Value')));
           if (index!==rowData.get('TripDetails').size-1) {
@@ -221,9 +223,10 @@ export default class AlarmDetail extends Component{
         }
       });
       if (details) {
-        list.splice(1,0,{title:'详情',content:details});
+        list.splice(1,0,{title:localStr('lang_alarm_detail'),content:details});
       }
     }
+    var minWidth=this._width;
     return list.map((item,index)=>{
       var bottom = 14;
       if (index === (list.length - 1)) {
@@ -232,9 +235,9 @@ export default class AlarmDetail extends Component{
       return (
         <View key={index} style={[styles.detailRow, {paddingBottom:bottom}]}>
           <View style={{}}>
-            <Text style={[styles.detailTitleText]}>{item.title}</Text>
+            <Text style={[styles.detailTitleText,{minWidth}]}>{item.title}</Text>
           </View>
-          <View style={{flex:1,justifyContent:'flex-start',}}>
+          <View style={{flex:1,justifyContent:'flex-start',marginTop:0}}>
             {this._getPathRows(item.content)}
           </View>
         </View>
@@ -246,7 +249,7 @@ export default class AlarmDetail extends Component{
     var ticketLink = null;
     if(rowData.get('TicketId')){
       ticketLink = (
-        <Text onPress={this.props.viewTicket} style={styles.viewTicket}>查看工单</Text>
+        <Text onPress={this.props.viewTicket} style={styles.viewTicket}>{localStr('lang_alarm_view_ticket')}</Text>
       );
     }
     var list = statusList.reverse();
@@ -291,7 +294,7 @@ export default class AlarmDetail extends Component{
             fontSize:15,
             color:'#ffffff'
           }}
-          text='创建报警工单' onClick={()=>this.props.createOrEditTicket(this.props.rowData)} />
+          text={localStr('lang_alarm_create_ticket')} onClick={()=>this.props.createOrEditTicket(this.props.rowData)} />
       </Bottom>
     );
   }
@@ -343,7 +346,7 @@ export default class AlarmDetail extends Component{
     return (
       <View style={{flex:1,backgroundColor:this._getBackgroundColor()}}>
         <Toolbar
-          title='报警详情'
+          title={localStr('lang_alarm_alarmdetail')}
           titleColor='white'
           tintColor='white'
           color='transparent'

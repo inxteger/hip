@@ -11,6 +11,7 @@ import Text from '../Text';
 
 import {BLACK,GRAY,ENV_EDIT_LINE} from '../../styles/color';
 import Toolbar from '../Toolbar';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class EnvEditView extends Component{
   constructor(props){
@@ -26,7 +27,7 @@ export default class EnvEditView extends Component{
         <Toolbar
           title={this.props.data.get('title')}
           navIcon="back"
-          actions={[{title:'完成',show:'always'}]}
+          actions={[{title:localStr('lang_common_finish'),show:'always'}]}
           onIconClicked={this.props.onBack}
           onActionSelected={[()=>{
             this.props.save(this.state.text)

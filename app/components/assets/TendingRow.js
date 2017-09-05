@@ -11,6 +11,7 @@ import Text from '../Text';
 import TouchFeedback from '../TouchFeedback';
 import {BLACK,ASSET_IMG_BORDER} from '../../styles/color';
 import moment from 'moment';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class TendingRow extends Component{
   constructor(props){
@@ -18,7 +19,7 @@ export default class TendingRow extends Component{
   }
   _getTicketType(type)
   {
-    var ticketTypes=['','计划工单','报警工单','随工工单','现场工单'];
+    var ticketTypes=['',localStr('lang_ticket_ticket_planning'),localStr('lang_ticket_ticket_alarm'),localStr('lang_ticket_ticket_folow'),localStr('lang_ticket_ticket_scene')];
     return ticketTypes[type];
   }
   _getContentImageView(){
@@ -30,7 +31,7 @@ export default class TendingRow extends Component{
     return (
       <View style={[styles.row,styles.rowHeight,{flexDirection:'row',justifyContent:'space-between'}]}>
         <View style={{flex:1,marginTop:16}}>
-          <Text style={styles.nameText} numberOfLines={1} lineBreakModel='charWrapping'>{`${startTime} 至 ${endTime}`}
+          <Text style={styles.nameText} numberOfLines={1} lineBreakModel='charWrapping'>{localFormatStr('lang_ticket_finish_time_format'),startTime,endTime}
           </Text>
           <Text style={styles.contentText} numberOfLines={1} lineBreakModel='charWrapping'>{`${this._getTicketType(rowData.get('TicketType'))}: ${content}`}
           </Text>

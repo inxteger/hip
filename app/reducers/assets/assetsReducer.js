@@ -6,7 +6,7 @@ import {
   ASSET_ME_LOAD_FAILURE,
 } from '../../actions/assetsAction.js';
 import {commonReducer} from '../commonReducer.js';
-
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 import Immutable from 'immutable';
 
@@ -35,7 +35,7 @@ function handleError(state,action) {
 
   switch (Error) {
     case '040001307022':
-      action.error = '您没有这一项的操作权限，请联系系统管理员';
+      action.error = localStr('lang_alarm_des1');
       state=state.set('data',Immutable.fromJS([]));
       break;
   }

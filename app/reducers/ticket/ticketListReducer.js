@@ -18,6 +18,7 @@ import {
 // import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
 import {commonReducer} from '../commonReducer.js';
 import Immutable from 'immutable';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 var defaultState = Immutable.fromJS({
   todayData:{
@@ -124,15 +125,15 @@ function categoryAllDatas(typeTicketTask,state)
   var allDatas = [];
   if (listStatus1.length>0) {
     allDatas.push(listStatus1);
-    sectionTitle.push('未开始');
+    sectionTitle.push(localStr('lang_ticket_not_start'));
   }
   if (listStatus2.length>0) {
     allDatas.push(listStatus2);
-    sectionTitle.push('执行中');
+    sectionTitle.push(localStr('lang_ticket_going'));
   }
   if (listStatus3.length>0) {
     allDatas.push(listStatus3);
-    sectionTitle.push('已完成');
+    sectionTitle.push(localStr('lang_ticket_finished'));
   }
   // console.warn('categoryAllDatas',allDatas);
   oneData=oneData.set('sectionData',Immutable.fromJS(sectionTitle)).set('allDatas',Immutable.fromJS(allDatas));
@@ -160,16 +161,16 @@ function handleError(state,action) {
 var {typeTicketTask}=action;
   switch (Error) {
     case '050001251405':
-      action.error = '工单已经开始执行，请刷新查看';
+      action.error = localStr('lang_ticket_notice9');
       break;
     case '040001307022':
-      action.error = '您没有这一项的操作权限，请联系系统管理员';
+      action.error = localStr('lang_alarm_des1');
       state=state.setIn([typeTicketTask,'data'],null)
       .setIn([typeTicketTask,'allDatas'],Immutable.fromJS([]))
       .setIn([typeTicketTask,'isFetching'],false);
       break;
     case '050001251409':
-      action.error = '您不是该工单的执行人，请联系系统管理员';
+      action.error = localStr('lang_ticket_notice10');
       break;
   }
   return state;

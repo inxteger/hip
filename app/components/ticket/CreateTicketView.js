@@ -19,6 +19,7 @@ import Text from '../Text';
 import TouchFeedback from '../TouchFeedback';
 import Icon from '../Icon.js';
 import ListSeperator from '../ListSeperator';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class CreateTicketView extends Component{
   constructor(props){
@@ -99,7 +100,7 @@ export default class CreateTicketView extends Component{
 
       if(status !== 2 && status !== 3 && type !== 1 && type !== 2){
         actions = [{
-        title:'删除',
+        title:localStr('lang_ticket_remove'),
         iconType:'delete',
         show: 'always', showWithText: false}];
       }
@@ -115,70 +116,67 @@ export default class CreateTicketView extends Component{
   }
   _getCustomerRow()
   {
-    return this._getSimpleRow({'title':'客户名称','value':this.props.customer.get('CustomerName'),'isNav':false});
+    return this._getSimpleRow({'title':localStr('lang_ticket_customer_name'),'value':this.props.customer.get('CustomerName'),'isNav':false});
   }
   _getStartTimeRow()
   {
-    return this._getSimpleRow({'title':'开始时间','value':this.props.data.get('StartTime'),'isNav':false,type:'StartTime'});
+    return this._getSimpleRow({'title':localStr('lang_ticket_start_time'),'value':this.props.data.get('StartTime'),'isNav':false,type:'StartTime'});
   }
   _getEndTimeRow()
   {
-    return this._getSimpleRow({'title':'结束时间','value':this.props.data.get('EndTime'),'isNav':false,type:'EndTime'});
+    return this._getSimpleRow({'title':localStr('lang_ticket_end_time'),'value':this.props.data.get('EndTime'),'isNav':false,type:'EndTime'});
   }
   _getAssetsRow()
   {
     var arrAssets = this.props.data.get('Assets');
-    var value = '请选择';
+    var value = localStr('lang_ticket_please_choice');
     if (arrAssets && arrAssets.size >= 1) {
       value = arrAssets.map((item)=>item.get('Name')).join(',');
     }
-    return this._getSimpleRow({'title':'资产范围','value':value,'isNav':!this.props.isAlarm,'type':'Assets'});
+    return this._getSimpleRow({'title':localStr('lang_ticket_asset_range'),'value':value,'isNav':!this.props.isAlarm,'type':'Assets'});
   }
   _getExecutersRow()
   {
     var arrUsers = this.props.data.get('Executors');
-    var value = '请选择';
+    var value = localStr('lang_ticket_please_choice');
     if (arrUsers && arrUsers.size >= 1) {
       value = arrUsers.map((item)=>item.get('RealName')).join(',');
     }
-    return this._getSimpleRow({'title':'执行人','value':value,'isNav':true,'type':'Executors'});
+    return this._getSimpleRow({'title':localStr('lang_ticket_executer'),'value':value,'isNav':true,'type':'Executors'});
   }
   _getDescriptionRow()
   {
-    var strDes = '请输入详细内容';
+    var strDes = localStr('lang_ticket_input_detail');
     var content = this.props.data.get('Content');
     strDes = content&&content.length>0?content:strDes;
-    return this._getSimpleRow({'title':'工单任务','value':strDes,'isNav':true,'type':'Content'});
+    return this._getSimpleRow({'title':localStr('lang_ticket_ticket_tash'),'value':strDes,'isNav':true,'type':'Content'});
   }
   _getTicketTypeRow()
   {
     var type = this.props.data.get('TicketType');
-    var arrTicketTypes = [{'title':'现场','value':'','isSelect':type===4,'type':4},
-                {'title':'随工','value':'','isSelect':type===3,'type':3}];
-    var rowData = {'title':'工单类型','value':arrTicketTypes,'isNav':false,'type':'TicketType'};
+    var arrTicketTypes = [{'title':localStr('lang_ticket_scene'),'value':'','isSelect':type===4,'type':4},
+                {'title':localStr('lang_ticket_random'),'value':'','isSelect':type===3,'type':3}];
+    var rowData = {'title':localStr('lang_ticket_ticket_type'),'value':arrTicketTypes,'isNav':false,'type':'TicketType'};
     var value = rowData.value;
     if (this.props.ticketInfo||this.props.isAlarm) {
       var ticketValue = '';
       switch (type) {
         case 1:
-          ticketValue='计划工单';
+          ticketValue=localStr('lang_ticket_ticket_planning');
           break;
         case 2:
-          ticketValue='报警工单';
+          ticketValue=localStr('lang_ticket_ticket_alarm');
           break;
         case 3:
-            ticketValue='随工工单';
+            ticketValue=localStr('lang_ticket_ticket_folow');
           break;
         case 4:
-          ticketValue='现场工单';
+          ticketValue=localStr('lang_ticket_ticket_scene');
           break;
         default:
       }
-      return this._getSimpleRow({'title':'工单类型','value':ticketValue,'isNav':false,'type':'TicketType'});
+      return this._getSimpleRow({'title':localStr('lang_ticket_ticket_type'),'value':ticketValue,'isNav':false,'type':'TicketType'});
     }
-    // if (this.props.isAlarm || type===2) {
-    //   return this._getSimpleRow({'title':'工单类型','value':'报警','isNav':false,'type':'TicketType'});
-    // }
     return (
         <View style={[styles.row,styles.rowHeight]}>
           <Text style={styles.titleText}>
@@ -272,7 +270,7 @@ export default class CreateTicketView extends Component{
               color:'#ffffff'
             }}
             disabled={!this.props.isEnableCreate}
-            text='保存' onClick={this.props.onCreateTicket} />
+            text={localStr('lang_ticket_save')} onClick={this.props.onCreateTicket} />
         </Bottom>
       );
     // }

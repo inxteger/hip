@@ -10,6 +10,7 @@ import {connect} from 'react-redux';
 import backHelper from '../../utils/backHelper';
 import {logInfoChanged,deleteLogImage,cleanFeedbackLog,saveFeedback} from '../../actions/myAction.js';
 import FeedBackView from '../../components/my/FeedBackView';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 import ImagePicker from '../ImagePicker.js';
 import PhotoShow from '../assets/PhotoShow';
@@ -26,7 +27,13 @@ class FeedBack extends Component{
   _save(){
     dismissKeyboard();
     if(!this.props.feedBackLog.get('Content') && this.props.feedBackLog.get('Pictures').size === 0){
-      Alert.alert('','请填写日志内容或上传照片');
+      Alert.alert(
+        '',
+        localStr('lang_ticket_notice6'),
+        [
+          {text: localStr('lang_ticket_OK'), onPress: () =>{}}
+        ]
+      )
       return ;
     }
     var images=[];
@@ -80,15 +87,14 @@ class FeedBack extends Component{
   }
   _checkAuth(){
     // if(!this.props.canEdit){
-    //   Alert.alert('','仅执行中的工单可以编辑这一日志');
+    //   Alert.alert('','localStr('lang_ticket_notice4')');
     //   return false;
     // }
     // if(!this.props.isSameUser){
-    //   Alert.alert('','仅创建者可以编辑这一日志');
     //   return false;
     // }
     // if(!this.props.hasAuth){
-    //   // Alert.alert('','您没有这一项的操作权限，请联系系统管理员');
+    //   // Alert.alert('',localStr('lang_alarm_des1'));
     //   return false;
     // }
     return true;
@@ -129,7 +135,7 @@ class FeedBack extends Component{
 
   }
   render() {
-    var placeholder = this.props.canEdit?'请输入您的问题或建议...':'';
+    var placeholder = this.props.canEdit?localStr('lang_my_des26'):'';
     return (
       <FeedBackView
         log={this.props.feedBackLog}

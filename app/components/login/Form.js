@@ -11,6 +11,7 @@ import {
 import Text from '../Text.js';
 import Button from '../Button';
 import {GRAY,BLACK,GREEN,LOGIN_SEP,LOGIN_GREEN_DISABLED} from '../../styles/color.js';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class Form extends Component{
   constructor(props){
@@ -22,7 +23,7 @@ export default class Form extends Component{
     this.props.onInputChanged(type,text);
   }
   _getTitle(){
-    var text = '灯塔云平台', {type} = this.props;
+    var text = localStr('lang_login_title'), {type} = this.props;
     return (
       <View style={{marginBottom:28,alignItems:'center'}}>
         <Text style={{color:'white',fontSize:24}}>{text}</Text>
@@ -36,7 +37,7 @@ export default class Form extends Component{
       counterText += 's';
     }
     else {
-      counterText = '获取';
+      counterText = localStr('lang_login_code_getdes');
     }
     var inputStyle={};
     if (Platform.OS==='android') {
@@ -55,14 +56,14 @@ export default class Form extends Component{
               textAlign={'left'}
               placeholderTextColor="lightgray"
               textAlignVertical={'center'}
-              placeholder={"请填写11位手机号码"}
+              placeholder={localStr('lang_login_mobile_placeholder')}
               onChangeText={(text)=>this._codeChanged('phoneNumber',text)}
               value={this.props.data.get('phoneNumber')}
             />
         </View>
         <View style={{height:StyleSheet.hairlineWidth,backgroundColor:LOGIN_SEP}} />
         <View style={styles.inputContainer}>
-          <Text style={styles.inputLabel}>验证码</Text>
+          <Text style={styles.inputLabel}>{localStr('lang_login_code_des')}</Text>
           <TextInput
               ref={(input)=>this._secondInput=input}
               style={[styles.input,inputStyle]}
@@ -71,7 +72,7 @@ export default class Form extends Component{
               textAlign={'left'}
               placeholderTextColor="lightgray"
               textAlignVertical={'center'}
-              placeholder={"请填写4位验证码"}
+              placeholder={localStr('lang_login_mobilecode_placeholder')}
               onChangeText={(text)=>this._codeChanged('validCode',text)}
               value={this.props.data.get('validCode')}
             />
@@ -96,7 +97,7 @@ export default class Form extends Component{
     return (
       <View style={styles.form}>
         <View style={styles.inputContainer}>
-          <Text style={styles.inputLabel}>用户名</Text>
+          <Text style={styles.inputLabel}>{localStr('lang_login_nameinputdes')}</Text>
           <TextInput
               ref={(input)=>this._firstInput=input}
               style={[styles.input,inputStyle]}
@@ -105,14 +106,14 @@ export default class Form extends Component{
               textAlign={'left'}
               placeholderTextColor="lightgray"
               textAlignVertical={'center'}
-              placeholder={"请填写用户名"}
+              placeholder={localStr('lang_login_name_placeholder')}
               onChangeText={(text)=>this._codeChanged('userName',text)}
               value={this.props.data.get('userName')}
             />
         </View>
         <View style={{height:StyleSheet.hairlineWidth,backgroundColor:LOGIN_SEP}} />
         <View style={styles.inputContainer}>
-          <Text style={styles.inputLabel}>密码</Text>
+          <Text style={styles.inputLabel}>{localStr('lang_login_passdes')}</Text>
           <TextInput
               ref={(input)=>this._secondInput=input}
               style={[styles.input,inputStyle]}
@@ -121,7 +122,7 @@ export default class Form extends Component{
               textAlign={'left'}
               placeholderTextColor="lightgray"
               textAlignVertical={'center'}
-              placeholder={"请填写密码"}
+              placeholder={localStr('lang_login_pass_placeholder')}
               onChangeText={(text)=>this._codeChanged("password",text)}
               value={this.props.data.get('password')}
             />
@@ -133,9 +134,9 @@ export default class Form extends Component{
   _getLoginButton(){
     var submitEnable = this.props.data.get('submitEnable');
 
-    var text = '登录';
+    var text = localStr('lang_login_btndes');
     if(this.props.data.get('isFetching')){
-      text = '登录中...';
+      text = localStr('lang_login_btnlogingdes');
     }
 
     return (
@@ -223,7 +224,7 @@ var styles = StyleSheet.create({
   },
   sendButton:{
     backgroundColor:GREEN,
-    width:80,
+    width:70,
     height:34,
     borderRadius:2,
   },

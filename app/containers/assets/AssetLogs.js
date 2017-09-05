@@ -13,6 +13,7 @@ import LogsView from '../../components/LogsView';
 import AssetLogEdit from './AssetLogEdit';
 import privilegeHelper from '../../utils/privilegeHelper.js';
 import {deleteLog,saveLog,loadAssetLogs} from '../../actions/assetsAction.js';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 class AssetLogs extends Component{
   constructor(props){
@@ -25,8 +26,13 @@ class AssetLogs extends Component{
       return false;
     }
     if(this.props.hasAuth === false){
-      //您没有这一项的操作权限，请联系系统管理员
-      Alert.alert('','您没有这一项的操作权限，请联系系统管理员');
+      Alert.alert(
+        '',
+        localStr('lang_alarm_des1'),
+        [
+          {text: localStr('lang_ticket_OK'), onPress: () =>{}}
+        ]
+      )
       return false;
     }
     return true;
@@ -49,7 +55,13 @@ class AssetLogs extends Component{
   }
   _delete(log){
     if(log.get('CreateUserName') !== this.props.user.get('RealName')){
-      Alert.alert('','仅创建者可以删除这一日志');
+      Alert.alert(
+        '',
+        localStr('lang_ticket_notice5'),
+        [
+          {text: localStr('lang_ticket_OK'), onPress: () =>{}}
+        ]
+      )
       return;
     }
     if(!this._showAuth()){
@@ -57,10 +69,10 @@ class AssetLogs extends Component{
     }
     Alert.alert(
       '',
-      '删除这条日志吗？',
+      localStr('lang_ticket_remove_log'),
       [
-        {text: '取消', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-        {text: '删除', onPress: () => {
+        {text: localStr('lang_ticket_cancel'), onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+        {text: localStr('lang_ticket_remove'), onPress: () => {
           this.props.deleteLog(log.get('Id'));
         }}
       ]
@@ -104,11 +116,11 @@ class AssetLogs extends Component{
   render() {
     return (
       <LogsView
-        title={'现场日志'}
+        title={localStr('lang_asset_des31')}
         logs={this.state.dataSource}
         isFetching={this.props.isFetching}
         privilegeCode='AssetEditPrivilegeCode'
-        emptyText='无现场日志'
+        emptyText={localStr('lang_asset_des32')}
         showAdd={true}
         onRefresh={()=>this._loadLogs()}
         createLog={()=>this._gotoEdit()}

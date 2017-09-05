@@ -10,6 +10,7 @@ import Text from '../Text.js';
 import Loading from '../Loading';
 import Toolbar from '../Toolbar';
 import ViewFinder from '../ViewFinder.js';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class ScanView extends Component{
   constructor(props){
@@ -90,6 +91,6 @@ ScanView.propTypes = {
 }
 
 ScanView.defaultProps = {
-  scanText:'将二维码放入框内，即可自动扫描',
+  scanText:localStr('lang_commons_notice13'),
   scanTitle:'',
 }

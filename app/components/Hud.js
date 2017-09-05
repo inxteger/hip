@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 
 import Icon from './Icon.js';
+import {localStr,localFormatStr} from '../utils/Localizations/localization.js';
 
 const styles = StyleSheet.create({
   mainContainer: {
@@ -109,11 +110,11 @@ export default class Hud extends Component {
   showSpinner(step) {
     // console.warn('showSpinner',step);
     if (step==='posting') {
-      return this._showHud('icon_sync',true,false,'提交中...');
+      return this._showHud('icon_sync',true,false,localStr('lang_my_des30'));
     }else if (step==='success') {
-      return this._showHud('icon_success',false,true,'反馈提交成功!');
+      return this._showHud('icon_success',false,true,localStr('lang_my_des31'));
     }else if (step==='bindsuccess') {
-      return this._showHud('icon_success',false,true,'绑定成功!');
+      return this._showHud('icon_success',false,true,localStr('lang_my_des32'));
     }
     return this._showHud('icon_sync',true);
   }
