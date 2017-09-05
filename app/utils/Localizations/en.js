@@ -267,11 +267,11 @@ export default {
   lang_asset_des41:'Accumulated Runtime',
   lang_asset_des42:'Number of Serious Faults',
 
-  lang_asset_des43:'Device Full Name',
+  lang_asset_des43:'Full Name',
   lang_asset_des44:'Device Type',
-  lang_asset_des45:'Asset Description',
+  lang_asset_des45:'Description',
   lang_asset_des46:'Ex-factory Date',
-  lang_asset_des47:'Device Manufacturer',
+  lang_asset_des47:'Manufacturer',
   lang_asset_des48:'Asset Number',
 
   lang_asset_des49:'Tripping Unit Type',//server
@@ -315,15 +315,15 @@ export default {
   lang_asset_des79:'Level 3',
   lang_asset_des80:'Level 4',
   lang_asset_des81:'Level 5',
-  lang_asset_des82:'Production Line Description',
+  lang_asset_des82:'Description',
   lang_asset_des83:'On-site Description',
   lang_asset_des84:'Energy Consumption Statistics',//server
-  lang_asset_des85:'Indoor Temperature',
-  lang_asset_des86:'Indoor Humidity',
-  lang_asset_des87:'Indoor Dust Level',
+  lang_asset_des85:'Temperature',
+  lang_asset_des86:'Humidity',
+  lang_asset_des87:'Dust Level',
 
   lang_asset_des88:'Statistics',
-  lang_asset_des89:'Environment Data',
+  lang_asset_des89:'Indoor Environment Data',
   lang_asset_des90:'Maintenance Administrator',
   lang_asset_des91:'Unable to recognize QR code irrelevant to Machine Advisor, please confirm and try again.',
   lang_asset_des92:'The QR code you scanned is irrelevant to Machine Advisor asset, please confirm',
