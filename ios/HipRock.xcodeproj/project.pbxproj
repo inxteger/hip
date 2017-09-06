@@ -1325,7 +1325,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.schneider-electric.MachineAdvisor";
+				PRODUCT_BUNDLE_IDENTIFIER = "cn.com.schneider-electric.HipRock";
 				PRODUCT_NAME = HipRock;
 				PROVISIONING_PROFILE = "f87a7452-04a5-45da-ab80-fb3525712828";
 				PROVISIONING_PROFILE_SPECIFIER = "Machine Advisor";
@@ -1376,7 +1376,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.schneider-electric.MachineAdvisor";
+				PRODUCT_BUNDLE_IDENTIFIER = "cn.com.schneider-electric.HipRock";
 				PRODUCT_NAME = HipRock;
 				PROVISIONING_PROFILE = "f87a7452-04a5-45da-ab80-fb3525712828";
 				PROVISIONING_PROFILE_SPECIFIER = "Machine Advisor";
