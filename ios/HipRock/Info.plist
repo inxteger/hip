@@ -90,15 +90,7 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>URI</key>
-<<<<<<< HEAD
-	<string>https://mobile.mm.energymost.com/api/</string>
-	<key>UpgradeUri</key>
-	<string>https://www.fm.energymost.com/download-app</string>
-=======
-	<string></string>
 	<key>CFBundleAllowMixedLocalizations</key>
 	<true/>
->>>>>>> 4f159ac4c775d949ff2cd21d0a15efd5219a4b8b
 </dict>
 </plist>
