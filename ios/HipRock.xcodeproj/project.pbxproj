@@ -773,8 +773,8 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = PY9CB789VR;
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = 46REERL7A3;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -1287,11 +1287,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Schneider Electric SA (PY9CB789VR)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = PY9CB789VR;
+				DEVELOPMENT_TEAM = 46REERL7A3;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1327,8 +1327,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "cn.com.schneider-electric.HipRock";
 				PRODUCT_NAME = HipRock;
-				PROVISIONING_PROFILE = "f87a7452-04a5-45da-ab80-fb3525712828";
-				PROVISIONING_PROFILE_SPECIFIER = "Machine Advisor";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -1339,10 +1339,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Schneider Electric SA (PY9CB789VR)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
-				DEVELOPMENT_TEAM = PY9CB789VR;
+				DEVELOPMENT_TEAM = 46REERL7A3;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1378,8 +1378,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "cn.com.schneider-electric.HipRock";
 				PRODUCT_NAME = HipRock;
-				PROVISIONING_PROFILE = "f87a7452-04a5-45da-ab80-fb3525712828";
-				PROVISIONING_PROFILE_SPECIFIER = "Machine Advisor";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
