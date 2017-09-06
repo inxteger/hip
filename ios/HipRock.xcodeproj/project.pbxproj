@@ -1288,7 +1288,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = NO;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Schneider Electric (China) Investment Co., Ltd. (46REERL7A3)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Schneider Electric (China) Investment Co., Ltd. (46REERL7A3)";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 46REERL7A3;
@@ -1340,7 +1340,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = NO;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Schneider Electric (China) Investment Co., Ltd. (46REERL7A3)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Schneider Electric (China) Investment Co., Ltd. (46REERL7A3)";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				DEVELOPMENT_TEAM = 46REERL7A3;
 				ENABLE_BITCODE = NO;
