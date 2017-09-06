@@ -84,7 +84,7 @@ class Scan extends Component{
       }
       // Alert.alert(
       //   '',
-      //   '无法识别与灯塔系统不相关的二维码，请确认后再试！',
+      //   '无法识别与机器顾问系统不相关的二维码，请确认后再试！',
       //   [
       //     {text: localStr('lang_ticket_OK'), onPress: () => {this.setState({openCamera:true});}}
       //   ]
