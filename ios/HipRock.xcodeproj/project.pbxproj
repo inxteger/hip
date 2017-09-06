@@ -774,7 +774,7 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = 46REERL7A3;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -1287,8 +1287,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Schneider Electric (China) Investment Co., Ltd. (46REERL7A3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 46REERL7A3;
@@ -1327,8 +1327,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "cn.com.schneider-electric.HipRock";
 				PRODUCT_NAME = HipRock;
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "7822ab1a-99a2-4d37-a6ae-1c106f4c5da4";
+				PROVISIONING_PROFILE_SPECIFIER = "XC iOS Ad Hoc: cn.com.schneider-electric.HipRock";
 			};
 			name = Debug;
 		};
@@ -1339,8 +1339,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Schneider Electric (China) Investment Co., Ltd. (46REERL7A3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				DEVELOPMENT_TEAM = 46REERL7A3;
 				ENABLE_BITCODE = NO;
@@ -1378,8 +1378,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "cn.com.schneider-electric.HipRock";
 				PRODUCT_NAME = HipRock;
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "7822ab1a-99a2-4d37-a6ae-1c106f4c5da4";
+				PROVISIONING_PROFILE_SPECIFIER = "XC iOS Ad Hoc: cn.com.schneider-electric.HipRock";
 			};
 			name = Release;
 		};
