@@ -13,7 +13,7 @@
 	<key>URI</key>
 	<string></string>
 	<key>CFBundleName</key>
-	<string>灯塔_Test</string>
+	<string>机器顾问_Test</string>
 	<key>CFBundleIdentifier</key>
 	<string>cn.com.schneider-electric.HipRock</string>
 	<key>UpgradeUri</key>
