@@ -10,13 +10,13 @@ function parseClipContent(text) {
   var itemId = null;
   var itemType = null;
   var content = null;
-  if(text.indexOf("施耐德电气灯塔")>=0){
-    // 施耐德电气灯塔提示您有新工单(406)，请按时执行。
-    // 施耐德电气灯塔提示您设备报警(32A35)，请及时检查响应!
-    var retAlarmStart = text.match(/施耐德电气灯塔提示您设备报警\(([a-zA-Z0-9]*)\)，请及时检查响应/);
-    var retAlarmEnd = text.match(/施耐德电气灯塔提示您设备报警\(([a-zA-Z0-9]*)\)已解除/);
-    var retTicketStart = text.match(/施耐德电气灯塔提示您有新工单\(([a-zA-Z0-9]*)\)/);
-    var retTicketEnd = text.match(/施耐德电气灯塔通知您创建的工单\(([a-zA-Z0-9]*)\)/);
+  if(text.indexOf("施耐德电气机器顾问")>=0){
+    // 施耐德电气机器顾问提示您有新工单(406)，请按时执行。
+    // 施耐德电气机器顾问提示您设备报警(32A35)，请及时检查响应!
+    var retAlarmStart = text.match(/施耐德电气机器顾问提示您设备报警\(([a-zA-Z0-9]*)\)，请及时检查响应/);
+    var retAlarmEnd = text.match(/施耐德电气机器顾问提示您设备报警\(([a-zA-Z0-9]*)\)已解除/);
+    var retTicketStart = text.match(/施耐德电气机器顾问提示您有新工单\(([a-zA-Z0-9]*)\)/);
+    var retTicketEnd = text.match(/施耐德电气机器顾问通知您创建的工单\(([a-zA-Z0-9]*)\)/);
     // console.warn('retTicket,retAlarm',retTicket,retAlarm);
     if(retAlarmStart && retAlarmStart.length>1){
       itemId = retAlarmStart[1];

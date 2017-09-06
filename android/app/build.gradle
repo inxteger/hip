@@ -92,7 +92,7 @@ android {
         targetSdkVersion 21
         versionCode "$ROCK_VERSIONCODE".toInteger()
         versionName "$ROCK_VERSION"
-        manifestPlaceholders = [ prodName:"灯塔" ]
+        manifestPlaceholders = [ prodName:"机器顾问" ]
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
