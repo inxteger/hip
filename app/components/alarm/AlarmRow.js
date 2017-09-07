@@ -138,15 +138,15 @@ var styles = StyleSheet.create({
     // backgroundColor:'red'
   },
   level:{
-    width:40,
-    height:40,
-    borderRadius:20,
+    width:44,
+    height:44,
+    borderRadius:22,
     marginRight:16,
     justifyContent:'center',
     alignItems:'center'
   },
   levelText:{
-    fontSize:12,
+    fontSize:11,
     color:'white'
   },
   unSecuredAlarm:{

@@ -316,7 +316,7 @@ export default {
   lang_asset_des80:'Level 4',
   lang_asset_des81:'Level 5',
   lang_asset_des82:'Description',
-  lang_asset_des83:'On-site Description',
+  lang_asset_des83:'Description',
   lang_asset_des84:'Energy Consumption Statistics',//server
   lang_asset_des85:'Temperature',
   lang_asset_des86:'Humidity',
