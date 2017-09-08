@@ -37,7 +37,7 @@ export default class TaskDesEditView extends Component{
     if (lines===0) {
       lines=1;
     }
-    var disable = true;//!content || content.length === 0;
+    var disable = !content || content.length === 0;
     var actions = [{title:localStr('lang_common_finish'),show:'always',disable:disable}];
     if(Platform.OS === 'android'){
       actions = [{title:localStr('lang_common_finish'),show:'always'}];
