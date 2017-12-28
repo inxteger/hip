@@ -1,6 +1,8 @@
 import React,{Component} from 'react';
 var Device = require('./device');
-var { Image } = require('react-native');
+var {
+  ImageBackground
+} = require('react-native');
 
 // var ResponsiveImage = React.createClass({
 //     setNativeProps: function(nativeProps) {
@@ -31,12 +33,12 @@ export default class TransformableImage extends Component {
       var width = Math.ceil(this.props.initWidth * Device.scale);
       var height = Math.ceil(this.props.initHeight * Device.scale);
       return (
-          <Image style={[{width:width,height: height}, this.props.style]}
+          <ImageBackground style={[{width:width,height: height}, this.props.style]}
                  source={this.props.source}
                  resizeMode={this.props.resizeMode}
                  ref={component => this._root = component}>
               {this.props.children}
-          </Image>
+          </ImageBackground>
       );
   }
 }

@@ -29,7 +29,7 @@ import privilegeHelper from '../utils/privilegeHelper.js';
 import {detectClipboard,emptyClipboard} from '../actions/appAction.js';
 // console.warn('ViewPager',ViewPager);
 import CameraRoll from 'rn-camera-roll';
-var Permissions = require('react-native-permissions');
+import Permissions from 'react-native-permissions';
 
 import ReactNativeDetectNewPhoto from 'react-native-detect-new-photo';
 import * as ScreenshotDetector from 'react-native-screenshot-detector';
@@ -133,15 +133,15 @@ class Main extends Component{
     if(Platform.OS === 'ios'){
       this.eventEmitter = ScreenshotDetector.subscribe(
         ()=>{
-          // AlertManager.invalidateAllAlert();
-          console.warn('will share...0',new Date().getTime());
-        }
-        ,()=>{
-        console.warn('new photo detected! appIsActive:',this.appIsActive);
-        if (this.appIsActive) {
-          this._startGetFirstPhotos();
-        }
-      });
+        //   AlertManager.invalidateAllAlert();
+        //   console.warn('will share...0',new Date().getTime());
+        // }
+        // ,()=>{
+          console.warn('new photo detected! appIsActive:',this.appIsActive);
+          if (this.appIsActive) {
+            this._startGetFirstPhotos();
+          }
+        });
     }else {
       console.warn('device name...',DeviceInfo.getManufacturer(),DeviceInfo.getModel(),DeviceInfo.getSystemName());
       if (DeviceInfo.getManufacturer().toLowerCase().indexOf('huawei')>=0) {
@@ -181,7 +181,7 @@ class Main extends Component{
     // console.warn('will share...',obj.edges[0].node);
     var timestamp=obj.edges[0].node.timestamp*1000;
 
-    console.warn('will share 1...',new Date().getTime());
+    console.warn('will share 1...',new Date().getTime(),uri);
     // if (timestamp!==0&&timestamp<this.timestamp) {
     //   return;
     // }
@@ -231,7 +231,7 @@ class Main extends Component{
             width: image.width,
             height: image.height,
         };
-        var successCallBack = ()=>{
+        // var successCallBack = ()=>{
           this.showViewIsVisible=true;
           var path = RNFS.DocumentDirectoryPath + '/'+imageName;
           ActionSheetIOS.showShareActionSheetWithOptions({
@@ -248,11 +248,11 @@ class Main extends Component{
             this.showViewIsVisible=false;
             this.timestamp=new Date().getTime();
           });
-        };
+        // };
         var errorCallback = (error)=>{
             console.log('error: ', error);
         };
-        ScreenshotDetector.saveImage(obj, successCallBack, errorCallback);
+        // ScreenshotDetector.saveImage(obj, successCallBack, errorCallback);
       }
     }
   }
@@ -266,7 +266,7 @@ class Main extends Component{
     }else {
       Permissions.check('photo').then(response => {
           // response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
-          console.warn('getPermissionStatus',response);
+          console.warn('check',response);
           if (response==='authorized'||response==='undetermined') {
             InteractionManager.runAfterInteractions(() => {
               this._getImagesWithInit();

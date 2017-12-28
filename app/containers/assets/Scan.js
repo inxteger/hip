@@ -143,7 +143,7 @@ class Scan extends Component{
     });
     InteractionManager.runAfterInteractions(() => {
       // console.warn('InteractionManager done');
-      Permissions.getPermissionStatus('camera').then(response => {
+      Permissions.check('camera').then(response => {
           //response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
           // console.warn('getPermissionStatus',response);
           if (response==='authorized'||response==='undetermined') {

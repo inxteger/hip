@@ -2,7 +2,7 @@
 
 import React,{Component} from 'react';
 
-import {Image,View,PixelRatio} from 'react-native';
+import {ImageBackground,View,PixelRatio} from 'react-native';
 import PropTypes from 'prop-types';
 // import CryptoJS from "crypto-js";
 import appInfo from '../utils/appInfo.js';
@@ -85,9 +85,9 @@ class NetworkImage extends Component {
     var defaultImage = null;
     if(this.props.defaultSource && !this.state.loaded && !this.props.zoomAble){
       defaultImage = (
-        <Image key={this.props.defaultSource} style={[styles,{zIndex:1}]} resizeMode={this.props.resizeMode} source={this.props.defaultSource}>
+        <ImageBackground key={this.props.defaultSource} style={[styles,{zIndex:1}]} resizeMode={this.props.resizeMode} source={this.props.defaultSource}>
           {this.props.children}
-        </Image>
+        </ImageBackground>
       )
     }
     var realImage = null;

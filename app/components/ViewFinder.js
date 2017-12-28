@@ -4,7 +4,7 @@ import React, {
   Component
 } from 'react';
 import {
-  ActivityIndicatorIOS,
+  ActivityIndicator,
   Platform,
   ProgressBarAndroid,
   StyleSheet,
@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 
-class Viewfinder extends Component {
+export default class Viewfinder extends Component {
   constructor(props) {
     super(props);
 
@@ -51,7 +51,7 @@ class Viewfinder extends Component {
   renderLoadingIndicator() {
     if (Platform.OS === 'ios') {
       return (
-        <ActivityIndicatorIOS
+        <ActivityIndicator
           animating={this.props.isLoading}
           color={this.props.color}
           size='large'
@@ -173,5 +173,3 @@ var styles = StyleSheet.create({
     right: 0,
   },
 });
-
-module.exports = Viewfinder;
