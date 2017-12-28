@@ -80,7 +80,7 @@ export default class AssetHierarchyView extends Component{
     return (
       <ModalDropdown ref='modalMenu'
         textStyle={{color:'transparent'}}
-        style={{height:0,position:'absolute',right:2,top:30}}
+        style={{height:0,position:'absolute',right:2,top:30,backgroundColor:'transparent'}}
         options={arrMenu}
         renderSeparator={this._renderSeparator.bind(this)}
         dropdownStyle={{flex:1,backgroundColor:'white',shadowColor:'#000',shadowOffset:{width:1,height:2},shadowOpacity:0.5,height}}

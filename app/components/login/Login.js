@@ -4,7 +4,7 @@ import {
   View,
   StyleSheet,
   Dimensions,
-  Image,
+  ImageBackground,
 } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -40,7 +40,7 @@ export default class Login extends Component{
       text = localStr('lang_login_mobiledes');
     }
     return (
-      <Image
+      <ImageBackground
         source={require('../../images/trial/trial.jpg')}
         resizeMode="cover"
         style={[{width,height},styles.imageBackground]}>
@@ -61,7 +61,7 @@ export default class Login extends Component{
 
         </View>
         <KeyboardSpacer force={true} />
-      </Image>
+      </ImageBackground>
     )
   }
 }

@@ -45,7 +45,7 @@
     "react-native-svg-mock": "^2.0.0",
     "react-native-swipe-list-view": "^0.4.7",
     "react-native-view-pager": "^0.2.2",
-    "react-native-view-transformer": "0.0.28",
+    "react-native-view-transformer": "git+https://github.com/samuelltk/react-native-view-transformer",
     "react-redux": "^5.0.6",
     "react-timer-mixin": "^0.13.3",
     "redux": "^3.7.2",
