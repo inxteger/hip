@@ -13,7 +13,7 @@ import com.facebook.react.ReactApplication;
 import com.babisoft.ReactNativeLocalization.ReactNativeLocalizationPackage;
 import fr.bamlab.rncameraroll.CameraRollPackage;
 import com.devialab.detectNewPhoto.RCTDetectNewPhotoPackage;
-import com.horcrux.svg.RNSvgPackage;
+import com.horcrux.svg.SvgPackage;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -80,7 +80,7 @@ public class MainApplication extends Application implements ReactApplication {
           new ReactNativePermissionsPackage(),
           new FileOpenerPackage(),
           new RNFSPackage(),
-          new RNSvgPackage(),
+          new SvgPackage(),
           new OrientationPackage(),
           new RCTDetectNewPhotoPackage(),
           new CameraRollPackage(),
