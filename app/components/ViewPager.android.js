@@ -1,12 +1,13 @@
 
 'use strict';
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
 
 import {
   View,
   ViewPagerAndroid
   // Alert
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 
 // console.warn('ViewPager',ViewPager);

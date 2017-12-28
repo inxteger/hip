@@ -1,7 +1,8 @@
 'use strict';
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
 
 import {View,ToolbarAndroid,Platform} from 'react-native';
+import PropTypes from 'prop-types';
 import {GREEN} from '../styles/color.js';
 import privilegeHelper from '../utils/privilegeHelper.js';
 
@@ -86,7 +87,7 @@ export default class Toolbar extends Component {
 
 Toolbar.propTypes = {
   noShadow:PropTypes.bool,
-  style:View.propTypes.style,
+  style:ViewPropTypes.style,
   navIcon:PropTypes.any,
   actions:PropTypes.any,
   opacity:PropTypes.number,

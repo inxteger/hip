@@ -1,9 +1,10 @@
 'use strict'
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
 import {
   View,
   StyleSheet,
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 import Text from '../Text';
 import ClickableRow from '../ClickableRow';

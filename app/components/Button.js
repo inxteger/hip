@@ -1,7 +1,8 @@
 'use strict'
 
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
 import {View} from 'react-native';
+import PropTypes from 'prop-types';
 import TouchFeedback from './TouchFeedback';
 import Text from './Text';
 
@@ -47,8 +48,8 @@ export default class Button extends Component {
 Button.propTypes = {
   textStyle:Text.propTypes.style,
   color:PropTypes.string,
-  style:View.propTypes.style,
-  disabledStyle:View.propTypes.style,
+  style:ViewPropTypes.style,
+  disabledStyle:ViewPropTypes.style,
   disabledTextStyle:Text.propTypes.style,
   disabled:PropTypes.bool,
   text:PropTypes.oneOfType([PropTypes.string,PropTypes.number]).isRequired,

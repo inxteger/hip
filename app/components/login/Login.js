@@ -1,11 +1,12 @@
 'use strict';
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
 import {
   View,
   StyleSheet,
   Dimensions,
   Image,
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 import Icon from '../Icon';
 import Form from './Form';

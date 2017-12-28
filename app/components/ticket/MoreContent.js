@@ -1,7 +1,8 @@
 'use strict'
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
 
 import {View,} from 'react-native';
+import PropTypes from 'prop-types';
 import Text from '../Text.js';
 import {BLACK,GREEN} from '../../styles/color.js';
 import TouchFeedback from '../TouchFeedback';
@@ -82,5 +83,5 @@ export default class MoreContent extends Component {
 MoreContent.propTypes = {
   title:PropTypes.string.isRequired,
   content:PropTypes.string.isRequired,
-  style:View.propTypes.style
+  style:ViewPropTypes.style
 }

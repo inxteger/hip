@@ -6,8 +6,10 @@ import {
   Animated,
   Easing,
   StyleSheet,
-  Text
+  Text,
+  ViewPropTypes
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 import Icon from './Icon.js';
 import {localStr,localFormatStr} from '../utils/Localizations/localization.js';
@@ -24,7 +26,7 @@ const styles = StyleSheet.create({
 
 export default class Hud extends Component {
   static contextTypes = {
-    showSpinner:React.PropTypes.func
+    showSpinner:PropTypes.func
   }
   constructor(props,context) {
      super(props,context);
@@ -141,5 +143,5 @@ export default class Hud extends Component {
 }
 
 Hud.propTypes = {
-  style:View.propTypes.style
+  style:ViewPropTypes.style
 }

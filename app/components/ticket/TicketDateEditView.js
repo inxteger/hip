@@ -1,11 +1,12 @@
 
 'use strict';
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
 
 import {
   View,
   ListView,
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 import List from '../List.js';
 import TicketDateRow from './TicketDateRow.js';

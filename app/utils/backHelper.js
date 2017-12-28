@@ -4,6 +4,7 @@ import {
   BackAndroid,
   Platform
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 var handlerMap = {};
 

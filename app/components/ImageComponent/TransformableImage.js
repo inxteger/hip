@@ -2,6 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { Image } from 'react-native';
+import PropTypes from 'prop-types';
 import CacheableImage from './CacheableImage';
 
 import ViewTransformer from 'react-native-view-transformer';

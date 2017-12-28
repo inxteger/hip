@@ -1,10 +1,11 @@
 
 'use strict';
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
 import {
   ListView,
   InteractionManager,
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
 import backHelper from '../../utils/backHelper';
@@ -15,8 +16,8 @@ import AssetsSelectView from '../../components/ticket/AssetsSelectView';
 
 class AssetsSelect extends Component{
   static contextTypes = {
-    showSpinner: React.PropTypes.func,
-    hideHud: React.PropTypes.func
+    showSpinner: PropTypes.func,
+    hideHud: PropTypes.func
   }
   constructor(props){
     super(props);

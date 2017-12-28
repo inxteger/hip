@@ -1,10 +1,11 @@
 
 'use strict';
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
 import {
   InteractionManager,
   Alert
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
 import backHelper from '../../utils/backHelper';
@@ -20,8 +21,8 @@ const MAX = 100;
 
 class AssetLogEdit extends Component{
   static contextTypes = {
-    showSpinner: React.PropTypes.func,
-    hideHud: React.PropTypes.func
+    showSpinner: PropTypes.func,
+    hideHud: PropTypes.func
   }
   _save(){
     // console.warn('edit',this.props.ticketLog.get('Pictures'));

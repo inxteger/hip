@@ -1,8 +1,9 @@
 'use strict';
 
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
 
 import {Image,View,PixelRatio} from 'react-native';
+import PropTypes from 'prop-types';
 // import CryptoJS from "crypto-js";
 import appInfo from '../utils/appInfo.js';
 import TransformableImage from './ImageComponent/TransformableImage.js';

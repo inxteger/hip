@@ -1,8 +1,9 @@
 
 'use strict';
 
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
 import {InteractionManager,Platform} from 'react-native';
+import PropTypes from 'prop-types';
 
 import {loadHistoryDatas,updateStepData,resetHistoryData} from '../../actions/historyAction.js';
 import {connect} from 'react-redux';

@@ -1,11 +1,12 @@
 'use strict'
 
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
 import {
   View,Text,
   // Animated,
   StyleSheet
 } from 'react-native';
+import PropTypes from 'prop-types';
 import TouchFeedback from '../TouchFeedback.js';
 import {GREEN,GRAY,ALARM_FILTER_BUTTON_BORDER} from '../../styles/color';
 

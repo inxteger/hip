@@ -1,6 +1,6 @@
 'use strict'
 
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
 
 
 import {
@@ -9,6 +9,7 @@ import {
     TouchableOpacity,
     Platform
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 export default class TouchFeedback extends Component {
     render() {

@@ -1,5 +1,5 @@
 'use strict'
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
 
 import {
   View,
@@ -7,6 +7,7 @@ import {
   StyleSheet
   // Linking
 } from 'react-native';
+import PropTypes from 'prop-types';
 import Text from './Text.js';
 import {getBaseUri,TOKENHEADER,HEADERDEVICEID} from '../middleware/api.js';
 import Toast from 'react-native-root-toast';

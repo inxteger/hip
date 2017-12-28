@@ -1,6 +1,6 @@
 'use strict'
 
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
 import {
   View,
   StyleSheet,
@@ -10,6 +10,7 @@ import {
   DatePickerAndroid,
   DatePickerIOS
 } from 'react-native';
+import PropTypes from 'prop-types';
 // import Icon from '../Icon.js';
 import {BLACK,GRAY,GREEN,LIST_BG,CHART_RED,LINE_HISTORY,LINE,LOGIN_GREEN_DISABLED} from '../../styles/color';
 import List from '../List.js';

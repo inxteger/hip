@@ -1,6 +1,6 @@
 
 'use strict';
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
 import {
   View,
   InteractionManager,
@@ -8,6 +8,7 @@ import {
   Modal,
   Platform,
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 import Toolbar from '../Toolbar';
 import List from '../List.js';

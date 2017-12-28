@@ -5,6 +5,7 @@ import React,{Component,PropTypes,NativeModules} from 'react';
 import {
   View,
 } from 'react-native';
+import PropTypes from 'prop-types';
 import Camera from 'react-native-camera';
 // var CameraManager = NativeModules.CameraManager;
 import ViewFinder from './ViewFinder.js';

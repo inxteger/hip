@@ -4,6 +4,7 @@ import {
   ListView,
   Platform
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 import Scroller from 'react-native-scroller';
 import {createResponder} from 'react-native-gesture-responder';

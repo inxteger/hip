@@ -7,6 +7,7 @@ import {
   Dimensions,
   Image,
 } from 'react-native';
+import PropTypes from 'prop-types';
 import Icon from './Icon.js';
 
 import {GREEN} from '../styles/color.js';

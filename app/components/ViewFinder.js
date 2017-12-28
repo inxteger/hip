@@ -11,6 +11,7 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 class Viewfinder extends Component {
   constructor(props) {

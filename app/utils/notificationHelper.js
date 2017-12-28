@@ -9,6 +9,7 @@ import {
   Alert,
   // Alert
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 var {REMPushNotification} = NativeModules;
 import {localStr,localFormatStr} from './Localizations/localization.js';

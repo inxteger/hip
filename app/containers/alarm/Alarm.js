@@ -1,11 +1,12 @@
 
 'use strict';
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
 import {
   ListView,
-  Navigator,
   InteractionManager,
 } from 'react-native';
+import PropTypes from 'prop-types';
+import {Navigator} from 'react-native-deprecated-custom-components';
 
 import {connect} from 'react-redux';
 import backHelper from '../../utils/backHelper';

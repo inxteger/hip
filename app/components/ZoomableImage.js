@@ -2,6 +2,7 @@
 
 import React, {Component, PropTypes} from 'react';
 import { View, PanResponder, Image } from 'react-native';
+import PropTypes from 'prop-types';
 import NetworkImage from './NetworkImage.js';
 
 

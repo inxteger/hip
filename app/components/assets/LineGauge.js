@@ -1,4 +1,4 @@
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
 import {
   StyleSheet,
   ScrollView,
@@ -6,6 +6,7 @@ import {
   Text,
   View,
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 import ReactNative from 'react-native'
 import times from 'lodash/times';

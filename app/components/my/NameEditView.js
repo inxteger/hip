@@ -1,11 +1,12 @@
 'use strict'
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
 import {
   View,
   TextInput,
   StyleSheet,
 
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 import {BLACK,GRAY,ENV_EDIT_LINE,LIST_BG} from '../../styles/color';
 import Toolbar from '../Toolbar';

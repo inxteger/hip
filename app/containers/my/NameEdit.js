@@ -1,7 +1,7 @@
 
 'use strict';
 
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
 
 import {connect} from 'react-redux';
 import backHelper from '../../utils/backHelper';
@@ -12,6 +12,7 @@ import {localStr,localFormatStr} from '../../utils/Localizations/localization.js
 import {
   InteractionManager
 } from 'react-native';
+import PropTypes from 'prop-types';
 var dismissKeyboard = require('dismissKeyboard');
 
 class NameEdit extends Component{

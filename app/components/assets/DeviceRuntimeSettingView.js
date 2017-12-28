@@ -1,9 +1,10 @@
 'use strict'
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
 import {
   View,
   Dimensions,
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 import List from '../List.js';
 import SimpleRow from './SimpleRow.js';

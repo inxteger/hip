@@ -1,6 +1,6 @@
 'use strict';
 
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
 
 import {
 	Animated,
@@ -9,6 +9,7 @@ import {
 	Platform,
 	Keyboard
 }  from 'react-native';
+import PropTypes from 'prop-types';
 
 export default class KeyboardSpacer extends Component {
 	constructor(props) {

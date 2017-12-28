@@ -1,6 +1,6 @@
 
 'use strict';
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
 import {
   Alert,
   BackAndroid,
@@ -10,6 +10,7 @@ import {
   Linking,
   AppState,
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 
@@ -99,7 +100,7 @@ class Entry extends Component{
     //
     // });
     NetInfo.isConnected.addEventListener(
-      'change',
+      'connectionChange',
       (isConnected)=>this._networkChanged(isConnected)
     );
   }

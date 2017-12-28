@@ -1,11 +1,11 @@
 'use strict';
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
 
 import {
-  Navigator,
   StatusBar,
   // View,
 } from "react-native";
+import {Navigator} from 'react-native-deprecated-custom-components';
 import {STATUSBAR_COLOR} from '../styles/color';
 // import Hud from './Hud.js';
 import ContextComponent from './ContextComponent.js';

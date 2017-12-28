@@ -1,5 +1,5 @@
 'use strict';
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
 import {
   View,
   TextInput,
@@ -7,6 +7,7 @@ import {
   InteractionManager,
   Platform
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 import Text from '../Text.js';
 import Button from '../Button';

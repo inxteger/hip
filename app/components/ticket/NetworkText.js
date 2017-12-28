@@ -1,11 +1,12 @@
 'use strict'
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
 
 import {
   View,
   Platform,
   // Linking
 } from 'react-native';
+import PropTypes from 'prop-types';
 import Text from '../Text.js';
 // import {GRAY,BLACK,GREEN} from '../../styles/color.js';
 import Toast from 'react-native-root-toast';
@@ -162,6 +163,6 @@ export default class NetworkText extends Component {
 
 NetworkText.propTypes = {
   item:PropTypes.any.isRequired,
-  style:View.propTypes.style,
+  style:ViewPropTypes.style,
   forceStoped:PropTypes.bool,
 }

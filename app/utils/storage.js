@@ -1,6 +1,7 @@
 'use strict';
 
 import {AsyncStorage,Clipboard} from 'react-native';
+import PropTypes from 'prop-types';
 
 var TOKENKEY = "TOKENKEY";
 var NAMEKEY = 'USERNAMEKEY';

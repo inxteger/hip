@@ -1,6 +1,6 @@
 
 'use strict';
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
 import {
   View,
   Platform,
@@ -9,6 +9,7 @@ import {
   DatePickerIOS,
   ScrollView,
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 import moment from 'moment';
 import Toolbar from '../Toolbar';
