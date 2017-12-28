@@ -40,7 +40,7 @@
     "react-native-orientation": "git+https://github.com/yamill/react-native-orientation.git#9a796cf0790491bd7d96b905496dc43383316d0e",
     "react-native-permissions": "^1.0.6",
     "react-native-root-toast": "^2.2.1",
-    "react-native-screenshot-detector": "git+https://github.com/blend/react-native-screenshot-detector",
+    "react-native-screenshot-detector": "git+https://github.com/samuelltk/react-native-screenshot-detector",
     "react-native-svg": "^6.0.0",
     "react-native-svg-mock": "^2.0.0",
     "react-native-swipe-list-view": "^0.4.7",
