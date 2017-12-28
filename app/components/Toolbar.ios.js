@@ -1,8 +1,8 @@
 'use strict';
 import React,{Component} from 'react';
-
-import {View,StyleSheet,Image} from 'react-native';
 import PropTypes from 'prop-types';
+
+import {View,StyleSheet,Image,ViewPropTypes} from 'react-native';
 import {GREEN,IOS_NAVBAR,IOS_NAVBAR_BORDER,LIGHTGRAY} from '../styles/color.js';
 import Text from './Text.js';
 import TouchFeedback from './TouchFeedback';

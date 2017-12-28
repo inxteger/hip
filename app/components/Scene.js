@@ -6,6 +6,7 @@ import {
   // View,
 } from "react-native";
 import {Navigator} from 'react-native-deprecated-custom-components';
+import PropTypes from 'prop-types';
 import {STATUSBAR_COLOR} from '../styles/color';
 // import Hud from './Hud.js';
 import ContextComponent from './ContextComponent.js';

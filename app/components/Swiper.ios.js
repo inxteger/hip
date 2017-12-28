@@ -17,6 +17,7 @@ import {
   TouchableOpacity,
   Dimensions,
   Platform,
+  ViewPropTypes
 } from 'react-native'
 
 // Using bare setTimeout, setInterval, setImmediate

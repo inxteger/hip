@@ -8,7 +8,8 @@ import {
   Platform,
   RefreshControl,
   StyleSheet,
-  RecyclerViewBackedScrollView
+  RecyclerViewBackedScrollView,
+  ViewPropTypes
 } from 'react-native';
 import PropTypes from 'prop-types';
 

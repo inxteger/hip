@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{Component} from 'react';
 import { Image, ActivityIndicator, NetInfo, Platform } from 'react-native';
 import PropTypes from 'prop-types';
 import RNFS, { DocumentDirectoryPath } from 'react-native-fs';
@@ -12,7 +12,7 @@ import storage from '../../utils/storage.js';
 import {getBaseUri,TOKENHEADER,HEADERDEVICEID} from '../../middleware/api.js';
 
 export default
-class CacheableImage extends React.Component {
+class CacheableImage extends Component {
   static async globalCheckImageCache(imageUri, cachePath, cacheKey) {
       const dirPath = DocumentDirectoryPath+'/'+cachePath;
       const filePath = dirPath+'/'+cacheKey;
@@ -278,7 +278,7 @@ class CacheableImage extends React.Component {
     componentWillMount() {
         if (this.props.checkNetwork) {
           // console.warn('start checkNetwork');
-            NetInfo.isConnected.addEventListener('change', this._handleConnectivityChange);
+            NetInfo.isConnected.addEventListener('connectionChange', this._handleConnectivityChange);
             // componentWillUnmount unsets this._handleConnectivityChange in case the component unmounts before this fetch resolves
             NetInfo.isConnected.fetch().done(this._handleConnectivityChange);
         }
@@ -288,7 +288,7 @@ class CacheableImage extends React.Component {
 
     componentWillUnmount() {
         if (this.props.checkNetwork) {
-            NetInfo.isConnected.removeEventListener('change', this._handleConnectivityChange);
+            NetInfo.isConnected.removeEventListener('connectionChange', this._handleConnectivityChange);
             this._handleConnectivityChange = null;
         }
         // console.warn('componentWillUnmount...',this.downloading,this.jobId);

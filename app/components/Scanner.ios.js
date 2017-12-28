@@ -1,6 +1,6 @@
 'uset strict'
 
-import React,{Component,PropTypes,NativeModules} from 'react';
+import React,{Component,NativeModules} from 'react';
 
 import {
   View,

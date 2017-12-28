@@ -4,6 +4,7 @@ import React,{Component} from 'react';
 import {
   View,
   Platform,
+  ViewPropTypes
   // Linking
 } from 'react-native';
 import PropTypes from 'prop-types';
@@ -63,7 +64,6 @@ export default class NetworkText extends Component {
     // var url = 'http://www.pdf995.com/samples/pdf.pdf';
     var url = `${baseUri}tickets/docs/${id}.${type}`;
     var downFilePath=`${saveDocumentPath}/${id}.${type}`;
-
     var token = await storage.getToken();
     var deviceid=await storage.getDeviceId();
     var headers={};
@@ -75,8 +75,7 @@ export default class NetworkText extends Component {
         console.warn('will open file...');
         this.fileOpen(downFilePath,type);
       }else {
-        const ret = RNFS.downloadFile({ fromUrl: url, toFile: downFilePath, begin, progress, false, progressDivider ,headers});
-
+        const ret = RNFS.downloadFile({ fromUrl: url, toFile: downFilePath, begin, progress, background:false, progressDivider ,headers});
         console.warn('start down load file with id:',ret.jobId);
         jobId = ret.jobId;
 

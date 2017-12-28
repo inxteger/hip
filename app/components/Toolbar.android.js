@@ -1,8 +1,8 @@
 'use strict';
 import React,{Component} from 'react';
-
-import {View,ToolbarAndroid,Platform} from 'react-native';
 import PropTypes from 'prop-types';
+
+import {View,ToolbarAndroid,Platform,ViewPropTypes} from 'react-native';
 import {GREEN} from '../styles/color.js';
 import privilegeHelper from '../utils/privilegeHelper.js';
 

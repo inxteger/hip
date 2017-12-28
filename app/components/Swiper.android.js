@@ -15,7 +15,8 @@ import {
   View,
   TouchableOpacity,
   Dimensions,
-  ViewPagerAndroid
+  ViewPagerAndroid,
+  ViewPropTypes
 } from 'react-native'
 
 // Using bare setTimeout, setInterval, setImmediate

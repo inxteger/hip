@@ -1,9 +1,9 @@
 'use strict'
 
 import React,{Component} from 'react';
-
-import {View,StyleSheet} from 'react-native';
 import PropTypes from 'prop-types';
+
+import {View,StyleSheet,ViewPropTypes} from 'react-native';
 import TouchFeedback from './TouchFeedback';
 import Text from './Text';
 import {GREEN,GRAY,TAB_BORDER} from '../styles/color.js';

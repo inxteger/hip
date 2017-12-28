@@ -4,6 +4,7 @@ import React,{Component} from 'react';
 import {
   View,
 } from "react-native";
+import PropTypes from 'prop-types';
 import Hud from './Hud.js';
 
 export default class ContextComponent extends Component {

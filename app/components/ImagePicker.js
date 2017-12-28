@@ -1,5 +1,6 @@
 'use strict';
 import React,{Component} from 'react';
+import PropTypes from 'prop-types';
 
 import {
   View,
@@ -82,9 +83,9 @@ export default class ImagePicker extends Component {
 
   }
   _takePhoto(){
-    Permissions.getPermissionStatus('camera').then(response => {
+    Permissions.check('camera').then(response => {
         //response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
-        console.warn('getPermissionStatus',response);
+        console.warn('check',response);
         if (response==='authorized'||response==='undetermined') {
 
         }else {
@@ -218,7 +219,7 @@ export default class ImagePicker extends Component {
         this._getImages();
       });
     }else {
-      Permissions.getPermissionStatus('photo').then(response => {
+      Permissions.check('photo').then(response => {
           // response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
           console.warn('getPermissionStatus',response);
           if (response==='authorized'||response==='undetermined') {

@@ -3,7 +3,6 @@
 import React,{Component,} from 'react';
 
 import {View} from 'react-native';
-import PropTypes from 'prop-types';
 
 import {LINE} from '../styles/color.js';
 

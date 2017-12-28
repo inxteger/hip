@@ -75,8 +75,15 @@ export default class NetworkDocumentCard extends Component {
         console.warn('will open file...');
         this.fileOpen(downFilePath,type);
       }else {
-        const ret = RNFS.downloadFile({ fromUrl: url, toFile: downFilePath, begin, progress, false, progressDivider,headers});
-
+        const ret = RNFS.downloadFile({
+          fromUrl: url,
+          toFile: downFilePath,
+          headers,
+          background:false,
+          progressDivider,
+          begin,
+          progress
+        });
         console.warn('start down load file with id:',ret.jobId);
         jobId = ret.jobId;
 

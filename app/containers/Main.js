@@ -264,7 +264,7 @@ class Main extends Component{
         this._getImagesWithInit();
       });
     }else {
-      Permissions.getPermissionStatus('photo').then(response => {
+      Permissions.check('photo').then(response => {
           // response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
           console.warn('getPermissionStatus',response);
           if (response==='authorized'||response==='undetermined') {

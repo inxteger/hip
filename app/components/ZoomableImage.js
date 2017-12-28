@@ -1,6 +1,6 @@
 'use strict';
 
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
 import { View, PanResponder, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import NetworkImage from './NetworkImage.js';
