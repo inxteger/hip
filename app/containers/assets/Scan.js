@@ -20,7 +20,7 @@ import {loadPanelHierarchy,updateScanDeviceData,updateSpHttpInfo,bindAssetHierar
 import ScanView from '../../components/assets/ScanView';
 import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
-var Permissions = require('react-native-permissions');
+import Permissions from 'react-native-permissions';
 
 class Scan extends Component{
   static contextTypes = {
@@ -29,7 +29,7 @@ class Scan extends Component{
   }
   constructor(props){
     super(props);
-    // Permissions.check('camera').then(response => {
+    // Permissions.getPermissionStatus('camera').then(response => {
     //     //response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
     //     this.state = { photoPermission: response,openCamera:false };
     // });
@@ -143,7 +143,7 @@ class Scan extends Component{
     });
     InteractionManager.runAfterInteractions(() => {
       // console.warn('InteractionManager done');
-      Permissions.check('camera').then(response => {
+      Permissions.getPermissionStatus('camera').then(response => {
           //response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
           // console.warn('getPermissionStatus',response);
           if (response==='authorized'||response==='undetermined') {

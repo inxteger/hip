@@ -18,12 +18,12 @@
 		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		7F2E67971D8E322600A9BBFA /* libRNDocumentInteractionController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F2E67931D8E322000A9BBFA /* libRNDocumentInteractionController.a */; };
-		7F3E64391FF48F1F008ED911 /* libReactNativePermissions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F3E64371FF48F06008ED911 /* libReactNativePermissions.a */; };
 		7F3E64961FF49444008ED911 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F3E64641FF49437008ED911 /* libRCTAnimation.a */; };
 		7F3E64971FF494B6008ED911 /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F1C004A1E8F58E500B69378 /* libRNDeviceInfo.a */; };
 		7F3E64981FF494BC008ED911 /* libReactNativeLocalization.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F810E881F4586C300938F1C /* libReactNativeLocalization.a */; };
 		7F3E64991FF494F6008ED911 /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FB22A691D87EC2D009F4EB4 /* libRNFS.a */; };
 		7F3E65C51FF49B15008ED911 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F3E65C21FF49B00008ED911 /* libRCTText.a */; };
+		7F3E65C61FF4C17F008ED911 /* libReactNativePermissions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F3E64371FF48F06008ED911 /* libReactNativePermissions.a */; };
 		7F5574351E8AC34A00AA8E3F /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F5574341E8AC34A00AA8E3F /* Photos.framework */; };
 		7F55746D1E8ACCC600AA8E3F /* libDetectNewPhoto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F4095571E70E91F00BECB9B /* libDetectNewPhoto.a */; };
 		7F55746E1E8ACCCC00AA8E3F /* libRNScreenshotDetector.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F5574301E8A421100AA8E3F /* libRNScreenshotDetector.a */; };
@@ -517,12 +517,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F3E65C61FF4C17F008ED911 /* libReactNativePermissions.a in Frameworks */,
 				7F3E65C51FF49B15008ED911 /* libRCTText.a in Frameworks */,
 				7F3E64991FF494F6008ED911 /* libRNFS.a in Frameworks */,
 				7F3E64981FF494BC008ED911 /* libReactNativeLocalization.a in Frameworks */,
 				7F3E64971FF494B6008ED911 /* libRNDeviceInfo.a in Frameworks */,
 				7F3E64961FF49444008ED911 /* libRCTAnimation.a in Frameworks */,
-				7F3E64391FF48F1F008ED911 /* libReactNativePermissions.a in Frameworks */,
 				7F877C4D1EB87A3A005C6EA2 /* libRNImagePicker.a in Frameworks */,
 				7F55746E1E8ACCCC00AA8E3F /* libRNScreenshotDetector.a in Frameworks */,
 				7F55746D1E8ACCC600AA8E3F /* libDetectNewPhoto.a in Frameworks */,

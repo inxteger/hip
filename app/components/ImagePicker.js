@@ -23,7 +23,7 @@ import fileHelper from '../utils/fileHelper.js';
 import {localStr,localFormatStr} from '../utils/Localizations/localization.js';
 
 var {ImagePickerManager} = NativeModules;
-var Permissions = require('react-native-permissions');
+import Permissions from 'react-native-permissions';
 
 export default class ImagePicker extends Component {
   constructor(props){
@@ -221,7 +221,7 @@ export default class ImagePicker extends Component {
     }else {
       Permissions.check('photo').then(response => {
           // response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
-          console.warn('getPermissionStatus',response);
+          console.warn('check',response);
           if (response==='authorized'||response==='undetermined') {
             InteractionManager.runAfterInteractions(() => {
               this._getImages();
