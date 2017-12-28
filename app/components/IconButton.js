@@ -1,7 +1,7 @@
 'use strict'
 
 import React,{Component} from 'react';
-import {View} from 'react-native';
+import {View,ViewPropTypes} from 'react-native';
 import PropTypes from 'prop-types';
 import TouchFeedback from './TouchFeedback';
 import Icon from './Icon.js';

@@ -1,7 +1,6 @@
 'use strict';
 
 import { NativeModules } from 'react-native';
-import PropTypes from 'prop-types';
 
 var _cached = null;
 

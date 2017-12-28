@@ -2,7 +2,6 @@
 
 import storage from '../utils/storage';
 import {Platform} from 'react-native';
-import PropTypes from 'prop-types';
 import appInfo from '../utils/appInfo.js';
 
 import {getInterfaceLanguage} from '../utils/Localizations/localization.js';

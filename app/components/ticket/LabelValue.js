@@ -1,7 +1,11 @@
 'use strict'
 import React,{Component} from 'react';
 
-import {View,Linking} from 'react-native';
+import {
+  View,
+  Linking,
+  ViewPropTypes
+} from 'react-native';
 import PropTypes from 'prop-types';
 import Text from '../Text.js';
 import NetworkText from './NetworkText.js';

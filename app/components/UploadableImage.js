@@ -175,7 +175,7 @@ UploadableImage.propTypes = {
   name:PropTypes.string,
   resizeMode:PropTypes.string,
   loaded:PropTypes.bool,
-  style:PropTypes.number,
+  style:PropTypes.object,
   height:PropTypes.number,
   width:PropTypes.number,
   postUri:PropTypes.string,

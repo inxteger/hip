@@ -1,7 +1,10 @@
 'use strict'
 import React,{Component} from 'react';
 
-import {View,} from 'react-native';
+import {
+  View,
+  ViewPropTypes
+} from 'react-native';
 import PropTypes from 'prop-types';
 import Text from '../Text.js';
 import {BLACK,GREEN} from '../../styles/color.js';
