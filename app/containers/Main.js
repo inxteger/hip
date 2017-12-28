@@ -231,7 +231,7 @@ class Main extends Component{
             width: image.width,
             height: image.height,
         };
-        // var successCallBack = ()=>{
+        var successCallBack = ()=>{
           this.showViewIsVisible=true;
           var path = RNFS.DocumentDirectoryPath + '/'+imageName;
           ActionSheetIOS.showShareActionSheetWithOptions({
@@ -248,11 +248,11 @@ class Main extends Component{
             this.showViewIsVisible=false;
             this.timestamp=new Date().getTime();
           });
-        // };
+        };
         var errorCallback = (error)=>{
             console.log('error: ', error);
         };
-        // ScreenshotDetector.saveImage(obj, successCallBack, errorCallback);
+        ScreenshotDetector.saveImage(obj, successCallBack, errorCallback);
       }
     }
   }
