@@ -3,6 +3,7 @@ import React,{Component,} from 'react';
 
 
 import {Text,} from 'react-native';
+import PropTypes from 'prop-types';
 
 
 
@@ -173,8 +174,8 @@ export default class Icon extends Component {
 }
 
 Icon.propTypes = {
-  type:React.PropTypes.string.isRequired,
-  color:React.PropTypes.string.isRequired,
-  size:React.PropTypes.number.isRequired,
-  style:React.PropTypes.any
+  type:PropTypes.string.isRequired,
+  color:PropTypes.string.isRequired,
+  size:PropTypes.number.isRequired,
+  style:PropTypes.any
 };

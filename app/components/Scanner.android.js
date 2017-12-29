@@ -1,10 +1,11 @@
 'use strict';
 
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
 import BarcodeScanner from 'react-native-barcodescanner';
 import {
   View,
 } from 'react-native';
+import PropTypes from 'prop-types';
 import ViewFinder from './ViewFinder.js';
 
 export default class Scanner extends Component{

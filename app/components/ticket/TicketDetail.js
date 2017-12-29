@@ -1,15 +1,16 @@
 
 'use strict';
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
 
 import {
   View,
-  Image,
+  ImageBackground,
   StyleSheet,
   ScrollView,
   Dimensions,
   Platform,
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 import Toolbar from '../Toolbar';
 
@@ -50,7 +51,7 @@ export default class TicketDetail extends Component{
         <View style={{
             flex:1,
             justifyContent:'flex-end'}}>
-            <Image
+            <ImageBackground
               resizeMode="stretch"
               style={{justifyContent:'flex-end',
                 width,height,paddingBottom:28,paddingHorizontal:16}}
@@ -61,7 +62,7 @@ export default class TicketDetail extends Component{
               <Text numberOfLines={1} style={{fontSize:20,color:'white'}}>
                 {rowData.get('BuildingNames').join('、')}
               </Text>
-            </Image>
+            </ImageBackground>
 
         </View>
       </NetworkImage>

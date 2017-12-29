@@ -1,14 +1,15 @@
 
 'use strict';
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
 
 import {
   View,
   Dimensions,
   StyleSheet,
-  Image
+  ImageBackground
   // InteractionManager,
 } from 'react-native';
+import PropTypes from 'prop-types';
 import Text from '../Text.js';
 import TouchFeedback from '../TouchFeedback';
 import Button from '../Button';
@@ -54,12 +55,12 @@ export default class TrialView extends Component{
     var {width,height} = Dimensions.get('window');
 
     return (
-      <Image
+      <ImageBackground
         sizeMode='contain'
         style={{flex:1,width,height}}
         source={require('../../images/trial/trial.jpg')}>
         {children}
-      </Image>
+      </ImageBackground>
     )
   }
   render() {

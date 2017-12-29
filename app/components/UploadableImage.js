@@ -1,11 +1,12 @@
 'use strict';
 
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
 
 import {
   View,
-  Image,
+  ImageBackground,
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 import Text from './Text.js';
 import {getBaseUri} from '../middleware/api.js';
@@ -154,14 +155,14 @@ class UploadableImage extends Component {
         width: this.props.width,
         padding: 0,
       },this.props.style]}>
-        <Image
+        <ImageBackground
           source={{uri:this.props.uri}}
           resizeMode={resizeMode}
           style={imageStyle} >
           {overlay}
           {text}
           {children}
-        </Image>
+        </ImageBackground>
       </View>
     );
 
@@ -174,7 +175,7 @@ UploadableImage.propTypes = {
   name:PropTypes.string,
   resizeMode:PropTypes.string,
   loaded:PropTypes.bool,
-  style:PropTypes.number,
+  style:PropTypes.object,
   height:PropTypes.number,
   width:PropTypes.number,
   postUri:PropTypes.string,

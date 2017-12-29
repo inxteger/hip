@@ -1,11 +1,12 @@
 'use strict';
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
 import {
   View,
   StyleSheet,
   Dimensions,
-  Image,
+  ImageBackground,
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 import Icon from '../Icon';
 import Form from './Form';
@@ -39,7 +40,7 @@ export default class Login extends Component{
       text = localStr('lang_login_mobiledes');
     }
     return (
-      <Image
+      <ImageBackground
         source={require('../../images/trial/trial.jpg')}
         resizeMode="cover"
         style={[{width,height},styles.imageBackground]}>
@@ -60,7 +61,7 @@ export default class Login extends Component{
 
         </View>
         <KeyboardSpacer force={true} />
-      </Image>
+      </ImageBackground>
     )
   }
 }

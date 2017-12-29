@@ -1,8 +1,9 @@
 'use strict'
 
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
+import PropTypes from 'prop-types';
 
-import {View,StyleSheet} from 'react-native';
+import {View,StyleSheet,ViewPropTypes} from 'react-native';
 import TouchFeedback from './TouchFeedback';
 import Text from './Text';
 import {GREEN,GRAY,TAB_BORDER} from '../styles/color.js';
@@ -48,7 +49,7 @@ PagerBar.propTypes = {
   array:PropTypes.array.isRequired,
   currentIndex:PropTypes.number.isRequired,
   onClick:PropTypes.func.isRequired,
-  barStyle:View.propTypes.style,
+  barStyle:ViewPropTypes.style,
 };
 
 var styles = StyleSheet.create({

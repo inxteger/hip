@@ -1,6 +1,7 @@
 'use strict'
 
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
+import PropTypes from 'prop-types';
 // import Icon from '../Icon.js';
 // import {BLACK,GRAY,GREEN} from '../../styles/color';
 import List from '../List.js';

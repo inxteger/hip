@@ -1,7 +1,8 @@
 'use strict';
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
+import PropTypes from 'prop-types';
 
-import {View,StyleSheet,Image} from 'react-native';
+import {View,StyleSheet,Image,ViewPropTypes} from 'react-native';
 import {GREEN,IOS_NAVBAR,IOS_NAVBAR_BORDER,LIGHTGRAY} from '../styles/color.js';
 import Text from './Text.js';
 import TouchFeedback from './TouchFeedback';
@@ -133,7 +134,7 @@ export default class Toolbar extends Component {
 
 Toolbar.propTypes = {
   noShadow:PropTypes.bool,
-  style:View.propTypes.style,
+  style:ViewPropTypes.style,
   opacity:PropTypes.number,
   titleColor:PropTypes.string,
   color:PropTypes.string,

@@ -1,7 +1,12 @@
 'use strict'
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
 
-import {View,Linking} from 'react-native';
+import {
+  View,
+  Linking,
+  ViewPropTypes
+} from 'react-native';
+import PropTypes from 'prop-types';
 import Text from '../Text.js';
 import NetworkText from './NetworkText.js';
 import {GRAY,BLACK,GREEN} from '../../styles/color.js';
@@ -66,6 +71,6 @@ export default class LabelValue extends Component {
 LabelValue.propTypes = {
   label:PropTypes.string.isRequired,
   value:PropTypes.any.isRequired,
-  style:View.propTypes.style,
+  style:ViewPropTypes.style,
   forceStoped:PropTypes.bool,
 }

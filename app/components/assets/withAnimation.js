@@ -1,12 +1,12 @@
 import React, {
   Component,
-  PropTypes,
 } from 'react';
 
 import {
   Animated,
   Easing,
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 export default function withAnimation(WrappedComponent, indeterminateProgress) {
   const wrappedComponentName = WrappedComponent.displayName

@@ -1,10 +1,11 @@
 'use strict'
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
 import {
   View,
   StyleSheet,
   Dimensions,
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 import Text from '../Text';
 // import TouchFeedback from '../TouchFeedback';

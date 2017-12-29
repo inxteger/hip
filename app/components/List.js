@@ -1,6 +1,6 @@
 
 'use strict';
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
 
 import {
   View,
@@ -8,8 +8,10 @@ import {
   Platform,
   RefreshControl,
   StyleSheet,
-  RecyclerViewBackedScrollView
+  RecyclerViewBackedScrollView,
+  ViewPropTypes
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 import Text from './Text';
 import TouchFeedback from './TouchFeedback';
@@ -21,7 +23,7 @@ import {localStr,localFormatStr} from '../utils/Localizations/localization.js';
 
 export default class List extends Component{
   static contextTypes = {
-    navigator:React.PropTypes.object
+    navigator:PropTypes.object
   }
   constructor(props){
     super(props);
@@ -309,7 +311,7 @@ List.propTypes = {
   hasFilter:PropTypes.bool,
   onFilterClick:PropTypes.func,
   clearFilter:PropTypes.func,
-  contentContainerStyle:View.propTypes.style,
+  contentContainerStyle:ViewPropTypes.style,
   isFetching:PropTypes.bool.isRequired,
   listData:PropTypes.object,
   needGotoTop:PropTypes.bool,

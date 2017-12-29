@@ -1,9 +1,10 @@
 
 'use strict';
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
 import {
   Alert,
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
 import backHelper from '../../utils/backHelper';

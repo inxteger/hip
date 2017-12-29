@@ -1,6 +1,5 @@
 import React, {
   Component,
-  PropTypes,
 } from 'react';
 
 import {
@@ -9,7 +8,9 @@ import {
   StyleSheet,
   Text,
   View,
+  ViewPropTypes
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 import Arc from './Arc';
 import withAnimation from './withAnimation';
@@ -204,7 +205,7 @@ ProgressCircle.propTypes = {
   borderColor: PropTypes.string,
   borderWidth: PropTypes.number,
   color: PropTypes.string,
-  children: React.PropTypes.node,
+  children: PropTypes.node,
   direction: PropTypes.oneOf(['clockwise', 'counter-clockwise']),
   formatText: PropTypes.func,
   formatIconText: PropTypes.func,
@@ -216,7 +217,7 @@ ProgressCircle.propTypes = {
   rotation: PropTypes.instanceOf(Animated.Value),
   showsText: PropTypes.bool,
   size: PropTypes.number,
-  style: View.propTypes.style,
+  style: ViewPropTypes.style,
   textStyle: Text.propTypes.style,
   textIconStyle: Text.propTypes.style,
   thickness: PropTypes.number,

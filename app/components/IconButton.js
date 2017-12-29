@@ -1,7 +1,8 @@
 'use strict'
 
-import React,{Component,PropTypes} from 'react';
-import {View} from 'react-native';
+import React,{Component} from 'react';
+import {View,ViewPropTypes} from 'react-native';
+import PropTypes from 'prop-types';
 import TouchFeedback from './TouchFeedback';
 import Icon from './Icon.js';
 import {GRAY} from '../styles/color.js';
@@ -39,7 +40,7 @@ export default class Button extends Component {
 
 Button.propTypes = {
   color:PropTypes.string,
-  style:View.propTypes.style,
+  style:ViewPropTypes.style,
   normalColor:PropTypes.string,
   disableColor:PropTypes.string,
   disabled:PropTypes.bool,

@@ -1,6 +1,6 @@
 'use strict'
 
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
 
 import {
   View,
@@ -9,6 +9,7 @@ import {
   DatePickerAndroid,
   DatePickerIOS
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 import {LINE} from '../../styles/color.js';
 import SimpleRow from '../assets/SimpleRow.js';

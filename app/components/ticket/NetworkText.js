@@ -1,11 +1,13 @@
 'use strict'
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
 
 import {
   View,
   Platform,
+  ViewPropTypes
   // Linking
 } from 'react-native';
+import PropTypes from 'prop-types';
 import Text from '../Text.js';
 // import {GRAY,BLACK,GREEN} from '../../styles/color.js';
 import Toast from 'react-native-root-toast';
@@ -62,7 +64,6 @@ export default class NetworkText extends Component {
     // var url = 'http://www.pdf995.com/samples/pdf.pdf';
     var url = `${baseUri}tickets/docs/${id}.${type}`;
     var downFilePath=`${saveDocumentPath}/${id}.${type}`;
-
     var token = await storage.getToken();
     var deviceid=await storage.getDeviceId();
     var headers={};
@@ -74,8 +75,7 @@ export default class NetworkText extends Component {
         console.warn('will open file...');
         this.fileOpen(downFilePath,type);
       }else {
-        const ret = RNFS.downloadFile({ fromUrl: url, toFile: downFilePath, begin, progress, false, progressDivider ,headers});
-
+        const ret = RNFS.downloadFile({ fromUrl: url, toFile: downFilePath, begin, progress, background:false, progressDivider ,headers});
         console.warn('start down load file with id:',ret.jobId);
         jobId = ret.jobId;
 
@@ -162,6 +162,6 @@ export default class NetworkText extends Component {
 
 NetworkText.propTypes = {
   item:PropTypes.any.isRequired,
-  style:View.propTypes.style,
+  style:ViewPropTypes.style,
   forceStoped:PropTypes.bool,
 }

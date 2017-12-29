@@ -1,10 +1,11 @@
 
 'use strict';
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
 
 import {
   View,
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 import Scanner from '../Scanner';
 import Text from '../Text.js';

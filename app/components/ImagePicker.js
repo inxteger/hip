@@ -1,5 +1,6 @@
 'use strict';
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
+import PropTypes from 'prop-types';
 
 import {
   View,
@@ -22,7 +23,7 @@ import fileHelper from '../utils/fileHelper.js';
 import {localStr,localFormatStr} from '../utils/Localizations/localization.js';
 
 var {ImagePickerManager} = NativeModules;
-var Permissions = require('react-native-permissions');
+import Permissions from 'react-native-permissions';
 
 export default class ImagePicker extends Component {
   constructor(props){
@@ -82,9 +83,9 @@ export default class ImagePicker extends Component {
 
   }
   _takePhoto(){
-    Permissions.getPermissionStatus('camera').then(response => {
+    Permissions.check('camera').then(response => {
         //response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
-        console.warn('getPermissionStatus',response);
+        console.warn('check',response);
         if (response==='authorized'||response==='undetermined') {
 
         }else {
@@ -218,9 +219,9 @@ export default class ImagePicker extends Component {
         this._getImages();
       });
     }else {
-      Permissions.getPermissionStatus('photo').then(response => {
+      Permissions.check('photo').then(response => {
           // response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
-          console.warn('getPermissionStatus',response);
+          console.warn('check',response);
           if (response==='authorized'||response==='undetermined') {
             InteractionManager.runAfterInteractions(() => {
               this._getImages();

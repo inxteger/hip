@@ -1,13 +1,13 @@
 
 'use strict';
 
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
 
 import {connect} from 'react-redux';
 import backHelper from '../../utils/backHelper';
 
 import QRCodeView from '../../components/my/QRCode.js';
-
+import PropTypes from 'prop-types';
 
 class QRCode extends Component{
   constructor(props){

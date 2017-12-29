@@ -1,12 +1,13 @@
 
 'use strict';
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
 import {
   InteractionManager,
   Alert,
   Linking
   // Permissions
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
 import backHelper from '../../utils/backHelper';
@@ -19,12 +20,12 @@ import {loadPanelHierarchy,updateScanDeviceData,updateSpHttpInfo,bindAssetHierar
 import ScanView from '../../components/assets/ScanView';
 import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
-var Permissions = require('react-native-permissions');
+import Permissions from 'react-native-permissions';
 
 class Scan extends Component{
   static contextTypes = {
-    showSpinner: React.PropTypes.func,
-    hideHud: React.PropTypes.func
+    showSpinner: PropTypes.func,
+    hideHud: PropTypes.func
   }
   constructor(props){
     super(props);
@@ -142,7 +143,7 @@ class Scan extends Component{
     });
     InteractionManager.runAfterInteractions(() => {
       // console.warn('InteractionManager done');
-      Permissions.getPermissionStatus('camera').then(response => {
+      Permissions.check('camera').then(response => {
           //response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
           // console.warn('getPermissionStatus',response);
           if (response==='authorized'||response==='undetermined') {

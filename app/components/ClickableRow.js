@@ -1,13 +1,14 @@
 'use strict'
 
-import React,{Component,PropTypes} from 'react';
+import React,{Component} from 'react';
 
 import {View,Animated} from 'react-native';
+import PropTypes from 'prop-types';
 import TouchFeedback from './TouchFeedback.js';
 
 export default class ClickableRow extends Component {
   static contextTypes = {
-    navigator:React.PropTypes.object
+    navigator:PropTypes.object
   }
   constructor(props){
     super(props);
