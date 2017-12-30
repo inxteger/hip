@@ -515,6 +515,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				7FFC58131FF7D1C10083D1AB /* libReactNativePermissions.a in Frameworks */,
 				7FFC580B1FF7BA890083D1AB /* libRCTCamera.a in Frameworks */,
 				7F3E65C51FF49B15008ED911 /* libRCTText.a in Frameworks */,
@@ -540,7 +541,6 @@
 				B4E1D3951CDB30BC00B42638 /* UTDID.framework in Frameworks */,
 				B4E1D3961CDB30BC00B42638 /* UTMini.framework in Frameworks */,
 				B4E1D36E1CD37AF700B42638 /* libRCTCameraRoll.a in Frameworks */,
-				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
 				00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */,
