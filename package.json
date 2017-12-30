@@ -28,7 +28,7 @@
     "react-native-deprecated-custom-components": "git+https://github.com/samuelltk/react-native-deprecated-custom-components-1",
     "react-native-detect-new-photo": "^0.1.0",
     "react-native-device-info": "^0.13.0",
-    "react-native-file-opener": "^0.2.0",
+    "react-native-file-opener": "git+https://github.com/samuelltk/react-native-file-opener",
     "react-native-fs": "^2.9.6",
     "react-native-gesture-responder": "^0.1.1",
     "react-native-image-picker": "^0.26.7",
