@@ -29,7 +29,7 @@ class Scan extends Component{
   }
   constructor(props){
     super(props);
-    // Permissions.getPermissionStatus('camera').then(response => {
+    // Permissions.check('camera').then(response => {
     //     //response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
     //     this.state = { photoPermission: response,openCamera:false };
     // });
@@ -145,7 +145,7 @@ class Scan extends Component{
       // console.warn('InteractionManager done');
       Permissions.check('camera').then(response => {
           //response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
-          // console.warn('getPermissionStatus',response);
+          // console.warn('check',response);
           if (response==='authorized'||response==='undetermined') {
             this._mounted(true);
           }else {

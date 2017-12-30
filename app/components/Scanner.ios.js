@@ -7,21 +7,17 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import Camera from 'react-native-camera';
-// var CameraManager = NativeModules.CameraManager;
 import ViewFinder from './ViewFinder.js';
 
 export default class Scanner extends Component{
   constructor(props){
     super(props);
-    // CameraManager.changeOrientation('landscapeLeft');
   }
   render() {
     return (
       <Camera
         style={{flex:1,}}
         onBarCodeRead={this.props.onBarCodeRead}
-        orientation="portrait"
-        captureAudio={false}
          >
 
          <View style={{flex:1,backgroundColor:'#000000',opacity:0.6,}}>
