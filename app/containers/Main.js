@@ -24,12 +24,11 @@ import Ticket from './ticket/Ticket';
 import Assets from './assets/Assets';
 import notificationHelper from '../utils/notificationHelper.js';
 import ViewPager from '../components/ViewPager';
-// import codePush from "react-native-code-push";
 import privilegeHelper from '../utils/privilegeHelper.js';
 import {detectClipboard,emptyClipboard} from '../actions/appAction.js';
 // console.warn('ViewPager',ViewPager);
 import CameraRoll from 'rn-camera-roll';
-import Permissions from 'react-native-permissions';
+// import Permissions from 'react-native-permissions';
 
 import ReactNativeDetectNewPhoto from 'react-native-detect-new-photo';
 import * as ScreenshotDetector from 'react-native-screenshot-detector';
@@ -264,29 +263,29 @@ class Main extends Component{
         this._getImagesWithInit();
       });
     }else {
-      Permissions.check('photo').then(response => {
-          // response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
-          console.warn('check',response);
-          if (response==='authorized'||response==='undetermined') {
-            InteractionManager.runAfterInteractions(() => {
-              this._getImagesWithInit();
-            });
-          }else {
-            Alert.alert(
-              '',
-              localStr('lang_commons_notice19'),
-              [
-                {text: localStr('lang_ticket_cancel'), onPress: () => {
-                }},
-                {text:localStr('lang_commons_notice15'), onPress: () => {
-                  if (Permissions.canOpenSettings()) {
-                    Permissions.openSettings();
-                  }
-                }}
-              ]
-            )
-          }
-      });
+      // Permissions.check('photo').then(response => {
+      //     // response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
+      //     console.warn('check',response);
+      //     if (response==='authorized'||response==='undetermined') {
+      //       InteractionManager.runAfterInteractions(() => {
+      //         this._getImagesWithInit();
+      //       });
+      //     }else {
+      //       Alert.alert(
+      //         '',
+      //         localStr('lang_commons_notice19'),
+      //         [
+      //           {text: localStr('lang_ticket_cancel'), onPress: () => {
+      //           }},
+      //           {text:localStr('lang_commons_notice15'), onPress: () => {
+      //             if (Permissions.canOpenSettings()) {
+      //               Permissions.openSettings();
+      //             }
+      //           }}
+      //         ]
+      //       )
+      //     }
+      // });
     }
   }
 

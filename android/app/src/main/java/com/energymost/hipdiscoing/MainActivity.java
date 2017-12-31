@@ -11,6 +11,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.os.Bundle;
 import android.util.Log;
 import android.app.Activity;
 import android.content.Intent;
@@ -20,8 +21,6 @@ import android.app.Dialog;
 import java.util.Arrays;
 import java.util.List;
 
-
-// import com.eguma.barcodescanner.BarcodeScannerPackage;
 // import com.microsoft.codepush.react.CodePush;
 // import com.imagepicker.ImagePickerPackage;
 //
@@ -88,13 +87,26 @@ public class MainActivity extends ReactActivity {
     }
 
     @Override
-      public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        Intent intent = new Intent("onConfigurationChanged");
-        intent.putExtra("newConfig", newConfig);
-        this.sendBroadcast(intent);
-      }
+    public void onConfigurationChanged(Configuration newConfig) {
+      super.onConfigurationChanged(newConfig);
+      Intent intent = new Intent("onConfigurationChanged");
+      intent.putExtra("newConfig", newConfig);
+      this.sendBroadcast(intent);
+    }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Log.d("sanbo","onCreate Bundle savedInstanceState ");
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
     // public static ReactContext getContext() {
     //   ReactInstanceManager sReactInstanceManager = this.getReactNativeHost().getReactInstanceManager();
     //     if (sReactInstanceManager == null){

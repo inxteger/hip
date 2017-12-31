@@ -171,24 +171,17 @@ dependencies {
     compile project(':ReactAndroid')
     /*compile "cn.finalteam:galleryfinal:1.4.8.7"*/
     /*compile "com.aliyun.dpa:oss-android-sdk:2.2.0"*/
-    compile (project(':ReactNativeBarcodescanner')){
-      exclude group: 'com.facebook.react', module: 'react-native'
-    }
     compile (project(':react-native-image-picker')){
       exclude group: 'com.facebook.react', module: 'react-native'
     }
     /*compile project(':react-native-splashscreen')*/
-    /*compile project(':react-native-camera')*/
-    compile (project(':react-native-permissions')){
+    compile (project(':react-native-camera')){
       exclude group: 'com.facebook.react', module: 'react-native'
     }
     compile (project(':react-native-file-opener')){
       exclude group: 'com.facebook.react', module: 'react-native'
     }
     compile (project(':react-native-fs')){
-      exclude group: 'com.facebook.react', module: 'react-native'
-    }
-    compile (project(':react-native-svg')){
       exclude group: 'com.facebook.react', module: 'react-native'
     }
     compile (project(':react-native-orientation')){
