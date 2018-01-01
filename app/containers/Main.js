@@ -263,29 +263,29 @@ class Main extends Component{
         this._getImagesWithInit();
       });
     }else {
-      // Permissions.check('photo').then(response => {
-      //     // response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
-      //     console.warn('check',response);
-      //     if (response==='authorized'||response==='undetermined') {
-      //       InteractionManager.runAfterInteractions(() => {
-      //         this._getImagesWithInit();
-      //       });
-      //     }else {
-      //       Alert.alert(
-      //         '',
-      //         localStr('lang_commons_notice19'),
-      //         [
-      //           {text: localStr('lang_ticket_cancel'), onPress: () => {
-      //           }},
-      //           {text:localStr('lang_commons_notice15'), onPress: () => {
-      //             if (Permissions.canOpenSettings()) {
-      //               Permissions.openSettings();
-      //             }
-      //           }}
-      //         ]
-      //       )
-      //     }
-      // });
+      Permissions.getPermissionStatus('photo').then(response => {
+          // response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
+          console.warn('check',response);
+          if (response==='authorized'||response==='undetermined') {
+            InteractionManager.runAfterInteractions(() => {
+              this._getImagesWithInit();
+            });
+          }else {
+            Alert.alert(
+              '',
+              localStr('lang_commons_notice19'),
+              [
+                {text: localStr('lang_ticket_cancel'), onPress: () => {
+                }},
+                {text:localStr('lang_commons_notice15'), onPress: () => {
+                  if (Permissions.canOpenSettings()) {
+                    Permissions.openSettings();
+                  }
+                }}
+              ]
+            )
+          }
+      });
     }
   }
 

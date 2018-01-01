@@ -4,7 +4,8 @@ import React,{Component} from 'react';
 import {
   InteractionManager,
   Alert,
-  Linking
+  Linking,
+  PermissionsAndroid
   // Permissions
 } from 'react-native';
 import PropTypes from 'prop-types';
@@ -29,10 +30,6 @@ class Scan extends Component{
   }
   constructor(props){
     super(props);
-    // Permissions.check('camera').then(response => {
-    //     //response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
-    //     this.state = { photoPermission: response,openCamera:false };
-    // });
     this.state = {openCamera:false};
   }
   _getScanData(data){
@@ -141,35 +138,34 @@ class Scan extends Component{
 
       }
     });
+
     InteractionManager.runAfterInteractions(() => {
-      // console.warn('InteractionManager done');
-      Permissions.check('camera').then(response => {
-          //response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
-          // console.warn('check',response);
-          if (response==='authorized'||response==='undetermined') {
-            this._mounted(true);
-          }else {
-            Alert.alert(
-              '',
-              localStr('lang_commons_notice14'),
-              [
-                {text: localStr('lang_ticket_cancel'), onPress: () => {
-                  // Permissions.requestPermission('camera').then(response => {
-                  //   console.warn('requestPermission camera',response);
-                  //   //returns once the user has chosen to 'allow' or to 'not allow' access
-                  //   //response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
-                  // });
-                }},
-                {text: localStr('lang_commons_notice15'), onPress: () => {
-                  if (Permissions.canOpenSettings()) {
+      Permissions.getPermissionStatus('camera').then(response => {
+        console.warn('checkscan',response);
+        if (response==='authorized'||response==='undetermined'||response===true) {
+          this._mounted(true);
+        }else {
+          Alert.alert(
+            '',
+            localStr('lang_commons_notice14'),
+            [
+              {text: localStr('lang_ticket_cancel'), onPress: () => {
+                // Permissions.requestPermission('camera').then(response => {
+                //   console.warn('requestPermission camera',response);
+                //   //returns once the user has chosen to 'allow' or to 'not allow' access
+                //   //response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
+                // });
+              }},
+              {text: localStr('lang_commons_notice15'), onPress: () => {
+                if (Permissions.canOpenSettings()) {
                     Permissions.openSettings();
                   }
-                  // this.setState({openCamera:false});
-                }}
-              ]
-            )
-            this._mounted(false);
-          }
+                // this.setState({openCamera:false});
+              }}
+            ]
+          )
+          this._mounted(false);
+        }
       });
 
       var navigator = this.props.navigator;

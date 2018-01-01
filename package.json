@@ -37,7 +37,7 @@
     "react-native-navigation": "^1.1.322",
     "react-native-open-file": "git+https://github.com/samuelltk/react-native-open-file",
     "react-native-orientation": "3.1.2",
-    "react-native-permissions": "0.2.7",
+    "react-native-permissions": "git+https://github.com/samuelltk/react-native-permissions",
     "react-native-root-toast": "^2.2.1",
     "react-native-screenshot-detector": "git+https://github.com/samuelltk/react-native-screenshot-detector",
     "react-native-svg": "6.0.0",

@@ -83,7 +83,7 @@ export default class ImagePicker extends Component {
 
   }
   _takePhoto(){
-    Permissions.check('camera').then(response => {
+    Permissions.getPermissionStatus('camera').then(response => {
         //response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
         console.warn('check',response);
         if (response==='authorized'||response==='undetermined') {
@@ -219,7 +219,7 @@ export default class ImagePicker extends Component {
         this._getImages();
       });
     }else {
-      Permissions.check('photo').then(response => {
+      Permissions.getPermissionStatus('photo').then(response => {
           // response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
           console.warn('check',response);
           if (response==='authorized'||response==='undetermined') {

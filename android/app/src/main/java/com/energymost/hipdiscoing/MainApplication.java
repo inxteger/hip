@@ -18,6 +18,7 @@ import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
+import com.joshblour.reactnativepermissions.ReactNativePermissionsPackage;
 import com.github.yamill.orientation.OrientationPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 
@@ -67,11 +68,12 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new RCTCameraPackage(),
+          new RCTCameraPackage(),
           new SplashScreenPackage(),
           new ReactNativeLocalizationPackage(),
           new AppInfoPackage(),
           new ImagePickerPackage(),
+          new ReactNativePermissionsPackage(),
           new FileOpenerPackage(),
           new RNFSPackage(),
           new OrientationPackage(),
