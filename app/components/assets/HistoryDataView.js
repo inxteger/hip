@@ -18,31 +18,14 @@ import Text from '../Text';
 import utils from '../../utils/unit.js';
 import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
-// import {
-//   NativeHelpers,
-//   VictoryContainer,
-//   VictoryLabel
-// } from "victory-core-native";
-
-// import {
-//   VictoryAnimation,
-//   VictorySharedEvents,
-//   VictoryTransition,
-//   VictoryTheme
-// } from "victory-core";
-
 import {
   VictoryAxis,
-  // VictoryArea,
   VictoryBar,
-  // VictoryCandlestick,
   VictoryChart,
-  // VictoryErrorBar,
-  // VictoryGroup,
   VictoryLine,
-  VictoryScatter,
-  // VictoryStack
-} from "victory-chart-native";
+  VictoryScatter
+} from "victory-native";
+import Svg from "react-native-svg";
 
 export default class HistoryDataView extends Component{
   constructor(props){
@@ -220,7 +203,7 @@ export default class HistoryDataView extends Component{
     if (!this.props.isEnergyData) {
       return(
         <VictoryLine
-          label=" "
+          labels=" "
           style={{
             data: {
               stroke:GREEN,
@@ -396,7 +379,6 @@ export default class HistoryDataView extends Component{
           domain={[minRange, maxRange]}
           dependentAxis
           crossAxis={true}
-          offsetX={0}
           standalone={true}
           tickFormat={(y) =>{
             return this._formatNumber(String(y),1);
