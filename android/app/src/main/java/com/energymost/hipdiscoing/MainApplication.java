@@ -10,10 +10,11 @@ import android.app.Activity;
 import android.content.Intent;
 
 import com.facebook.react.ReactApplication;
+import com.horcrux.svg.SvgPackage;
+import com.lwansbrough.RCTCamera.RCTCameraPackage;
 import com.babisoft.ReactNativeLocalization.ReactNativeLocalizationPackage;
 import fr.bamlab.rncameraroll.CameraRollPackage;
 import com.devialab.detectNewPhoto.RCTDetectNewPhotoPackage;
-import com.horcrux.svg.SvgPackage;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -25,10 +26,6 @@ import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import java.util.Arrays;
 import java.util.List;
 
-
-
-// import com.eguma.barcodescanner.BarcodeScannerPackage;
-// import com.microsoft.codepush.react.CodePush;
 import com.imagepicker.ImagePickerPackage;
 import com.fileopener.FileOpenerPackage;
 import com.rnfs.RNFSPackage;
@@ -55,8 +52,8 @@ public class MainApplication extends Application implements ReactApplication {
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
 
 
-    @Override
-    protected boolean getUseDeveloperSupport() {
+   @Override
+    public boolean getUseDeveloperSupport() {
       return BuildConfig.DEBUG;
     }
 
@@ -72,15 +69,15 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+          new SvgPackage(),
+          new RCTCameraPackage(),
           new SplashScreenPackage(),
           new ReactNativeLocalizationPackage(),
           new AppInfoPackage(),
-          new ScannerPackage(),
           new ImagePickerPackage(),
           new ReactNativePermissionsPackage(),
           new FileOpenerPackage(),
           new RNFSPackage(),
-          new SvgPackage(),
           new OrientationPackage(),
           new RCTDetectNewPhotoPackage(),
           new CameraRollPackage(),

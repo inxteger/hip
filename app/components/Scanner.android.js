@@ -1,12 +1,12 @@
 'use strict';
 
 import React,{Component} from 'react';
-import BarcodeScanner from 'react-native-barcodescanner';
 import {
   View,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import ViewFinder from './ViewFinder.js';
+import Camera from 'react-native-camera';
 
 export default class Scanner extends Component{
   constructor(props){
@@ -17,12 +17,10 @@ export default class Scanner extends Component{
   }
   render() {
     return (
-      <BarcodeScanner
-        showViewFinder={false}
+      <Camera
+        style={{flex:1,}}
         onBarCodeRead={this.props.onBarCodeRead}
-        style={{ flex: 1, }}
-        torchMode="off"
-        cameraType="back" >
+         >
         <View style={{flex:1,backgroundColor:'#000000',opacity:0.6,}}>
 
         </View>
@@ -43,7 +41,7 @@ export default class Scanner extends Component{
           <View style={{flex:1,backgroundColor:'#000000',opacity:0.6,}}>
 
           </View>
-      </BarcodeScanner>
+      </Camera>
     );
   }
 }

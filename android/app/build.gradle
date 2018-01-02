@@ -83,13 +83,13 @@ def enableSeparateBuildPerCPUArchitecture = false
 def enableProguardInReleaseBuilds = false
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion '23.0.1'
+    compileSdkVersion 25
+    buildToolsVersion "26.0.2"
 
     defaultConfig {
         applicationId "com.energymost.hipdiscoing"
         minSdkVersion 18
-        targetSdkVersion 21
+        targetSdkVersion 25
         versionCode "$ROCK_VERSIONCODE".toInteger()
         versionName "$ROCK_VERSION"
         manifestPlaceholders = [ prodName:"机器顾问" ]
@@ -165,30 +165,23 @@ android {
 
 dependencies {
     compile fileTree(dir: "libs", include: ["*.jar"])
-    compile "com.android.support:appcompat-v7:23.0.1"
+    compile "com.android.support:appcompat-v7:25.3.1"
     /*compile "com.alibaba:fastjson:1.2.11"*/
     /*compile "com.facebook.react:react-native:+"  // From node_modules*/
     compile project(':ReactAndroid')
     /*compile "cn.finalteam:galleryfinal:1.4.8.7"*/
     /*compile "com.aliyun.dpa:oss-android-sdk:2.2.0"*/
-    compile (project(':ReactNativeBarcodescanner')){
-      exclude group: 'com.facebook.react', module: 'react-native'
-    }
     compile (project(':react-native-image-picker')){
       exclude group: 'com.facebook.react', module: 'react-native'
     }
     /*compile project(':react-native-splashscreen')*/
-    /*compile project(':react-native-camera')*/
-    compile (project(':react-native-permissions')){
+    compile (project(':react-native-camera')){
       exclude group: 'com.facebook.react', module: 'react-native'
     }
     compile (project(':react-native-file-opener')){
       exclude group: 'com.facebook.react', module: 'react-native'
     }
     compile (project(':react-native-fs')){
-      exclude group: 'com.facebook.react', module: 'react-native'
-    }
-    compile (project(':react-native-svg')){
       exclude group: 'com.facebook.react', module: 'react-native'
     }
     compile (project(':react-native-orientation')){
@@ -204,6 +197,12 @@ dependencies {
       exclude group: 'com.facebook.react', module: 'react-native'
     }
     compile (project(':react-native-localization')){
+      exclude group: 'com.facebook.react', module: 'react-native'
+    }
+    compile (project(':react-native-permissions')){
+      exclude group: 'com.facebook.react', module: 'react-native'
+    }
+    compile (project(':react-native-svg')){
       exclude group: 'com.facebook.react', module: 'react-native'
     }
 }

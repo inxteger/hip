@@ -25,8 +25,7 @@ public class AppInfoPackage implements ReactPackage {
 
     return modules;
   }
-
-  @Override
+  
   public List<Class<? extends JavaScriptModule>> createJSModules() {
     return Collections.emptyList();
   }
