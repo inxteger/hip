@@ -203,7 +203,6 @@ export default class HistoryDataView extends Component{
     if (!this.props.isEnergyData) {
       return(
         <VictoryLine
-          labels=" "
           style={{
             data: {
               stroke:GREEN,
