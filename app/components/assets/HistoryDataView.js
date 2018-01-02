@@ -25,7 +25,6 @@ import {
   VictoryLine,
   VictoryScatter
 } from "victory-native";
-import Svg from "react-native-svg";
 
 export default class HistoryDataView extends Component{
   constructor(props){

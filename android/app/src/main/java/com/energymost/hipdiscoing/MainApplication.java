@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.content.Intent;
 
 import com.facebook.react.ReactApplication;
+import com.horcrux.svg.SvgPackage;
 import com.lwansbrough.RCTCamera.RCTCameraPackage;
 import com.babisoft.ReactNativeLocalization.ReactNativeLocalizationPackage;
 import fr.bamlab.rncameraroll.CameraRollPackage;
@@ -68,6 +69,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+          new SvgPackage(),
           new RCTCameraPackage(),
           new SplashScreenPackage(),
           new ReactNativeLocalizationPackage(),
