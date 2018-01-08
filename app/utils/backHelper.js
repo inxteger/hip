@@ -1,7 +1,7 @@
 'use strict';
 
 import {
-  BackAndroid,
+  BackHandler,
   Platform
 } from 'react-native';
 
@@ -38,12 +38,12 @@ export default {
         defaultHandler(nav,id,func);
         return true;
       }
-      BackAndroid.addEventListener('hardwareBackPress',handlerMap[id]);
+      BackHandler.addEventListener('hardwareBackPress',handlerMap[id]);
     }
   },
   destroy(id){
     if(Platform.OS === 'android'){
-      BackAndroid.removeEventListener('hardwareBackPress',handlerMap[id]);
+      BackHandler.removeEventListener('hardwareBackPress',handlerMap[id]);
       handlerMap[id] = null;
     }
   }
