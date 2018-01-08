@@ -9,6 +9,7 @@ import {
   NetInfo,
   Linking,
   AppState,
+  BackHandler
 } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -56,7 +57,7 @@ class Entry extends Component{
       if (this.props.user&&this.props.user.get('isDemoUser')) {
         storage.removeToken();
       }
-      BackAndroid.exitApp();
+      BackHandler.exitApp();
       return false;
     }
     _exitFlag = true;
