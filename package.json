@@ -54,7 +54,7 @@
     "rn-splash-screen": "^5.2.0",
     "semver": "^5.4.1",
     "url-parse": "^1.2.0",
-    "victory-native": "0.16.5",
+    "victory-native": "0.16.6",
     "victory-chart": "24.5.0",
     "victory-core": "20.5.0"
   },
