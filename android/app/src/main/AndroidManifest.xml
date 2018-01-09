@@ -4,6 +4,7 @@
 
     <!--进行网络访问和网络状态监控相关的权限声明-->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <!--允许对sd卡进行读写操作-->
@@ -36,15 +37,15 @@
       android:name=".MainApplication"
       android:allowBackup="true"
       android:label="${prodName}"
-      android:largeHeap="true"
       android:icon="@mipmap/ic_launcher"
+      android:largeHeap="true"
       android:configChanges="orientation"
       android:screenOrientation="portrait"
-      android:theme="@style/AppTheme"
       tools:replace="android:label,android:icon">
       <activity
         android:name=".MainActivity"
         android:label="${prodName}"
+        android:theme="@style/AppTheme"
         android:screenOrientation="portrait"
         android:exported="true"
         android:launchMode="singleTop"

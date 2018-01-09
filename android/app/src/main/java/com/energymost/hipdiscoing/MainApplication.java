@@ -22,6 +22,7 @@ import com.facebook.react.shell.MainReactPackage;
 import com.joshblour.reactnativepermissions.ReactNativePermissionsPackage;
 import com.github.yamill.orientation.OrientationPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
+import com.mehcode.reactnative.splashscreen.SplashScreenPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -71,7 +72,6 @@ public class MainApplication extends Application implements ReactApplication {
           new MainReactPackage(),
           new SvgPackage(),
           new RCTCameraPackage(),
-          new SplashScreenPackage(),
           new ReactNativeLocalizationPackage(),
           new AppInfoPackage(),
           new ImagePickerPackage(),
@@ -81,6 +81,7 @@ public class MainApplication extends Application implements ReactApplication {
           new OrientationPackage(),
           new RCTDetectNewPhotoPackage(),
           new CameraRollPackage(),
+          new SplashScreenPackage(),
           new RNDeviceInfo()
       );
     }

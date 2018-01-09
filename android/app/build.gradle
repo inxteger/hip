@@ -205,6 +205,9 @@ dependencies {
     compile (project(':react-native-svg')){
       exclude group: 'com.facebook.react', module: 'react-native'
     }
+    compile (project(':rn-splash-screen')){
+      exclude group: 'com.facebook.react', module: 'react-native'
+    }
 }
 
 // Run this once to be able to run the application with BUCK
