@@ -27,10 +27,12 @@
     "react-native-deprecated-custom-components": "git+https://github.com/samuelltk/react-native-deprecated-custom-components-1",
     "react-native-detect-new-photo": "^0.1.0",
     "react-native-device-info": "^0.13.0",
+    "react-native-fetch-blob": "^0.10.8",
     "react-native-file-opener": "git+https://github.com/samuelltk/react-native-file-opener",
     "react-native-fs": "^2.9.6",
     "react-native-gesture-responder": "^0.1.1",
     "react-native-image-picker": "^0.26.7",
+    "react-native-img-cache": "^1.5.3",
     "react-native-keyboard-aware-scroll-view": "^0.4.1",
     "react-native-localization": "^0.2.1",
     "react-native-modal-dropdown": "^0.5.0",
@@ -43,6 +45,7 @@
     "react-native-svg": "6.0.1-rc.1",
     "react-native-svg-mock": "^2.0.0",
     "react-native-swipe-list-view": "^0.4.7",
+    "react-native-transformable-image": "0.0.18",
     "react-native-view-pager": "^0.2.2",
     "react-native-view-transformer": "git+https://github.com/samuelltk/react-native-view-transformer",
     "react-redux": "^5.0.6",
@@ -54,9 +57,9 @@
     "rn-splash-screen": "^5.2.0",
     "semver": "^5.4.1",
     "url-parse": "^1.2.0",
-    "victory-native": "0.16.6",
     "victory-chart": "24.5.0",
-    "victory-core": "20.5.0"
+    "victory-core": "20.5.0",
+    "victory-native": "0.16.6"
   },
   "devDependencies": {
     "eslint": "^4.14.0",
