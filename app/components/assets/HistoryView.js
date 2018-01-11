@@ -242,7 +242,7 @@ export default class HistoryView extends Component{
               contentView = this.props.contentView;
             }
             return (
-              <View key={index} style={{flex:1}}>
+              <View key={index} style={{flex:1}} accessible={false} pointerEvents='none'>
               {
                 contentView
               }
