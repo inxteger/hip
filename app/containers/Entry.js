@@ -3,7 +3,7 @@
 import React,{Component} from 'react';
 import {
   Alert,
-  BackAndroid,
+  BackHandler,
   ToastAndroid,
   Platform,
   NetInfo,
@@ -56,7 +56,7 @@ class Entry extends Component{
       if (this.props.user&&this.props.user.get('isDemoUser')) {
         storage.removeToken();
       }
-      BackAndroid.exitApp();
+      BackHandler.exitApp();
       return false;
     }
     _exitFlag = true;
@@ -137,7 +137,7 @@ class Entry extends Component{
   componentDidMount() {
     if(Platform.OS !== 'ios'){
       _exitHandler = ()=>this._readyExitApp();
-      BackAndroid.addEventListener('hardwareBackPress',_exitHandler);
+      BackHandler.addEventListener('hardwareBackPress',_exitHandler);
 
       // console.warn('hide SplashScreen');
       // Alert.alert('','hide SplashScreen')
@@ -201,7 +201,7 @@ class Entry extends Component{
   }
   componentWillUnmount() {
     if(Platform.OS !== 'ios'){
-      BackAndroid.removeEventListener('hardwareBackPress',_exitHandler);
+      BackHandler.removeEventListener('hardwareBackPress',_exitHandler);
 
     }
   }

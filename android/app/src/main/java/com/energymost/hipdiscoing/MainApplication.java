@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.content.Intent;
 
 import com.facebook.react.ReactApplication;
+import com.RNFetchBlob.RNFetchBlobPackage;
 import com.horcrux.svg.SvgPackage;
 import com.lwansbrough.RCTCamera.RCTCameraPackage;
 import com.babisoft.ReactNativeLocalization.ReactNativeLocalizationPackage;
@@ -22,6 +23,7 @@ import com.facebook.react.shell.MainReactPackage;
 import com.joshblour.reactnativepermissions.ReactNativePermissionsPackage;
 import com.github.yamill.orientation.OrientationPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
+import com.mehcode.reactnative.splashscreen.SplashScreenPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -69,9 +71,9 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNFetchBlobPackage(),
           new SvgPackage(),
           new RCTCameraPackage(),
-          new SplashScreenPackage(),
           new ReactNativeLocalizationPackage(),
           new AppInfoPackage(),
           new ImagePickerPackage(),
@@ -81,6 +83,7 @@ public class MainApplication extends Application implements ReactApplication {
           new OrientationPackage(),
           new RCTDetectNewPhotoPackage(),
           new CameraRollPackage(),
+          new SplashScreenPackage(),
           new RNDeviceInfo()
       );
     }

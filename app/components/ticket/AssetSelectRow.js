@@ -66,7 +66,7 @@ export default class AssetSelectRow extends Component{
         {this._getNavIcon()}
         <View style={{flex:1,marginLeft:offLeft+16,flexDirection:'row'}}>
           <Icon type={iconType} size={18} color={onlineColor} />
-          <View style={{flex:1}}>
+          <View style={{flex:1,justifyContent:'center'}}>
             <Text numberOfLines={1} style={[styles.titleText,{color:textColor}]}>{this.props.rowData.get(this.props.selKey)}</Text>
           </View>
         </View>

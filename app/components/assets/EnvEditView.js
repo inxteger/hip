@@ -81,9 +81,9 @@ var styles = StyleSheet.create({
   input:{
     fontSize:17,
     color:BLACK,
-    // backgroundColor:'white',
+    // backgroundColor:'red',
     flex:1,
     padding:0,
-    height:48,
+    height:35,
   }
 });

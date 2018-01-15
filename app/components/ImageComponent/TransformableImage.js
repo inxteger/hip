@@ -57,11 +57,11 @@ export default class TransformableImage extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!sameSource(this.props.source, nextProps.source)) {
+    // if (!sameSource(this.props.source, nextProps.source)) {
       //image source changed, clear last image's pixels info if any
       this.setState({pixels: undefined, keyAcumulator: this.state.keyAcumulator + 1})
       this.getImageSize(nextProps.source);
-    }
+    // }
   }
 
   render() {
@@ -92,7 +92,7 @@ export default class TransformableImage extends Component {
     return (
       <ViewTransformer
         ref='viewTransformer'
-        key={'viewTransformer#' + this.state.keyAccumulator} //when image source changes, we should use a different node to avoid reusing previous transform state
+        key={'viewTransformer#' + this.state.keyAcumulator} //when image source changes, we should use a different node to avoid reusing previous transform state
         enableTransform={this.props.enableTransform && this.state.imageLoaded} //disable transform until image is loaded
         enableScale={this.props.enableScale}
         enableTranslate={this.props.enableTranslate}

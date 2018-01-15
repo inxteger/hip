@@ -24,57 +24,57 @@ import java.util.List;
 // import com.microsoft.codepush.react.CodePush;
 // import com.imagepicker.ImagePickerPackage;
 //
-// import com.mehcode.reactnative.splashscreen.SplashScreenPackage;
+
+import com.mehcode.reactnative.splashscreen.SplashScreen;
 // import com.lwansbrough.RCTCamera.*;
 
 import android.content.Intent;
 import android.content.res.Configuration;
 
 public class MainActivity extends ReactActivity {
+    // public MainActivity(){
+    //   super();
+    //
+    //   show();
+    // }
 
-    public MainActivity(){
-      super();
-
-      show();
-    }
-
-    Dialog mSplashDialog;
-
-
-    void show() {
-        if (mSplashDialog != null && mSplashDialog.isShowing()) {
-            // Splash screen is open
-            return;
-        }
-
-        this.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                if (mSplashDialog == null) {
-                    mSplashDialog = new Dialog(MainActivity.this, R.style.SplashTheme);
-                    mSplashDialog.setCancelable(false);
-                }
-
-                if (!MainActivity.this.isFinishing()) {
-                    mSplashDialog.show();
-                }
-            }
-        });
-    }
-
-    public void hide(){
-      if (mSplashDialog == null || !mSplashDialog.isShowing()) {
-          // Not showing splash screen
-          return;
-      }
-
-      this.runOnUiThread(new Runnable() {
-          @Override
-          public void run() {
-              mSplashDialog.dismiss();
-          }
-      });
-    }
+    // Dialog mSplashDialog;
+    //
+    //
+    // void show() {
+    //     if (mSplashDialog != null && mSplashDialog.isShowing()) {
+    //         // Splash screen is open
+    //         return;
+    //     }
+    //
+    //     this.runOnUiThread(new Runnable() {
+    //         @Override
+    //         public void run() {
+    //             if (mSplashDialog == null) {
+    //                 mSplashDialog = new Dialog(MainActivity.this, R.style.SplashTheme);
+    //                 mSplashDialog.setCancelable(false);
+    //             }
+    //
+    //             if (!MainActivity.this.isFinishing()) {
+    //                 mSplashDialog.show();
+    //             }
+    //         }
+    //     });
+    // }
+    //
+    // public void hide(){
+    //   if (mSplashDialog == null || !mSplashDialog.isShowing()) {
+    //       // Not showing splash screen
+    //       return;
+    //   }
+    //
+    //   this.runOnUiThread(new Runnable() {
+    //       @Override
+    //       public void run() {
+    //           mSplashDialog.dismiss();
+    //       }
+    //   });
+    // }
 
 
     /**
@@ -96,6 +96,8 @@ public class MainActivity extends ReactActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SplashScreen.show(this, getReactInstanceManager());
+        
         super.onCreate(savedInstanceState);
         Log.d("sanbo","onCreate Bundle savedInstanceState ");
     }
