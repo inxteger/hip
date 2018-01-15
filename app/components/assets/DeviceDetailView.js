@@ -58,6 +58,7 @@ export default class DeviceDetailView extends Component{
     if(this.props.has6Dashboard){
       array.push(localStr('lang_asset_des16'));
     }
+    array.push('维修历史');
     return array;
   }
   _getTabControl(){
