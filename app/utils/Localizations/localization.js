@@ -9,6 +9,10 @@ let strings = new LocalizedStrings({
 
 export function localStr(key)
 {
+  var value=strings[key];
+  if (!value) {
+    return key;
+  }
   return strings[key];
 }
 

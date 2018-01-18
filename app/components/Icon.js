@@ -113,6 +113,14 @@ export default class Icon extends Component {
         return (
           <Text style={styles}>&#xf146;</Text>
         )
+      case 'icon_filter':
+        return (
+          <Text style={styles}>&#xf118;</Text>
+        )
+      case 'icon_notification':
+        return (
+          <Text style={styles}>&#xf101;</Text>
+        )
       case 'icon_arrow_left':
         return (
           <Text style={styles}>&#xf103;</Text>

@@ -414,3 +414,145 @@ export function changeImageComplete(data) {
     });
   }
 }
+
+export const ASSET_MAINTAINCE_REQUEST = 'ASSET_MAINTAINCE_REQUEST';
+export const ASSET_MAINTAINCE_SUCCESS = 'ASSET_MAINTAINCE_SUCCESS';
+export const ASSET_MAINTAINCE_FAILURE = 'ASSET_MAINTAINCE_FAILURE';
+
+export function loadMaintainceRecords(body){
+  return (dispatch, getState) => {
+    return dispatch({
+        types: [ASSET_MAINTAINCE_REQUEST, ASSET_MAINTAINCE_SUCCESS, ASSET_MAINTAINCE_FAILURE],
+        url: `device/maintainrecord/search`,
+        body
+    });
+  }
+}
+
+
+export const MAINTANCE_FILTER_CHANGED = 'MAINTANCE_FILTER_CHANGED';
+
+export function filterMaintanceChanged(data){
+  return (dispatch,getState)=>{
+    return dispatch({
+      type:MAINTANCE_FILTER_CHANGED,
+      data
+    });
+  }
+}
+
+export const MAINTANCE_FILTER_RESET = 'MAINTANCE_FILTER_RESET';
+
+export function resetMaintanceFilterData(){
+  return (dispatch,getState)=>{
+    return dispatch({
+      type:MAINTANCE_FILTER_RESET,
+    });
+  }
+}
+
+export const MAINTANCE_FILTER_CLOSED = 'MAINTANCE_FILTER_CLOSED';
+
+export function filterMaintanceClosed(){
+  return (dispatch,getState)=>{
+    return dispatch({
+      type:MAINTANCE_FILTER_CLOSED,
+    });
+  }
+}
+
+export const MAINTANCE_FILTER_DIDCHANGED = 'MAINTANCE_FILTER_DIDCHANGED';
+export function filterMaintanceDidChanged(data){
+  return (dispatch,getState)=>{
+    return dispatch({
+      type:MAINTANCE_FILTER_DIDCHANGED,
+      data
+    });
+  }
+}
+
+export const MAINTANCE_FIRSTPAGE = 'MAINTANCE_FIRSTPAGE';
+export function firstPage(){
+  return (dispatch,getState)=>{
+    return dispatch({
+      type:MAINTANCE_FIRSTPAGE,
+    });
+  }
+}
+
+export const MAINTANCE_NEXTPAGE = 'MAINTANCE_NEXTPAGE';
+export function nextPage(){
+  return (dispatch,getState)=>{
+    return dispatch({
+      type:MAINTANCE_NEXTPAGE,
+    });
+  }
+}
+
+export const MAINTANCE_FILTER_CLEAR = 'MAINTANCE_FILTER_CLEAR';
+export function clearMaintanceFilter(){
+  return (dispatch,getState)=>{
+    return dispatch({
+      type:MAINTANCE_FILTER_CLEAR,
+    });
+  }
+}
+
+export const MAINTANCE_RECORD_DELETE_REQUEST = 'MAINTANCE_RECORD_DELETE_REQUEST';
+export const MAINTANCE_RECORD_DELETE_SUCCESS = 'MAINTANCE_RECORD_DELETE_SUCCESS';
+export const MAINTANCE_RECORD_DELETE_FAILURE = 'MAINTANCE_RECORD_DELETE_FAILURE';
+
+export function deleteRecord(maintainRecordId){
+  return (dispatch, getState) => {
+    return dispatch({
+        types: [MAINTANCE_RECORD_DELETE_REQUEST, MAINTANCE_RECORD_DELETE_SUCCESS, MAINTANCE_RECORD_DELETE_FAILURE],
+        url: `device/maintainrecord/del/${maintainRecordId}`,
+        body:{maintainRecordId}
+    });
+
+  }
+}
+
+export const MAINTANCE_USERS_REQUEST = 'MAINTANCE_USERS_REQUEST';
+export const MAINTANCE_USERS_SUCCESS = 'MAINTANCE_USERS_SUCCESS';
+export const MAINTANCE_USERS_FAILURE = 'MAINTANCE_USERS_FAILURE';
+export function getUsersFromMaintance(customerId,hierarchyId){
+  return (dispatch, getState) => {
+    return dispatch({
+        types: [MAINTANCE_USERS_REQUEST, MAINTANCE_USERS_SUCCESS, MAINTANCE_USERS_FAILURE],
+        url:`user/list/${customerId}/${hierarchyId}`,//我觉得是不用传customerId，但是先进必需要这样
+    });
+  }
+}
+
+export const MAINTANCE_USER_SELECT_CHANGED = 'MAINTANCE_USER_SELECT_CHANGED';
+export function updateMaintanceUserSelectInfo(data){
+  return (dispatch,getState)=>{
+    return dispatch({
+      type:MAINTANCE_USER_SELECT_CHANGED,
+      data
+    });
+  }
+}
+
+export const MAINTANCE_PARTS_REQUEST = 'MAINTANCE_PARTS_REQUEST';
+export const MAINTANCE_PARTS_SUCCESS = 'MAINTANCE_PARTS_SUCCESS';
+export const MAINTANCE_PARTS_FAILURE = 'MAINTANCE_PARTS_FAILURE';
+export function getPartsFromMaintance(hierarchyId){
+  return (dispatch, getState) => {
+    return dispatch({
+        types: [MAINTANCE_PARTS_REQUEST, MAINTANCE_PARTS_SUCCESS, MAINTANCE_PARTS_FAILURE],
+        url:`device/maintainrecord/parts/${hierarchyId}`,
+    });
+  }
+}
+
+export const MAINTANCE_PART_SELECT_CHANGED = 'MAINTANCE_PART_SELECT_CHANGED';
+export function updateMaintancePartsSelectInfo(data){
+  return (dispatch,getState)=>{
+    return dispatch({
+      type:MAINTANCE_PART_SELECT_CHANGED,
+      data
+    });
+  }
+}

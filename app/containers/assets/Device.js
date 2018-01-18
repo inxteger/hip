@@ -18,6 +18,7 @@ import DeviceInfoView from '../../components/assets/DetailView.js';
 import DeviceRuntimeSettingView from '../../components/assets/DeviceRuntimeSettingView.js';
 import DeviceRealtimeDataView from '../../components/assets/DeviceRealtimeDataView.js';
 import DeviceDashboardView from '../../components/assets/DeviceDashboardView.js';
+import MaintainRecords from './MaintainRecords.js';
 import reactMixin from 'react-mixin';
 import timerMixin from 'react-timer-mixin';
 import AssetLogs from './AssetLogs.js';
@@ -77,6 +78,8 @@ class Device extends Component{
       this._loadRuntimeSetting(this.props.ownData);
     }else if (type === 'dashboardData') {
       this._loadDashboardData(this.props.ownData);
+    }else if (type==='maintainRecordData') {
+      // this._loadMainRecoredData();
     }
   }
   _onBackClick(){
@@ -149,19 +152,20 @@ console.warn('_gotoDetail...',type);
         }
         else if(index === 2){
           ret = 'runtimeData';
-        }else if(index === 3){
-          ret = 'dashboardData';
+        }
+        else if (index === 3) {
+          ret = 'maintainRecordData';
         }
       }
       else {
         if(index === 1){
           ret = 'runtimeData';
         }else if(index === 2){
-          ret = 'dashboardData';
+          ret = 'maintainRecordData';
         }
       }
     }
-    // console.warn('currentType',ret);
+    console.warn('currentType',ret,index);
     return ret;
   }
   _getDataSource(index){
@@ -237,9 +241,13 @@ console.warn('_gotoDetail...',type);
           }}
           imageId={this._getCurrentData(this.props).get('imageId')} />
       );
-    }else if(type === 'infoData'){
+    }else if(type === 'maintainRecordData'){
+      console.warn('111',this.props.ownData.get('Id'));
       component = (
-        <DeviceInfoView {...obj} />
+        <MaintainRecords {...obj} navigator={this.props.navigator}
+          customerId={this.props.ownData.get('CustomerId')}
+          hierarchyId={this.props.ownData.get('Id')}
+        />
       );
     }
     // if(component && this.state.dataSource){
@@ -346,6 +354,7 @@ Device.propTypes = {
   route:PropTypes.object,
   realtimeData:PropTypes.object,
   runtimeData:PropTypes.object,
+  maintainRecordData:PropTypes.object,
   infoData:PropTypes.object,
   dashboardDatas:PropTypes.object,
   arrCanCalcuDash:PropTypes.object,
@@ -375,15 +384,21 @@ function mapStateToProps(state,ownProps) {
     data = state.asset.deviceDetailData.get('data');
   }
   var arrCanDash=deviceDetailData.get('arrCanCalcuDash');
+  var has6Dashboard=false;
+  if (arrCanDash&&arrCanDash.size>0&&deviceDetailData) {
+    has6Dashboard=arrCanDash.size>0&&deviceDetailData.get('classType')==='变频与驱动';
+  }//为利德华福做的，机器顾问没有这个
   return {
     data,
     infoData:deviceDetailData,
     runtimeData:state.asset.deviceRuntimSetting,
+    maintainRecordData:state.asset.maintainRecordData,
     realtimeData:state.asset.deviceRealtime,
     dashboardDatas:state.asset.dashboardDatas,
     arrCanCalcuDash:arrCanDash,
     hasRuntime:deviceDetailData.get('hasRuntime'),
     hasRealtime:deviceDetailData.get('hasRealtime'),
+    has6Dashboard:has6Dashboard,
     strTkdyly:deviceDetailData.get('strTkdyly'),
     classType:deviceDetailData.get('classType'),
     errorMessage,
