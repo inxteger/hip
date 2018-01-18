@@ -12,7 +12,7 @@ import {Navigator} from 'react-native-deprecated-custom-components';
 import {connect} from 'react-redux';
 import backHelper from '../../utils/backHelper';
 
-import {loadMaintainceRecords,firstPage,nextPage,clearMaintanceFilter} from '../../actions/assetsAction.js';
+import {loadMaintainceRecords,firstPage,nextPage,clearMaintanceFilter,deleteRecord} from '../../actions/assetsAction.js';
 import MaintainRecordsView from '../../components/assets/MaintainRecordsView.js';
 import MaintainFilter from './MaintainFilter.js';
 import AlarmDetail from '../alarm/AlarmDetail';
@@ -32,7 +32,7 @@ class MaintainRecords extends Component{
     }
   }
   _loadAlarms(filter){
-    console.warn('filter',filter.toJSON());
+    // console.warn('filter',filter.toJSON());
     filter=filter.setIn(['Criteria','HierarchyId'],this.props.hierarchyId);
     this.props.loadMaintainceRecords(filter.toJSON());
   }
@@ -70,7 +70,7 @@ class MaintainRecords extends Component{
   }
   _delete(rowData){
     // console.warn('user',log.get('CreateUserName'),this.props.user.get('RealName'));
-    if(rowData.get('CreateUserName') !== this.props.user.get('RealName')){
+    if(rowData.get('MaintainPerson') !== this.props.user.get('RealName')){
       Alert.alert('','仅创建者可以删除这一日志');
       return;
     }
@@ -83,7 +83,7 @@ class MaintainRecords extends Component{
       [
         {text: '取消', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
         {text: '删除', onPress: () => {
-          this.props.deleteLog(this.props.recordData.get('Id'),log.get('Id'));
+          this.props.deleteRecord(rowData.get('AutoId'));
         }}
       ]
     )
@@ -186,6 +186,7 @@ MaintainRecords.propTypes = {
   firstPage:PropTypes.func,
   nextPage:PropTypes.func,
   clearMaintanceFilter:PropTypes.func,
+  deleteRecord:PropTypes.func,
 }
 
 
@@ -200,4 +201,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps,{loadMaintainceRecords,firstPage,nextPage,clearMaintanceFilter})(MaintainRecords);
+export default connect(mapStateToProps,{loadMaintainceRecords,firstPage,nextPage,clearMaintanceFilter,deleteRecord})(MaintainRecords);

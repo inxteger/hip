@@ -498,6 +498,21 @@ export function clearMaintanceFilter(){
   }
 }
 
+export const MAINTANCE_RECORD_DELETE_REQUEST = 'MAINTANCE_RECORD_DELETE_REQUEST';
+export const MAINTANCE_RECORD_DELETE_SUCCESS = 'MAINTANCE_RECORD_DELETE_SUCCESS';
+export const MAINTANCE_RECORD_DELETE_FAILURE = 'MAINTANCE_RECORD_DELETE_FAILURE';
+
+export function deleteRecord(maintainRecordId){
+  return (dispatch, getState) => {
+    return dispatch({
+        types: [MAINTANCE_RECORD_DELETE_REQUEST, MAINTANCE_RECORD_DELETE_SUCCESS, MAINTANCE_RECORD_DELETE_FAILURE],
+        url: `device/maintainrecord/del/${maintainRecordId}`,
+        body:{maintainRecordId}
+    });
+
+  }
+}
+
 export const MAINTANCE_USERS_REQUEST = 'MAINTANCE_USERS_REQUEST';
 export const MAINTANCE_USERS_SUCCESS = 'MAINTANCE_USERS_SUCCESS';
 export const MAINTANCE_USERS_FAILURE = 'MAINTANCE_USERS_FAILURE';

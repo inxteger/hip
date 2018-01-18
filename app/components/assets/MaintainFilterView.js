@@ -30,7 +30,6 @@ export default class MaintainFilterView extends Component{
   }
   _renderRow(rowData){
     if(rowData === 0){
-      console.warn('DateInputGroup',this.props.filter);
       return (
         <DateInputGroup
           title='时间'

@@ -74,7 +74,7 @@ export default class MaintainRecordRow extends Component{
             </View>
             <View style={{flex:1,flexDirection:'row'}}>
               <View style={{flex:1,flexDirection:'row',justifyContent:'flex-end'}}>
-                <Text numberOfLines={1} style={[styles.timeText,{fontSize:14}]}>{'王凯王凯'}</Text>
+                <Text numberOfLines={1} style={[styles.timeText,{fontSize:14}]}>{rowData.get('MaintainPerson')}</Text>
               </View>
             </View>
           </View>

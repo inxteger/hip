@@ -93,7 +93,7 @@ class MaintainFilter extends Component{
       });
   }
   render() {
-    console.warn('filterview...',this.props.selectUsers.size);
+    // console.warn('filterview...',this.props.selectUsers.size);
     return (
       <MaintainFilterView
         filter={this.props.filter}

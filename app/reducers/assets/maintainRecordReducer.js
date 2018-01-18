@@ -6,6 +6,7 @@ import {
   ASSET_MAINTAINCE_SUCCESS,
   ASSET_MAINTAINCE_FAILURE,
   MAINTANCE_FILTER_DIDCHANGED,
+  MAINTANCE_RECORD_DELETE_REQUEST, MAINTANCE_RECORD_DELETE_SUCCESS, MAINTANCE_RECORD_DELETE_FAILURE
 } from '../../actions/assetsAction.js';
 
 // import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
@@ -84,6 +85,21 @@ function mergeData(state,action) {
   return newState;
 }
 
+function removeData(state,action) {
+  var {body:{maintainRecordId}} = action;
+  var newState=state;
+  var oldData = newState.get('data');
+  if (oldData&&oldData.size>0) {
+    var index = oldData.findIndex((item)=> item.get('AutoId') === maintainRecordId);
+    if(index >= 0){
+      oldData=oldData.remove(index);
+    }
+  }
+  newState = newState.set('data',oldData);
+  newState = categoryAllDatas(newState);
+  return newState;
+}
+
 function handleError(state,action) {
   var {Error} = action.error;
   // console.warn('handleError',action);
@@ -108,6 +124,9 @@ export default commonReducer((state,action)=>{
       return state.set('isFetching',true);
     case ASSET_MAINTAINCE_SUCCESS:
       return mergeData(state,action);
+    case MAINTANCE_RECORD_DELETE_SUCCESS:
+      return removeData(state,action);
+      break;
     case ASSET_MAINTAINCE_FAILURE:
       return handleError(state,action);
     default:
