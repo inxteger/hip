@@ -44,7 +44,6 @@ export default class StatableInputGroup extends Component{
           underlineColorAndroid={'transparent'}
           textAlign={'left'}
           multiline={false}
-          editable={false}
           numberOfLines={1}
           placeholderTextColor={GRAY}
           placeholder={placeholderText}

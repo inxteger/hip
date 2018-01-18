@@ -42,7 +42,7 @@ var defaultState = Immutable.fromJS({
     selectUsers:[],
     selectParts:[],
     stable:{
-      CurrentPage:1,
+      PageIndex:1,
       PageSize:20,
       StartTime:null,
       EndTime:null,
@@ -145,13 +145,21 @@ function mappingDealResults(state,arrIndex) {
 }
 
 function convertPersons(state) {
-  var persons = state.getIn(['temp','maintainPersons']);
-  return state.setIn(['stable','Criteria','MaintainPersons'],persons);
+  // var persons = state.getIn(['temp','maintainPersons']);
+  var arrDatas=state.get('selectUsers');
+  var arrIds=arrDatas.map((item,index)=>{
+    return item.get('Id');
+  });
+  return state.setIn(['stable','Criteria','MaintainPersons'],arrIds);
 }
 
 function convertParts(state) {
-  var parts = state.getIn(['temp','parts']);
-  return state.setIn(['stable','Criteria','Parts'],parts);
+  // var parts = state.getIn(['temp','parts']);
+  var arrDatas=state.get('selectParts');
+  var arrIds=arrDatas.map((item,index)=>{
+    return item.get('Id');
+  });
+  return state.setIn(['stable','Criteria','Parts'],arrIds);
 }
 
 function convertJudgeTyps(state) {
@@ -174,7 +182,7 @@ function convertDates(state) {
 function mergeStableFilter(state,action) {
   console.warn('mergeStableFilter...',action);
   var newState = compose(convertPersons,convertParts,convertJudgeTyps,convertDealResults,convertDates)(state);
-  newState = newState.setIn(['stable','CurrentPage'],1);
+  newState = newState.setIn(['stable','PageIndex'],1);
   newState = newState.set('temp1',Immutable.fromJS(newState.get('temp').toJSON()));
 
   return newState.set('hasFilter',true);
@@ -182,13 +190,13 @@ function mergeStableFilter(state,action) {
 
 function nextPage(state,action) {
   var stable = state.get('stable');
-  stable = stable.set('CurrentPage',stable.get('CurrentPage')+1);
+  stable = stable.set('PageIndex',stable.get('PageIndex')+1);
   return state.set('stable',stable);
 }
 
 function firstPage(state,action) {
   var stable = state.get('stable');
-  stable = stable.set('CurrentPage',1);
+  stable = stable.set('PageIndex',1);
 
   return state.set('stable',stable);
 }
@@ -223,45 +231,6 @@ function partsSelectInfoChange(state,action) {
   }
   return newState;
 }
-
-// function mergeAlarmCode(state,action) {
-//   var result = action.response.Result;
-//   var newState = state.set('bugCodes',Immutable.fromJS(result));
-//
-//   if(newState.get('bugResults')&&newState.get('bugResults').size >= 0){
-//     return newState.set('isFetching',false);
-//   }
-//
-//   return newState;
-// }
-
-// function mergeAlarmBuilding(state,action) {
-//   var result = action.response.Result;
-//
-//   // console.log(result);
-//
-//   result = result.map((item)=>{
-//     return {
-//       id:item.Id,
-//       name:item.Name
-//     }
-//   });
-//
-//   var newState = state.set('bugResults',Immutable.fromJS(result));
-//   // console.warn('mergeAlarmBuilding...',newState.get('bugResults'),newState.get('bugCodes'));
-//
-//   // newState = newState.set('filterProcessResult',
-//           // Immutable.fromJS(result.map((item)=>{
-//           //   return item.name
-//           // })));
-//
-//
-//   if(newState.get('bugCodes') && newState.get('bugCodes').size >= 0){
-//     return newState.set('isFetching',false);
-//   }
-//
-//   return newState;
-// }
 
 function resetFilter(state,action) {
   return state;//.set('bugResults',[]).set('bugCodes',null);

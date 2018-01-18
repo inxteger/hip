@@ -142,7 +142,6 @@ function handleError(state,action) {
 export default function(state=defaultState,action){
   switch (action.type) {
     case MAINTANCE_USERS_REQUEST:
-    console.warn('111');
       return state.set('isFetching',true);
     case MAINTANCE_USERS_SUCCESS:
       return updateAssetsUsers(state,action);

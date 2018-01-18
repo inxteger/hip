@@ -55,8 +55,9 @@ export default class MaintancePartsView extends Component{
     // }
   }
   render() {
-    var disable = !this.props.data || !this.props.selectUsers || this.props.selectUsers.size===0;
+    var disable = !this.props.data || !this.props.selectParts || this.props.selectParts.size===0;
     var actions = [{title:'完成',show:'always',disable:disable}];
+    console.warn('aaa',this.props.selectParts);
     return (
       <View style={{flex:1,backgroundColor:'white'}}>
         <Toolbar title={this.props.title}
@@ -83,6 +84,6 @@ MaintancePartsView.propTypes = {
   isFetching:PropTypes.bool.isRequired,
   data:PropTypes.object,
   sectionData:PropTypes.object,
-  selectUsers:PropTypes.object,
+  selectParts:PropTypes.object,
   onRefresh:PropTypes.func.isRequired,
 }

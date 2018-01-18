@@ -49,11 +49,14 @@ export default class MaintainFilterView extends Component{
         }
         return item.get('RealName')+point;
       });
+      if (!strUsers||strUsers.size===0) {
+        strUsers=null;
+      }
+      // data={this.props.filter.get('MaintainPersons')}
       return (
         <StatableClickGroup
           title='维修人'
           text={strUsers}
-          data={this.props.filter.get('MaintainPersons')}
           placeholderText={'请选择维修人'}
           onRowClick={()=>{
             this.props.onSelectUsers();
@@ -62,17 +65,24 @@ export default class MaintainFilterView extends Component{
       );
     }
     else if(rowData === 2){
-      if (!this.props.bugResults || this.props.bugResults.length===0) {
-        return null;
+      var strUsers=this.props.selectParts.map((item,index)=>{
+        var point=', ';
+        if (index===(this.props.selectParts.size-1)) {
+          point='';
+        }
+        return item.get('RealName')+point;
+      });
+      if (!strUsers||strUsers.size===0) {
+        strUsers=null;
       }
+      // data={this.props.filter.get('Parts')}
       return (
         <StatableClickGroup
           title='零部件'
-          text={''}
-          data={this.props.filter.get('Parts')}
+          text={strUsers}
           placeholderText={'请选择零部件'}
           onRowClick={()=>{
-            this.props.onSelectUsers();
+            this.props.onSelectParts();
           }}
           onChanged={(text)=>this.props.filterChanged('Parts',text)} />
       );
@@ -101,7 +111,8 @@ export default class MaintainFilterView extends Component{
 
   }
   componentWillReceiveProps(nextProps) {
-    if(nextProps.filter !== this.props.filter||this.props.selectUsers!==nextProps.selectUsers){
+    if(nextProps.filter !== this.props.filter||this.props.selectUsers!==nextProps.selectUsers
+    ||this.props.selectParts!==nextProps.selectParts){
       var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
       this.setState({
         dataSource: ds.cloneWithRows([0,1,2,3,4])
@@ -150,6 +161,7 @@ MaintainFilterView.propTypes = {
   bugCodes:PropTypes.object,
   bugResults:PropTypes.array,
   selectUsers:PropTypes.object,
+  selectParts:PropTypes.object,
   doFilter:PropTypes.func.isRequired,
   isFetching:PropTypes.bool.isRequired,
   onClose:PropTypes.func.isRequired,

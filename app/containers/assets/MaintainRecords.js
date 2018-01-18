@@ -33,6 +33,7 @@ class MaintainRecords extends Component{
   }
   _loadAlarms(filter){
     console.warn('filter',filter.toJSON());
+    filter=filter.setIn(['Criteria','HierarchyId'],this.props.hierarchyId);
     this.props.loadMaintainceRecords(filter.toJSON());
   }
   _onPostingCallback(type){
@@ -41,7 +42,15 @@ class MaintainRecords extends Component{
     // });
   }
   _filterClick(){
-    this.props.navigator.push({id:'alarm_filter',component:MaintainFilter,sceneConfig:Navigator.SceneConfigs.FloatFromBottom});
+    this.props.navigator.push({
+      id:'alarm_filter',
+      component:MaintainFilter,
+      sceneConfig:Navigator.SceneConfigs.FloatFromBottom,
+      passProps:{
+        customerId:this.props.customerId,
+        hierarchyId:this.props.hierarchyId
+      }
+    });
   }
   _onAddClick(){
 
@@ -80,7 +89,7 @@ class MaintainRecords extends Component{
     )
   }
   _onRefresh(){
-    if (this.props.filter.get('CurrentPage')===1) {
+    if (this.props.filter.get('PageIndex')===1) {
       this._loadAlarms(this.props.filter);
     }else {
       this.props.firstPage();
@@ -133,10 +142,6 @@ class MaintainRecords extends Component{
     }
 
     if(this.props.filter !== nextProps.filter){
-      //this is a hack for following senario
-      //when back from filter page
-      //sometimes list is empty
-      //but when _loadAlarms included in runAfterInteractions it is fixed
       InteractionManager.runAfterInteractions(()=>{
         this._loadAlarms(nextProps.filter);
       });
@@ -148,7 +153,6 @@ class MaintainRecords extends Component{
     notificationHelper.unregister('alarm');
   }
   render() {
-    console.warn('.....',this.props.filter.get('CurrentPage'),this.props.recordData.get('pageCount'));
     return (
       <MaintainRecordsView
         loadAlarm={()=>this._loadAlarm()}
@@ -157,7 +161,7 @@ class MaintainRecords extends Component{
         hasFilter={this.props.hasFilter}
         nextPage={()=>this.props.nextPage()}
         clearFilter={()=>this.props.clearMaintanceFilter()}
-        currentPage={this.props.filter.get('CurrentPage')}
+        currentPage={this.props.filter.get('PageIndex')}
         onRefresh={()=>this._onRefresh()}
         totalPage={this.props.recordData.get('pageCount')}
         onFilterClick={()=>this._filterClick()}
@@ -187,11 +191,12 @@ MaintainRecords.propTypes = {
 
 function mapStateToProps(state) {
   var maintainFilter = state.asset.maintainFilter;
+  var filter=maintainFilter.get('stable');
   return {
     user:state.user.get('user'),
     recordData:state.asset.maintainRecordData,
     hasFilter: maintainFilter.get('hasFilter'),
-    filter:maintainFilter.get('stable'),
+    filter,
   };
 }
 

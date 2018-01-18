@@ -14,7 +14,7 @@ var defaultState = Immutable.fromJS({
   data:null,
   sectionData:Immutable.fromJS([]),
   isFetching:false,
-  selectUsers:Immutable.fromJS([]),
+  selectParts:Immutable.fromJS([]),
 });
 
 function updateAssetsUsers(state,action)
@@ -22,15 +22,21 @@ function updateAssetsUsers(state,action)
   var allSecTitle=[
   ];
   var response = action.response.Result;
-  var selectUsers = state.get('selectUsers');
-  console.warn('updateAssetsUsers...', selectUsers);
+  var selectParts = state.get('selectParts');
+  console.warn('updateAssetsUsers...', selectParts);
+
+  var arrDatas=[];
+  response.forEach((item,index)=>{
+    arrDatas.push({'Id':item,'RealName':item});
+  })
+  response=arrDatas;
   if (response&&response.length>0) {
     response.unshift({Id:'全选',RealName:'全选'});
   }
   var allElements = Immutable.fromJS(response);
   var newSelecUsers=[];
   var isAllSelect=true;
-  selectUsers.forEach((oldItem)=>{
+  selectParts.forEach((oldItem)=>{
     var index = allElements.findIndex((item)=>item.get('Id')===oldItem.get('Id'));
     if (index===-1) {
       return;
@@ -60,7 +66,7 @@ function updateAssetsUsers(state,action)
     state=state.set('data',Immutable.fromJS([]));
   }
   return state.set('isFetching',false)
-  .set('selectUsers',Immutable.fromJS(newSelecUsers));
+  .set('selectParts',Immutable.fromJS(newSelecUsers));
 }
 
 function userSelectInfoChange(state,action){
@@ -79,7 +85,7 @@ function userSelectInfoChange(state,action){
       return item;
     });
 
-    var arrSelect = newState.get('selectUsers');
+    var arrSelect = newState.get('selectParts');
     var index = arrSelect.findIndex((item)=>item.get('Id')===user.get('Id'));
     if (index!==-1) {
       arrSelect = arrSelect.delete(index);
@@ -120,10 +126,10 @@ function userSelectInfoChange(state,action){
 
     newState = newState.setIn(['data',0], arr);
 
-    newState = newState.set('selectUsers', arrSelect);
+    newState = newState.set('selectParts', arrSelect);
   }else if (type==='init') {
       // console.warn('ready to init users:',value);
-    newState=newState.set('selectUsers',value);
+    newState=newState.set('selectParts',value);
   }
   return newState;
 }

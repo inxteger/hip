@@ -46,6 +46,14 @@ export default class List extends Component{
 
     return null;
   }
+  _renderSeperator(sectionId,rowId){
+    if (this.props.renderSeperator) {
+      return this.props.renderSeperator(sectionId,rowId);
+    }
+    return (
+      <ListSeperator key={sectionId+rowId} />
+    );
+  }
   _renderSection(sectionData,sectionId){
     // console.warn('sectionId',typeof sectionId);
     if(sectionId !== 's1'){
@@ -253,7 +261,7 @@ export default class List extends Component{
               (listData.getRowCount() === 0 && (listData.sectionIdentities[0]==='s1')||listData.sectionIdentities.length===0)){
       var text = '',clearFilter = null;
       if(this.props.hasFilter){
-        text = localStr('lang_alarm_nofilteralarm');
+        text = this.props.filterEmptyText;
         clearFilter = this._getClearFilterView();
       }
       else {
@@ -284,10 +292,11 @@ export default class List extends Component{
           onScroll={(e)=>this._onScroll(e)}
           keyboardDismissMode="interactive"
           stickyHeaderIndices={[]}
+          stickySectionHeadersEnabled={false}
           onEndReachedThreshold={66*5}
           dataSource={listData}
           onEndReached={(e)=>this._onEndReached(e)}
-          renderSeparator={(sectionId,rowId)=><ListSeperator key={sectionId+rowId} />}
+          renderSeparator={(sectionId,rowId)=>this._renderSeperator(sectionId,rowId)}
           renderHeader={()=>this._renderHeader()}
           renderSectionHeader={(sectionData, sectionID)=>this._renderSection(sectionData,sectionID)}
           renderRow={(rowData,sectionId,rowId)=>this._renderRow(rowData,sectionId,rowId)}
@@ -322,7 +331,9 @@ List.propTypes = {
   renderHiddenRow:PropTypes.func,
   renderFooter:PropTypes.func,
   renderHeader:PropTypes.func,
+  renderSeperator:PropTypes.func,
   emptyText:PropTypes.string.isRequired,
+  filterEmptyText:PropTypes.string.isRequired,
 }
 
 List.defaultProps = {

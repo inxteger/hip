@@ -70,7 +70,7 @@ class MaintancePartsSelect extends Component{
   }
   render() {
     return (
-      <MaintanceSelView
+      <MaintancePartsView
         title={this.props.title}
         isFetching={this.props.isFetching}
         data={this.state.dataSource}

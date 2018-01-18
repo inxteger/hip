@@ -81,11 +81,12 @@ class MaintainFilter extends Component{
       customerId=321238;
       hierarchyId=345761;//321637;//test
     }
+    console.warn('111111');
     this.props.navigator.push({
         id:'ticket_users',
         component:MaintancePartsSelect,
         passProps:{
-          title:'维修人',
+          title:'零部件',
           customerId:customerId,
           hierarchyId:hierarchyId
         }
@@ -101,6 +102,7 @@ class MaintainFilter extends Component{
         bugCodes={this.props.bugCodes}
         bugResults={this.props.bugResults.toArray()}
         selectUsers={this.props.selectUsers}
+        selectParts={this.props.selectParts}
         onSelectUsers={()=>{
           this._onSelectMaintanceUsersClick();
         }}

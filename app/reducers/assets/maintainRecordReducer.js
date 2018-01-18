@@ -54,7 +54,7 @@ function categoryAllDatas(state)
 function mergeData(state,action) {
   var response = action.response.Result;
   var newState = state;
-  var page = action.body.PageCount;
+  var page = action.body.PageIndex;
 
   var items = response.Items;
   // items.forEach((item)=>{
@@ -76,9 +76,8 @@ function mergeData(state,action) {
 
     newState = newState.set('data',newList);
   }
-  console.warn('alarmListReducer...',page,newState.get('data').size);
+  // console.warn('alarmListReducer...',page,newState.get('data').size);
   newState = categoryAllDatas(newState);
-
   newState = newState.set('pageCount',response.PageCount);
   newState = newState.set('isFetching',false);
 

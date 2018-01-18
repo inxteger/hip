@@ -242,8 +242,10 @@ console.warn('_gotoDetail...',type);
           imageId={this._getCurrentData(this.props).get('imageId')} />
       );
     }else if(type === 'maintainRecordData'){
+      console.warn('111',this.props.ownData.get('Id'));
       component = (
-        <MaintainRecords {...obj} navigator={this.props.navigator} customerId={this.props.ownData.get('CustomerId')}
+        <MaintainRecords {...obj} navigator={this.props.navigator}
+          customerId={this.props.ownData.get('CustomerId')}
           hierarchyId={this.props.ownData.get('Id')}
         />
       );
