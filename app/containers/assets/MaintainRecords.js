@@ -71,7 +71,7 @@ class MaintainRecords extends Component{
   _delete(rowData){
     // console.warn('user',log.get('CreateUserName'),this.props.user.get('RealName'));
     if(rowData.get('MaintainPerson') !== this.props.user.get('RealName')){
-      Alert.alert('','仅创建者可以删除这一日志');
+      Alert.alert('','仅创建者可以删除此维修历史');
       return;
     }
     // if(!this._showAuth()){
