@@ -9,20 +9,21 @@ import {
 import PropTypes from 'prop-types';
 import Text from '../Text';
 import Icon from '../Icon.js';
+import TouchFeedback from '../TouchFeedback.js';
 
 import TitleComponent from '../alarm/TitleComponent.js';
 import {GRAY,BLACK,ALARM_FILTER_BUTTON_BORDER} from '../../styles/color.js';
 import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 // import KeyboardSpacer from '../KeyboardSpacer.js';
 
-export default class StatableInputGroup extends Component{
+export default class StatableClickGroup extends Component{
   constructor(props){
     super(props);
   }
   _getNavIcon(){
     // if(item.isNav){
       return (
-        <View style={{marginRight:12}}>
+        <View style={{}}>
           <Icon type='arrow_right' size={17} color={GRAY} />
         </View>
 
@@ -30,29 +31,25 @@ export default class StatableInputGroup extends Component{
     // }
   }
   _getContent(){
-    var placeholderText=this.props.placeholderText;
-    if (!placeholderText) {
-      placeholderText=localStr('lang_ticket_input2');
+    var textStyle=styles.titleText;
+    var textValue=this.props.text;
+    if (!textValue) {
+      textValue=this.props.placeholderText;
     }
     return(
+      <TouchFeedback
+        onPress={()=>{
+          this.props.onRowClick();
+        }}>
       <View style={{flex:1,borderWidth:1,borderColor:ALARM_FILTER_BUTTON_BORDER,
-        flexDirection:'row',alignItems:'center'}}>
-        <TextInput
-          ref={(input)=>this._input=input}
-          style={styles.inputStyle}
-          autoFocus={false}
-          underlineColorAndroid={'transparent'}
-          textAlign={'left'}
-          multiline={false}
-          editable={false}
-          numberOfLines={1}
-          placeholderTextColor={GRAY}
-          placeholder={placeholderText}
-          onChangeText={(text)=>this.props.onChanged(text)}
-          value={this.props.text}
-          />
+        flexDirection:'row',alignItems:'center',height:38,paddingHorizontal:12,
+      justifyContent:'space-between'}}>
+        <Text style={textStyle} numberOfLines={1}>
+          {textValue}
+        </Text>
         {this._getNavIcon()}
       </View>
+      </TouchFeedback>
   );
     // <KeyboardSpacer />
   }
@@ -75,11 +72,12 @@ export default class StatableInputGroup extends Component{
   }
 }
 
-StatableInputGroup.propTypes = {
+StatableClickGroup.propTypes = {
   title:PropTypes.string,
   text:PropTypes.string,
   placeholderText:PropTypes.string,
   onChanged:PropTypes.func,
+  onRowClick:PropTypes.func,
 }
 
 
@@ -89,19 +87,19 @@ var styles = StyleSheet.create({
     flexDirection:'column'
   },
   inputStyle:{
-    flex:1,
-    justifyContent:'flex-start',
-    alignItems:'flex-start',
-    textAlignVertical:'center',
+    // flex:1,
+    // justifyContent:'flex-start',
+    // alignItems:'flex-start',
+    // textAlignVertical:'center',
     fontSize:15,
     color:BLACK,
-    padding:0,
+    // padding:0,
     marginLeft:12,
     // backgroundColor:'red',
     height:45,
   },
   titleText:{
-    fontSize:12,
+    fontSize:15,
     color:GRAY
   },
   inputWrapper:{

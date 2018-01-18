@@ -4,6 +4,7 @@ import React,{Component} from 'react';
 import {
   ListView,
   InteractionManager,
+  Alert,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import {Navigator} from 'react-native-deprecated-custom-components';
@@ -11,9 +12,9 @@ import {Navigator} from 'react-native-deprecated-custom-components';
 import {connect} from 'react-redux';
 import backHelper from '../../utils/backHelper';
 
-import {loadAlarm,filterDidChanged,firstPage,nextPage,clearFilter} from '../../actions/alarmAction';
+import {loadMaintainceRecords,firstPage,nextPage,clearMaintanceFilter} from '../../actions/assetsAction.js';
 import MaintainRecordsView from '../../components/assets/MaintainRecordsView.js';
-import AlarmFilter from '../alarm/AlarmFilter';
+import MaintainFilter from './MaintainFilter.js';
 import AlarmDetail from '../alarm/AlarmDetail';
 import notificationHelper from '../../utils/notificationHelper.js';
 import Immutable from 'immutable';
@@ -22,7 +23,7 @@ class MaintainRecords extends Component{
   constructor(props){
     super(props);
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    var data = props.alarm.get('data');
+    var data = props.recordData.get('data');
     if (data) {
       data = data.toArray();
       this.state = { dataSource:this.ds.cloneWithRows(data)};
@@ -32,7 +33,7 @@ class MaintainRecords extends Component{
   }
   _loadAlarms(filter){
     console.warn('filter',filter.toJSON());
-    this.props.loadAlarm(filter.toJSON());
+    this.props.loadMaintainceRecords(filter.toJSON());
   }
   _onPostingCallback(type){
     // InteractionManager.runAfterInteractions(() => {
@@ -40,19 +41,43 @@ class MaintainRecords extends Component{
     // });
   }
   _filterClick(){
-    this.props.navigator.push({id:'alarm_filter',component:AlarmFilter,sceneConfig:Navigator.SceneConfigs.FloatFromBottom});
+    this.props.navigator.push({id:'alarm_filter',component:MaintainFilter,sceneConfig:Navigator.SceneConfigs.FloatFromBottom});
+  }
+  _onAddClick(){
+
   }
   _gotoDetail(alarmId,fromHex){
-    this.props.navigator.push({
-      id:'alarm_detail',
-      component:AlarmDetail,
-      barStyle:'light-content',
-      passProps:{
-        alarmId:alarmId,
-        onPostingCallback:(type)=>{this._onPostingCallback(type)},
-        fromHex
-      }
-    });
+
+    // this.props.navigator.push({
+    //   id:'alarm_detail',
+    //   component:AlarmDetail,
+    //   barStyle:'light-content',
+    //   passProps:{
+    //     alarmId:alarmId,
+    //     onPostingCallback:(type)=>{this._onPostingCallback(type)},
+    //     fromHex
+    //   }
+    // });
+  }
+  _delete(rowData){
+    // console.warn('user',log.get('CreateUserName'),this.props.user.get('RealName'));
+    if(rowData.get('CreateUserName') !== this.props.user.get('RealName')){
+      Alert.alert('','仅创建者可以删除这一日志');
+      return;
+    }
+    // if(!this._showAuth()){
+    //   return;
+    // }
+    Alert.alert(
+      '',
+      '删除此条设备维修历史记录？',
+      [
+        {text: '取消', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+        {text: '删除', onPress: () => {
+          this.props.deleteLog(this.props.recordData.get('Id'),log.get('Id'));
+        }}
+      ]
+    )
   }
   _onRefresh(){
     if (this.props.filter.get('CurrentPage')===1) {
@@ -85,7 +110,7 @@ class MaintainRecords extends Component{
   }
   componentDidMount() {
     InteractionManager.runAfterInteractions(()=>{
-      if(!this.props.alarm.get('data')){
+      if(!this.props.recordData.get('data')){
         this._loadAlarms(this.props.filter);
       }
       notificationHelper.register('alarm',()=>this._checkPushNotification());
@@ -96,8 +121,8 @@ class MaintainRecords extends Component{
     // backHelper.init(this.props.navigator,'alarm');
   }
   componentWillReceiveProps(nextProps) {
-    var data = nextProps.alarm.get('data');
-    var origData = this.props.alarm.get('data');
+    var data = nextProps.recordData.get('data');
+    var origData = this.props.recordData.get('data');
     // console.warn('componentWillReceiveProps...',data,origData);
     if((data !== origData) && data){// && data.size >= 1){
       this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -123,43 +148,51 @@ class MaintainRecords extends Component{
     notificationHelper.unregister('alarm');
   }
   render() {
+    console.warn('.....',this.props.filter.get('CurrentPage'),this.props.recordData.get('pageCount'));
     return (
       <MaintainRecordsView
         loadAlarm={()=>this._loadAlarm()}
-        isFetching={this.props.alarm.get('isFetching')}
+        isFetching={this.props.recordData.get('isFetching')}
         listData={this.state.dataSource}
         hasFilter={this.props.hasFilter}
         nextPage={()=>this.props.nextPage()}
-        clearFilter={()=>this.props.clearFilter()}
+        clearFilter={()=>this.props.clearMaintanceFilter()}
         currentPage={this.props.filter.get('CurrentPage')}
         onRefresh={()=>this._onRefresh()}
-        totalPage={this.props.alarm.get('pageCount')}
+        totalPage={this.props.recordData.get('pageCount')}
         onFilterClick={()=>this._filterClick()}
-        onRowClick={(rowData)=>this._gotoDetail(String(rowData.get('Id')),false)}/>
+        onAddClick={()=>this._onAddClick()}
+        onRowClick={(rowData)=>this._gotoDetail(String(rowData.get('Id')),false)}
+        onRowLongPress={(rowData)=>this._delete(rowData)}
+        />
     );
   }
 }
 
 MaintainRecords.propTypes = {
   navigator:PropTypes.object,
-  alarm:PropTypes.object,
+  route:PropTypes.object,
+  user:PropTypes.object,
+  recordData:PropTypes.object,
   filter:PropTypes.object,
+  customerId:PropTypes.number,
+  hierarchyId:PropTypes.number,
   hasFilter:PropTypes.bool,
-  loadAlarm:PropTypes.func,
+  loadMaintainceRecords:PropTypes.func,
   firstPage:PropTypes.func,
   nextPage:PropTypes.func,
-  clearFilter:PropTypes.func,
-  filterDidChanged:PropTypes.func,
+  clearMaintanceFilter:PropTypes.func,
 }
 
 
 function mapStateToProps(state) {
-  var alarmFilter = state.alarm.alarmFilter;
+  var maintainFilter = state.asset.maintainFilter;
   return {
-    alarm:state.asset.maintainRecordData,
-    hasFilter: alarmFilter.get('hasFilter'),
-    filter:alarmFilter.get('stable'),
+    user:state.user.get('user'),
+    recordData:state.asset.maintainRecordData,
+    hasFilter: maintainFilter.get('hasFilter'),
+    filter:maintainFilter.get('stable'),
   };
 }
 
-export default connect(mapStateToProps,{loadAlarm,filterDidChanged,firstPage,nextPage,clearFilter})(MaintainRecords);
+export default connect(mapStateToProps,{loadMaintainceRecords,firstPage,nextPage,clearMaintanceFilter})(MaintainRecords);

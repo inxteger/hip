@@ -11,6 +11,7 @@ export var HEADERDEVICEID = "disco-deviceid";
 export var HEADERLANGUAGE = "Language";
 
 var _BASEURL = "http://mobiletest.mm.energymost.com/api/";
+// var _BASEURL = 'http://mobile-dev.mm.energymost.com/api/';
 //dev
 // var _BASEURL = 'http://10.177.173.197/hiphop/mobile/api/';
 //xianjing

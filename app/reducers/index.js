@@ -10,7 +10,7 @@ import boot from './bootReducer';
 import feedBack from './feedbackReducer';
 import {RESET_ERROR_MESSAGE} from '../actions/errorAction.js';
 import {LOGOUT_REQUEST,LOGOUT_SUCCESS} from '../actions/loginAction.js';
-
+import {localStr,localFormatStr} from '../utils/Localizations/localization.js';
 
 // Updates error message to notify about the failed fetches.
 function error(state = null, action) {

@@ -32,6 +32,7 @@ class UploadableImage extends Component {
     xhr.open('POST', postUri);
     xhr.setRequestHeader(TOKENHEADER,await storage.getToken());
     xhr.setRequestHeader(HEADERDEVICEID,await storage.getDeviceId());
+    xhr.setRequestHeader('hierarchyId','123456');
 
     xhr.onload = () => {
       if (xhr.status !== 200) {
@@ -57,7 +58,7 @@ class UploadableImage extends Component {
     var formdata = new FormData();
     // console.warn('uri',this.props.uri);
     // console.warn('name',this.props.name);
-    formdata.append('filename',{uri:this.props.uri,name:this.props.name,type:'image/jpg'});
+    formdata.append('filename',{uri:this.props.uri,name:this.props.name,type:'image/jpg','username':'张三'});
 
     if (xhr.upload) {
       xhr.upload.onprogress = (event) => {

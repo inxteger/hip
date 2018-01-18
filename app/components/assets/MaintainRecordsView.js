@@ -8,22 +8,51 @@ import PropTypes from 'prop-types';
 
 import Text from '../Text';
 import Icon from '../Icon.js';
-import {GRAY,BLACK,ALARM_RED,GREEN} from '../../styles/color';
+import {GRAY,BLACK,ALARM_RED,GREEN,LOGOUT_RED,LINE} from '../../styles/color';
 import TouchFeedback from '../TouchFeedback';
+import ListSeperator from '../ListSeperator';
 import Toolbar from '../Toolbar';
 import List from '../List.js';
 import MaintainRecordRow from './MaintainRecordRow.js';
 import Section from '../Section.js';
+import RowDelete from '../RowDelete.js'
 import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
-export default class Alarm extends Component{
+export default class MaintainRecordsView extends Component{
   constructor(props){
     super(props);
   }
-  _renderRow(rowData,sectionId,rowId){
+  _renderHiddenRow(rowData,sectionId,rowId,closeRow){
+    // console.warn('_renderHiddenRow');
+    return (
+      <RowDelete onPress={()=>{
+          closeRow();
+          this.props.onRowLongPress(rowData)}} />
+    )
+  }
+  _renderSeperator(sectionId,rowId){
+    var isLastRow=false;
+    // var secRowCounts=this.props.logs.getSectionLengths();
+    // // console.warn('bb',secRowCounts[sectionId],sectionId,rowId);
+    if (this.props.listData.getRowCount()===Number(rowId)+1)
+      isLastRow=true;
+    // console.warn('aa',rowId,this.props.logs.getSectionLengths(),this.props.logs.getRowCount());
+    return (
+      <ListSeperator key={sectionId+rowId} marginWithLeft={isLastRow?0:20}/>
+    );
+  }
+  _renderRow(rowData,sectionId,rowId,closeRow){
     // console.warn('rowData',rowData);
     return (
-      <MaintainRecordRow rowData={rowData} onRowClick={this.props.onRowClick} />
+      <MaintainRecordRow
+        key={rowId}
+        rowData={rowData}
+        onRowLongPress={this.props.onRowLongPress}
+        onRowClick={(rowData)=>{
+          closeRow();
+          this.props.onRowClick(rowData)
+        }}
+        />
     );
   }
 
@@ -35,15 +64,47 @@ export default class Alarm extends Component{
       </View>
     );
   }
+  _getAssetNoView()
+  {
+    var textView=(
+      <View style={{flex:1,}}>
+        <Text numberOfLines={1} style={{fontSize:14,color:'#8e8e9c'}}>
+          {'资产编号：DS20170306DS20170306DS20170306DS20170306'}
+        </Text>
+      </View>
+    );
+    if (true) {
+      textView=(
+        <View style={{flex:1,flexDirection:'row',alignItems:'center'}}>
+          <Icon type="icon_notification" color={LOGOUT_RED} size={15} />
+          <Text numberOfLines={1} style={{fontSize:14,color:LOGOUT_RED,marginLeft:3}}>
+            {'无资产编号，请尽快填写。'}
+          </Text>
+        </View>
+      );
+    }
+    return textView;
+  }
   _getSubToolbarView()
   {
     return (
-      <View style={{height:44,backgroundColor:'#f6f5f7',alignItems:'center',paddingHorizontal:16,flexDirection:'row',}}>
-        <Text style={{fontSize:14,color:'#8e8e9c'}}>
-          {'资产编号：DS20170306'}
-        </Text>
+      <View style={{
+          height:44,backgroundColor:'#F0F0F5',
+          alignItems:'center',paddingHorizontal:16,
+          flexDirection:'row',borderTopWidth:1,
+          borderBottomWidth:1,borderColor:LINE
+        }}>
+        {this._getAssetNoView()}
+        <View style={{flexDirection:'row',justifyContent:'flex-end'}}>
+          <TouchFeedback
+            onPress={()=>{
+              this.props.onFilterClick();
+            }}>
+            <View style={{width:30,height:30,alignItems:'center',justifyContent:'flex-end',flexDirection:'row'}}>
+              <Icon type="icon_filter" color={GREEN} size={16} />
+            </View>
+          </TouchFeedback>
 
-        <View style={{flex:1,flexDirection:'row',justifyContent:'flex-end'}}>
           <TouchFeedback
             onPress={()=>{
               this.props.onAddClick();
@@ -52,17 +113,7 @@ export default class Alarm extends Component{
               <Icon type="icon_add" color={GREEN} size={16} />
             </View>
           </TouchFeedback>
-
-          <TouchFeedback
-            onPress={()=>{
-              this.props.onFilterClick();
-            }}>
-            <View style={{width:30,height:30,alignItems:'center',justifyContent:'flex-end',flexDirection:'row'}}>
-              <Icon type="icon_add" color={GREEN} size={16} />
-            </View>
-          </TouchFeedback>
         </View>
-
       </View>
     )
   }
@@ -81,23 +132,28 @@ export default class Alarm extends Component{
           totalPage={this.props.totalPage}
           clearFilter={this.props.clearFilter}
           onFilterClick={this.props.onFilterClick}
-          renderRow={(rowData,sectionId,rowId)=>this._renderRow(rowData,sectionId,rowId)}
+          swipable={true}
+          renderSeperator={(sectionId,rowId)=>this._renderSeperator(sectionId,rowId)}
+          renderRow={(rowData,sectionId,rowId,rowMap)=>this._renderRow(rowData,sectionId,rowId,rowMap)}
+          renderHiddenRow={(rowData,sectionId,rowId,rowMap)=>this._renderHiddenRow(rowData,sectionId,rowId,rowMap)}
           renderSectionHeader={(sectionData,sectionId)=>this._renderSection(sectionData,sectionId)}
-          emptyText={localStr('lang_alarm_noalarm')}
-          filterEmptyText={localStr('lang_alarm_nofilteralarm')}
+          emptyText={'无设备维修历史记录'}
+          filterEmptyText={'没有符合条件的内容'}
         />
       </View>
     );
   }
 }
 
-Alarm.propTypes = {
+MaintainRecordsView.propTypes = {
   user:PropTypes.object,
   currentPage:PropTypes.number,
   totalPage:PropTypes.number,
   hasFilter:PropTypes.bool.isRequired,
   onRowClick:PropTypes.func.isRequired,
   onFilterClick:PropTypes.func.isRequired,
+  onAddClick:PropTypes.func.isRequired,
+  onRowLongPress:PropTypes.func.isRequired,
   clearFilter:PropTypes.func.isRequired,
   isFetching:PropTypes.bool.isRequired,
   listData:PropTypes.object,

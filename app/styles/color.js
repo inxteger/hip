@@ -1,6 +1,6 @@
 'use strict'
 
-export const LINE = '#cfcfcf';
+export const LINE = '#e6e6e6';
 
 export const GREEN = '#03b679';
 // export const GRAY = '#abafae';

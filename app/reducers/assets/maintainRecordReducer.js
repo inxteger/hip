@@ -2,11 +2,11 @@
 
 
 import {
-  ALARM_LOAD_SUCCESS,
-  ALARM_LOAD_REQUEST,
-  ALARM_LOAD_FAILURE,
-  ALARM_FILTER_DIDCHANGED,
-} from '../../actions/alarmAction';
+  ASSET_MAINTAINCE_REQUEST,
+  ASSET_MAINTAINCE_SUCCESS,
+  ASSET_MAINTAINCE_FAILURE,
+  MAINTANCE_FILTER_DIDCHANGED,
+} from '../../actions/assetsAction.js';
 
 // import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
 import {commonReducer} from '../commonReducer.js';
@@ -47,22 +47,22 @@ function categoryAllDatas(state)
     // sectionTitle.push(localStr('lang_alarm_already_resolved'));
   // }
   // console.warn('categoryAllDatas',allDatas);
-  newState=newState.set('sectionData',null).set('allDatas',Immutable.fromJS(Items));
+  newState=newState.set('sectionData',null).set('data',Immutable.fromJS(Items));
   return newState;
 }
 
 function mergeData(state,action) {
   var response = action.response.Result;
   var newState = state;
-  var page = action.body.CurrentPage;
+  var page = action.body.PageCount;
 
   var items = response.Items;
-  items.forEach((item)=>{
-    item.Status.push({'Timestamp':item.AlarmTime, 'Content':localStr('lang_alarm_create'),User:'self'});
-    if (!!item.SecureTime) {
-      item.Status.unshift({'Timestamp':item.SecureTime, 'Content':localStr('lang_alarm_des0'),User:'self'});
-    }
-  })
+  // items.forEach((item)=>{
+  //   item.Status.push({'Timestamp':item.AlarmTime, 'Content':localStr('lang_alarm_create'),User:'self'});
+  //   if (!!item.SecureTime) {
+  //     item.Status.unshift({'Timestamp':item.SecureTime, 'Content':localStr('lang_alarm_des0'),User:'self'});
+  //   }
+  // })
 
   if(page === 1){
     newState = newState.set('data',Immutable.fromJS(response.Items));
@@ -70,7 +70,10 @@ function mergeData(state,action) {
   else {
     var oldData = newState.get('data');
     var newList = Immutable.fromJS(response.Items);
-    newList = oldData.push(...newList.toArray());
+    if (oldData) {
+      newList = oldData.push(...newList.toArray());
+    }
+
     newState = newState.set('data',newList);
   }
   console.warn('alarmListReducer...',page,newState.get('data').size);
@@ -100,13 +103,13 @@ function handleError(state,action) {
 export default commonReducer((state,action)=>{
 
   switch (action.type) {
-    case ALARM_FILTER_DIDCHANGED:
+    case MAINTANCE_FILTER_DIDCHANGED:
       return state.set('isFetching',true);
-    case ALARM_LOAD_REQUEST:
+    case ASSET_MAINTAINCE_REQUEST:
       return state.set('isFetching',true);
-    case ALARM_LOAD_SUCCESS:
+    case ASSET_MAINTAINCE_SUCCESS:
       return mergeData(state,action);
-    case ALARM_LOAD_FAILURE:
+    case ASSET_MAINTAINCE_FAILURE:
       return handleError(state,action);
     default:
 

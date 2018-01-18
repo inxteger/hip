@@ -243,7 +243,9 @@ console.warn('_gotoDetail...',type);
       );
     }else if(type === 'maintainRecordData'){
       component = (
-        <MaintainRecords {...obj} />
+        <MaintainRecords {...obj} navigator={this.props.navigator} customerId={this.props.ownData.get('CustomerId')}
+          hierarchyId={this.props.ownData.get('Id')}
+        />
       );
     }
     // if(component && this.state.dataSource){

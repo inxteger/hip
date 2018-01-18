@@ -19,49 +19,33 @@ export default class MaintainRecordRow extends Component{
   constructor(props){
     super(props);
   }
-  _getLevelText(data){
-    var level = data.get('Level'),secureTime = data.get('SecureTime');
-    var ret = {text:level,style:null};
-    if(level === 3){
-      ret.text = localStr('lang_alarm_highdes');
-    }
-    else if (level === 2) {
-      ret.text = localStr('lang_alarm_midddes');
-    }
-    else {
-      ret.text = localStr('lang_alarm_lowdes');
-    }
-    if(secureTime){
-      ret.style=styles.securedAlarm;
-    }
-    else {
-      ret.style=styles.unSecuredAlarm;
-    }
-
-    return ret;
-  }
-  _getLevelView(data){
-    var level = this._getLevelText(data);
-    return (
-      <View style={[styles.level,level.style]}>
-        <Text style={styles.levelText}>{level.text}</Text>
-      </View>
-    )
-  }
-  _getBuildingText(data){
-    var path = data.get('Paths').toArray();
-    return (path&&path.length>0)?path[0]:'';
-  }
   _getPrimaryContent(data){
+    var types=[{'Code':2,'Type':'操作不当'},{'Code':4,'Type':'自然老化'},{'Code':8,'Type':'设计缺陷'},
+    {'Code':16,'Type':'维修不当'},{'Code':32,'Type':'维护不当'},{'Code':1,'Type':'其他原因'}];
+    var results=['故障排除完成','临时处理完成','设备未修复'];
+    var strJudge='';
+    types.forEach((item)=>{
+      if (item.Code===data.get('FaultJudgeType')) {
+        strJudge=item.Type;
+        if (item.Code===1) {
+          strJudge=data.get('FaultJudgeText');
+        }
+      }
+    });
+    var strResult='';
+    var numRes=data.get('DealResult');
+    if (numRes>=1&&numRes<=results.length) {
+      strResult=results[numRes];
+    }
     return (
       <View style={styles.content}>
-        <Text numberOfLines={1} style={styles.alarmText}>{data.get('Parameter')+'aaafasdfasdfasdfasdfasfdaaafasdfasdfasdfasdfasfd'}</Text>
+        <Text numberOfLines={1} style={styles.alarmText}>{data.get('Parts')}</Text>
         <View style={{flexDirection:'row',marginTop:5}}>
           <View style={{flexDirection:'row',alignItems:'center'}}>
-            <Text numberOfLines={1} style={[styles.locationText,{marginRight:16}]}>{data.get('DeviceName')}</Text>
+            <Text numberOfLines={1} style={[styles.locationText,{marginRight:16}]}>{strJudge}</Text>
           </View>
           <View style={{flex:1,flexDirection:'row',alignItems:'center'}}>
-            <Text numberOfLines={1} style={[styles.locationText]}>{this._getBuildingText(data)+'fasdfasdfasdfasdfasffasdfasdfasdfasdfasf'}</Text>
+            <Text numberOfLines={1} style={[styles.locationText]}>{strResult}</Text>
           </View>
         </View>
       </View>
@@ -70,7 +54,7 @@ export default class MaintainRecordRow extends Component{
   _getTime(data){
     var time = moment(data.get('AlarmTime'));
     if(time.isSame(moment(),'day')){
-      return time.format('HH:mm:ss');
+      return time.format('HH:mm');
     }
     else {
       return time.format('MM-DD');
@@ -104,6 +88,7 @@ MaintainRecordRow.propTypes = {
   user:PropTypes.object,
   onRowClick:PropTypes.func.isRequired,
   rowData:PropTypes.object.isRequired,
+  onRowLongPress:PropTypes.func.isRequired,
 }
 
 var styles = StyleSheet.create({
