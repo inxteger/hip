@@ -165,7 +165,6 @@ console.warn('_gotoDetail...',type);
         }
       }
     }
-    console.warn('currentType',ret,index);
     return ret;
   }
   _getDataSource(index){

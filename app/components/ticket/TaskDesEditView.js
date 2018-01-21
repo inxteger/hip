@@ -43,6 +43,9 @@ export default class TaskDesEditView extends Component{
     if(Platform.OS === 'android'){
       actions = [{title:localStr('lang_common_finish'),show:'always'}];
     }
+    if (!this.props.editable) {
+      actions=[];
+    }
     return (
       <View style={{flex:1,backgroundColor:'white'}}>
         <Toolbar
@@ -62,6 +65,7 @@ export default class TaskDesEditView extends Component{
             underlineColorAndroid={'transparent'}
             textAlign={'left'}
             multiline={true}
+            editable={this.props.editable}
             numberOfLines={lines}
             placeholderTextColor={GRAY}
             textAlignVertical={'top'}
@@ -82,7 +86,7 @@ TaskDesEditView.propTypes = {
   user:PropTypes.object,
   onBack:PropTypes.func.isRequired,
   onSave:PropTypes.func.isRequired,
-  isSameUser:PropTypes.bool,
+  editable:PropTypes.bool,
   dataChanged:PropTypes.func.isRequired,
 }
 

@@ -556,3 +556,36 @@ export function updateMaintancePartsSelectInfo(data){
     });
   }
 }
+
+export const MAINTANCE_DETAIL_REQUEST = 'MAINTANCE_DETAIL_REQUEST';
+export const MAINTANCE_DETAIL_SUCCESS = 'MAINTANCE_DETAIL_SUCCESS';
+export const MAINTANCE_DETAIL_FAILURE = 'MAINTANCE_DETAIL_FAILURE';
+
+export function loadMtDetailById(recordId){
+  return (dispatch, getState) => {
+    return dispatch({
+        types: [MAINTANCE_DETAIL_REQUEST, MAINTANCE_DETAIL_SUCCESS, MAINTANCE_DETAIL_FAILURE],
+        url: `device/maintainrecord/${recordId}`,
+        data:{recordId}
+    });
+  }
+}
+export const MAINTANCE_DETAIL_CHANGED = 'MAINTANCE_DETAIL_CHANGED';
+export function maintanceRecordInfoChangeChange(data){
+  return (dispatch,getState)=>{
+    return dispatch({
+      type:MAINTANCE_DETAIL_CHANGED,
+      data
+    });
+  }
+}
+
+export const SINGLE_SELECT_DATA_CHANGED = 'SINGLE_SELECT_DATA_CHANGED';
+export function singleSelectDataChange(data){
+  return (dispatch,getState)=>{
+    return dispatch({
+      type:SINGLE_SELECT_DATA_CHANGED,
+      data
+    });
+  }
+}
