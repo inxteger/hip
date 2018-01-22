@@ -47,11 +47,12 @@ function recordLoadedSuccess(state,action) {
   objData.Parts.split('\n').map((item,index)=>{
     arrDatas.push({'Id':item,'RealName':item});
   });
+  console.warn('mrecorddetail reducer...',arrDatas);
 
   return state.set('data',Immutable.fromJS(objData)).
                set('recordId',resRecordId).
                set('isFetching',false).
-               set('selectParts',arrDatas);
+               set('selectParts',Immutable.fromJS(arrDatas));
 }
 
 function initCreateRecord(state,action) {
