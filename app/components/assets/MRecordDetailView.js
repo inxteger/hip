@@ -9,6 +9,7 @@ import {
   DatePickerIOS,
   ScrollView,
   Dimensions,
+  Alert,
 } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -16,7 +17,7 @@ import moment from 'moment';
 import Toolbar from '../Toolbar';
 import Button from '../Button.js';
 import Bottom from '../Bottom.js';
-import {BLACK,GRAY,GREEN,LINE,LIST_BG,PICBORDERCOLOR,DOCBKGCOLOR,ADDICONCOLOR} from '../../styles/color';
+import {BLACK,GRAY,GREEN,LINE,LIST_BG,PICBORDERCOLOR,DOCBKGCOLOR,ADDICONCOLOR,LOGOUT_RED} from '../../styles/color';
 import Text from '../Text';
 import NetworkImage from '../NetworkImage';
 import TouchFeedback from '../TouchFeedback';
@@ -25,6 +26,8 @@ import PrivilegePanel from '../PrivilegePanel.js';
 import NetworkDocumentCard from '../NetworkDocumentCard.js';
 import {checkFileNameIsImage} from '../../utils/fileHelper.js';
 import Loading from '../Loading';
+
+import DateTimePicker from 'react-native-modal-datetime-picker';
 
 import UploadableImage from '../UploadableImage.js';
 import Icon from '../Icon';
@@ -38,7 +41,7 @@ export default class MRecordDetailView extends Component{
 
     var {width} = Dimensions.get('window');
     var picWid = parseInt((width-56)/4.0);
-    this.state = {rowType:'',openDatePicker:false,imageWidth:picWid,imageHeight:picWid,autoFocus:false};
+    this.state = {rowType:'',isDateTimePickerVisible:false,imageWidth:picWid,imageHeight:picWid,autoFocus:false};
   }
   async _showPicker(type) {
     if(Platform.OS === 'android'){
@@ -111,13 +114,12 @@ export default class MRecordDetailView extends Component{
   _getToolbar(data){
     var actions = null;
     if(data){
-      // if (this.props.viewType==='view') {//test
+      if (this.props.viewType==='view') {
         actions = [{
         title:'',
         iconType:'edit',
         show: 'always', showWithText: false}];
-      // }
-
+      }
     }
     return (
       <Toolbar title={this.props.title}
@@ -129,10 +131,6 @@ export default class MRecordDetailView extends Component{
         }]}
       />
     );
-  }
-  _logChanged(text){
-    this.setState({autoFocus:true});
-    this.props.dataChanged('content',null,text);
   }
   _showAuth(){
     return this.props.checkAuth();
@@ -163,7 +161,7 @@ export default class MRecordDetailView extends Component{
         {text: localStr('lang_ticket_remove'), onPress: () => {
           this.props.dataChanged('image','delete',item);
           // AliyunOSS.delete(appInfo.get().ossBucket,item.get('PictureId'));
-          this.props.deleteImage([item.get('PictureId')]);
+          this.props.deleteImage([item.get('RemFiles')]);
         }}
       ]
     )
@@ -292,17 +290,29 @@ export default class MRecordDetailView extends Component{
   }
   _getAssetNoRow()
   {
+    var assNo='请在设备信息中填写';
+    if (this.props.extData) {
+      assNo=this.props.extData;
+    }
     return this._getSimpleRow({
       'title':localStr('资产编号'),
-      'value':this.props.data.get('MaintainPerson'),
+      'value':assNo,
+      'valueColor':LOGOUT_RED,
       'isNav':false});
   }
   _getMaintanceTime()
   {
+    var date=this.props.data.get('MaintainTime');
+    var dateTime='';
+    if (date) {
+      dateTime = moment(date).format("YYYY-MM-DD HH:00");
+    }
     return this._getSimpleRow({
       'title':localStr('维修时间'),
-      'value':this.props.data.get('MaintainTime'),
-      'isNav':false});
+      'value':dateTime,
+      'isNav':false,
+      'type':'MaintainTime'
+    });
   }
   _getMaintanceUser()
   {
@@ -434,6 +444,10 @@ export default class MRecordDetailView extends Component{
     if (!value) {
       value=rowData.placeholderText;
     }
+    var valueColor=GRAY;
+    if (rowData.valueColor) {
+      valueColor=rowData.valueColor;
+    }
     return (
       <TouchFeedback style={[{backgroundColor:'white'},styles.rowHeight]} onPress={()=>{
         if(rowData.isNav){
@@ -441,23 +455,20 @@ export default class MRecordDetailView extends Component{
           this.setState({
             openDatePicker:false,
           });
-        }else if (rowData.type==='StartTime'||rowData.type==='EndTime') {
-            var enableEditStartTime = this.props.ticketInfo?this.props.ticketInfo.get('Status')<2:true;
-            if (rowData.type==='EndTime'||enableEditStartTime) {
-              this.setState({
-                rowType:rowData.type,
-                openDatePicker:!this.state.openDatePicker,
-              });
-              this._showPicker(rowData.type);
-              this.props.onRowClick(rowData,this.props.viewType);
+        }
+        else if (rowData.type==='MaintainTime') {
+            if (this.props.viewType!=='view') {
+              this.setState({ isDateTimePickerVisible: true });
             }
-          }}}>
+          }
+        }}>
         <View style={[styles.row,styles.rowHeight]}>
           <Text style={styles.titleText}>
             {rowData.title}
           </Text>
           <View style={{flex:1,alignItems:'center', justifyContent:'flex-end', flexDirection:'row',marginLeft:9}}>
-            <Text numberOfLines={1} lineBreakModel='charWrapping' style={[styles.valueText,{flex:1,}]}>
+            <Text numberOfLines={1} lineBreakModel='charWrapping' style={[styles.valueText,{flex:1,
+            color:valueColor}]}>
               {value}
             </Text>
             {this._getNavIcon(rowData.isNav)}
@@ -537,6 +548,16 @@ export default class MRecordDetailView extends Component{
       </View>
     )
   }
+  _handleDatePicked(date){
+    // var dateTime = moment(date).format("YYYY-MM-DDTHH:00:00");
+    // console.warn('aaa',dateTime);
+    this.props.onRowClick({type:'MaintainTime',value:date},this.props.viewType);
+    this._hideDateTimePicker();
+  };
+  _hideDateTimePicker()
+  {
+    this.setState({ isDateTimePickerVisible: false });
+  }
   render() {
     if (!this.props.data) {
       return (
@@ -593,12 +614,20 @@ export default class MRecordDetailView extends Component{
         {
           this._getBottomButton()
         }
+        <DateTimePicker
+          is24Hour={true}
+          titleIOS={'请选择一个时间'}
+          cancelTextIOS={'取消'}
+          confirmTextIOS={'确定'}
+          mode={'datetime'}
+          isVisible={this.state.isDateTimePickerVisible}
+          onConfirm={(date)=>this._handleDatePicked(date)}
+          onCancel={()=>this._hideDateTimePicker()}
+          />
       </View>
     );
   }
 }
-
-
 
 MRecordDetailView.propTypes = {
   navigator:PropTypes.object,
@@ -607,21 +636,18 @@ MRecordDetailView.propTypes = {
   onRowClick:PropTypes.func.isRequired,
   types:PropTypes.array,
   results:PropTypes.array,
-  // onDateChanged:PropTypes.func.isRequired,
-  // onTicketTypeSelect:PropTypes.func.isRequired,
-  // isFetching:PropTypes.bool.isRequired,
+  extData:PropTypes.string,
+  dataChanged:PropTypes.func.isRequired,
+  deleteImage:PropTypes.func.isRequired,
+  gotoDetail:PropTypes.func.isRequired,
+  checkAuth:PropTypes.func,
   isPosting:PropTypes.number,
   data:PropTypes.object,
-  viewType:PropTypes.bool,
+  viewType:PropTypes.string,
   onRefresh:PropTypes.func.isRequired,
   onEditDetail:PropTypes.func.isRequired,
   onSave:PropTypes.func.isRequired,
-
-  //
-  // customer:PropTypes.object.isRequired,
-  // isEnableCreate:PropTypes.bool.isRequired,
-  // isAlarm:PropTypes.bool,
-  // ticketInfo:PropTypes.object,
+  openImagePicker:PropTypes.func.isRequired,
 }
 
 var styles = StyleSheet.create({
@@ -654,7 +680,6 @@ var styles = StyleSheet.create({
     textAlign:'right',
     marginLeft:10,
     fontSize:17,
-    color:GRAY
   },
   selectView:{
     width:18,

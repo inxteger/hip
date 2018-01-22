@@ -6,17 +6,7 @@ import {
   MAINTANCE_MOIDFY_DETAIL_REQUEST, MAINTANCE_MOIDFY_DETAIL_SUCCESS, MAINTANCE_MOIDFY_DETAIL_FAILURE,
   RECORD_EDIT_INFO_RESET,
   CREATE_RECORD_DATA_INIT,
-  // ,
-  // ,
-  // USER_SELECT_CHANGED,
-  // ASSET_SELECT_CHANGED,
-  // TICKET_CREATE_REQUEST,
-  // TICKET_CREATE_SUCCESS,
-  // TICKET_CREATE_FAILURE,
-  // TICKET_CREATE_RESET,
-  // ASSETS_USERS_REQUEST,
-  // ASSETS_USERS_SUCCESS,
-  // ASSETS_USERS_FAILURE,
+  MAINTANCE_PART_SELECT_CHANGED,
 } from '../../actions/assetsAction.js';
 
 import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
@@ -34,36 +24,8 @@ var defaultState =  Immutable.fromJS({
   data:null,
   isFetching:true,
   isPosting:1,
-
-  // TicketType:0,
-  // Assets:[],
-  // StartTime:today,
-  // EndTime:today,
-  // Executors:[],
-  // Content:'',
-  // alarm:null,
-  // isFetching:true,
-  // isPosting:1,
-  // selectUsers:[],
-  // selectAssets:[],
+  selectParts:[],
 });
-
-// function initData(state,action) {
-//   var {data:{type}}=action;
-//   var newState=state;
-//   if (type==='createNormalTicket') {
-//     newState=_initCreateTicket(state,action);
-//   }else if (type==='createAlarmTicket') {
-//     newState=_initCreateAlarmTicket(state,action);
-//   }else if (type==='editNormalTicket') {
-//     newState=_initEditTicket(state,action);
-//   }
-//   return newState;
-// }
-
-function updateDetailData(state,action) {
-
-}
 
 function recordLoadedStart(state,action){
     var {data:{recordId}} = action;
@@ -81,21 +43,27 @@ function recordLoadedSuccess(state,action) {
       item.Key=undefined;
     });
   }
+  var arrDatas=[];
+  objData.Parts.split('\n').map((item,index)=>{
+    arrDatas.push({'Id':item,'RealName':item});
+  });
+
   return state.set('data',Immutable.fromJS(objData)).
                set('recordId',resRecordId).
-               set('isFetching',false);
+               set('isFetching',false).
+               set('selectParts',arrDatas);
 }
 
 function initCreateRecord(state,action) {
-  var {data:{hierarchyId}}=action;
+  var {data:{hierarchyId,realName,userId}}=action;
   state=state.set('data',Immutable.fromJS(
     {
       "AutoId": 0,
       "HierarchyId": hierarchyId,
-      "MaintainPerson": "",
-      // "CreateUserId": ,
+      "MaintainPerson": realName,
+      "CreateUserId": userId,
       "UpdateTime": "",
-      "MaintainTime": "",
+      "MaintainTime": moment().format("YYYY-MM-DDTHH:00:00"),
       "Parts": "",
       "FaultPhenomenon": "",
       "FaultJudgeType": 0,
@@ -107,57 +75,16 @@ function initCreateRecord(state,action) {
   ));
   return state;
 }
-// function _initCreateAlarmTicket(state,action) {
-//   var {data:{value}}=action;
-//   var {alarm,customer}=value;
-//   var today = moment().format('YYYY-MM-DD');
-//   state=state.set('CustomerId',customer.get('CustomerId'))
-//             .set('TicketType',2)
-//             .set('StartTime',today)
-//             .set('EndTime',today)
-//             .set('alarm',alarm)
-//             .set('Assets',Immutable.fromJS([{'Name':alarm.get('DeviceName'),'Id':alarm.get('HierarchyId')}]))
-//             .set('selectAssets',Immutable.fromJS([{'Name':alarm.get('DeviceName'),'Id':alarm.get('HierarchyId')}]))
-//             .set('Executors',Immutable.fromJS([]))
-//             .set('selectUsers',Immutable.fromJS([]))
-//             .set('isFetching',false)
-//             .set('isPosting',1)
-//             .set('Content',getAlarmDescri(alarm));
-//   console.warn('_initCreateAlarmTicket',state.get('Assets'),state.get('selectAssets'));
-//   return state;
-// }
-//
-// function _initEditTicket(state,action) {
-//   var {data:{value}}=action;
-//   var {ticket,customer}=value;
-//   var startTime = moment(ticket.get('StartTime')).format('YYYY-MM-DD');
-//   var endTime = moment(ticket.get('EndTime')).format('YYYY-MM-DD');
-//   var arr = ticket.get('Executors');
-//   var selectUsers = [];
-//   arr.forEach((item)=>{
-//     selectUsers.push({'Id':item.get('UserId'),'RealName':item.get('UserName')});
-//   });
-//   var arrAss = ticket.get('Assets');
-//   var selectAssets = [];
-//   arrAss.forEach((item)=>{
-//     selectAssets.push({'Id':item.get('HierarchyId'),'Name':item.get('HierarchyName')});
-//   });
-//   var ticketType = ticket.get('TicketType');
-//   // var enableEditStartTime = ticket.get('Status')<2;
-//   state=state.set('CustomerId',customer.get('CustomerId'))
-//             .set('TicketType',ticketType)
-//             .set('StartTime',startTime)
-//             .set('EndTime',endTime)
-//             .set('Assets',Immutable.fromJS(selectAssets))
-//             .set('selectAssets',Immutable.fromJS(selectAssets))
-//             .set('Executors',Immutable.fromJS(selectUsers))
-//             .set('selectUsers',Immutable.fromJS(selectUsers))
-//             .set('Content',Immutable.fromJS(ticket.get('Content')))
-//             .set('isFetching',false)
-//             .set('isPosting',1);
-//   return state;
-// }
-//
+
+function generateName(pics,recordId,userId) {
+  var time = new Date().getTime();
+  return `image-maintaince--log-${recordId}-${userId}-${time}-${pics.size}`;
+}
+
+function startPostData(state,actioin) {
+  return state.set('isPosting',1);
+}
+
 function postDataSuccess(state,action) {
   if (action.response.Result.Message) {
     action.error = '数据提交失败';
@@ -165,17 +92,11 @@ function postDataSuccess(state,action) {
   }
   return state.set('isPosting',2);
 }
+
 function conditionChanged(state,action) {
   var newState = state;
-  var {data:{type,value}} = action;
+  var {data:{type,value,action,recordId,userId}} = action;
   //FaultPhenomenon,FaultJudgeText,FaultRemoval
-  // if (type==='StartTime') {
-  //   var startTime = moment(value).format('YYYY-MM-DD');
-  //   newState = newState.set('StartTime',startTime);
-  // }else if (type==='EndTime') {
-  //   var endTime = moment(value).format('YYYY-MM-DD');
-  //   newState = newState.set('EndTime',endTime);
-  // }else
   if (type==='FaultPhenomenon') {
     newState = newState.setIn(['data','FaultPhenomenon'],value);
   }else if (type==='FaultJudgeText') {
@@ -186,6 +107,56 @@ function conditionChanged(state,action) {
     newState = newState.setIn(['data','DealResult'],value);
   }else if (type==='FaultJudgeType') {
     newState = newState.setIn(['data','FaultJudgeType'],value);
+  }else if (type==='MaintainTime') {
+    var dateTime = moment(value).format("YYYY-MM-DDTHH:00:00");
+    newState = newState.setIn(['data','MaintainTime'],dateTime);
+  }else if (type==='image') {
+    var pics = newState.getIn(['data','RemFiles']);
+    if(action === 'add'){
+      //[{name,uri}]
+      value.forEach((item)=>{
+        pics = pics.push(
+          Immutable.Map({
+            PictureId:generateName(pics,recordId,userId),
+            uri:item.uri
+          }));
+      })
+
+    }
+    else if (action === 'uploaded') {
+      // console.warn('uploaded');
+      var index = pics.findIndex((item)=>item === value);
+      if (index!==-1) {
+        pics = pics.update(index,(item)=>item.set('loaded',true));
+      }
+    }
+    else if (action === 'delete'){
+      var index = pics.findIndex((item)=>item === value);
+      if (index!==-1) {
+        pics = pics.delete(index);
+      }
+    }
+    // console.warn('pics',pics);
+    return newState.setIn(['data','RemFiles'],pics);
+  }
+  return newState;
+}
+
+function partsSelectInfoChange(state,action) {
+  var {data:{type,value}}=action;
+  var newState = state;
+  var data=state.get('data');
+  if (!data) {
+    return state;
+  }
+  if (type==='save') {
+    console.warn('aaaaa',value);
+    var strValues='';
+    if (value&&value.size>0) {
+      strValues=value.get(0).get('Id');
+    }
+    newState = newState.set('selectParts', value)
+    .setIn(['data','Parts'],strValues);
   }
   return newState;
 }
@@ -198,30 +169,18 @@ export default function(state=defaultState,action){
       return recordLoadedSuccess(state,action);
     case MAINTANCE_DETAIL_REQUEST:
       return state.set('isFetching',false);
-    //MAINTANCE_DETAIL_SUCCESS, MAINTANCE_DETAIL_FAILURE
-
     case CREATE_RECORD_DATA_INIT:
       return initCreateRecord(state,action);
     case MAINTANCE_DETAIL_CHANGED:
       return conditionChanged(state,action);
     case MAINTANCE_MOIDFY_DETAIL_REQUEST:
-      return state.set('isPosting',1);
+      return startPostData(state,action);
     case MAINTANCE_MOIDFY_DETAIL_SUCCESS:
       return postDataSuccess(state,action);
     case MAINTANCE_MOIDFY_DETAIL_FAILURE:
       return state.set('isPosting',3);
-    // case USER_SELECT_CHANGED:
-    //   return userSelectInfoChange(state,action);
-    // case ASSET_SELECT_CHANGED:
-    //   return assetsSelectInfoChange(state,action);
-    // case ASSETS_USERS_SUCCESS:
-    //   return updateAssetsUsers(state,action);
-    // case TICKET_CREATE_REQUEST:
-    //   return state.set('isPosting',1);
-    // case TICKET_CREATE_SUCCESS:
-    //   return state.set('isPosting',2);
-    // case TICKET_CREATE_FAILURE:
-    //   return state.set('isPosting',3);
+    case MAINTANCE_PART_SELECT_CHANGED:
+      return partsSelectInfoChange(state,action);
     case RECORD_EDIT_INFO_RESET:
     case LOGOUT_SUCCESS:
       return defaultState;

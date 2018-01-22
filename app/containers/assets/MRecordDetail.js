@@ -9,21 +9,21 @@ import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
 import backHelper from '../../utils/backHelper';
+import MaintancePartsSelect from './MaintancePartsSelect.js';
+import ImagePicker from '../ImagePicker.js';
+import PhotoShow from './PhotoShow';
 
 import {
-  // loadMRecordDetailData,
   loadMtDetailById,maintanceRecordInfoChangeChange,
   modifyRecordDetail,resetEditRecord,initCreateRecord,
-  // singleSelectDataChange
-  // ,createTicket,,updateUserSelectInfo,updateAssetsSelectInfo,deleteTicket
-        } from '../../actions/assetsAction.js';
+  updateMaintancePartsSelectInfo,} from '../../actions/assetsAction.js';
+import {deleteImages} from '../../actions/imageAction';
 import MRecordDetailView from '../../components/assets/MRecordDetailView.js';
 import TicketTaskDesEdit from '../ticket/TicketTaskDesEdit';
 import MSingleSelect from './MSingleSelect.js';
-// import UsersSelect from './UsersSelect';
-// import AssetsSelect from './AssetsSelect';
 import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 import Immutable from 'immutable';
+const MAX = 100;
 
 class MRecordDetail extends Component{
   static contextTypes = {
@@ -32,7 +32,7 @@ class MRecordDetail extends Component{
   }
   constructor(props){
     super(props);
-    this.state = {viewType:'view'};
+    this.state = {viewType:'view',};
     this.types=[{'Code':2,'Type':'操作不当'},{'Code':4,'Type':'自然老化'},{'Code':8,'Type':'设计缺陷'},
     {'Code':16,'Type':'维修不当'},{'Code':32,'Type':'维护不当'},{'Code':1,'Type':'其他原因'}];
     this.results=[{'Code':1,'Type':'故障排除完成'},{'Code':2,'Type':'临时处理完成'},{'Code':3,'Type':'设备未修复'}];
@@ -125,7 +125,6 @@ class MRecordDetail extends Component{
           arrDatas,
           title:rowData.title,
           onSave:(value)=>{
-            console.warn('aaa',value);
             this.props.maintanceRecordInfoChangeChange({
               type,value
             });
@@ -147,17 +146,35 @@ class MRecordDetail extends Component{
           arrDatas,
           title:rowData.title,
           onSave:(value)=>{
-            console.warn('aaa',value);
             this.props.maintanceRecordInfoChangeChange({
               type,value
             });
           },
         }
       });
-    }else {
-      console.warn('aa',type,rowData);
+    }else if (type === 'Parts') {
+      this.props.updateMaintancePartsSelectInfo({type:'init',value:this.props.selectParts});
+      this.props.updateMaintancePartsSelectInfo({type:'initSingleSelect',value:true});
+      var customerId=this.props.customerId;
+      var hierarchyId=this.props.hierarchyId;
+      if (!this.props.customerId) {
+        customerId=321238;
+        hierarchyId=345761;//321637;//test
+      }
+      this.props.navigator.push({
+          id:'ticket_users',
+          component:MaintancePartsSelect,
+          passProps:{
+            title:'零部件',
+            customerId:customerId,
+            hierarchyId:hierarchyId,
+          }
+        });
+    }else if (type === 'MaintainTime') {
+      this.props.maintanceRecordInfoChangeChange({
+        type,value:rowData.value
+      });
     }
-
   }
   _onDateChanged(type,value)
   {
@@ -193,34 +210,14 @@ class MRecordDetail extends Component{
       return;
     }
     this.context.showSpinner();
-    this.props.modifyRecordDetail(this.props.data);
 
-    // var selectAssets=this.props.data.get('selectAssets');
-    // var selectUsers=this.props.data.get('selectUsers');
-    // var Assets=[];
-    // selectAssets.forEach((item)=>{
-    //   Assets.push({'HierarchyId':item.get('Id')});
-    // });
-    // var Executors=[];
-    // selectUsers.forEach((item)=>{
-    //   Executors.push({'UserId':item.get('Id')});
-    // });
-    // var reqbody = {
-    //   CustomerId:this.props.data.get('CustomerId'),
-    //   TicketType:this.props.data.get('TicketType'),
-    //   Assets:Assets,
-    //   StartTime:this.props.data.get('StartTime'),
-    //   EndTime:this.props.data.get('EndTime'),
-    //   Executors:Executors,
-    //   Content:this.props.data.get('Content'),
-    // };
-    // if (this.props.alarm) {
-    //   reqbody.AlarmId=this.props.alarm.get('Id');
-    // }
-    // if (this.props.ticketInfo && this.props.ticketInfo.get('Id')) {
-    //   reqbody.Id=this.props.ticketInfo.get('Id');
-    // }
-    // this.props.createTicket(reqbody,!this.props.ticketInfo);
+    var objData=this.props.data.toJSON();
+    objData.RemFiles.forEach((item,index)=>{
+      item.Key=item.PictureId;
+      item.uri=undefined;
+      item.PictureId=undefined;
+    });
+    this.props.modifyRecordDetail(objData);
   }
   _onDeleteTicket(){
     var {ticketInfo} = this.props;
@@ -246,7 +243,9 @@ class MRecordDetail extends Component{
       });
     }else {
       this.setState({'viewType':'create'});
-      this.props.initCreateRecord(this.props.hierarchyId);
+      this.props.initCreateRecord({hierarchyId:this.props.hierarchyId,
+        realName:this.props.user.get('RealName'),
+        userId:this.props.user.get('Id'),});
     }
 
     backHelper.init(this.props.navigator,this.props.route.id);
@@ -257,7 +256,9 @@ class MRecordDetail extends Component{
       this.context.hideHud();
       // console.warn('ticketCreate edit componentWillReceiveProps...',this.props.isFetching,this.props.isPosting,this.props.isEnableCreate);
       this.props.onPostingCallback(this.props.ticketInfo?'edit':'create');
-      this.props.navigator.pop();
+      InteractionManager.runAfterInteractions(()=>{
+        this.props.navigator.pop();
+      });
       return ;
     }else if (nextProps.isPosting===3 && this.props.isPosting===1) {
 
@@ -268,7 +269,77 @@ class MRecordDetail extends Component{
     backHelper.destroy(this.props.route.id);
     this.props.resetEditRecord();
   }
-
+  _dataChanged(type,action,value){
+    this.props.maintanceRecordInfoChangeChange(
+      {
+        type,
+        value,
+        action,
+        recordId:this.props.recordId,
+        userId:this.props.user.get('Id'),
+      }
+    )
+  }
+  _deleteImage(imageId){
+    // console.warn('_deleteImage...',imageId);
+    this.props.deleteImages(imageId);
+  }
+  _openImagePicker(){
+    this.props.navigator.push({
+      id:'imagePicker',
+      component:ImagePicker,
+      passProps:{
+        max:MAX-this.props.data.get('RemFiles').size,
+        dataChanged:(chosenImages)=>this._dataChanged('image','add',chosenImages)
+      }
+    });
+  }
+  _checkAuth(){
+    // if(!this.props.hasAuth){
+    //   // Alert.alert('',localStr('lang_alarm_des1'));
+    //   return false;
+    // }
+    if (this.state.viewType==='view') {
+      return false;
+    }
+    console.warn('isSameUser',this.props.isSameUser);
+    if(!this.props.isSameUser){
+      Alert.alert(
+        '',
+        localStr('lang_ticket_notice7'),
+        [
+          {text: localStr('lang_ticket_OK'), onPress: () =>{}}
+        ]
+      )
+      return false;
+    }
+    return true;
+  }
+  _photoViewDeleteImage(item)
+  {
+    // console.warn('AssetLogEdit...',item);
+    if (this._checkAuth()&&item) {
+      this._dataChanged('image','delete',item);
+      this._deleteImage([item.get('PictureId')]);
+    }
+  }
+  _goToDetail(items,index,thumbImageInfo)
+  {
+    var canEdit=this.props.isSameUser&&this.state.viewType!=='view';
+    this.props.navigator.push({
+      id:'photo_show',
+      component:PhotoShow,
+      passProps:{
+        index:index,
+        arrPhotos:items,
+        thumbImageInfo:thumbImageInfo,
+        type:'recordLog',
+        onRemove:(item)=>this._photoViewDeleteImage(item),
+        checkAuth:()=>this._checkAuth(),
+        canEdit:canEdit,
+      }
+    });
+  }
   render() {
     var title='设备维修历史详情';
     if (this.state.viewType==='edit') {
@@ -287,6 +358,8 @@ class MRecordDetail extends Component{
         viewType={this.state.viewType}
         types={this.types}
         results={this.results}
+        extData={this.props.extData}
+        openImagePicker={()=>this._openImagePicker()}
         onEditDetail={()=>{
           // this.setState({'viewType':'edit'});//correct
 
@@ -296,6 +369,10 @@ class MRecordDetail extends Component{
             this.setState({'viewType':'edit'});
           }
         }}
+        checkAuth={()=>this._checkAuth()}
+        gotoDetail={(items,index,thumbImageInfo)=>this._goToDetail(items,String(index),thumbImageInfo)}
+        deleteImage={(imageId)=>this._deleteImage(imageId)}
+        dataChanged={(type,action,value)=>this._dataChanged(type,action,value)}
         onRowClick={(rowData,viewType)=>this._gotoDetail(rowData,viewType)}
         onSave={()=>this._onModifyRecordDetail()}
         />
@@ -303,68 +380,44 @@ class MRecordDetail extends Component{
   }
 }
 
-// customer={this.props.customer}
-// ticketInfo={this.props.ticketInfo}
-// isEnableCreate={this.props.isEnableCreate}
-// isAlarm={!!this.props.alarm||(this.props.ticketInfo&&this.props.ticketInfo.get('TicketType')===2)}
-// onCreateTicket={()=>this._onCreateTicket()}
-// onDeleteTicket={()=>this._onDeleteTicket()}
-//
-// onDateChanged={(type,value)=>this._onDateChanged(type,value)}
-// onTicketTypeSelect={(type,value)=>this._onChangeTicketType(type,value)}
-
 MRecordDetail.propTypes = {
   navigator:PropTypes.object,
   route:PropTypes.object,
   recordId:PropTypes.number,
+  extData:PropTypes.string,
   data:PropTypes.object,
+  user:PropTypes.object,
+  selectParts:PropTypes.object,
   loadMtDetailById:PropTypes.func,
   maintanceRecordInfoChangeChange:PropTypes.func,
   modifyRecordDetail:PropTypes.func,
   onPostingCallback:PropTypes.func,
   resetEditRecord:PropTypes.func,
   initCreateRecord:PropTypes.func,
+  updateMaintancePartsSelectInfo:PropTypes.func,
+  isSameUser:PropTypes.bool,
+  deleteImages:PropTypes.func,
   hierarchyId:PropTypes.number,
-
-  // singleSelectDataChange:PropTypes.func,
-
-  // alarm:PropTypes.object,
-  // ticketInfo:PropTypes.object,
-  // loadMRecordDetailData:PropTypes.func,
-  //
-  // updateUserSelectInfo:PropTypes.func,
-  // deleteTicket:PropTypes.func,
-  // updateAssetsSelectInfo:PropTypes.func,
-  // createTicket:PropTypes.func,
-  // isFetching:PropTypes.bool,
-  // isPosting:PropTypes.number,
-  // isEnableCreate:PropTypes.bool,
-  // selectUsers:PropTypes.object,
-  // selectAssets:PropTypes.object,
-  // reqBody:PropTypes.any,
+  customerId:PropTypes.number,
 }
 
 function mapStateToProps(state,ownProps) {
   var recordDetail = state.asset.mRecordDetail,
       isFetching = recordDetail.get('isFetching'),
       isPosting = recordDetail.get('isPosting');
-      // selectUsers = ticketCreate.get('selectUsers'),
-      // selectAssets = ticketCreate.get('selectAssets'),
-      // startTime = ticketCreate.get('StartTime'),
-      // endTime = ticketCreate.get('EndTime'),
-      // content = ticketCreate.get('Content'),
-      // ticketType = ticketCreate.get('TicketType');
-  // var customer = ownProps.customer;
-  // var alarm = ownProps.alarm;
-  // var ticketInfo = ownProps.ticketInfo;
   var data = recordDetail.get('data');
   // // console.warn('mapStateToProps...',startTime,endTime);
   // if (ownProps.customer.get('CustomerId') !== data.get('CustomerId')) {
   //   data = null;
   // }
 
+  var selectParts=recordDetail.get('selectParts');
   var recordId=ownProps.recordId;
-
+  var user = state.user.get('user');
+  var isSameUser = true;
+  if(data && data.get('MaintainPerson') !== user.get('RealName')){
+    isSameUser = false;
+  }
   // var isEnableCreate = customer && ticketType!==0 && selectAssets.size>=1 && startTime && endTime && selectUsers.size>=1 && content.length>0;
   // console.warn('mapStateToProps',data);
   return {
@@ -372,25 +425,18 @@ function mapStateToProps(state,ownProps) {
     data,
     isFetching,
     isPosting,
-    // isEnableCreate,
-    // selectUsers,
-    // selectAssets,
-    // customer,
-    // alarm,
-    // ticketInfo,
+    selectParts,
+    isSameUser,
+    user:state.user.get('user'),
   };
 }
 
 export default connect(mapStateToProps,{
-  //loadMRecordDetailData,
   loadMtDetailById,
   maintanceRecordInfoChangeChange,
   modifyRecordDetail,
   resetEditRecord,
-  initCreateRecord
-
-  // singleSelectDataChange,
-  // ,
-  // ,
-  // createTicket,,updateUserSelectInfo,updateAssetsSelectInfo,deleteTicket
+  initCreateRecord,
+  updateMaintancePartsSelectInfo,
+  deleteImages,
 })(MRecordDetail);

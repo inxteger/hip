@@ -222,7 +222,7 @@ function userSelectInfoChange(state,action){
   }
   return newState;
 }
-
+ 
 function partsSelectInfoChange(state,action) {
   var {data:{type,value}}=action;
   var newState = state;

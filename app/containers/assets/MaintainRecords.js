@@ -56,6 +56,7 @@ class MaintainRecords extends Component{
       id:'record_detail',
       component:MRecordDetail,
       passProps:{
+        customerId:this.props.customerId,
         hierarchyId:this.props.hierarchyId,
         onPostingCallback:(type)=>{this._onPostingCallback(type)},
       }
@@ -66,7 +67,10 @@ class MaintainRecords extends Component{
       id:'record_detail',
       component:MRecordDetail,
       passProps:{
+        customerId:this.props.customerId,
+        hierarchyId:this.props.hierarchyId,
         recordId:recordId,
+        extData:this.props.recordData.get('ExtData'),
         onPostingCallback:(type)=>{this._onPostingCallback(type)},
       }
     });
@@ -119,11 +123,9 @@ class MaintainRecords extends Component{
       if(!this.props.recordData.get('data')){
         this._loadAlarms(this.props.filter);
       }
-
     });
-    // setInterval(()=>this._onRefresh(),10000);
     this._bindEvent();
-    // backHelper.init(this.props.navigator,'alarm');
+    backHelper.init(this.props.navigator,'records');
   }
   componentWillReceiveProps(nextProps) {
     var data = nextProps.recordData.get('data');
@@ -144,14 +146,19 @@ class MaintainRecords extends Component{
     }
   }
   componentWillUnmount() {
-    backHelper.destroy('alarm');
+    backHelper.destroy('records');
   }
   render() {
+    var extData=null;
+    if (this.props.recordData) {
+      extData=this.props.recordData.get('ExtData');
+    }
     return (
       <MaintainRecordsView
         loadAlarm={()=>this._loadAlarm()}
         isFetching={this.props.recordData.get('isFetching')}
         listData={this.state.dataSource}
+        extData={extData}
         hasFilter={this.props.hasFilter}
         nextPage={()=>this.props.nextPage()}
         clearFilter={()=>this.props.clearMaintanceFilter()}
