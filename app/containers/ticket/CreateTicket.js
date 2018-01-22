@@ -53,7 +53,6 @@ class CreateTicket extends Component{
           content:this.props.data.get('Content'),
           title:localStr('lang_ticket_task_des'),
           editable:true,
-          title:localStr('lang_ticket_task_des'),
           placeholdText:localStr('lang_ticket_notice3'),
           onSave:(value)=>{
             this.props.ticketCreateConditionChange({

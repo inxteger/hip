@@ -333,7 +333,7 @@ List.propTypes = {
   renderHeader:PropTypes.func,
   renderSeperator:PropTypes.func,
   emptyText:PropTypes.string.isRequired,
-  filterEmptyText:PropTypes.string.isRequired,
+  filterEmptyText:PropTypes.string,
 }
 
 List.defaultProps = {

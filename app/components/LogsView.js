@@ -17,7 +17,7 @@ import LogRow from './LogRow.js';
 import RowDelete from './RowDelete.js'
 import {localStr,localFormatStr} from '../utils/Localizations/localization.js';
 
-export default class AssetLogsView extends Component{
+export default class LogsView extends Component{
   constructor(props){
     super(props);
 
@@ -83,7 +83,7 @@ export default class AssetLogsView extends Component{
   }
 }
 
-AssetLogsView.propTypes = {
+LogsView.propTypes = {
   user:PropTypes.object,
   isFetching:PropTypes.bool,
   showAdd:PropTypes.bool,
