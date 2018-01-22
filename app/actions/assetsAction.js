@@ -570,6 +570,7 @@ export function loadMtDetailById(recordId){
     });
   }
 }
+
 export const MAINTANCE_DETAIL_CHANGED = 'MAINTANCE_DETAIL_CHANGED';
 export function maintanceRecordInfoChangeChange(data){
   return (dispatch,getState)=>{
@@ -585,6 +586,41 @@ export function singleSelectDataChange(data){
   return (dispatch,getState)=>{
     return dispatch({
       type:SINGLE_SELECT_DATA_CHANGED,
+      data
+    });
+  }
+}
+
+
+export const MAINTANCE_MOIDFY_DETAIL_REQUEST = 'MAINTANCE_MOIDFY_DETAIL_REQUEST';
+export const MAINTANCE_MOIDFY_DETAIL_SUCCESS = 'MAINTANCE_MOIDFY_DETAIL_SUCCESS';
+export const MAINTANCE_MOIDFY_DETAIL_FAILURE = 'MAINTANCE_MOIDFY_DETAIL_FAILURE';
+
+export function modifyRecordDetail(data){
+  return (dispatch, getState) => {
+    return dispatch({
+        types: [MAINTANCE_MOIDFY_DETAIL_REQUEST, MAINTANCE_MOIDFY_DETAIL_SUCCESS, MAINTANCE_MOIDFY_DETAIL_FAILURE],
+        url: `device/maintainrecord/save`,
+        body:data
+    });
+  }
+}
+
+export const RECORD_EDIT_INFO_RESET = 'RECORD_EDIT_INFO_RESET';
+export function resetEditRecord(data){
+  return (dispatch,getState)=>{
+    return dispatch({
+      type:RECORD_EDIT_INFO_RESET,
+      data
+    });
+  }
+}
+
+export const CREATE_RECORD_DATA_INIT = 'CREATE_RECORD_DATA_INIT';
+export function initCreateRecord(data){
+  return (dispatch,getState)=>{
+    return dispatch({
+      type:CREATE_RECORD_DATA_INIT,
       data
     });
   }

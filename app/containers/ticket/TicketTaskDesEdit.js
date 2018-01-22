@@ -47,7 +47,10 @@ class TicketTaskDesEdit extends Component{
         editable={this.props.editable}
         onSave={(data)=>this._save(data)}
         dataChanged={(value)=>this._dataChanged(value)}
-        onBack={()=>this.props.navigator.pop()} />
+        onBack={()=>this.props.navigator.pop()}
+        maxLength={this.props.maxLength}
+        placeholdText={this.props.placeholdText}
+        />
     );
   }
 }
@@ -63,6 +66,8 @@ TicketTaskDesEdit.propTypes = {
   editable:PropTypes.bool,
   hasAuth:PropTypes.bool,
   ticketId:PropTypes.number,
+  maxLength:PropTypes.number,
+  placeholdText:PropTypes.string,
 }
 
 function mapStateToProps(state,ownProps) {

@@ -52,7 +52,14 @@ class MaintainRecords extends Component{
     });
   }
   _onAddClick(){
-
+    this.props.navigator.push({
+      id:'record_detail',
+      component:MRecordDetail,
+      passProps:{
+        hierarchyId:this.props.hierarchyId,
+        onPostingCallback:(type)=>{this._onPostingCallback(type)},
+      }
+    });
   }
   _gotoDetail(recordId){
     this.props.navigator.push({

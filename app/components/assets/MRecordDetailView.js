@@ -24,6 +24,7 @@ import TouchFeedback from '../TouchFeedback';
 import PrivilegePanel from '../PrivilegePanel.js';
 import NetworkDocumentCard from '../NetworkDocumentCard.js';
 import {checkFileNameIsImage} from '../../utils/fileHelper.js';
+import Loading from '../Loading';
 
 import UploadableImage from '../UploadableImage.js';
 import Icon from '../Icon';
@@ -276,7 +277,7 @@ export default class MRecordDetailView extends Component{
         );
       }
     });
-    if (this.props.viewType==='edit') {// && this.props.data.get('RemFiles').size < 9
+    if (this.props.viewType!=='view') {// && this.props.data.get('RemFiles').size < 9
       images = images.push(this._getAddButton(images.size));
     }
     if(images && images.size >0){
@@ -320,18 +321,22 @@ export default class MRecordDetailView extends Component{
     if (this.props.viewType==='edit') {
       hasNav=true;
     }
+    var strValue=this.props.data.get('Parts');
     return this._getSimpleRow({
       'title':localStr('零部件'),
-      'value':this.props.data.get('Parts'),
+      'value':strValue,
+      'placeholderText':'请选择',
       'isNav':hasNav,
       type:'Parts'});
   }
   _getFaultPhenomenon()
   {
     var hasNav=true;
+    var strValue=this.props.data.get('FaultPhenomenon');
     return this._getSimpleRow({
       'title':localStr('故障现象'),
-      'value':this.props.data.get('FaultPhenomenon'),
+      'value':strValue,
+      'placeholderText':'请输入',
       'isNav':hasNav,
       type:'FaultPhenomenon'});
   }
@@ -353,6 +358,7 @@ export default class MRecordDetailView extends Component{
     return this._getSimpleRow({
       'title':localStr('故障判定'),
       'value':strJudge,
+      'placeholderText':'请选择',
       'isNav':hasNav,
       type:'FaultJudgeType'});
   }
@@ -374,15 +380,18 @@ export default class MRecordDetailView extends Component{
     return this._getSimpleRow({
       'title':localStr('原因描述'),
       'value':strJudge,
+      'placeholderText':'请输入',
       'isNav':hasNav,
       type:'FaultJudgeText'});
   }
   _getFaultRemoval()
   {
     var hasNav=true;
+    var strValue=this.props.data.get('FaultRemoval');
     return this._getSimpleRow({
       'title':localStr('故障排除过程'),
-      'value':this.props.data.get('FaultRemoval'),
+      'value':strValue,
+      'placeholderText':'请输入',
       'isNav':hasNav,
       type:'FaultRemoval'});
   }
@@ -403,6 +412,7 @@ export default class MRecordDetailView extends Component{
     return this._getSimpleRow({
       'title':localStr('处理结果'),
       'value':strResult,
+      'placeholderText':'请选择',
       'isNav':hasNav,
       type:'DealResult'});
   }
@@ -421,6 +431,9 @@ export default class MRecordDetailView extends Component{
   }
   _getSimpleRow(rowData){
     var value = rowData.value;
+    if (!value) {
+      value=rowData.placeholderText;
+    }
     return (
       <TouchFeedback style={[{backgroundColor:'white'},styles.rowHeight]} onPress={()=>{
         if(rowData.isNav){
@@ -473,7 +486,7 @@ export default class MRecordDetailView extends Component{
               color:'#f0f0f0'
             }}
             disabled={false}
-            text={localStr('lang_ticket_save')} onClick={this.props.onCreateTicket} />
+            text={localStr('lang_ticket_save')} onClick={this.props.onSave} />
         </Bottom>
       );
     }
@@ -481,7 +494,7 @@ export default class MRecordDetailView extends Component{
   _getImagesAndFiles()
   {
     var arrFiles=this.props.data.get('RemFiles');
-    if(!arrFiles||arrFiles.size===0)
+    if(!arrFiles||arrFiles.size===0&&this.props.viewType==='view')
       return null;
     var imagesView = this._getImageView();
     return (
@@ -500,7 +513,7 @@ export default class MRecordDetailView extends Component{
   }
   _getMaintanceAssetNoRow()
   {
-    if (this.props.viewType==='edit') {
+    if (this.props.viewType!=='view') {
       return null;
     }
     return (
@@ -514,7 +527,7 @@ export default class MRecordDetailView extends Component{
   }
   _getMaintanUserRow()
   {
-    if (this.props.viewType==='edit') {
+    if (this.props.viewType!=='view') {
       return null;
     }
     return (
@@ -529,6 +542,7 @@ export default class MRecordDetailView extends Component{
       return (
         <View style={{flex:1,backgroundColor:'white'}}>
           {this._getToolbar(this.props.data)}
+          <Loading/>
         </View>
       );
     }
@@ -601,8 +615,9 @@ MRecordDetailView.propTypes = {
   viewType:PropTypes.bool,
   onRefresh:PropTypes.func.isRequired,
   onEditDetail:PropTypes.func.isRequired,
+  onSave:PropTypes.func.isRequired,
 
-  // onCreateTicket:PropTypes.func.isRequired,
+  //
   // customer:PropTypes.object.isRequired,
   // isEnableCreate:PropTypes.bool.isRequired,
   // isAlarm:PropTypes.bool,

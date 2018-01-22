@@ -13,8 +13,9 @@ import backHelper from '../../utils/backHelper';
 import {
   // loadMRecordDetailData,
   loadMtDetailById,maintanceRecordInfoChangeChange,
+  modifyRecordDetail,resetEditRecord,initCreateRecord,
   // singleSelectDataChange
-  // ,createTicket,resetCreateTicket,updateUserSelectInfo,updateAssetsSelectInfo,deleteTicket
+  // ,createTicket,,updateUserSelectInfo,updateAssetsSelectInfo,deleteTicket
         } from '../../actions/assetsAction.js';
 import MRecordDetailView from '../../components/assets/MRecordDetailView.js';
 import TicketTaskDesEdit from '../ticket/TicketTaskDesEdit';
@@ -64,7 +65,9 @@ class MRecordDetail extends Component{
         passProps:{
           content:rowData.value,
           title:rowData.title,
-          editable:viewType==='edit',
+          editable:viewType!=='view',
+          maxLength:300,
+          placeholdText:'请输入相关内容（上限300字）',
           onSave:(value)=>{
             this.props.maintanceRecordInfoChangeChange({
               type:'FaultPhenomenon',value
@@ -80,7 +83,9 @@ class MRecordDetail extends Component{
         passProps:{
           content:rowData.value,
           title:rowData.title,
-          editable:viewType==='edit',
+          editable:viewType!=='view',
+          maxLength:300,
+          placeholdText:'请输入相关内容（上限300字）',
           onSave:(value)=>{
             this.props.maintanceRecordInfoChangeChange({
               type:'FaultJudgeText',value
@@ -95,7 +100,9 @@ class MRecordDetail extends Component{
         passProps:{
           content:rowData.value,
           title:rowData.title,
-          editable:viewType==='edit',
+          editable:viewType!=='view',
+          maxLength:300,
+          placeholdText:'请输入相关内容（上限300字）',
           onSave:(value)=>{
             this.props.maintanceRecordInfoChangeChange({
               type:'FaultRemoval',value
@@ -180,40 +187,40 @@ class MRecordDetail extends Component{
     }
     return true;
   }
-  _onCreateTicket()
+  _onModifyRecordDetail()
   {
     if (!this._checkTimeIsTrue()) {
       return;
     }
-    console.warn('asdfasdf');
     this.context.showSpinner();
+    this.props.modifyRecordDetail(this.props.data);
 
-    var selectAssets=this.props.data.get('selectAssets');
-    var selectUsers=this.props.data.get('selectUsers');
-    var Assets=[];
-    selectAssets.forEach((item)=>{
-      Assets.push({'HierarchyId':item.get('Id')});
-    });
-    var Executors=[];
-    selectUsers.forEach((item)=>{
-      Executors.push({'UserId':item.get('Id')});
-    });
-    var reqbody = {
-      CustomerId:this.props.data.get('CustomerId'),
-      TicketType:this.props.data.get('TicketType'),
-      Assets:Assets,
-      StartTime:this.props.data.get('StartTime'),
-      EndTime:this.props.data.get('EndTime'),
-      Executors:Executors,
-      Content:this.props.data.get('Content'),
-    };
-    if (this.props.alarm) {
-      reqbody.AlarmId=this.props.alarm.get('Id');
-    }
-    if (this.props.ticketInfo && this.props.ticketInfo.get('Id')) {
-      reqbody.Id=this.props.ticketInfo.get('Id');
-    }
-    this.props.createTicket(reqbody,!this.props.ticketInfo);
+    // var selectAssets=this.props.data.get('selectAssets');
+    // var selectUsers=this.props.data.get('selectUsers');
+    // var Assets=[];
+    // selectAssets.forEach((item)=>{
+    //   Assets.push({'HierarchyId':item.get('Id')});
+    // });
+    // var Executors=[];
+    // selectUsers.forEach((item)=>{
+    //   Executors.push({'UserId':item.get('Id')});
+    // });
+    // var reqbody = {
+    //   CustomerId:this.props.data.get('CustomerId'),
+    //   TicketType:this.props.data.get('TicketType'),
+    //   Assets:Assets,
+    //   StartTime:this.props.data.get('StartTime'),
+    //   EndTime:this.props.data.get('EndTime'),
+    //   Executors:Executors,
+    //   Content:this.props.data.get('Content'),
+    // };
+    // if (this.props.alarm) {
+    //   reqbody.AlarmId=this.props.alarm.get('Id');
+    // }
+    // if (this.props.ticketInfo && this.props.ticketInfo.get('Id')) {
+    //   reqbody.Id=this.props.ticketInfo.get('Id');
+    // }
+    // this.props.createTicket(reqbody,!this.props.ticketInfo);
   }
   _onDeleteTicket(){
     var {ticketInfo} = this.props;
@@ -233,9 +240,15 @@ class MRecordDetail extends Component{
 
   }
   componentDidMount() {
-    InteractionManager.runAfterInteractions(()=>{
-      this._loadContentById(this.props.recordId);
-    });
+    if (this.props.recordId) {
+      InteractionManager.runAfterInteractions(()=>{
+        this._loadContentById(this.props.recordId);
+      });
+    }else {
+      this.setState({'viewType':'create'});
+      this.props.initCreateRecord(this.props.hierarchyId);
+    }
+
     backHelper.init(this.props.navigator,this.props.route.id);
   }
   componentWillReceiveProps(nextProps) {
@@ -244,19 +257,24 @@ class MRecordDetail extends Component{
       this.context.hideHud();
       // console.warn('ticketCreate edit componentWillReceiveProps...',this.props.isFetching,this.props.isPosting,this.props.isEnableCreate);
       this.props.onPostingCallback(this.props.ticketInfo?'edit':'create');
+      this.props.navigator.pop();
       return ;
+    }else if (nextProps.isPosting===3 && this.props.isPosting===1) {
+
     }
   }
 
   componentWillUnmount() {
     backHelper.destroy(this.props.route.id);
-    // this.props.resetCreateTicket();
+    this.props.resetEditRecord();
   }
 
   render() {
     var title='设备维修历史详情';
     if (this.state.viewType==='edit') {
       title='编辑设备维修历史';
+    }else if (this.state.viewType==='create') {
+      title='添加设备维修历史';
     }
     //this.props.ticketInfo?localStr('lang_ticket_edit_ticket'):localStr('lang_ticket_create_ticket');
     return (
@@ -279,6 +297,7 @@ class MRecordDetail extends Component{
           }
         }}
         onRowClick={(rowData,viewType)=>this._gotoDetail(rowData,viewType)}
+        onSave={()=>this._onModifyRecordDetail()}
         />
     );
   }
@@ -301,18 +320,22 @@ MRecordDetail.propTypes = {
   data:PropTypes.object,
   loadMtDetailById:PropTypes.func,
   maintanceRecordInfoChangeChange:PropTypes.func,
+  modifyRecordDetail:PropTypes.func,
+  onPostingCallback:PropTypes.func,
+  resetEditRecord:PropTypes.func,
+  initCreateRecord:PropTypes.func,
+  hierarchyId:PropTypes.number,
+
   // singleSelectDataChange:PropTypes.func,
 
   // alarm:PropTypes.object,
   // ticketInfo:PropTypes.object,
-  // onPostingCallback:PropTypes.func,
   // loadMRecordDetailData:PropTypes.func,
   //
   // updateUserSelectInfo:PropTypes.func,
   // deleteTicket:PropTypes.func,
   // updateAssetsSelectInfo:PropTypes.func,
   // createTicket:PropTypes.func,
-  // resetCreateTicket:PropTypes.func,
   // isFetching:PropTypes.bool,
   // isPosting:PropTypes.number,
   // isEnableCreate:PropTypes.bool,
@@ -362,8 +385,12 @@ export default connect(mapStateToProps,{
   //loadMRecordDetailData,
   loadMtDetailById,
   maintanceRecordInfoChangeChange,
+  modifyRecordDetail,
+  resetEditRecord,
+  initCreateRecord
+
   // singleSelectDataChange,
   // ,
   // ,
-  // createTicket,resetCreateTicket,updateUserSelectInfo,updateAssetsSelectInfo,deleteTicket
+  // createTicket,,updateUserSelectInfo,updateAssetsSelectInfo,deleteTicket
 })(MRecordDetail);
