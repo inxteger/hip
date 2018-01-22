@@ -96,12 +96,15 @@ function mapStateToProps(state,ownProps) {
   var assetLog = state.asset.assetLog;
   var Pictures = ownProps.arrPhotos;
   var feedback = state.feedBack;
+  var recordLog = state.asset.mRecordDetail;
   if (ownProps.type==='assetLogPhoto') {
     Pictures = assetLog.get('Pictures');
   }else if (ownProps.type === 'ticketLogPhoto') {
     Pictures = ticketLog.get('Pictures');
   }else if (ownProps.type==='feedbackLogPhoto') {
     Pictures = feedback.get('Pictures');
+  }else if (ownProps.type==='recordLog') {
+    Pictures = recordLog.getIn(['data','RemFiles']);
   }
   var arrImages=[];
   Pictures.map((item,index)=>{

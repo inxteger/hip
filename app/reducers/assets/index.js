@@ -18,11 +18,13 @@ import logs from './logsReducer.js';
 import assetLog from './logEditReducer.js';
 import historyData from './historyReducer.js';
 import maintances from './maintanceUsersReducer.js';
+import mRecordDetail from './mRecordDetReducer.js';
+import mSingleSelect from './mSingleSelectReducer.js';
 
 import { combineReducers } from 'redux'
 
 export default combineReducers({
   assetData,buildHierarchyData,hierarchyBindData,
   scan,roomDetailData,panelDetailData,deviceDetailData,
-  deviceRuntimSetting,deviceRealtime,dashboardDatas,maintainRecordData,maintainPartsData,maintainFilter,maintances,logs,assetLog,historyData,assetTickets
+  deviceRuntimSetting,deviceRealtime,dashboardDatas,maintainRecordData,maintainPartsData,maintainFilter,maintances,mRecordDetail,logs,assetLog,historyData,assetTickets,mSingleSelect
 })

@@ -3,7 +3,7 @@
 import {
   MAINTANCE_PART_SELECT_CHANGED,
   MAINTANCE_PARTS_REQUEST, MAINTANCE_PARTS_SUCCESS, MAINTANCE_PARTS_FAILURE,
-  TICKET_CREATE_RESET
+  RECORD_EDIT_INFO_RESET
 } from '../../actions/assetsAction.js';
 
 import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
@@ -15,6 +15,7 @@ var defaultState = Immutable.fromJS({
   sectionData:Immutable.fromJS([]),
   isFetching:false,
   selectParts:Immutable.fromJS([]),
+  isSingleSelect:false,
 });
 
 function updateAssetsUsers(state,action)
@@ -23,14 +24,15 @@ function updateAssetsUsers(state,action)
   ];
   var response = action.response.Result;
   var selectParts = state.get('selectParts');
-  console.warn('updateAssetsUsers...', selectParts);
+  var isSingleSelect=state.get('isSingleSelect');
+  // console.warn('updateAssetsUsers...', selectParts);
 
   var arrDatas=[];
   response.forEach((item,index)=>{
     arrDatas.push({'Id':item,'RealName':item});
   })
   response=arrDatas;
-  if (response&&response.length>0) {
+  if (response&&response.length>0&&!isSingleSelect) {
     response.unshift({Id:'全选',RealName:'全选'});
   }
   var allElements = Immutable.fromJS(response);
@@ -47,18 +49,21 @@ function updateAssetsUsers(state,action)
       return item;
     });
   });
-  var isAllSelect=true;
-  allElements.forEach((item)=>{
-    if (item.get('Id')!=='全选') {
-      if (!item.get('isSelect')) {
-        isAllSelect=false;
+
+  if (!isSingleSelect) {
+    var isAllSelect=true;
+    allElements.forEach((item)=>{
+      if (item.get('Id')!=='全选') {
+        if (!item.get('isSelect')) {
+          isAllSelect=false;
+        }
       }
-    }
-  });
-  allElements = allElements.update(0,(item)=>{
-    item = item.set('isSelect',isAllSelect);
-    return item;
-  });
+    });
+    allElements = allElements.update(0,(item)=>{
+      item = item.set('isSelect',isAllSelect);
+      return item;
+    });
+  }
 
   if (allElements.size>=1) {
     state=state.set('data',Immutable.fromJS([allElements]));
@@ -72,64 +77,78 @@ function updateAssetsUsers(state,action)
 function userSelectInfoChange(state,action){
   var newState = state;
   var {data:{type,value}}=action;
+  var isSingleSelect=state.get('isSingleSelect');
   if (type==='select') {
     var arr = newState.getIn(['data',0]);
     var user = value;//action.data;
     var index = arr.findIndex((item)=>item.get('Id')===user.get('Id'));
-    arr = arr.update(index,(item)=>{
-      if(!item.get('isSelect')){
-        item = item.set('isSelect',true);
-      }else {
-        item = item.set('isSelect',false)
-      }
-      return item;
-    });
 
     var arrSelect = newState.get('selectParts');
-    var index = arrSelect.findIndex((item)=>item.get('Id')===user.get('Id'));
-    if (index!==-1) {
-      arrSelect = arrSelect.delete(index);
-    }else {
-      arrSelect = arrSelect.push(user);
-    }
-
-    if (user.get('Id')==='全选') {
-      var allSeleItem=arr.get(0);
-      var isAllSelect=allSeleItem.get('isSelect');
-      arr.forEach((item0,index)=>{
-        arr = arr.update(index,(item)=>{
-          item = item.set('isSelect',isAllSelect);
-          return item;
-        });
+    if (!isSingleSelect) {
+      arr = arr.update(index,(item)=>{
+        if(!item.get('isSelect')){
+          item = item.set('isSelect',true);
+        }else {
+          item = item.set('isSelect',false)
+        }
+        return item;
       });
-
-      arrSelect=arrSelect.clear();
-      if (isAllSelect) {
-        arrSelect=arrSelect.push(...arr);
-        arrSelect=arrSelect.delete(0);
+      var index = arrSelect.findIndex((item)=>item.get('Id')===user.get('Id'));
+      if (index!==-1) {
+        arrSelect = arrSelect.delete(index);
+      }else {
+        arrSelect = arrSelect.push(user);
       }
-    }
+      if (user.get('Id')==='全选') {
+        var allSeleItem=arr.get(0);
+        var isAllSelect=allSeleItem.get('isSelect');
+        arr.forEach((item0,index)=>{
+          arr = arr.update(index,(item)=>{
+            item = item.set('isSelect',isAllSelect);
+            return item;
+          });
+        });
 
-
-    var isAllSelect=true;
-    arr.forEach((item)=>{
-      if (item.get('Id')!=='全选') {
-        if (!item.get('isSelect')) {
-          isAllSelect=false;
+        arrSelect=arrSelect.clear();
+        if (isAllSelect) {
+          arrSelect=arrSelect.push(...arr);
+          arrSelect=arrSelect.delete(0);
         }
       }
-    });
-    arr = arr.update(0,(item)=>{
-      item = item.set('isSelect',isAllSelect);
-      return item;
-    });
 
+      var isAllSelect=true;
+      arr.forEach((item)=>{
+        if (item.get('Id')!=='全选') {
+          if (!item.get('isSelect')) {
+            isAllSelect=false;
+          }
+        }
+      });
+      arr = arr.update(0,(item)=>{
+        item = item.set('isSelect',isAllSelect);
+        return item;
+      });
+    }else {
+      arr.forEach((item,index1)=>{
+        arr = arr.update(index1,(item)=>{
+          if (index===index1||index===-1) {
+            return item.set('isSelect',true);
+          }else {
+            return item.set('isSelect',false);
+          }
+        });
+      });
+      arrSelect=arrSelect.clear();
+      arrSelect = arrSelect.push(user);
+    }
     newState = newState.setIn(['data',0], arr);
 
     newState = newState.set('selectParts', arrSelect);
   }else if (type==='init') {
       // console.warn('ready to init users:',value);
     newState=newState.set('selectParts',value);
+  }else if (type==='initSingleSelect') {
+    newState=newState.set('isSingleSelect',value);
   }
   return newState;
 }
@@ -155,7 +174,7 @@ export default function(state=defaultState,action){
       return handleError(state,action);
     case MAINTANCE_PART_SELECT_CHANGED:
       return userSelectInfoChange(state,action);
-    case TICKET_CREATE_RESET:
+    case RECORD_EDIT_INFO_RESET:
     case LOGOUT_SUCCESS:
       return defaultState;
     default:

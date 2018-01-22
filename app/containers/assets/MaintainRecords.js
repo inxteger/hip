@@ -15,8 +15,7 @@ import backHelper from '../../utils/backHelper';
 import {loadMaintainceRecords,firstPage,nextPage,clearMaintanceFilter,deleteRecord} from '../../actions/assetsAction.js';
 import MaintainRecordsView from '../../components/assets/MaintainRecordsView.js';
 import MaintainFilter from './MaintainFilter.js';
-import AlarmDetail from '../alarm/AlarmDetail';
-import notificationHelper from '../../utils/notificationHelper.js';
+import MRecordDetail from './MRecordDetail.js';
 import Immutable from 'immutable';
 
 class MaintainRecords extends Component{
@@ -53,20 +52,28 @@ class MaintainRecords extends Component{
     });
   }
   _onAddClick(){
-
+    this.props.navigator.push({
+      id:'record_detail',
+      component:MRecordDetail,
+      passProps:{
+        customerId:this.props.customerId,
+        hierarchyId:this.props.hierarchyId,
+        onPostingCallback:(type)=>{this._onPostingCallback(type)},
+      }
+    });
   }
-  _gotoDetail(alarmId,fromHex){
-
-    // this.props.navigator.push({
-    //   id:'alarm_detail',
-    //   component:AlarmDetail,
-    //   barStyle:'light-content',
-    //   passProps:{
-    //     alarmId:alarmId,
-    //     onPostingCallback:(type)=>{this._onPostingCallback(type)},
-    //     fromHex
-    //   }
-    // });
+  _gotoDetail(recordId){
+    this.props.navigator.push({
+      id:'record_detail',
+      component:MRecordDetail,
+      passProps:{
+        customerId:this.props.customerId,
+        hierarchyId:this.props.hierarchyId,
+        recordId:recordId,
+        extData:this.props.recordData.get('ExtData'),
+        onPostingCallback:(type)=>{this._onPostingCallback(type)},
+      }
+    });
   }
   _delete(rowData){
     // console.warn('user',log.get('CreateUserName'),this.props.user.get('RealName'));
@@ -95,12 +102,6 @@ class MaintainRecords extends Component{
       this.props.firstPage();
     }
   }
-  _checkPushNotification(){
-    var alarmId = notificationHelper.getData('alarm');
-    if(alarmId){
-      this._gotoDetail(alarmId,true);
-    }
-  }
   _bindEvent(){
     var navigator = this.props.navigator;
     // console.warn('navigator',navigator);
@@ -122,12 +123,9 @@ class MaintainRecords extends Component{
       if(!this.props.recordData.get('data')){
         this._loadAlarms(this.props.filter);
       }
-      notificationHelper.register('alarm',()=>this._checkPushNotification());
-
     });
-    // setInterval(()=>this._onRefresh(),10000);
     this._bindEvent();
-    // backHelper.init(this.props.navigator,'alarm');
+    backHelper.init(this.props.navigator,'records');
   }
   componentWillReceiveProps(nextProps) {
     var data = nextProps.recordData.get('data');
@@ -148,16 +146,19 @@ class MaintainRecords extends Component{
     }
   }
   componentWillUnmount() {
-    // backHelper.destroy('alarm');
-    notificationHelper.resetData('alarm');
-    notificationHelper.unregister('alarm');
+    backHelper.destroy('records');
   }
   render() {
+    var extData=null;
+    if (this.props.recordData) {
+      extData=this.props.recordData.get('ExtData');
+    }
     return (
       <MaintainRecordsView
         loadAlarm={()=>this._loadAlarm()}
         isFetching={this.props.recordData.get('isFetching')}
         listData={this.state.dataSource}
+        extData={extData}
         hasFilter={this.props.hasFilter}
         nextPage={()=>this.props.nextPage()}
         clearFilter={()=>this.props.clearMaintanceFilter()}
@@ -166,7 +167,7 @@ class MaintainRecords extends Component{
         totalPage={this.props.recordData.get('pageCount')}
         onFilterClick={()=>this._filterClick()}
         onAddClick={()=>this._onAddClick()}
-        onRowClick={(rowData)=>this._gotoDetail(String(rowData.get('Id')),false)}
+        onRowClick={(rowData)=>this._gotoDetail(rowData.get('AutoId'))}
         onRowLongPress={(rowData)=>this._delete(rowData)}
         />
     );

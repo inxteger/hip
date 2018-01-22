@@ -66,14 +66,15 @@ export default class MaintainRecordsView extends Component{
   }
   _getAssetNoView()
   {
+    var assNo=this.props.extData;
     var textView=(
       <View style={{flex:1,}}>
         <Text numberOfLines={1} style={{fontSize:14,color:'#8e8e9c'}}>
-          {'资产编号：DS20170306DS20170306DS20170306DS20170306'}
+          {'资产编号：'+assNo}
         </Text>
       </View>
     );
-    if (true) {
+    if (!assNo) {
       textView=(
         <View style={{flex:1,flexDirection:'row',alignItems:'center'}}>
           <Icon type="icon_notification" color={LOGOUT_RED} size={15} />

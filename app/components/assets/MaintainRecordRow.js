@@ -52,7 +52,7 @@ export default class MaintainRecordRow extends Component{
     )
   }
   _getTime(data){
-    var time = moment(data.get('AlarmTime'));
+    var time = moment(data.get('MaintainTime'));
     if(time.isSame(moment(),'day')){
       return time.format('HH:mm');
     }

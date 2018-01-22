@@ -62,7 +62,7 @@ export default class DateInputGroup extends Component{
         value = this.props.endTime || undefined;
       }
       var date = moment(value);
-      console.warn('_getDatePicker',value,date);
+      // console.warn('_getDatePicker',value,date);
       return (
         <DatePickerIOS style={{borderTopWidth:1,borderColor:LINE}} date={date.toDate()} mode="date"
           onDateChange={(date1)=>{

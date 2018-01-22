@@ -57,7 +57,6 @@ export default class MaintancePartsView extends Component{
   render() {
     var disable = !this.props.data || !this.props.selectParts || this.props.selectParts.size===0;
     var actions = [{title:'完成',show:'always',disable:disable}];
-    console.warn('aaa',this.props.selectParts);
     return (
       <View style={{flex:1,backgroundColor:'white'}}>
         <Toolbar title={this.props.title}

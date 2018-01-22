@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import backHelper from '../../utils/backHelper';
 
-import {getUsersFromMaintance,updateMaintanceUserSelectInfo} from '../../actions/assetsAction.js';
+import {getUsersFromMaintance,updateMaintanceUserSelectInfo,resetEditRecord} from '../../actions/assetsAction.js';
 import MaintanceSelView from '../../components/assets/MaintanceSelView';
 // import umengApi from '../../utils/umengApi.js';
 
@@ -21,18 +21,9 @@ class MaintancePartsSelect extends Component{
       rowHasChanged: (r1, r2) => r1 !== r2,
       sectionHeaderHasChanged:(r1, r2) => r1 !== r2,
     });
-    // console.warn('data',props.data);
-    // if(props.data){
-    //   var obj = props.data.map((item)=>item.toArray()).toArray();
-    //   // InteractionManager.runAfterInteractions(() => {
-    //     this.state={dataSource:this.ds.cloneWithRowsAndSections(obj)}
-    //   // });
-    // }else {
     this.state={dataSource:null};
-    // }
   }
   _loadUsers(){
-    console.warn('aaa');
     this.props.getUsersFromMaintance(this.props.customerId,this.props.hierarchyId);
   }
   _didRowClick(rowData){
@@ -66,6 +57,7 @@ class MaintancePartsSelect extends Component{
     }
   }
   componentWillUnmount() {
+    // this.props.resetEditRecord();
     // umengApi.onPageEnd(this.props.route.id);
     backHelper.destroy(this.props.route.id);
   }
@@ -99,6 +91,7 @@ MaintancePartsSelect.propTypes = {
   selectUsers:PropTypes.object,
   getUsersFromMaintance:PropTypes.func,
   updateMaintanceUserSelectInfo:PropTypes.func,
+  resetEditRecord:PropTypes.func,
 }
 
 function mapStateToProps(state,ownProps) {
@@ -115,4 +108,4 @@ function mapStateToProps(state,ownProps) {
   };
 }
 
-export default connect(mapStateToProps,{getUsersFromMaintance,updateMaintanceUserSelectInfo})(MaintancePartsSelect);
+export default connect(mapStateToProps,{getUsersFromMaintance,updateMaintanceUserSelectInfo,resetEditRecord})(MaintancePartsSelect);

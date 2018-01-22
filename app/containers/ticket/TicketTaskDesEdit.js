@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import backHelper from '../../utils/backHelper';
 import TaskDesEditView from '../../components/ticket/TaskDesEditView';
-import {ticketCreateConditionChange} from '../../actions/ticketAction';
+// import {ticketCreateConditionChange} from '../../actions/ticketAction';
 import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 class TicketTaskDesEdit extends Component{
@@ -15,9 +15,10 @@ class TicketTaskDesEdit extends Component{
     super(props);
   }
   _save(value){
-    this.props.ticketCreateConditionChange({
-      type:'Content',value
-    });
+    this.props.onSave(value);
+    // this.props.ticketCreateConditionChange({
+    //   type:'Content',value
+    // });
     this.props.navigator.pop();
   }
   _dataChanged(value){
@@ -39,14 +40,17 @@ class TicketTaskDesEdit extends Component{
   render() {
     return (
       <TaskDesEditView
-        title={localStr('lang_ticket_task_des')}
+        title={this.props.title}
         content={this.props.content}
         user={null}
-        isSameUser={this.props.isSameUser}
         ticketId={this.props.ticketId}
+        editable={this.props.editable}
         onSave={(data)=>this._save(data)}
         dataChanged={(value)=>this._dataChanged(value)}
-        onBack={()=>this.props.navigator.pop()} />
+        onBack={()=>this.props.navigator.pop()}
+        maxLength={this.props.maxLength}
+        placeholdText={this.props.placeholdText}
+        />
     );
   }
 }
@@ -57,15 +61,19 @@ TicketTaskDesEdit.propTypes = {
   user:PropTypes.object,
   content:PropTypes.string,
   title:PropTypes.string,
-  saveLog:PropTypes.func,
-  ticketCreateConditionChange:PropTypes.func,
-  isSameUser:PropTypes.bool,
+  onSave:PropTypes.func,
+  // ticketCreateConditionChange:PropTypes.func,
+  editable:PropTypes.bool,
   hasAuth:PropTypes.bool,
   ticketId:PropTypes.number,
+  maxLength:PropTypes.number,
+  placeholdText:PropTypes.string,
 }
 
 function mapStateToProps(state,ownProps) {
   return {}
 }
 
-export default connect(mapStateToProps,{ticketCreateConditionChange})(TicketTaskDesEdit);
+export default connect(mapStateToProps,{
+  // ticketCreateConditionChange
+})(TicketTaskDesEdit);

@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import backHelper from '../../utils/backHelper';
 
-import {getPartsFromMaintance,updateMaintancePartsSelectInfo} from '../../actions/assetsAction.js';
+import {getPartsFromMaintance,updateMaintancePartsSelectInfo,resetEditRecord} from '../../actions/assetsAction.js';
 import MaintancePartsView from '../../components/assets/MaintancePartsView';
 // import umengApi from '../../utils/umengApi.js';
 
@@ -66,6 +66,7 @@ class MaintancePartsSelect extends Component{
   }
   componentWillUnmount() {
     // umengApi.onPageEnd(this.props.route.id);
+    // this.props.resetEditRecord();
     backHelper.destroy(this.props.route.id);
   }
   render() {
@@ -97,6 +98,7 @@ MaintancePartsSelect.propTypes = {
   sectionData:PropTypes.object,
   selectParts:PropTypes.object,
   getPartsFromMaintance:PropTypes.func,
+  resetEditRecord:PropTypes.func,
   updateMaintancePartsSelectInfo:PropTypes.func,
 }
 
@@ -114,4 +116,4 @@ function mapStateToProps(state,ownProps) {
   };
 }
 
-export default connect(mapStateToProps,{getPartsFromMaintance,updateMaintancePartsSelectInfo})(MaintancePartsSelect);
+export default connect(mapStateToProps,{getPartsFromMaintance,updateMaintancePartsSelectInfo,resetEditRecord})(MaintancePartsSelect);

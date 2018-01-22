@@ -43,6 +43,14 @@ export default class TaskDesEditView extends Component{
     if(Platform.OS === 'android'){
       actions = [{title:localStr('lang_common_finish'),show:'always'}];
     }
+    if (!this.props.editable) {
+      actions=[];
+    }
+    var maxLength=this.props.maxLength;
+    if (!maxLength) {
+      maxLength=100000;
+    }
+    var placeholdText=this.props.placeholdText;
     return (
       <View style={{flex:1,backgroundColor:'white'}}>
         <Toolbar
@@ -62,10 +70,12 @@ export default class TaskDesEditView extends Component{
             underlineColorAndroid={'transparent'}
             textAlign={'left'}
             multiline={true}
+            editable={this.props.editable}
             numberOfLines={lines}
+            maxLength={maxLength}
             placeholderTextColor={GRAY}
             textAlignVertical={'top'}
-            placeholder={localStr('lang_ticket_notice3')}
+            placeholder={placeholdText}
             onChangeText={(text)=>this._logChanged(text)}
             value={content} />
         </View>
@@ -82,7 +92,7 @@ TaskDesEditView.propTypes = {
   user:PropTypes.object,
   onBack:PropTypes.func.isRequired,
   onSave:PropTypes.func.isRequired,
-  isSameUser:PropTypes.bool,
+  editable:PropTypes.bool,
   dataChanged:PropTypes.func.isRequired,
 }
 

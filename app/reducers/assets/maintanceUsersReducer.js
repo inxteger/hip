@@ -3,7 +3,7 @@
 import {
   MAINTANCE_USER_SELECT_CHANGED,
   MAINTANCE_USERS_REQUEST, MAINTANCE_USERS_SUCCESS, MAINTANCE_USERS_FAILURE,
-  TICKET_CREATE_RESET
+  RECORD_EDIT_INFO_RESET
 } from '../../actions/assetsAction.js';
 
 import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
@@ -23,7 +23,7 @@ function updateAssetsUsers(state,action)
   ];
   var response = action.response.Result;
   var selectUsers = state.get('selectUsers');
-  console.warn('updateAssetsUsers...', selectUsers);
+  // console.warn('updateAssetsUsers...', selectUsers);
   if (response&&response.length>0) {
     response.unshift({Id:'全选',RealName:'全选'});
   }
@@ -149,7 +149,7 @@ export default function(state=defaultState,action){
       return handleError(state,action);
     case MAINTANCE_USER_SELECT_CHANGED:
       return userSelectInfoChange(state,action);
-    case TICKET_CREATE_RESET:
+    case RECORD_EDIT_INFO_RESET:
     case LOGOUT_SUCCESS:
       return defaultState;
     default:
