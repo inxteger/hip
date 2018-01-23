@@ -6,7 +6,8 @@ import {
   ASSET_MAINTAINCE_SUCCESS,
   ASSET_MAINTAINCE_FAILURE,
   MAINTANCE_FILTER_DIDCHANGED,
-  MAINTANCE_RECORD_DELETE_REQUEST, MAINTANCE_RECORD_DELETE_SUCCESS, MAINTANCE_RECORD_DELETE_FAILURE
+  MAINTANCE_RECORD_DELETE_REQUEST, MAINTANCE_RECORD_DELETE_SUCCESS, MAINTANCE_RECORD_DELETE_FAILURE,
+  DEVICE_EXIT,
 } from '../../actions/assetsAction.js';
 
 // import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
@@ -126,10 +127,10 @@ export default commonReducer((state,action)=>{
       return mergeData(state,action);
     case MAINTANCE_RECORD_DELETE_SUCCESS:
       return removeData(state,action);
-      break;
     case ASSET_MAINTAINCE_FAILURE:
       return handleError(state,action);
-    default:
+    case DEVICE_EXIT:
+      return defaultState;
 
   }
   return state;

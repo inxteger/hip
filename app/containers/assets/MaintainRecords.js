@@ -96,6 +96,7 @@ class MaintainRecords extends Component{
     )
   }
   _onRefresh(){
+    // console.warn('_onRefresh',this.props.filter.get('PageIndex'));
     if (this.props.filter.get('PageIndex')===1) {
       this._loadAlarms(this.props.filter);
     }else {
@@ -104,11 +105,12 @@ class MaintainRecords extends Component{
   }
   _bindEvent(){
     var navigator = this.props.navigator;
-    // console.warn('navigator',navigator);
+    // console.warn('navigator',event.data.route.id,navigator);
     if (navigator) {
       var callback = (event) => {
-        if(!event.data.route || !event.data.route.id || (event.data.route.id === 'main')){
+        if(!event.data.route || !event.data.route.id || (event.data.route.id === 'asset_detail')){
           if(this._refreshOnFocus){
+            console.warn('callback',event.data.route);
             this._onRefresh();
             this._refreshOnFocus = false;
           }
@@ -127,12 +129,13 @@ class MaintainRecords extends Component{
     this._bindEvent();
     backHelper.init(this.props.navigator,'records');
   }
+
   componentWillReceiveProps(nextProps) {
     var data = nextProps.recordData.get('data');
     var origData = this.props.recordData.get('data');
     // console.warn('componentWillReceiveProps...',data,origData);
     if((data !== origData) && data){// && data.size >= 1){
-      this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+      // this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
       InteractionManager.runAfterInteractions(()=>{
         this.setState({dataSource:this.ds.cloneWithRows(data.toArray())});

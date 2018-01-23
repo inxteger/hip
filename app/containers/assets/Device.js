@@ -66,8 +66,7 @@ class Device extends Component{
   }
   _onRefresh(){
     var type = this._getCurrentType();
-      //
-      // console.warn('onRefresh...',type);
+      console.warn('onRefresh...',type);
     if(type === 'infoData'){
       this._loadDetailById(this.props.ownData);
     }
@@ -142,28 +141,43 @@ console.warn('_gotoDetail...',type);
   }
   _getCurrentType(index = this.state.currentIndex){
     var ret = '';
-    if(index === 0){
-      ret = 'infoData';
+    // if(index === 0){
+    //   ret = 'infoData';
+    // }
+    // else{
+    //   if(this.props.hasRealtime){
+    //     if(index === 1){
+    //       ret = 'realtimeData';
+    //     }
+    //     else if(index === 2){
+    //       ret = 'runtimeData';
+    //     }
+    //     else if (index === 3) {
+    //       ret = 'maintainRecordData';
+    //     }
+    //   }
+    //   else {
+    //     if(index === 1){
+    //       ret = 'runtimeData';
+    //     }else if(index === 2){
+    //       ret = 'maintainRecordData';
+    //     }
+    //   }
+    // }
+
+    var array = ['infoData'];
+    if(this.props.hasRealtime){
+      array.push('realtimeData');
     }
-    else{
-      if(this.props.hasRealtime){
-        if(index === 1){
-          ret = 'realtimeData';
-        }
-        else if(index === 2){
-          ret = 'runtimeData';
-        }
-        else if (index === 3) {
-          ret = 'maintainRecordData';
-        }
-      }
-      else {
-        if(index === 1){
-          ret = 'runtimeData';
-        }else if(index === 2){
-          ret = 'maintainRecordData';
-        }
-      }
+    if(this.props.hasRuntime){
+      array.push('runtimeData');
+    }
+    // if(this.props.has6Dashboard){
+    //   array.push('realtimeData');
+    // }
+    array.push('maintainRecordData');
+    if (index<array.length) {
+      ret=array[index];
     }
     return ret;
   }
@@ -241,7 +255,7 @@ console.warn('_gotoDetail...',type);
           imageId={this._getCurrentData(this.props).get('imageId')} />
       );
     }else if(type === 'maintainRecordData'){
-      console.warn('111',this.props.ownData.get('Id'));
+      console.warn('maintainRecordData',this.props.ownData.get('Id'));
       component = (
         <MaintainRecords {...obj} navigator={this.props.navigator}
           customerId={this.props.ownData.get('CustomerId')}

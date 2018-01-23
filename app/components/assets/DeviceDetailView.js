@@ -46,7 +46,7 @@ export default class DeviceDetailView extends Component{
       return [];
     }
     // console.warn('hasRealtime',this.props.hasRealtime);
-    // console.warn('hasRuntime',this.props.hasRuntime);
+    console.warn('hasRuntime',this.props.hasRealtime,this.props.hasRuntime,this.props.has6Dashboard);
 
     var array = [localStr('lang_asset_des13')];
     if(this.props.hasRealtime){
@@ -55,9 +55,9 @@ export default class DeviceDetailView extends Component{
     if(this.props.hasRuntime){
       array.push(localStr('lang_asset_des15'));
     }
-    if(this.props.has6Dashboard){
-      array.push(localStr('lang_asset_des16'));
-    }
+    // if(this.props.has6Dashboard){
+    //   array.push(localStr('lang_asset_des16'));
+    // }
     array.push('维修历史');
     return array;
   }

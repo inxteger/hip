@@ -7,6 +7,7 @@ import {
   RECORD_EDIT_INFO_RESET,
   CREATE_RECORD_DATA_INIT,
   MAINTANCE_PART_SELECT_CHANGED,
+  DEVICE_EXIT
 } from '../../actions/assetsAction.js';
 
 import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
@@ -183,6 +184,7 @@ export default function(state=defaultState,action){
     case MAINTANCE_PART_SELECT_CHANGED:
       return partsSelectInfoChange(state,action);
     case RECORD_EDIT_INFO_RESET:
+    case DEVICE_EXIT:
     case LOGOUT_SUCCESS:
       return defaultState;
     default:
