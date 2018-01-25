@@ -4,7 +4,7 @@ import React,{Component} from 'react';
 import {
   View,
   Platform,
-  // Dimensions,
+  Dimensions,
   ViewPagerAndroid,
   SegmentedControlIOS
 } from 'react-native';
@@ -19,6 +19,8 @@ import PagerBar from '../PagerBar.js';
 import {GREEN,TAB_BORDER,GRAY} from '../../styles/color.js';
 // import ViewPager from '../ViewPager.android.js';
 import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
+import ScrollableTabBar from './ScrollableTabBar';
+const WINDOW_WIDTH = Dimensions.get('window').width;
 
 export default class DeviceDetailView extends Component{
   constructor(props){
@@ -45,7 +47,6 @@ export default class DeviceDetailView extends Component{
     if(!this.props.deviceData){
       return [];
     }
-    // console.warn('hasRealtime',this.props.hasRealtime);
     console.warn('hasRuntime',this.props.hasRealtime,this.props.hasRuntime,this.props.has6Dashboard);
 
     var array = [localStr('lang_asset_des13')];
@@ -62,41 +63,40 @@ export default class DeviceDetailView extends Component{
     return array;
   }
   _getTabControl(){
-    var array = this._getTabArray();
-    // console.warn('array',array);
-    if(array.length > 1){
-      if(Platform.OS === 'android'){
-        return (
-          <PagerBar
-            barStyle={{
-              borderBottomWidth:1,
-              borderColor:TAB_BORDER,
-            }}
-            array={array}
-            currentIndex={this.props.currentIndex}
-            onClick={(index)=>this._pagerBarClicked(index)} />
-        )
-      }
-      else {
-        // console.warn('SegmentedControlIOS',this.props.currentIndex);
-        return (
-          <View style={{
-              backgroundColor:'transparent',
-              paddingVertical:16,
-              borderBottomWidth:1,
-              borderColor:TAB_BORDER,
-              paddingHorizontal:32}}>
-            <SegmentedControlIOS
-              momentary={false}
-              selectedIndex={this.props.currentIndex}
-              onChange={(event)=>this._tabChanged(event)}
-              tintColor={GREEN}
-              values={array}
-               />
-          </View>
-        )
-      }
+    if(!this.props.deviceData){
+      return null;
     }
+    var array = this._getTabArray();
+    return (
+      <ScrollableTabBar
+        barStyle={{
+          borderBottomWidth:1,
+          borderColor:TAB_BORDER,
+        }}
+        activeTextColor={GREEN}
+        underlineStyle={{
+          position: 'absolute',
+          height: 3,
+          backgroundColor:GREEN,
+          bottom: 0,
+        }}
+        tabStyle={{
+          height: 47,
+          alignItems: 'center',
+          justifyContent: 'center',
+          paddingLeft: 1,
+          paddingRight: 1,
+        }}
+        textStyle={{
+          fontSize:15,
+        }}
+        inactiveTextColor={'#353535'}
+        containerWidth={WINDOW_WIDTH}
+        tabs={array}
+        activeTab={this.props.currentIndex}
+        scrollValue={{'_value':this.props.currentIndex}}
+        goToPage={(index)=>this._pagerBarClicked(index)} />
+    )
 
   }
   _getView(){
@@ -171,7 +171,6 @@ export default class DeviceDetailView extends Component{
         {this._getTabControl()}
         {this._getView()}
       </View>
-
     );
   }
 }
