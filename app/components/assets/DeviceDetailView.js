@@ -81,11 +81,11 @@ export default class DeviceDetailView extends Component{
           bottom: 0,
         }}
         tabStyle={{
-          height: 47,
+          height: 43,
           alignItems: 'center',
           justifyContent: 'center',
-          paddingLeft: 1,
-          paddingRight: 1,
+          paddingLeft: 10,
+          paddingRight: 10,
         }}
         textStyle={{
           fontSize:15,
