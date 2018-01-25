@@ -108,7 +108,7 @@ function mappingMaintanceCode(state,arrIndex) {
       return item.get('Type').indexOf(text) >= 0;
     });
     if(result){
-      arrCodes.push(result.get('Code'));
+      arrCodes.push(parseInt(result.get('Code')));
     }
   });
   // var arrOtherCodes=null;
@@ -123,8 +123,9 @@ function mappingMaintanceCode(state,arrIndex) {
   // if (arrOtherCodes) {
   //   arrCodes.push(arrOtherCodes.toArray());
   // }
-  var strCodes=arrCodes.map((item)=> item).join(',');
-  return strCodes;
+  // var strCodes=arrCodes.map((item)=> parseInt(item)).join(',');
+  // console.warn('mappingMaintanceCode',strCodes);
+  return arrCodes;
 }
 
 function mappingDealResults(state,arrIndex) {
@@ -222,7 +223,7 @@ function userSelectInfoChange(state,action){
   }
   return newState;
 }
- 
+
 function partsSelectInfoChange(state,action) {
   var {data:{type,value}}=action;
   var newState = state;
