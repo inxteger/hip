@@ -117,13 +117,15 @@ export default class ScrollableTabBar extends Component{
         onPress={() => onPressHandler(page)}
         onLayout={onLayoutHandler}
       >
-        <View style={[styles.tab, this.props.tabStyle,]}>
-          <Text style={[{color: textColor, fontWeight, }, textStyle, ]}>
-            {name}
-          </Text>
-        </View>
-        <View style={[{flex:1,paddingHorizontal:10,height:3}]}>
-          <View style={{height:3,backgroundColor:!isTabActive?'transparent':lineColor,}}>
+        <View style={{}}>
+          <View style={[styles.tab, this.props.tabStyle,]}>
+            <Text style={[{color: textColor, fontWeight, }, textStyle, ]}>
+              {name}
+            </Text>
+          </View>
+          <View style={[{flex:1,paddingHorizontal:10,height:3}]}>
+            <View style={{height:3,backgroundColor:!isTabActive?'transparent':lineColor,}}>
+            </View>
           </View>
         </View>
       </TouchFeedback>
