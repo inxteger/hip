@@ -100,7 +100,10 @@ export default class ScrollableTabBar extends Component{
     const { activeTextColor, inactiveTextColor, textStyle, } = this.props;
     const textColor = isTabActive ? activeTextColor : inactiveTextColor;
     const fontWeight = isTabActive ? 'normal' : 'normal';
-
+    var lineColor='green';
+    if (this.props.underlineStyle) {
+      lineColor=this.props.underlineStyle.backgroundColor;
+    }
     if (this.props.renderTab) {
       return this.props.renderTab();
     }
@@ -114,10 +117,14 @@ export default class ScrollableTabBar extends Component{
         onPress={() => onPressHandler(page)}
         onLayout={onLayoutHandler}
       >
-        <View style={[styles.tab, this.props.tabStyle, ]}>
+        <View style={[styles.tab, this.props.tabStyle,]}>
           <Text style={[{color: textColor, fontWeight, }, textStyle, ]}>
             {name}
           </Text>
+        </View>
+        <View style={[{flex:1,paddingHorizontal:10,height:3}]}>
+          <View style={{height:3,backgroundColor:!isTabActive?'transparent':lineColor,}}>
+          </View>
         </View>
       </TouchFeedback>
     )
@@ -137,7 +144,7 @@ export default class ScrollableTabBar extends Component{
       backgroundColor: 'navy',
       bottom: 0,
     };
-    // console.warn('aaaaaaa',this.state._leftTabUnderline,this.state._widthTabUnderline);
+    console.warn('dynamicTabUnderline',this.state._leftTabUnderline,this.state._widthTabUnderline);
     const dynamicTabUnderline = {
       left: this.state._leftTabUnderline,
       width: this.state._widthTabUnderline,
@@ -167,8 +174,9 @@ export default class ScrollableTabBar extends Component{
               const isTabActive = this.props.activeTab === page;
               return this.renderTab(name, page, isTabActive, this.props.goToPage, this.measureTab.bind(this, page));
             })}
-            <Animated.View style={[tabUnderlineStyle, dynamicTabUnderline, this.props.underlineStyle, ]} />
-
+            {
+              // <Animated.View style={[tabUnderlineStyle, dynamicTabUnderline, this.props.underlineStyle, ]} />
+            }
           </View>
         </ScrollView>
       </View>
@@ -231,14 +239,14 @@ ScrollableTabBar.defaultProps = {
 
 var styles = StyleSheet.create({
   tab: {
-    height: 49,
+    height: 47,
     alignItems: 'center',
     justifyContent: 'center',
     paddingLeft: 20,
     paddingRight: 20,
   },
   container: {
-    height: 50,
+    height: 47,
     borderWidth: 1,
     borderTopWidth: 0,
     borderLeftWidth: 0,
