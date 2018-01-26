@@ -291,13 +291,15 @@ export default class MRecordDetailView extends Component{
   _getAssetNoRow()
   {
     var assNo='请在设备信息中填写';
+    var color=LOGOUT_RED;
     if (this.props.extData) {
       assNo=this.props.extData;
+      color=GRAY;
     }
     return this._getSimpleRow({
       'title':localStr('资产编号'),
       'value':assNo,
-      'valueColor':LOGOUT_RED,
+      'valueColor':color,
       'isNav':false});
   }
   _getMaintanceTime()
