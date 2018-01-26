@@ -488,11 +488,12 @@ export default class MRecordDetailView extends Component{
       var parts=this.props.data.get('Parts');
       var Phenomenon=this.props.data.get('FaultPhenomenon');
       var judgeType=this.props.data.get('FaultJudgeType');
+      var judgeText=this.props.data.get('FaultJudgeText');
       var removal=this.props.data.get('FaultRemoval');
       var numRes=this.props.data.get('DealResult');
 
       var isEnableCreate=true;
-      if (!parts||!Phenomenon||judgeType===0||!removal||numRes===0) {
+      if (!parts||!Phenomenon||judgeType===0||!removal||numRes===0||(!judgeText&&judgeType===1)) {
         isEnableCreate=false;
       }
       return(
