@@ -27,9 +27,9 @@ export default class MaintainRecordRow extends Component{
     types.forEach((item)=>{
       if (item.Code===data.get('FaultJudgeType')) {
         strJudge=item.Type;
-        if (item.Code===1) {
-          strJudge=data.get('FaultJudgeText');
-        }
+        // if (item.Code===1) {
+        //   strJudge=data.get('FaultJudgeText');
+        // }
       }
     });
     var strResult='';
