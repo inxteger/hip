@@ -482,6 +482,17 @@ export default class MRecordDetailView extends Component{
     if (this.props.viewType==='view') {
       return null;
     }else {
+
+      var parts=this.props.data.get('Parts');
+      var Phenomenon=this.props.data.get('FaultPhenomenon');
+      var judgeType=this.props.data.get('FaultJudgeType');
+      var removal=this.props.data.get('FaultRemoval');
+      var numRes=this.props.data.get('DealResult');
+
+      var isEnableCreate=true;
+      if (!parts||!Phenomenon||judgeType===0||!removal||numRes===0) {
+        isEnableCreate=false;
+      }
       return(
         <Bottom height={49} backgroundColor={LIST_BG} borderColor={LIST_BG}>
           <Button
@@ -496,7 +507,7 @@ export default class MRecordDetailView extends Component{
               fontSize:20,
               color:'#f0f0f0'
             }}
-            disabled={false}
+            disabled={!isEnableCreate}
             text={localStr('lang_ticket_save')} onClick={this.props.onSave} />
         </Bottom>
       );
