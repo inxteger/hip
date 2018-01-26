@@ -100,7 +100,7 @@ export default class MaintainRecordsView extends Component{
           onPress={()=>{
             this.props.onAddClick();
           }}>
-          <View style={{width:30,height:30,alignItems:'center',justifyContent:'flex-end',flexDirection:'row'}}>
+          <View style={{width:40,height:30,alignItems:'center',justifyContent:'flex-end',flexDirection:'row'}}>
             <Icon type="icon_add" color={GREEN} size={16} />
           </View>
         </TouchFeedback>
