@@ -100,7 +100,8 @@ export default class MaintainRecordsView extends Component{
           onPress={()=>{
             this.props.onAddClick();
           }}>
-          <View style={{width:40,height:30,alignItems:'center',justifyContent:'flex-end',flexDirection:'row'}}>
+          <View style={{height:40,paddingRight:16,paddingLeft:8,
+              alignItems:'center',justifyContent:'flex-end',flexDirection:'row'}}>
             <Icon type="icon_add" color={GREEN} size={16} />
           </View>
         </TouchFeedback>
@@ -112,7 +113,7 @@ export default class MaintainRecordsView extends Component{
     return (
       <View style={{
           height:44,backgroundColor:'#F0F0F5',
-          alignItems:'center',paddingHorizontal:16,
+          alignItems:'center',paddingLeft:16,
           flexDirection:'row',borderTopWidth:1,
           borderBottomWidth:1,borderColor:LINE
         }}>
@@ -122,7 +123,8 @@ export default class MaintainRecordsView extends Component{
             onPress={()=>{
               this.props.onFilterClick();
             }}>
-            <View style={{width:30,height:30,alignItems:'center',justifyContent:'flex-end',flexDirection:'row'}}>
+            <View style={{height:40,paddingHorizontal:16,
+              alignItems:'center',justifyContent:'flex-end',flexDirection:'row'}}>
               <Icon type="icon_filter" color={GREEN} size={16} />
             </View>
           </TouchFeedback>

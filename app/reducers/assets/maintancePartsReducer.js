@@ -18,14 +18,14 @@ var defaultState = Immutable.fromJS({
   isSingleSelect:false,
 });
 
-function updateAssetsUsers(state,action)
+function updateAssetsParts(state,action)
 {
   var allSecTitle=[
   ];
   var response = action.response.Result;
   var selectParts = state.get('selectParts');
   var isSingleSelect=state.get('isSingleSelect');
-  // console.warn('updateAssetsUsers...', selectParts);
+  // console.warn('updateAssetsParts...', selectParts);
 
   var arrDatas=[];
   response.forEach((item,index)=>{
@@ -59,13 +59,15 @@ function updateAssetsUsers(state,action)
         }
       }
     });
-    allElements = allElements.update(0,(item)=>{
-      item = item.set('isSelect',isAllSelect);
-      return item;
-    });
+    if (allElements.size>0) {
+      allElements = allElements.update(0,(item)=>{
+        item = item.set('isSelect',isAllSelect);
+        return item;
+      });
+    }
   }
 
-  if (allElements.size>=1) {
+  if (allElements&&allElements.size>0) {
     state=state.set('data',Immutable.fromJS([allElements]));
   }else {
     state=state.set('data',Immutable.fromJS([]));
@@ -169,7 +171,7 @@ export default function(state=defaultState,action){
     case MAINTANCE_PARTS_REQUEST:
       return state.set('isFetching',true);
     case MAINTANCE_PARTS_SUCCESS:
-      return updateAssetsUsers(state,action);
+      return updateAssetsParts(state,action);
     case MAINTANCE_PARTS_FAILURE:
       return handleError(state,action);
     case MAINTANCE_PART_SELECT_CHANGED:
