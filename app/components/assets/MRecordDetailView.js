@@ -114,7 +114,7 @@ export default class MRecordDetailView extends Component{
   _getToolbar(data){
     var actions = null;
     if(data){
-      if (this.props.viewType==='view') {
+      if (this.props.viewType==='view'&&this.props.isSameUser) {
         actions = [{
         title:'',
         iconType:'edit',
@@ -174,6 +174,7 @@ export default class MRecordDetailView extends Component{
     if(!this._showAuth()){
       return;
     }
+    return;
     this.props.save();
   }
   _getAddButton(index)
@@ -510,7 +511,7 @@ export default class MRecordDetailView extends Component{
               color:'#f0f0f0'
             }}
             disabled={!isEnableCreate}
-            text={localStr('lang_ticket_save')} onClick={this.props.onSave} />
+            text={localStr('lang_ticket_save')} onClick={()=>this._saveLog()} />
         </Bottom>
       );
     }
@@ -650,6 +651,7 @@ MRecordDetailView.propTypes = {
   types:PropTypes.array,
   results:PropTypes.array,
   extData:PropTypes.string,
+  isSameUser:PropTypes.bool,
   dataChanged:PropTypes.func.isRequired,
   deleteImage:PropTypes.func.isRequired,
   gotoDetail:PropTypes.func.isRequired,

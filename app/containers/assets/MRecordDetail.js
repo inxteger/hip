@@ -360,6 +360,7 @@ class MRecordDetail extends Component{
         types={this.types}
         results={this.results}
         extData={this.props.extData}
+        isSameUser={this.props.isSameUser}
         openImagePicker={()=>this._openImagePicker()}
         onEditDetail={()=>{
           // this.setState({'viewType':'edit'});//correct
@@ -416,7 +417,7 @@ function mapStateToProps(state,ownProps) {
   var recordId=ownProps.recordId;
   var user = state.user.get('user');
   var isSameUser = true;
-  if(data && data.get('MaintainPerson') !== user.get('RealName')){
+  if(data && data.get('CreateUserId') !== user.get('Id')){
     isSameUser = false;
   }
   // var isEnableCreate = customer && ticketType!==0 && selectAssets.size>=1 && startTime && endTime && selectUsers.size>=1 && content.length>0;
