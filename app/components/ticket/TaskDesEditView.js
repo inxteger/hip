@@ -70,7 +70,7 @@ export default class TaskDesEditView extends Component{
             underlineColorAndroid={'transparent'}
             textAlign={'left'}
             multiline={true}
-            editable={this.props.editable}
+            editable={Platform.OS === 'ios'?this.props.editable:true}
             numberOfLines={lines}
             maxLength={maxLength}
             placeholderTextColor={GRAY}
