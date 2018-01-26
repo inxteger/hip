@@ -141,8 +141,8 @@ function mappingDealResults(state,arrIndex) {
       arrCodes.push(result.get('Code'));
     }
   });
-  var strCodes=arrCodes.map((item)=> item).join(',');
-  return strCodes;
+  // var strCodes=arrCodes.map((item)=> item).join(',');
+  return arrCodes;
 }
 
 function convertPersons(state) {
