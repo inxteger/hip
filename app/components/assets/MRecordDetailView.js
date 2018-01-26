@@ -174,7 +174,6 @@ export default class MRecordDetailView extends Component{
     if(!this._showAuth()){
       return;
     }
-    return;
     this.props.save();
   }
   _getAddButton(index)

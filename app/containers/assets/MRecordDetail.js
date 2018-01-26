@@ -303,7 +303,6 @@ class MRecordDetail extends Component{
     if (this.state.viewType==='view') {
       return false;
     }
-    console.warn('isSameUser',this.props.isSameUser);
     if(!this.props.isSameUser){
       Alert.alert(
         '',
