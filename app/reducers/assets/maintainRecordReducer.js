@@ -22,6 +22,7 @@ var defaultState = Immutable.fromJS({
   isFetching:false,
   sectionData:[],
   allDatas:null,
+  extData:null,
 });
 
 function categoryAllDatas(state)
@@ -82,6 +83,7 @@ function mergeData(state,action) {
   newState = categoryAllDatas(newState);
   newState = newState.set('pageCount',response.PageCount);
   newState = newState.set('isFetching',false);
+  newState = newState.set('extData',response.ExtData);
 
   return newState;
 }

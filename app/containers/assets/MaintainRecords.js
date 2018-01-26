@@ -70,7 +70,7 @@ class MaintainRecords extends Component{
         customerId:this.props.customerId,
         hierarchyId:this.props.hierarchyId,
         recordId:recordId,
-        extData:this.props.recordData.get('ExtData'),
+        extData:this.props.recordData.get('extData'),
         onPostingCallback:(type)=>{this._onPostingCallback(type)},
       }
     });
@@ -154,7 +154,7 @@ class MaintainRecords extends Component{
   render() {
     var extData=null;
     if (this.props.recordData) {
-      extData=this.props.recordData.get('ExtData');
+      extData=this.props.recordData.get('extData');
     }
     return (
       <MaintainRecordsView

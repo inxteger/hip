@@ -66,6 +66,12 @@ export default class MaintainRecordsView extends Component{
   }
   _getAssetNoView()
   {
+    if (this.props.isFetching||!this.props.listData) {
+      return (
+        <View style={{flex:1,}}>
+        </View>
+      );
+    }
     var assNo=this.props.extData;
     var textView=(
       <View style={{flex:1,}}>
