@@ -11,6 +11,7 @@ import {Navigator} from 'react-native-deprecated-custom-components';
 
 import {connect} from 'react-redux';
 import backHelper from '../../utils/backHelper';
+import privilegeHelper from '../../utils/privilegeHelper.js';
 
 import {loadMaintainceRecords,firstPage,nextPage,clearMaintanceFilter,deleteRecord} from '../../actions/assetsAction.js';
 import MaintainRecordsView from '../../components/assets/MaintainRecordsView.js';
@@ -159,6 +160,7 @@ class MaintainRecords extends Component{
     return (
       <MaintainRecordsView
         loadAlarm={()=>this._loadAlarm()}
+        canEdit={privilegeHelper.hasAuth('AssetEditPrivilegeCode')}
         isFetching={this.props.recordData.get('isFetching')}
         listData={this.state.dataSource}
         extData={extData}

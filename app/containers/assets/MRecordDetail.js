@@ -23,6 +23,7 @@ import TicketTaskDesEdit from '../ticket/TicketTaskDesEdit';
 import MSingleSelect from './MSingleSelect.js';
 import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 import Immutable from 'immutable';
+import moment from 'moment';
 const MAX = 100;
 
 class MRecordDetail extends Component{
@@ -190,12 +191,11 @@ class MRecordDetail extends Component{
   }
   _checkTimeIsTrue()
   {
-    var StartTime = this.props.data.get('StartTime');
-    var EndTime = this.props.data.get('EndTime');
-    if(StartTime > EndTime){
+    var timeCreate = this.props.data.get('MaintainTime');
+    if(moment(timeCreate) > moment()){
       Alert.alert(
         '',
-        localStr('lang_ticket_starttimeerr0'),
+        localStr('lang_asset_des11'),
         [
           {text: localStr('lang_ticket_OK'), onPress: () => console.log('Cancel Pressed')}
         ]
@@ -209,6 +209,7 @@ class MRecordDetail extends Component{
     if (!this._checkTimeIsTrue()) {
       return;
     }
+
     this.context.showSpinner();
 
     var objData=this.props.data.toJSON();

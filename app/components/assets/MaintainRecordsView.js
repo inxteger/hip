@@ -92,6 +92,21 @@ export default class MaintainRecordsView extends Component{
     }
     return textView;
   }
+  _getAddRecordView()
+  {
+    if (this.props.canEdit) {
+      return (
+        <TouchFeedback
+          onPress={()=>{
+            this.props.onAddClick();
+          }}>
+          <View style={{width:30,height:30,alignItems:'center',justifyContent:'flex-end',flexDirection:'row'}}>
+            <Icon type="icon_add" color={GREEN} size={16} />
+          </View>
+        </TouchFeedback>
+      )
+    }
+  }
   _getSubToolbarView()
   {
     return (
@@ -111,15 +126,7 @@ export default class MaintainRecordsView extends Component{
               <Icon type="icon_filter" color={GREEN} size={16} />
             </View>
           </TouchFeedback>
-
-          <TouchFeedback
-            onPress={()=>{
-              this.props.onAddClick();
-            }}>
-            <View style={{width:30,height:30,alignItems:'center',justifyContent:'flex-end',flexDirection:'row'}}>
-              <Icon type="icon_add" color={GREEN} size={16} />
-            </View>
-          </TouchFeedback>
+          {this._getAddRecordView()}
         </View>
       </View>
     )
@@ -157,6 +164,7 @@ MaintainRecordsView.propTypes = {
   currentPage:PropTypes.number,
   totalPage:PropTypes.number,
   hasFilter:PropTypes.bool.isRequired,
+  canEdit:PropTypes.bool,
   onRowClick:PropTypes.func.isRequired,
   onFilterClick:PropTypes.func.isRequired,
   onAddClick:PropTypes.func.isRequired,
