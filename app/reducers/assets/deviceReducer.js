@@ -103,15 +103,15 @@ function updateAssetDetailData(state,action) {
   //   {'title':'现场照片','value':'','isNav':false,},
   //   {'title':localStr('lang_asset_des31'),'value':'','isNav':false,},
   // ];
-  var logCount = res.SceneLogs.length;
-  var tendingCount=res.HistoryTicketsCount;
+  // var logCount = res.SceneLogs.length;
+  // var tendingCount=res.HistoryTicketsCount;
 
   var allElements=[
     [{title:'',value:res.LogoKey}],
     deviceDescption,
     parameters,
-    [{title:localStr('lang_asset_des31'),value:logCount,isNav:true,type:'log',secType:'logSection'}],
-    [{title:localStr('lang_asset_des34'),value:tendingCount,isNav:true,type:'tending'}]
+    // [{title:localStr('lang_asset_des31'),value:logCount,isNav:true,type:'log',secType:'logSection'}],
+    // [{title:localStr('lang_asset_des34'),value:tendingCount,isNav:true,type:'tending'}]
   ];
 
   var allSecTitle=[
@@ -151,7 +151,6 @@ function updateAssetDetailData(state,action) {
     isFetching:false,
     hasRuntime,
     hasRealtime,
-    logCount,
     deviceId,
     strTkdyly,
     classType
