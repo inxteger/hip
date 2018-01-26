@@ -149,7 +149,7 @@ function convertPersons(state) {
   // var persons = state.getIn(['temp','maintainPersons']);
   var arrDatas=state.get('selectUsers');
   var arrIds=arrDatas.map((item,index)=>{
-    return item.get('Id');
+    return item.get('RealName');
   });
   return state.setIn(['stable','Criteria','MaintainPersons'],arrIds);
 }
