@@ -35,7 +35,7 @@ export default class MaintainRecordRow extends Component{
     var strResult='';
     var numRes=data.get('DealResult');
     if (numRes>=1&&numRes<=results.length) {
-      strResult=results[numRes];
+      strResult=results[numRes-1];
     }
     return (
       <View style={styles.content}>
