@@ -9,6 +9,7 @@ import {
 import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
+import moment from 'moment';
 import backHelper from '../../utils/backHelper';
 
 import MaintanceUserSelect from './MaintanceUserSelect.js';
@@ -16,8 +17,8 @@ import MaintancePartsSelect from './MaintancePartsSelect.js';
 import {filterMaintanceChanged,filterMaintanceClosed,
   filterMaintanceDidChanged,resetMaintanceFilterData,updateMaintanceUserSelectInfo,updateMaintancePartsSelectInfo} from '../../actions/assetsAction.js';
 import MaintainFilterView from '../../components/assets/MaintainFilterView.js';
-//loadAlarmCode---loadMaintainceCodes
-//loadAlarmBuildings----loadProcessResults
+import {localStr,localFormatStr,getLanguage} from '../../utils/Localizations/localization.js';
+
 class MaintainFilter extends Component{
   constructor(props){
     super(props);
@@ -51,6 +52,17 @@ class MaintainFilter extends Component{
       )
       return false;
     }
+    if(moment(StartTime) > moment()||moment(EndTime) > moment()){
+      Alert.alert(
+        '',
+        localStr('lang_asset_des11'),
+        [
+          {text: localStr('lang_ticket_OK'), onPress: () => console.log('Cancel Pressed')}
+        ]
+      )
+      return false;
+    }
+
     return true;
   }
   _onSelectMaintanceUsersClick()
