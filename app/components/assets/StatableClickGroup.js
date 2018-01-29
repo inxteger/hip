@@ -43,10 +43,12 @@ export default class StatableClickGroup extends Component{
         }}>
       <View style={{flex:1,borderWidth:1,borderColor:ALARM_FILTER_BUTTON_BORDER,
         flexDirection:'row',alignItems:'center',height:38,paddingHorizontal:12,
-      justifyContent:'space-between'}}>
-        <Text style={textStyle} numberOfLines={1}>
-          {textValue}
-        </Text>
+      justifyContent:'space-between',}}>
+        <View style={{flex:1}}>
+          <Text style={textStyle} numberOfLines={1}>
+            {textValue}
+          </Text>
+        </View>
         {this._getNavIcon()}
       </View>
       </TouchFeedback>
