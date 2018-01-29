@@ -38,7 +38,7 @@ export default class MaintainRecordsView extends Component{
       isLastRow=true;
     // console.warn('aa',rowId,this.props.logs.getSectionLengths(),this.props.logs.getRowCount());
     return (
-      <ListSeperator key={sectionId+rowId} marginWithLeft={isLastRow?0:20}/>
+      <ListSeperator key={sectionId+rowId} marginWithLeft={isLastRow?0:16}/>
     );
   }
   _renderRow(rowData,sectionId,rowId,closeRow){

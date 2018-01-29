@@ -40,7 +40,7 @@ export default class MaintainRecordRow extends Component{
     return (
       <View style={styles.content}>
         <Text numberOfLines={1} style={styles.alarmText}>{data.get('Parts')}</Text>
-        <View style={{flexDirection:'row',marginTop:5}}>
+        <View style={{flexDirection:'row',marginTop:7}}>
           <View style={{flexDirection:'row',alignItems:'center'}}>
             <Text numberOfLines={1} style={[styles.locationText,{marginRight:16}]}>{strJudge}</Text>
           </View>
@@ -69,10 +69,10 @@ export default class MaintainRecordRow extends Component{
             {this._getPrimaryContent(rowData)}
           </View>
           <View style={[{paddingTop:16,width:80},styles.rowHeight]}>
-            <View style={{flex:1,flexDirection:'row',justifyContent:'flex-end'}}>
+            <View style={{flexDirection:'row',justifyContent:'flex-end'}}>
               <Text style={styles.timeText}>{this._getTime(rowData)}</Text>
             </View>
-            <View style={{flex:1,flexDirection:'row'}}>
+            <View style={{flex:1,marginTop:7}}>
               <View style={{flex:1,flexDirection:'row',justifyContent:'flex-end'}}>
                 <Text numberOfLines={1} style={[styles.timeText,{fontSize:14}]}>{rowData.get('MaintainPerson')}</Text>
               </View>
@@ -134,7 +134,7 @@ var styles = StyleSheet.create({
     color:BLACK
   },
   locationText:{
-    fontSize:12,
+    fontSize:14,
     color:GRAY,
   },
   timeText:{
