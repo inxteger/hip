@@ -45,7 +45,7 @@ class MaintainFilter extends Component{
     if(StartTime > EndTime){
       Alert.alert(
         '',
-        '开始时间不能晚于结束时间',
+        localStr('lang_ticket_starttimeerr0'),
         [
           {text: '好', onPress: () => console.log('Cancel Pressed')}
         ]

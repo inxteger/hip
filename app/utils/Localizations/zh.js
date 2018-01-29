@@ -109,7 +109,7 @@ export default {
   lang_ticket_filter_noresult:'没有符合筛选条件的工单',
   lang_ticket_noticket:'暂无工单',
   lang_ticket_select_range:'请先选择资产范围',
-  lang_ticket_starttimeerr0:'开始时间不能晚于结束时间',
+  lang_ticket_starttimeerr0:'结束日期不能早于开始日期',
   lang_ticket_remove_notice:'工单"{0}"将被删除?',
   lang_ticket_cancel:'取消',
   lang_ticket_start_notice0:'开始执行工单吗？',
