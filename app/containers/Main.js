@@ -28,7 +28,7 @@ import privilegeHelper from '../utils/privilegeHelper.js';
 import {detectClipboard,emptyClipboard} from '../actions/appAction.js';
 // console.warn('ViewPager',ViewPager);
 import CameraRoll from 'rn-camera-roll';
-// import Permissions from 'react-native-permissions';
+import Permissions from 'react-native-permissions';
 
 import ReactNativeDetectNewPhoto from 'react-native-detect-new-photo';
 import * as ScreenshotDetector from 'react-native-screenshot-detector';
