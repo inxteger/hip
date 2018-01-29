@@ -6,7 +6,9 @@ import {
   ASSET_MAINTAINCE_SUCCESS,
   ASSET_MAINTAINCE_FAILURE,
   MAINTANCE_FILTER_DIDCHANGED,
-  MAINTANCE_RECORD_DELETE_REQUEST, MAINTANCE_RECORD_DELETE_SUCCESS, MAINTANCE_RECORD_DELETE_FAILURE
+  MAINTANCE_RECORD_DELETE_REQUEST, MAINTANCE_RECORD_DELETE_SUCCESS, MAINTANCE_RECORD_DELETE_FAILURE,
+  DEVICE_EXIT,
+  MAINTANCE_DATAS_RESET,
 } from '../../actions/assetsAction.js';
 
 // import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
@@ -21,6 +23,7 @@ var defaultState = Immutable.fromJS({
   isFetching:false,
   sectionData:[],
   allDatas:null,
+  extData:null,
 });
 
 function categoryAllDatas(state)
@@ -81,6 +84,7 @@ function mergeData(state,action) {
   newState = categoryAllDatas(newState);
   newState = newState.set('pageCount',response.PageCount);
   newState = newState.set('isFetching',false);
+  newState = newState.set('extData',response.ExtData);
 
   return newState;
 }
@@ -126,10 +130,11 @@ export default commonReducer((state,action)=>{
       return mergeData(state,action);
     case MAINTANCE_RECORD_DELETE_SUCCESS:
       return removeData(state,action);
-      break;
     case ASSET_MAINTAINCE_FAILURE:
       return handleError(state,action);
-    default:
+    case DEVICE_EXIT:
+    case MAINTANCE_DATAS_RESET:
+      return defaultState;
 
   }
   return state;

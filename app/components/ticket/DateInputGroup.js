@@ -21,6 +21,7 @@ import Text from '../Text';
 import TouchFeedback from '../TouchFeedback';
 import Icon from '../Icon.js';
 import moment from 'moment';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class DateInputGroup extends Component{
   constructor(props){
@@ -82,9 +83,9 @@ export default class DateInputGroup extends Component{
   _getValueText(rowData)
   {
     var value = rowData.value;
-    var placeholderText='请选择开始日期';
+    var placeholderText=localStr('lang_record_des33');
     if (rowData.type==='EndTime') {
-      placeholderText='请选择结束日期';
+      placeholderText=localStr('lang_record_des34');
     }
     if (!rowData.value) {
       return (
@@ -132,11 +133,11 @@ export default class DateInputGroup extends Component{
   }
   _getStartTimeRow()
   {
-    return this._getSimpleRow({'title':'开始日期','value':this.props.startTime,'isNav':false,type:'StartTime'});
+    return this._getSimpleRow({'title':localStr('lang_record_des35'),'value':this.props.startTime,'isNav':false,type:'StartTime'});
   }
   _getEndTimeRow()
   {
-    return this._getSimpleRow({'title':'结束日期','value':this.props.endTime,'isNav':false,type:'EndTime'});
+    return this._getSimpleRow({'title':localStr('lang_record_des36'),'value':this.props.endTime,'isNav':false,type:'EndTime'});
   }
   _getContent(){
     return(

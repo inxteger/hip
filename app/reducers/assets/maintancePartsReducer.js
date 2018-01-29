@@ -3,10 +3,12 @@
 import {
   MAINTANCE_PART_SELECT_CHANGED,
   MAINTANCE_PARTS_REQUEST, MAINTANCE_PARTS_SUCCESS, MAINTANCE_PARTS_FAILURE,
-  RECORD_EDIT_INFO_RESET
+  RECORD_EDIT_INFO_RESET,
+  MAINTANCE_FILTER_CLEAR
 } from '../../actions/assetsAction.js';
 
 import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 import Immutable from 'immutable';
 
@@ -18,14 +20,14 @@ var defaultState = Immutable.fromJS({
   isSingleSelect:false,
 });
 
-function updateAssetsUsers(state,action)
+function updateAssetsParts(state,action)
 {
   var allSecTitle=[
   ];
   var response = action.response.Result;
   var selectParts = state.get('selectParts');
   var isSingleSelect=state.get('isSingleSelect');
-  // console.warn('updateAssetsUsers...', selectParts);
+  // console.warn('updateAssetsParts...', selectParts);
 
   var arrDatas=[];
   response.forEach((item,index)=>{
@@ -33,7 +35,7 @@ function updateAssetsUsers(state,action)
   })
   response=arrDatas;
   if (response&&response.length>0&&!isSingleSelect) {
-    response.unshift({Id:'全选',RealName:'全选'});
+    response.unshift({Id:localStr('lang_record_des43'),RealName:localStr('lang_record_des43')});
   }
   var allElements = Immutable.fromJS(response);
   var newSelecUsers=[];
@@ -53,19 +55,21 @@ function updateAssetsUsers(state,action)
   if (!isSingleSelect) {
     var isAllSelect=true;
     allElements.forEach((item)=>{
-      if (item.get('Id')!=='全选') {
+      if (item.get('Id')!==localStr('lang_record_des43')) {
         if (!item.get('isSelect')) {
           isAllSelect=false;
         }
       }
     });
-    allElements = allElements.update(0,(item)=>{
-      item = item.set('isSelect',isAllSelect);
-      return item;
-    });
+    if (allElements.size>0) {
+      allElements = allElements.update(0,(item)=>{
+        item = item.set('isSelect',isAllSelect);
+        return item;
+      });
+    }
   }
 
-  if (allElements.size>=1) {
+  if (allElements&&allElements.size>0) {
     state=state.set('data',Immutable.fromJS([allElements]));
   }else {
     state=state.set('data',Immutable.fromJS([]));
@@ -99,7 +103,7 @@ function userSelectInfoChange(state,action){
       }else {
         arrSelect = arrSelect.push(user);
       }
-      if (user.get('Id')==='全选') {
+      if (user.get('Id')===localStr('lang_record_des43')) {
         var allSeleItem=arr.get(0);
         var isAllSelect=allSeleItem.get('isSelect');
         arr.forEach((item0,index)=>{
@@ -118,7 +122,7 @@ function userSelectInfoChange(state,action){
 
       var isAllSelect=true;
       arr.forEach((item)=>{
-        if (item.get('Id')!=='全选') {
+        if (item.get('Id')!==localStr('lang_record_des43')) {
           if (!item.get('isSelect')) {
             isAllSelect=false;
           }
@@ -169,12 +173,13 @@ export default function(state=defaultState,action){
     case MAINTANCE_PARTS_REQUEST:
       return state.set('isFetching',true);
     case MAINTANCE_PARTS_SUCCESS:
-      return updateAssetsUsers(state,action);
+      return updateAssetsParts(state,action);
     case MAINTANCE_PARTS_FAILURE:
       return handleError(state,action);
     case MAINTANCE_PART_SELECT_CHANGED:
       return userSelectInfoChange(state,action);
     case RECORD_EDIT_INFO_RESET:
+    case MAINTANCE_FILTER_CLEAR:
     case LOGOUT_SUCCESS:
       return defaultState;
     default:

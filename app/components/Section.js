@@ -25,7 +25,9 @@ export default class Section extends Component {
         }}>
         <Text style={{
             fontSize:14,
-            color:GRAY,}}>{this.props.text}</Text>
+            color:GRAY,}}
+            numberOfLines={1}
+            >{this.props.text}</Text>
       </View>
 
     );

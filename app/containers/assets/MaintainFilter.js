@@ -9,6 +9,7 @@ import {
 import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
+import moment from 'moment';
 import backHelper from '../../utils/backHelper';
 
 import MaintanceUserSelect from './MaintanceUserSelect.js';
@@ -16,8 +17,8 @@ import MaintancePartsSelect from './MaintancePartsSelect.js';
 import {filterMaintanceChanged,filterMaintanceClosed,
   filterMaintanceDidChanged,resetMaintanceFilterData,updateMaintanceUserSelectInfo,updateMaintancePartsSelectInfo} from '../../actions/assetsAction.js';
 import MaintainFilterView from '../../components/assets/MaintainFilterView.js';
-//loadAlarmCode---loadMaintainceCodes
-//loadAlarmBuildings----loadProcessResults
+import {localStr,localFormatStr,getLanguage} from '../../utils/Localizations/localization.js';
+
 class MaintainFilter extends Component{
   constructor(props){
     super(props);
@@ -44,13 +45,24 @@ class MaintainFilter extends Component{
     if(StartTime > EndTime){
       Alert.alert(
         '',
-        '开始时间不能晚于结束时间',
+        localStr('lang_ticket_starttimeerr0'),
         [
-          {text: '好', onPress: () => console.log('Cancel Pressed')}
+          {text: localStr('lang_ticket_OK'), onPress: () => console.log('Cancel Pressed')}
         ]
       )
       return false;
     }
+    if(moment(StartTime) > moment()||moment(EndTime) > moment()){
+      Alert.alert(
+        '',
+        localStr('lang_asset_des11'),
+        [
+          {text: localStr('lang_ticket_OK'), onPress: () => console.log('Cancel Pressed')}
+        ]
+      )
+      return false;
+    }
+
     return true;
   }
   _onSelectMaintanceUsersClick()
@@ -59,14 +71,14 @@ class MaintainFilter extends Component{
     var customerId=this.props.customerId;
     var hierarchyId=this.props.hierarchyId;
     if (!this.props.customerId) {
-      customerId=321238;
-      hierarchyId=345761;//321637;//test
+      // customerId=321238;
+      // hierarchyId=345761;//321637;//test
     }
     this.props.navigator.push({
         id:'ticket_users',
         component:MaintanceUserSelect,
         passProps:{
-          title:'维修人',
+          title:localStr('lang_record_des02'),
           customerId:customerId,
           hierarchyId:hierarchyId
         }
@@ -78,15 +90,14 @@ class MaintainFilter extends Component{
     var customerId=this.props.customerId;
     var hierarchyId=this.props.hierarchyId;
     if (!this.props.customerId) {
-      customerId=321238;
-      hierarchyId=345761;//321637;//test
+      // customerId=321238;
+      // hierarchyId=345761;//321637;//test
     }
-    console.warn('111111');
     this.props.navigator.push({
         id:'ticket_users',
         component:MaintancePartsSelect,
         passProps:{
-          title:'零部件',
+          title:localStr('lang_record_des04'),
           customerId:customerId,
           hierarchyId:hierarchyId
         }

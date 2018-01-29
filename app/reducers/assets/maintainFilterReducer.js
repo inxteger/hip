@@ -34,11 +34,12 @@ var nextMonth=moment(today).format('YYYY-MM-DD');
 var defaultState = Immutable.fromJS({
     hasFilter:false,
     isFetching:false,
-    bugCodes:[{'Code':2,'Type':'操作不当'},{'Code':4,'Type':'自然老化'},{'Code':8,'Type':'设计缺陷'},
-    {'Code':16,'Type':'维修不当'},{'Code':32,'Type':'维护不当'},{'Code':1,'Type':'其他原因'}],
-    bugResults:[{'Code':1,'Type':'故障排除完成'},{'Code':2,'Type':'临时处理完成'},{'Code':3,'Type':'设备未修复'}],
-    filterCodes: ['操作不当','自然老化','设计缺陷','维修不当','维护不当','其他原因'],
-    filterProcessResult:['故障排除完成','临时处理完成','设备未修复'],
+    bugCodes:[{'Code':2,'Type':localStr('lang_record_des09')},{'Code':4,'Type':localStr('lang_record_des10')},{'Code':8,'Type':localStr('lang_record_des11')},
+    {'Code':16,'Type':localStr('lang_record_des12')},{'Code':32,'Type':localStr('lang_record_des13')},{'Code':1,'Type':localStr('lang_record_des14')}],
+    bugResults:[{'Code':1,'Type':localStr('lang_record_des15')},{'Code':2,'Type':localStr('lang_record_des16')},{'Code':3,'Type':localStr('lang_record_des17')}],
+    filterCodes: [localStr('lang_record_des09'),localStr('lang_record_des10'),localStr('lang_record_des11'),
+    localStr('lang_record_des12'),localStr('lang_record_des13'),localStr('lang_record_des14')],
+    filterProcessResult:[localStr('lang_record_des15'),localStr('lang_record_des16'),localStr('lang_record_des17')],
     selectUsers:[],
     selectParts:[],
     stable:{
@@ -108,7 +109,7 @@ function mappingMaintanceCode(state,arrIndex) {
       return item.get('Type').indexOf(text) >= 0;
     });
     if(result){
-      arrCodes.push(result.get('Code'));
+      arrCodes.push(parseInt(result.get('Code')));
     }
   });
   // var arrOtherCodes=null;
@@ -123,8 +124,9 @@ function mappingMaintanceCode(state,arrIndex) {
   // if (arrOtherCodes) {
   //   arrCodes.push(arrOtherCodes.toArray());
   // }
-  var strCodes=arrCodes.map((item)=> item).join(',');
-  return strCodes;
+  // var strCodes=arrCodes.map((item)=> parseInt(item)).join(',');
+  // console.warn('mappingMaintanceCode',strCodes);
+  return arrCodes;
 }
 
 function mappingDealResults(state,arrIndex) {
@@ -140,15 +142,15 @@ function mappingDealResults(state,arrIndex) {
       arrCodes.push(result.get('Code'));
     }
   });
-  var strCodes=arrCodes.map((item)=> item).join(',');
-  return strCodes;
+  // var strCodes=arrCodes.map((item)=> item).join(',');
+  return arrCodes;
 }
 
 function convertPersons(state) {
   // var persons = state.getIn(['temp','maintainPersons']);
   var arrDatas=state.get('selectUsers');
   var arrIds=arrDatas.map((item,index)=>{
-    return item.get('Id');
+    return item.get('RealName');
   });
   return state.setIn(['stable','Criteria','MaintainPersons'],arrIds);
 }
@@ -222,7 +224,7 @@ function userSelectInfoChange(state,action){
   }
   return newState;
 }
- 
+
 function partsSelectInfoChange(state,action) {
   var {data:{type,value}}=action;
   var newState = state;

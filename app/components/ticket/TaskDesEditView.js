@@ -24,8 +24,10 @@ export default class TaskDesEditView extends Component{
     this.state = {text:text};
   }
   _logChanged(text){
-    this.setState({text});
-    this.props.dataChanged(text);
+    if (this.props.editable) {
+      this.setState({text});
+      this.props.dataChanged(text);
+    }
   }
   render() {
     var lines = 0;
@@ -70,7 +72,7 @@ export default class TaskDesEditView extends Component{
             underlineColorAndroid={'transparent'}
             textAlign={'left'}
             multiline={true}
-            editable={this.props.editable}
+            editable={Platform.OS === 'ios'?this.props.editable:true}
             numberOfLines={lines}
             maxLength={maxLength}
             placeholderTextColor={GRAY}
@@ -102,8 +104,8 @@ var styles = StyleSheet.create({
     justifyContent:'flex-start',
     alignItems:'flex-start',
     textAlignVertical:'top',
-    fontSize:14,
-    color:BLACK,
+    fontSize:16,
+    color:'#353535',
     padding:0,
     margin:16,
     // height:48,

@@ -114,7 +114,7 @@ export default class MRecordDetailView extends Component{
   _getToolbar(data){
     var actions = null;
     if(data){
-      if (this.props.viewType==='view') {
+      if (this.props.viewType==='view'&&this.props.isSameUser) {
         actions = [{
         title:'',
         iconType:'edit',
@@ -174,7 +174,7 @@ export default class MRecordDetailView extends Component{
     if(!this._showAuth()){
       return;
     }
-    this.props.save();
+    this.props.onSave();
   }
   _getAddButton(index)
   {
@@ -290,14 +290,16 @@ export default class MRecordDetailView extends Component{
   }
   _getAssetNoRow()
   {
-    var assNo='请在设备信息中填写';
+    var assNo=localStr('lang_record_des22');
+    var color=LOGOUT_RED;
     if (this.props.extData) {
       assNo=this.props.extData;
+      color=GRAY;
     }
     return this._getSimpleRow({
-      'title':localStr('资产编号'),
+      'title':localStr('lang_record_des23'),
       'value':assNo,
-      'valueColor':LOGOUT_RED,
+      'valueColor':color,
       'isNav':false});
   }
   _getMaintanceTime()
@@ -308,7 +310,7 @@ export default class MRecordDetailView extends Component{
       dateTime = moment(date).format("YYYY-MM-DD HH:00");
     }
     return this._getSimpleRow({
-      'title':localStr('维修时间'),
+      'title':localStr('lang_record_des24'),
       'value':dateTime,
       'isNav':false,
       'type':'MaintainTime'
@@ -317,7 +319,7 @@ export default class MRecordDetailView extends Component{
   _getMaintanceUser()
   {
     return this._getSimpleRow({
-      'title':localStr('维修人'),
+      'title':localStr('lang_record_des02'),
       'value':this.props.data.get('MaintainPerson'),
       'isNav':false,
       type:'MaintainPerson'});
@@ -333,9 +335,9 @@ export default class MRecordDetailView extends Component{
     }
     var strValue=this.props.data.get('Parts');
     return this._getSimpleRow({
-      'title':localStr('零部件'),
+      'title':localStr('lang_record_des04'),
       'value':strValue,
-      'placeholderText':'请选择',
+      'placeholderText':localStr('lang_ticket_please_choice'),
       'isNav':hasNav,
       type:'Parts'});
   }
@@ -344,9 +346,9 @@ export default class MRecordDetailView extends Component{
     var hasNav=true;
     var strValue=this.props.data.get('FaultPhenomenon');
     return this._getSimpleRow({
-      'title':localStr('故障现象'),
+      'title':localStr('lang_record_des25'),
       'value':strValue,
-      'placeholderText':'请输入',
+      'placeholderText':localStr('lang_ticket_input2'),
       'isNav':hasNav,
       type:'FaultPhenomenon'});
   }
@@ -366,9 +368,9 @@ export default class MRecordDetailView extends Component{
       }
     });
     return this._getSimpleRow({
-      'title':localStr('故障判定'),
+      'title':localStr('lang_record_des06'),
       'value':strJudge,
-      'placeholderText':'请选择',
+      'placeholderText':localStr('lang_ticket_please_choice'),
       'isNav':hasNav,
       type:'FaultJudgeType'});
   }
@@ -388,9 +390,9 @@ export default class MRecordDetailView extends Component{
       }
     });
     return this._getSimpleRow({
-      'title':localStr('原因描述'),
+      'title':localStr('lang_record_des26'),
       'value':strJudge,
-      'placeholderText':'请输入',
+      'placeholderText':localStr('lang_ticket_input2'),
       'isNav':hasNav,
       type:'FaultJudgeText'});
   }
@@ -399,9 +401,9 @@ export default class MRecordDetailView extends Component{
     var hasNav=true;
     var strValue=this.props.data.get('FaultRemoval');
     return this._getSimpleRow({
-      'title':localStr('故障排除过程'),
+      'title':localStr('lang_record_des27'),
       'value':strValue,
-      'placeholderText':'请输入',
+      'placeholderText':localStr('lang_ticket_input2'),
       'isNav':hasNav,
       type:'FaultRemoval'});
   }
@@ -420,9 +422,9 @@ export default class MRecordDetailView extends Component{
       strResult=this.props.results[numRes-1].Type;
     }
     return this._getSimpleRow({
-      'title':localStr('处理结果'),
+      'title':localStr('lang_record_des07'),
       'value':strResult,
-      'placeholderText':'请选择',
+      'placeholderText':localStr('lang_ticket_please_choice'),
       'isNav':hasNav,
       type:'DealResult'});
   }
@@ -482,6 +484,18 @@ export default class MRecordDetailView extends Component{
     if (this.props.viewType==='view') {
       return null;
     }else {
+
+      var parts=this.props.data.get('Parts');
+      var Phenomenon=this.props.data.get('FaultPhenomenon');
+      var judgeType=this.props.data.get('FaultJudgeType');
+      var judgeText=this.props.data.get('FaultJudgeText');
+      var removal=this.props.data.get('FaultRemoval');
+      var numRes=this.props.data.get('DealResult');
+
+      var isEnableCreate=true;
+      if (!parts||!Phenomenon||judgeType===0||!removal||numRes===0||(!judgeText&&judgeType===1)) {
+        isEnableCreate=false;
+      }
       return(
         <Bottom height={49} backgroundColor={LIST_BG} borderColor={LIST_BG}>
           <Button
@@ -496,8 +510,8 @@ export default class MRecordDetailView extends Component{
               fontSize:20,
               color:'#f0f0f0'
             }}
-            disabled={false}
-            text={localStr('lang_ticket_save')} onClick={this.props.onSave} />
+            disabled={!isEnableCreate}
+            text={localStr('lang_ticket_save')} onClick={()=>this._saveLog()} />
         </Bottom>
       );
     }
@@ -513,8 +527,8 @@ export default class MRecordDetailView extends Component{
       <ListSeperator/>
       <View style={{paddingHorizontal:8,backgroundColor:'white'}}>
         <View style={{marginTop:10,marginBottom:6,marginLeft:8,flexDirection:'row',alignItems:'flex-end'}}>
-          <Text style={{fontSize:17,color:BLACK}}>{'附件'}</Text>
-          <Text style={{fontSize:13,color:GRAY}}>{'（选填）'}</Text>
+          <Text style={{fontSize:17,color:BLACK}}>{localStr('lang_record_des30')}</Text>
+          <Text style={{fontSize:13,color:GRAY}}>{localStr('lang_record_des31')}</Text>
         </View>
         {imagesView}
       </View>
@@ -616,9 +630,9 @@ export default class MRecordDetailView extends Component{
         }
         <DateTimePicker
           is24Hour={true}
-          titleIOS={'请选择一个时间'}
-          cancelTextIOS={'取消'}
-          confirmTextIOS={'确定'}
+          titleIOS={localStr('lang_record_des28')}
+          cancelTextIOS={localStr('lang_ticket_cancel')}
+          confirmTextIOS={localStr('lang_record_des29')}
           mode={'datetime'}
           isVisible={this.state.isDateTimePickerVisible}
           onConfirm={(date)=>this._handleDatePicked(date)}
@@ -637,6 +651,7 @@ MRecordDetailView.propTypes = {
   types:PropTypes.array,
   results:PropTypes.array,
   extData:PropTypes.string,
+  isSameUser:PropTypes.bool,
   dataChanged:PropTypes.func.isRequired,
   deleteImage:PropTypes.func.isRequired,
   gotoDetail:PropTypes.func.isRequired,

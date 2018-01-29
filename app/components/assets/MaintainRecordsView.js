@@ -38,7 +38,7 @@ export default class MaintainRecordsView extends Component{
       isLastRow=true;
     // console.warn('aa',rowId,this.props.logs.getSectionLengths(),this.props.logs.getRowCount());
     return (
-      <ListSeperator key={sectionId+rowId} marginWithLeft={isLastRow?0:20}/>
+      <ListSeperator key={sectionId+rowId} marginWithLeft={isLastRow?0:16}/>
     );
   }
   _renderRow(rowData,sectionId,rowId,closeRow){
@@ -66,11 +66,17 @@ export default class MaintainRecordsView extends Component{
   }
   _getAssetNoView()
   {
+    if (this.props.isFetching||!this.props.listData) {
+      return (
+        <View style={{flex:1,}}>
+        </View>
+      );
+    }
     var assNo=this.props.extData;
     var textView=(
       <View style={{flex:1,}}>
         <Text numberOfLines={1} style={{fontSize:14,color:'#8e8e9c'}}>
-          {'资产编号：'+assNo}
+          {localStr('lang_record_des18')+assNo}
         </Text>
       </View>
     );
@@ -79,19 +85,35 @@ export default class MaintainRecordsView extends Component{
         <View style={{flex:1,flexDirection:'row',alignItems:'center'}}>
           <Icon type="icon_notification" color={LOGOUT_RED} size={15} />
           <Text numberOfLines={1} style={{fontSize:14,color:LOGOUT_RED,marginLeft:3}}>
-            {'无资产编号，请尽快填写。'}
+            {localStr('lang_record_des19')}
           </Text>
         </View>
       );
     }
     return textView;
   }
+  _getAddRecordView()
+  {
+    if (this.props.canEdit) {
+      return (
+        <TouchFeedback
+          onPress={()=>{
+            this.props.onAddClick();
+          }}>
+          <View style={{height:40,paddingRight:16,paddingLeft:8,
+              alignItems:'center',justifyContent:'flex-end',flexDirection:'row'}}>
+            <Icon type="icon_add" color={GREEN} size={16} />
+          </View>
+        </TouchFeedback>
+      )
+    }
+  }
   _getSubToolbarView()
   {
     return (
       <View style={{
           height:44,backgroundColor:'#F0F0F5',
-          alignItems:'center',paddingHorizontal:16,
+          alignItems:'center',paddingLeft:16,
           flexDirection:'row',borderTopWidth:1,
           borderBottomWidth:1,borderColor:LINE
         }}>
@@ -101,19 +123,12 @@ export default class MaintainRecordsView extends Component{
             onPress={()=>{
               this.props.onFilterClick();
             }}>
-            <View style={{width:30,height:30,alignItems:'center',justifyContent:'flex-end',flexDirection:'row'}}>
+            <View style={{height:40,paddingHorizontal:16,
+              alignItems:'center',justifyContent:'flex-end',flexDirection:'row'}}>
               <Icon type="icon_filter" color={GREEN} size={16} />
             </View>
           </TouchFeedback>
-
-          <TouchFeedback
-            onPress={()=>{
-              this.props.onAddClick();
-            }}>
-            <View style={{width:30,height:30,alignItems:'center',justifyContent:'flex-end',flexDirection:'row'}}>
-              <Icon type="icon_add" color={GREEN} size={16} />
-            </View>
-          </TouchFeedback>
+          {this._getAddRecordView()}
         </View>
       </View>
     )
@@ -138,8 +153,8 @@ export default class MaintainRecordsView extends Component{
           renderRow={(rowData,sectionId,rowId,rowMap)=>this._renderRow(rowData,sectionId,rowId,rowMap)}
           renderHiddenRow={(rowData,sectionId,rowId,rowMap)=>this._renderHiddenRow(rowData,sectionId,rowId,rowMap)}
           renderSectionHeader={(sectionData,sectionId)=>this._renderSection(sectionData,sectionId)}
-          emptyText={'无设备维修历史记录'}
-          filterEmptyText={'没有符合条件的内容'}
+          emptyText={localStr('lang_record_des20')}
+          filterEmptyText={localStr('lang_record_des21')}
         />
       </View>
     );
@@ -151,6 +166,7 @@ MaintainRecordsView.propTypes = {
   currentPage:PropTypes.number,
   totalPage:PropTypes.number,
   hasFilter:PropTypes.bool.isRequired,
+  canEdit:PropTypes.bool,
   onRowClick:PropTypes.func.isRequired,
   onFilterClick:PropTypes.func.isRequired,
   onAddClick:PropTypes.func.isRequired,

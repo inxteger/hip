@@ -11,12 +11,14 @@ import {Navigator} from 'react-native-deprecated-custom-components';
 
 import {connect} from 'react-redux';
 import backHelper from '../../utils/backHelper';
+import privilegeHelper from '../../utils/privilegeHelper.js';
 
-import {loadMaintainceRecords,firstPage,nextPage,clearMaintanceFilter,deleteRecord} from '../../actions/assetsAction.js';
+import {loadMaintainceRecords,firstPage,nextPage,clearMaintanceFilter,deleteRecord,exitMaintanceRecords} from '../../actions/assetsAction.js';
 import MaintainRecordsView from '../../components/assets/MaintainRecordsView.js';
 import MaintainFilter from './MaintainFilter.js';
 import MRecordDetail from './MRecordDetail.js';
 import Immutable from 'immutable';
+import {localStr,localFormatStr,getLanguage} from '../../utils/Localizations/localization.js';
 
 class MaintainRecords extends Component{
   constructor(props){
@@ -70,15 +72,15 @@ class MaintainRecords extends Component{
         customerId:this.props.customerId,
         hierarchyId:this.props.hierarchyId,
         recordId:recordId,
-        extData:this.props.recordData.get('ExtData'),
+        extData:this.props.recordData.get('extData'),
         onPostingCallback:(type)=>{this._onPostingCallback(type)},
       }
     });
   }
   _delete(rowData){
     // console.warn('user',log.get('CreateUserName'),this.props.user.get('RealName'));
-    if(rowData.get('MaintainPerson') !== this.props.user.get('RealName')){
-      Alert.alert('','仅创建者可以删除此维修历史');
+    if(rowData.get('CreateUserId') !== this.props.user.get('Id')){
+      Alert.alert('',localStr('lang_record_des37'));
       return;
     }
     // if(!this._showAuth()){
@@ -86,16 +88,17 @@ class MaintainRecords extends Component{
     // }
     Alert.alert(
       '',
-      '删除此条设备维修历史记录？',
+      localStr('lang_record_des38'),
       [
-        {text: '取消', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-        {text: '删除', onPress: () => {
+        {text: localStr('lang_ticket_cancel'), onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+        {text: localStr('lang_ticket_remove'), onPress: () => {
           this.props.deleteRecord(rowData.get('AutoId'));
         }}
       ]
     )
   }
   _onRefresh(){
+    // console.warn('_onRefresh',this.props.filter.get('PageIndex'));
     if (this.props.filter.get('PageIndex')===1) {
       this._loadAlarms(this.props.filter);
     }else {
@@ -104,11 +107,12 @@ class MaintainRecords extends Component{
   }
   _bindEvent(){
     var navigator = this.props.navigator;
-    // console.warn('navigator',navigator);
+    // console.warn('navigator',event.data.route.id,navigator);
     if (navigator) {
       var callback = (event) => {
-        if(!event.data.route || !event.data.route.id || (event.data.route.id === 'main')){
+        if(!event.data.route || !event.data.route.id || (event.data.route.id === 'asset_detail')){
           if(this._refreshOnFocus){
+            // console.warn('callback',event.data.route);
             this._onRefresh();
             this._refreshOnFocus = false;
           }
@@ -127,12 +131,13 @@ class MaintainRecords extends Component{
     this._bindEvent();
     backHelper.init(this.props.navigator,'records');
   }
+
   componentWillReceiveProps(nextProps) {
     var data = nextProps.recordData.get('data');
     var origData = this.props.recordData.get('data');
     // console.warn('componentWillReceiveProps...',data,origData);
-    if((data !== origData) && data){// && data.size >= 1){
-      this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    if((data !== origData)){// && data && data.size >= 1){
+      // this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
       InteractionManager.runAfterInteractions(()=>{
         this.setState({dataSource:this.ds.cloneWithRows(data.toArray())});
@@ -146,16 +151,20 @@ class MaintainRecords extends Component{
     }
   }
   componentWillUnmount() {
+    if (!this.props.recordData.get('data')||this.props.recordData.get('data').size===0) {
+      this.props.exitMaintanceRecords();
+    }
     backHelper.destroy('records');
   }
   render() {
     var extData=null;
     if (this.props.recordData) {
-      extData=this.props.recordData.get('ExtData');
+      extData=this.props.recordData.get('extData');
     }
     return (
       <MaintainRecordsView
         loadAlarm={()=>this._loadAlarm()}
+        canEdit={privilegeHelper.hasAuth('AssetEditPrivilegeCode')}
         isFetching={this.props.recordData.get('isFetching')}
         listData={this.state.dataSource}
         extData={extData}
@@ -184,6 +193,7 @@ MaintainRecords.propTypes = {
   hierarchyId:PropTypes.number,
   hasFilter:PropTypes.bool,
   loadMaintainceRecords:PropTypes.func,
+  exitMaintanceRecords:PropTypes.func,
   firstPage:PropTypes.func,
   nextPage:PropTypes.func,
   clearMaintanceFilter:PropTypes.func,
@@ -202,4 +212,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps,{loadMaintainceRecords,firstPage,nextPage,clearMaintanceFilter,deleteRecord})(MaintainRecords);
+export default connect(mapStateToProps,{loadMaintainceRecords,exitMaintanceRecords,firstPage,nextPage,clearMaintanceFilter,deleteRecord})(MaintainRecords);

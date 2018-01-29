@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 import Toolbar from '../Toolbar';
 import List from '../List.js';
 import SimpleRow from './MSingleSelectRow.js';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class MSingleSelectView extends Component{
   constructor(props){
@@ -33,7 +34,7 @@ export default class MSingleSelectView extends Component{
         <Toolbar
           title={this.props.title}
           navIcon="back"
-          actions={[{title:'完成',show:'always'}]}
+          actions={[{title:localStr('lang_common_finish'),show:'always'}]}
           onIconClicked={this.props.onBack}
           onActionSelected={[()=>{
             this.props.onSave();
