@@ -24,8 +24,10 @@ export default class TaskDesEditView extends Component{
     this.state = {text:text};
   }
   _logChanged(text){
-    this.setState({text});
-    this.props.dataChanged(text);
+    if (this.props.editable) {
+      this.setState({text});
+      this.props.dataChanged(text);
+    }
   }
   render() {
     var lines = 0;
