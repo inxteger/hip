@@ -95,8 +95,8 @@ function updateAssetDetailData(state,action) {
     panelType,
     [{title:localStr('lang_asset_des28'),value:singleLineCount,isNav:true,type:'singleLine'}],
     arrEnvDatas,
-    [{title:localStr('lang_asset_des31'),value:logCount,isNav:true,type:'log',secType:'logSection'}],
-    [{title:localStr('lang_asset_des34'),value:tendingCount,isNav:true,type:'tending'}]
+    // [{title:localStr('lang_asset_des31'),value:logCount,isNav:true,type:'log',secType:'logSection'}],
+    // [{title:localStr('lang_asset_des34'),value:tendingCount,isNav:true,type:'tending'}]
   ];
   var allSecTitle=[
     '',

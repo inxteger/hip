@@ -113,8 +113,8 @@ localStr('lang_asset_des81')];
     [{title:localStr('lang_asset_des28'),value:singleLineCount,isNav:true,type:'singleLine'}],
     arrStatistic,
     arrEnvDatas,
-    [{title:localStr('lang_asset_des31'),value:logCount,isNav:true,type:'log'}],
-    [{title:localStr('lang_asset_des34'),value:tendingCount,isNav:true,type:'tending'}]
+    // [{title:localStr('lang_asset_des31'),value:logCount,isNav:true,type:'log'}],
+    // [{title:localStr('lang_asset_des34'),value:tendingCount,isNav:true,type:'tending'}]
   ];
   var allSecTitle=[
     '',
