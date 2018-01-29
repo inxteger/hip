@@ -8,7 +8,6 @@ import {
 import PropTypes from 'prop-types';
 
 import Text from '../Text';
-import ClickableRow from '../ClickableRow.js';
 import {GRAY,BLACK,ALARM_RED} from '../../styles/color';
 import moment from 'moment';
 import Icon from '../Icon.js';
@@ -63,23 +62,25 @@ export default class MaintainRecordRow extends Component{
   render(){
     var {rowData} = this.props;
     return (
-      <TouchFeedback onLongPress={()=>this.props.onRowLongPress(rowData)} onPress={()=>this.props.onRowClick(rowData)}>
-        <View style={[styles.row,styles.rowHeight]}>
-          <View style={styles.rowLeft}>
-            {this._getPrimaryContent(rowData)}
-          </View>
-          <View style={[{paddingTop:16,width:80},styles.rowHeight]}>
-            <View style={{flexDirection:'row',justifyContent:'flex-end'}}>
-              <Text style={styles.timeText}>{this._getTime(rowData)}</Text>
+      <View style={{flex:1,backgroundColor:'white'}}>
+        <TouchFeedback onLongPress={()=>this.props.onRowLongPress(rowData)} onPress={()=>this.props.onRowClick(rowData)}>
+          <View style={[styles.row,styles.rowHeight]}>
+            <View style={styles.rowLeft}>
+              {this._getPrimaryContent(rowData)}
             </View>
-            <View style={{flex:1,marginTop:7}}>
-              <View style={{flex:1,flexDirection:'row',justifyContent:'flex-end'}}>
-                <Text numberOfLines={1} style={[styles.timeText,{fontSize:14}]}>{rowData.get('MaintainPerson')}</Text>
+            <View style={[{paddingTop:16,width:80},styles.rowHeight]}>
+              <View style={{flexDirection:'row',justifyContent:'flex-end'}}>
+                <Text style={styles.timeText}>{this._getTime(rowData)}</Text>
+              </View>
+              <View style={{flex:1,marginTop:7}}>
+                <View style={{flex:1,flexDirection:'row',justifyContent:'flex-end'}}>
+                  <Text numberOfLines={1} style={[styles.timeText,{fontSize:14}]}>{rowData.get('MaintainPerson')}</Text>
+                </View>
               </View>
             </View>
           </View>
-        </View>
-      </TouchFeedback>
+        </TouchFeedback>
+      </View>
     );
   }
 }
