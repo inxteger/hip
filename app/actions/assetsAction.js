@@ -429,6 +429,15 @@ export function loadMaintainceRecords(body){
   }
 }
 
+export const MAINTANCE_DATAS_RESET = 'MAINTANCE_DATAS_RESET';
+
+export function exitMaintanceRecords(){
+  return (dispatch,getState)=>{
+    return dispatch({
+      type:MAINTANCE_DATAS_RESET,
+    });
+  }
+}
 
 export const MAINTANCE_FILTER_CHANGED = 'MAINTANCE_FILTER_CHANGED';
 

@@ -47,7 +47,7 @@ export default class DeviceDetailView extends Component{
     if(!this.props.deviceData){
       return [];
     }
-    console.warn('hasRuntime',this.props.hasRealtime,this.props.hasRuntime,this.props.has6Dashboard);
+    // console.warn('hasRuntime',this.props.hasRealtime,this.props.hasRuntime,this.props.has6Dashboard);
 
     var array = [localStr('lang_asset_des13')];
     if(this.props.hasRealtime){

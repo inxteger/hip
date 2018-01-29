@@ -146,7 +146,7 @@ export default class ScrollableTabBar extends Component{
       backgroundColor: 'navy',
       bottom: 0,
     };
-    console.warn('dynamicTabUnderline',this.state._leftTabUnderline,this.state._widthTabUnderline);
+    // console.warn('dynamicTabUnderline',this.state._leftTabUnderline,this.state._widthTabUnderline);
     const dynamicTabUnderline = {
       left: this.state._leftTabUnderline,
       width: this.state._widthTabUnderline,

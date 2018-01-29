@@ -13,7 +13,7 @@ import {connect} from 'react-redux';
 import backHelper from '../../utils/backHelper';
 import privilegeHelper from '../../utils/privilegeHelper.js';
 
-import {loadMaintainceRecords,firstPage,nextPage,clearMaintanceFilter,deleteRecord} from '../../actions/assetsAction.js';
+import {loadMaintainceRecords,firstPage,nextPage,clearMaintanceFilter,deleteRecord,exitMaintanceRecords} from '../../actions/assetsAction.js';
 import MaintainRecordsView from '../../components/assets/MaintainRecordsView.js';
 import MaintainFilter from './MaintainFilter.js';
 import MRecordDetail from './MRecordDetail.js';
@@ -111,7 +111,7 @@ class MaintainRecords extends Component{
       var callback = (event) => {
         if(!event.data.route || !event.data.route.id || (event.data.route.id === 'asset_detail')){
           if(this._refreshOnFocus){
-            console.warn('callback',event.data.route);
+            // console.warn('callback',event.data.route);
             this._onRefresh();
             this._refreshOnFocus = false;
           }
@@ -135,7 +135,7 @@ class MaintainRecords extends Component{
     var data = nextProps.recordData.get('data');
     var origData = this.props.recordData.get('data');
     // console.warn('componentWillReceiveProps...',data,origData);
-    if((data !== origData) && data){// && data.size >= 1){
+    if((data !== origData)){// && data && data.size >= 1){
       // this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
       InteractionManager.runAfterInteractions(()=>{
@@ -150,6 +150,9 @@ class MaintainRecords extends Component{
     }
   }
   componentWillUnmount() {
+    if (!this.props.recordData.get('data')||this.props.recordData.get('data').size===0) {
+      this.props.exitMaintanceRecords();
+    }
     backHelper.destroy('records');
   }
   render() {
@@ -189,6 +192,7 @@ MaintainRecords.propTypes = {
   hierarchyId:PropTypes.number,
   hasFilter:PropTypes.bool,
   loadMaintainceRecords:PropTypes.func,
+  exitMaintanceRecords:PropTypes.func,
   firstPage:PropTypes.func,
   nextPage:PropTypes.func,
   clearMaintanceFilter:PropTypes.func,
@@ -207,4 +211,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps,{loadMaintainceRecords,firstPage,nextPage,clearMaintanceFilter,deleteRecord})(MaintainRecords);
+export default connect(mapStateToProps,{loadMaintainceRecords,exitMaintanceRecords,firstPage,nextPage,clearMaintanceFilter,deleteRecord})(MaintainRecords);
