@@ -13,6 +13,7 @@ import SelectRow from './MaintanceSelectRow.js';
 import Section from '../Section.js';
 import Text from '../Text';
 import {GRAY} from '../../styles/color';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 export default class MaintancePartsView extends Component{
   constructor(props){
@@ -32,31 +33,23 @@ export default class MaintancePartsView extends Component{
   }
   _getContentView()
   {
-    // if (!this.props.data&&!this.props.isFetching) {
-    //   return (
-    //     <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-    //       <Text style={{fontSize:17,color:GRAY}}>{'请先选择资产范围'}</Text>
-    //     </View>
-    //   )
-    // }else {
-      return (
-        <List
-          isFetching={this.props.isFetching}
-          listData={this.props.data}
-          hasFilter={false}
-          currentPage={1}
-          totalPage={1}
-          emptyText='无相关信息'
-          onRefresh={this.props.onRefresh}
-          renderRow={(rowData,sectionId,rowId)=>this._renderRow(rowData,sectionId,rowId)}
-          renderSectionHeader={(sectionData,sectionId)=>this._renderSection(sectionData,sectionId)}
-        />
-      );
-    // }
+    return (
+      <List
+        isFetching={this.props.isFetching}
+        listData={this.props.data}
+        hasFilter={false}
+        currentPage={1}
+        totalPage={1}
+        emptyText={localStr('lang_record_des21')}
+        onRefresh={this.props.onRefresh}
+        renderRow={(rowData,sectionId,rowId)=>this._renderRow(rowData,sectionId,rowId)}
+        renderSectionHeader={(sectionData,sectionId)=>this._renderSection(sectionData,sectionId)}
+      />
+    );
   }
   render() {
     var disable = !this.props.data || !this.props.selectParts || this.props.selectParts.size===0;
-    var actions = [{title:'完成',show:'always',disable:disable}];
+    var actions = [{title:localStr('lang_common_finish'),show:'always',disable:disable}];
     return (
       <View style={{flex:1,backgroundColor:'white'}}>
         <Toolbar title={this.props.title}

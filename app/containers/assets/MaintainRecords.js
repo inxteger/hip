@@ -18,6 +18,7 @@ import MaintainRecordsView from '../../components/assets/MaintainRecordsView.js'
 import MaintainFilter from './MaintainFilter.js';
 import MRecordDetail from './MRecordDetail.js';
 import Immutable from 'immutable';
+import {localStr,localFormatStr,getLanguage} from '../../utils/Localizations/localization.js';
 
 class MaintainRecords extends Component{
   constructor(props){
@@ -79,7 +80,7 @@ class MaintainRecords extends Component{
   _delete(rowData){
     // console.warn('user',log.get('CreateUserName'),this.props.user.get('RealName'));
     if(rowData.get('CreateUserId') !== this.props.user.get('Id')){
-      Alert.alert('','仅创建者可以删除此维修历史');
+      Alert.alert('',localStr('lang_record_des37'));
       return;
     }
     // if(!this._showAuth()){
@@ -87,10 +88,10 @@ class MaintainRecords extends Component{
     // }
     Alert.alert(
       '',
-      '删除此条设备维修历史记录？',
+      localStr('lang_record_des38'),
       [
-        {text: '取消', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-        {text: '删除', onPress: () => {
+        {text: localStr('lang_ticket_cancel'), onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+        {text: localStr('lang_ticket_remove'), onPress: () => {
           this.props.deleteRecord(rowData.get('AutoId'));
         }}
       ]

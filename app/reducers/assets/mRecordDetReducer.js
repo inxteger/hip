@@ -89,7 +89,7 @@ function startPostData(state,actioin) {
 
 function postDataSuccess(state,action) {
   if (action.response.Result.Message) {
-    action.error = '数据提交失败';
+    action.error = localStr('lang_record_des44');
     return state.set('isPosting',3);
   }
   return state.set('isPosting',2);

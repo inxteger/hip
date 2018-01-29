@@ -76,7 +76,7 @@ export default class MaintainRecordsView extends Component{
     var textView=(
       <View style={{flex:1,}}>
         <Text numberOfLines={1} style={{fontSize:14,color:'#8e8e9c'}}>
-          {'资产编号：'+assNo}
+          {localStr('lang_record_des18')+assNo}
         </Text>
       </View>
     );
@@ -85,7 +85,7 @@ export default class MaintainRecordsView extends Component{
         <View style={{flex:1,flexDirection:'row',alignItems:'center'}}>
           <Icon type="icon_notification" color={LOGOUT_RED} size={15} />
           <Text numberOfLines={1} style={{fontSize:14,color:LOGOUT_RED,marginLeft:3}}>
-            {'无资产编号，请尽快填写。'}
+            {localStr('lang_record_des19')}
           </Text>
         </View>
       );
@@ -153,8 +153,8 @@ export default class MaintainRecordsView extends Component{
           renderRow={(rowData,sectionId,rowId,rowMap)=>this._renderRow(rowData,sectionId,rowId,rowMap)}
           renderHiddenRow={(rowData,sectionId,rowId,rowMap)=>this._renderHiddenRow(rowData,sectionId,rowId,rowMap)}
           renderSectionHeader={(sectionData,sectionId)=>this._renderSection(sectionData,sectionId)}
-          emptyText={'无设备维修历史记录'}
-          filterEmptyText={'没有符合条件的内容'}
+          emptyText={localStr('lang_record_des20')}
+          filterEmptyText={localStr('lang_record_des21')}
         />
       </View>
     );

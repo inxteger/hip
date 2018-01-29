@@ -32,7 +32,7 @@ export default class MaintainFilterView extends Component{
     if(rowData === 0){
       return (
         <DateInputGroup
-          title='时间'
+          title={localStr('lang_record_des01')}
           startTime={this.props.filter.get('StartTime')}
           endTime={this.props.filter.get('EndTime')}
           onChanged={(type,text)=>{
@@ -54,9 +54,9 @@ export default class MaintainFilterView extends Component{
       // data={this.props.filter.get('MaintainPersons')}
       return (
         <StatableClickGroup
-          title='维修人'
+          title={localStr('lang_record_des02')}
           text={strUsers}
-          placeholderText={'请选择维修人'}
+          placeholderText={localStr('lang_record_des03')}
           onRowClick={()=>{
             this.props.onSelectUsers();
           }}
@@ -77,9 +77,9 @@ export default class MaintainFilterView extends Component{
       // data={this.props.filter.get('Parts')}
       return (
         <StatableClickGroup
-          title='零部件'
+          title={localStr('lang_record_des04')}
           text={strUsers}
-          placeholderText={'请选择零部件'}
+          placeholderText={localStr('lang_record_des05')}
           onRowClick={()=>{
             this.props.onSelectParts();
           }}
@@ -89,7 +89,7 @@ export default class MaintainFilterView extends Component{
     else if(rowData === 3){
       return (
         <StatableSelectorGroup
-          title={localStr('故障判定')}
+          title={localStr('lang_record_des06')}
           data={this.props.codes}
           selectedIndexes={this.props.filter.get('FaultJudgeType')}
           onChanged={(index)=>this.props.filterChanged('FaultJudgeType',index)} />
@@ -100,7 +100,7 @@ export default class MaintainFilterView extends Component{
       }
       return (
         <StatableSelectorGroup
-          title={localStr('处理结果')}
+          title={localStr('lang_record_des07')}
           data={this.props.bugResults}
           selectedIndexes={this.props.filter.get('DealResult')}
           onChanged={(index)=>this.props.filterChanged('DealResult',index)} />
@@ -140,7 +140,7 @@ export default class MaintainFilterView extends Component{
     return (
       <View style={{flex:1,backgroundColor:'white'}}>
         <Toolbar
-          title={'维修历史筛选'}
+          title={localStr('lang_record_des08')}
           navIcon="close"
           onIconClicked={this.props.onClose}
           actions={[{

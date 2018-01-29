@@ -19,9 +19,9 @@ export default class MaintainRecordRow extends Component{
     super(props);
   }
   _getPrimaryContent(data){
-    var types=[{'Code':2,'Type':'操作不当'},{'Code':4,'Type':'自然老化'},{'Code':8,'Type':'设计缺陷'},
-    {'Code':16,'Type':'维修不当'},{'Code':32,'Type':'维护不当'},{'Code':1,'Type':'其他原因'}];
-    var results=['故障排除完成','临时处理完成','设备未修复'];
+    var types=[{'Code':2,'Type':localStr('lang_record_des09')},{'Code':4,'Type':localStr('lang_record_des10')},{'Code':8,'Type':localStr('lang_record_des11')},
+    {'Code':16,'Type':localStr('lang_record_des12')},{'Code':32,'Type':localStr('lang_record_des13')},{'Code':1,'Type':localStr('lang_record_des14')}];
+    var results=[localStr('lang_record_des15'),localStr('lang_record_des16'),localStr('lang_record_des17')];
     var strJudge='';
     types.forEach((item)=>{
       if (item.Code===data.get('FaultJudgeType')) {

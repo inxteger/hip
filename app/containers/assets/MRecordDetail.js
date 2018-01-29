@@ -34,9 +34,14 @@ class MRecordDetail extends Component{
   constructor(props){
     super(props);
     this.state = {viewType:'view',};
-    this.types=[{'Code':2,'Type':'操作不当'},{'Code':4,'Type':'自然老化'},{'Code':8,'Type':'设计缺陷'},
-    {'Code':16,'Type':'维修不当'},{'Code':32,'Type':'维护不当'},{'Code':1,'Type':'其他原因'}];
-    this.results=[{'Code':1,'Type':'故障排除完成'},{'Code':2,'Type':'临时处理完成'},{'Code':3,'Type':'设备未修复'}];
+    this.types=[
+      {'Code':2,'Type':localStr('lang_record_des09')},
+      {'Code':4,'Type':localStr('lang_record_des10')},
+      {'Code':8,'Type':localStr('lang_record_des11')},
+      {'Code':16,'Type':localStr('lang_record_des12')},
+      {'Code':32,'Type':localStr('lang_record_des13')},
+      {'Code':1,'Type':localStr('lang_record_des14')}];
+    this.results=[{'Code':1,'Type':localStr('lang_record_des15')},{'Code':2,'Type':localStr('lang_record_des16')},{'Code':3,'Type':localStr('lang_record_des17')}];
   }
   _loadContentById(recordId){
     this.props.loadMtDetailById(recordId);
@@ -68,7 +73,7 @@ class MRecordDetail extends Component{
           title:rowData.title,
           editable:viewType!=='view',
           maxLength:300,
-          placeholdText:'请输入相关内容（上限300字）',
+          placeholdText:localStr('lang_record_des39'),
           onSave:(value)=>{
             this.props.maintanceRecordInfoChangeChange({
               type:'FaultPhenomenon',value
@@ -86,7 +91,7 @@ class MRecordDetail extends Component{
           title:rowData.title,
           editable:viewType!=='view',
           maxLength:300,
-          placeholdText:'请输入相关内容（上限300字）',
+          placeholdText:localStr('lang_record_des39'),
           onSave:(value)=>{
             this.props.maintanceRecordInfoChangeChange({
               type:'FaultJudgeText',value
@@ -103,7 +108,7 @@ class MRecordDetail extends Component{
           title:rowData.title,
           editable:viewType!=='view',
           maxLength:300,
-          placeholdText:'请输入相关内容（上限300字）',
+          placeholdText:localStr('lang_record_des39'),
           onSave:(value)=>{
             this.props.maintanceRecordInfoChangeChange({
               type:'FaultRemoval',value
@@ -159,14 +164,14 @@ class MRecordDetail extends Component{
       var customerId=this.props.customerId;
       var hierarchyId=this.props.hierarchyId;
       if (!this.props.customerId) {
-        customerId=321238;
-        hierarchyId=345761;//321637;//test
+        // customerId=321238;
+        // hierarchyId=345761;//321637;//test
       }
       this.props.navigator.push({
           id:'ticket_users',
           component:MaintancePartsSelect,
           passProps:{
-            title:'零部件',
+            title:localStr('lang_record_des04'),
             customerId:customerId,
             hierarchyId:hierarchyId,
           }
@@ -341,11 +346,11 @@ class MRecordDetail extends Component{
     });
   }
   render() {
-    var title='设备维修历史详情';
+    var title=localStr('lang_record_des40');
     if (this.state.viewType==='edit') {
-      title='编辑设备维修历史';
+      title=localStr('lang_record_des41');
     }else if (this.state.viewType==='create') {
-      title='添加设备维修历史';
+      title=localStr('lang_record_des42');
     }
     //this.props.ticketInfo?localStr('lang_ticket_edit_ticket'):localStr('lang_ticket_create_ticket');
     return (

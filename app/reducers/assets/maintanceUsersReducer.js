@@ -8,6 +8,7 @@ import {
 } from '../../actions/assetsAction.js';
 
 import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
 import Immutable from 'immutable';
 
@@ -26,7 +27,7 @@ function updateAssetsUsers(state,action)
   var selectUsers = state.get('selectUsers');
   // console.warn('updateAssetsUsers...', selectUsers);
   if (response&&response.length>0) {
-    response.unshift({Id:'全选',RealName:'全选'});
+    response.unshift({Id:localStr('lang_record_des43'),RealName:localStr('lang_record_des43')});
   }
   var allElements = Immutable.fromJS(response);
   var newSelecUsers=[];
@@ -44,7 +45,7 @@ function updateAssetsUsers(state,action)
   });
   var isAllSelect=true;
   allElements.forEach((item)=>{
-    if (item.get('Id')!=='全选') {
+    if (item.get('Id')!==localStr('lang_record_des43')) {
       if (!item.get('isSelect')) {
         isAllSelect=false;
       }
@@ -88,7 +89,7 @@ function userSelectInfoChange(state,action){
       arrSelect = arrSelect.push(user);
     }
 
-    if (user.get('Id')==='全选') {
+    if (user.get('Id')===localStr('lang_record_des43')) {
       var allSeleItem=arr.get(0);
       var isAllSelect=allSeleItem.get('isSelect');
       arr.forEach((item0,index)=>{
@@ -108,7 +109,7 @@ function userSelectInfoChange(state,action){
 
     var isAllSelect=true;
     arr.forEach((item)=>{
-      if (item.get('Id')!=='全选') {
+      if (item.get('Id')!==localStr('lang_record_des43')) {
         if (!item.get('isSelect')) {
           isAllSelect=false;
         }

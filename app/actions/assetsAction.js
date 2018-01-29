@@ -529,7 +529,7 @@ export function getUsersFromMaintance(customerId,hierarchyId){
   return (dispatch, getState) => {
     return dispatch({
         types: [MAINTANCE_USERS_REQUEST, MAINTANCE_USERS_SUCCESS, MAINTANCE_USERS_FAILURE],
-        url:`user/list/${customerId}/${hierarchyId}`,//我觉得是不用传customerId，但是先进必需要这样
+        url:`user/list/${customerId}/${hierarchyId}`,
     });
   }
 }
