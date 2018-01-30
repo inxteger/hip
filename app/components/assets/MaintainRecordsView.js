@@ -154,7 +154,7 @@ export default class MaintainRecordsView extends Component{
           renderHiddenRow={(rowData,sectionId,rowId,rowMap)=>this._renderHiddenRow(rowData,sectionId,rowId,rowMap)}
           renderSectionHeader={(sectionData,sectionId)=>this._renderSection(sectionData,sectionId)}
           emptyText={localStr('lang_record_des20')}
-          filterEmptyText={localStr('lang_record_des21')}
+          filterEmptyText={localStr('lang_record_des45')}
         />
       </View>
     );
