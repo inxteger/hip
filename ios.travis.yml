@@ -1,13 +1,18 @@
 language: objective-c
 sudo: required
-#xcode_project: ios/HipRock.xcodeproj # path to your xcodeproj folder
-#xcode_scheme: Rock_Test
-install: #1.2
-#  - rmdir node_modules
+before_install:
+  - openssl aes-256-cbc -K $encrypted_53b7518c7470_key -iv $encrypted_53b7518c7470_iv
+    -in hocHipRock.mobileprovision.enc -out ./ios/RockCer/hocHipRock.mobileprovision
+    -d
+  - openssl aes-256-cbc -K $encrypted_53b7518c7470_key -iv $encrypted_53b7518c7470_iv
+    -in ios_distribution.cer.enc -out ./ios/RockCer/ios_distribution.cer -d
+  - openssl aes-256-cbc -K $encrypted_53b7518c7470_key -iv $encrypted_53b7518c7470_iv
+    -in privateKey.p12.enc -out ./ios/RockCer/privateKey.p12 -d
+  - DevToolsSecurity -status
+  - DevToolsSecurity -enable
+install:
   - npm install
-#cache:
-# directories:
-#  - node_modules
+before_script:
+  - source ios/RockCer/add-key.sh
 script:
-  - cd ios
-  - xctool -project HipRock.xcodeproj -scheme Rock_Test clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+  - source ./buildTestIpa.sh
