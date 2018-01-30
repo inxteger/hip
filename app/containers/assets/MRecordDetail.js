@@ -197,7 +197,9 @@ class MRecordDetail extends Component{
   _checkTimeIsTrue()
   {
     var timeCreate = this.props.data.get('MaintainTime');
-    if(moment(timeCreate) > moment()){
+    var tomorrow=moment(moment().add(1, 'days').format('YYYY-MM-DD'));
+    // console.warn('aaa',timeCreate,tomorrow);
+    if(moment(timeCreate) > tomorrow){
       Alert.alert(
         '',
         localStr('lang_asset_des11'),
@@ -207,7 +209,7 @@ class MRecordDetail extends Component{
       )
       return false;
     }
-    return true;
+    return false;
   }
   _onModifyRecordDetail()
   {
