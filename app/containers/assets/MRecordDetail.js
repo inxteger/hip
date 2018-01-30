@@ -209,7 +209,7 @@ class MRecordDetail extends Component{
       )
       return false;
     }
-    return false;
+    return true;
   }
   _onModifyRecordDetail()
   {

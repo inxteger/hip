@@ -15,6 +15,7 @@ import {
   MAINTANCE_FILTER_RESET,
   MAINTANCE_USER_SELECT_CHANGED,
   MAINTANCE_PART_SELECT_CHANGED,
+  RECORD_EDIT_INFO_RESET,
   // ALARM_LOAD_SUCCESS
 } from '../../actions/assetsAction.js';
 
@@ -276,6 +277,8 @@ export default function(state=defaultState,action){
       // return mergeAlarmBuilding(state,action);
     // case ALARM_BUILDING_FAILURE:
       // return handleError(state,action);
+    case RECORD_EDIT_INFO_RESET:
+      return state.set('selectParts',Immutable.fromJS([]));
     case MAINTANCE_FILTER_RESET:
       return resetFilter(state,action);
     case LOGOUT_SUCCESS:
