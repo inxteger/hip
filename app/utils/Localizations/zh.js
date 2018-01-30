@@ -383,4 +383,5 @@ export default {
   lang_record_des42:'添加设备维修历史',
   lang_record_des43:'全选',
   lang_record_des44:'数据提交失败',
+  lang_record_des45:'没有符合条件的内容',
 };

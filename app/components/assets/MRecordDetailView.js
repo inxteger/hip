@@ -503,7 +503,7 @@ export default class MRecordDetailView extends Component{
               backgroundColor:GREEN,
             }]}
             disabledStyle={[styles.button,{
-                backgroundColor:GRAY,
+                backgroundColor:'#81dabc',
               }]
             }
             textStyle={{
