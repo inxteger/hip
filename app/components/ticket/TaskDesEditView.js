@@ -7,11 +7,11 @@ import {
   StyleSheet,
   TextInput,
   Platform,
-  // ScrollView
+  Text,
+  ScrollView
 
 } from 'react-native';
 import PropTypes from 'prop-types';
-
 import Toolbar from '../Toolbar';
 import KeyboardSpacer from '../KeyboardSpacer.js';
 import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
@@ -27,6 +27,44 @@ export default class TaskDesEditView extends Component{
     if (this.props.editable) {
       this.setState({text});
       this.props.dataChanged(text);
+    }
+  }
+  _getContentView(lines,content)
+  {
+    var maxLength=this.props.maxLength;
+    if (!maxLength) {
+      maxLength=100000;
+    }
+    var placeholdText=this.props.placeholdText;
+    if (this.props.editable) {
+      return(
+        <View style={{flex:1}}>
+          <TextInput
+            style={styles.input}
+            autoFocus={this.props.content ? false : true}
+            underlineColorAndroid={'transparent'}
+            textAlign={'left'}
+            multiline={true}
+            editable={Platform.OS === 'ios'?this.props.editable:true}
+            numberOfLines={lines}
+            maxLength={maxLength}
+            placeholderTextColor={GRAY}
+            textAlignVertical={'top'}
+            placeholder={placeholdText}
+            onChangeText={(text)=>this._logChanged(text)}
+            value={content} />
+        </View>
+      )
+    }else {
+      return(
+        <View style={{flex:1}}>
+          <ScrollView style={{flex:1}}>
+            <Text style={styles.input}>
+              {content}
+            </Text>
+          </ScrollView>
+        </View>
+      )
     }
   }
   render() {
@@ -48,11 +86,6 @@ export default class TaskDesEditView extends Component{
     if (!this.props.editable) {
       actions=[];
     }
-    var maxLength=this.props.maxLength;
-    if (!maxLength) {
-      maxLength=100000;
-    }
-    var placeholdText=this.props.placeholdText;
     return (
       <View style={{flex:1,backgroundColor:'white'}}>
         <Toolbar
@@ -64,23 +97,7 @@ export default class TaskDesEditView extends Component{
             this.props.onSave(content);
           }]}
           />
-
-        <View style={{flex:1}}>
-          <TextInput
-            style={styles.input}
-            autoFocus={this.props.content ? false : true}
-            underlineColorAndroid={'transparent'}
-            textAlign={'left'}
-            multiline={true}
-            editable={Platform.OS === 'ios'?this.props.editable:true}
-            numberOfLines={lines}
-            maxLength={maxLength}
-            placeholderTextColor={GRAY}
-            textAlignVertical={'top'}
-            placeholder={placeholdText}
-            onChangeText={(text)=>this._logChanged(text)}
-            value={content} />
-        </View>
+        {this._getContentView(lines,content)}
         <KeyboardSpacer />
       </View>
     );
