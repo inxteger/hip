@@ -122,8 +122,8 @@ localStr('lang_asset_des81')];
     ' ',
     localStr('lang_asset_des88'),
     localStr('lang_asset_des89'),
-    ' ',
-    ' '
+    // ' ',
+    // ' '
   ];
   //missing log
   if(arrAdmins.length > 0){

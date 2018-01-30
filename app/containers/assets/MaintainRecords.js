@@ -151,9 +151,9 @@ class MaintainRecords extends Component{
     }
   }
   componentWillUnmount() {
-    if (!this.props.recordData.get('data')||this.props.recordData.get('data').size===0) {
+    // if (!this.props.recordData.get('data')||this.props.recordData.get('data').size===0) {
       this.props.exitMaintanceRecords();
-    }
+    // }
     backHelper.destroy('records');
   }
   render() {
