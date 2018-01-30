@@ -1,25 +1,34 @@
 language: android
 sudo: required
-before_install: #1.1
+
+before_install:
+  - openssl aes-256-cbc -K $encrypted_53b7518c7470_key -iv $encrypted_53b7518c7470_iv
+    -in hiprock.jks.enc -out ./android/app/hiprock.jks -d
   - nvm install 6
   - node --version
-install: #1.2
+  - wget http://dl.google.com/android/ndk/android-ndk-r10e-linux-x86_64.bin
+  - chmod +x android-ndk-r10e-linux-x86_64.bin
+  - ./android-ndk-r10e-linux-x86_64.bin | grep ndk-build.cmd
+  - export ANDROID_NDK=`pwd`/android-ndk-r10e
+  - echo $ANDROID_NDK
+install:
   - npm install
-android: #1.3
+android:
   components:
+  - tools
+  - platform-tools
+
   - build-tools-23.0.1
+  - build-tools-23.0.2
+  - build-tools-25.0.0
+  - build-tools-25.0.1
+  - build-tools-26.0.1
+  - build-tools-26.0.2
   - android-23
-  - extra-android-m2repository
+  - android-25
   - extra-google-google_play_services
   - extra-google-m2repository
-  - addon-google_apis-google-16
-cache:
-  directories:
-  - node_modules
-script: 
-#  - npm run ci #2
-  - cd android && ./gradlew clean
-  - ./gradlew assembleRelease #3
-  - cd ./app/build/outputs/apk
-  - ls
-  - curl -F 'file=@app-internal-release-4.5.1.apk' -F 'uKey=24af41e3b5e5117e773a733378aefa29' -F '_api_key=0691c7489e57a5158796f6e1e7e988bd' -F 'password=rock' -F 'installType=2' -F 'updateDescription=4.5.1' 'https://qiniu-storage.pgyer.com/apiv1/app/upload'
+  - extra-android-m2repository
+  - addon-google_apis-google-26
+script:
+  - source run.sh
