@@ -16,6 +16,7 @@ import {
   MAINTANCE_USER_SELECT_CHANGED,
   MAINTANCE_PART_SELECT_CHANGED,
   RECORD_EDIT_INFO_RESET,
+  DEVICE_EXIT,
   // ALARM_LOAD_SUCCESS
 } from '../../actions/assetsAction.js';
 
@@ -284,6 +285,7 @@ export default function(state=defaultState,action){
       return state.setIn(['temp','selectParts'],Immutable.fromJS([]));
     case MAINTANCE_FILTER_RESET:
       return resetFilter(state,action);
+    case DEVICE_EXIT:
     case LOGOUT_SUCCESS:
       return defaultState;
     default:
