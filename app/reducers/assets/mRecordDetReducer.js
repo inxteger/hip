@@ -114,6 +114,9 @@ function conditionChanged(state,action) {
     newState = newState.setIn(['data','MaintainTime'],dateTime);
   }else if (type==='image') {
     var pics = newState.getIn(['data','RemFiles']);
+    if (!pics) {
+      return newState;
+    }
     if(action === 'add'){
       //[{name,uri}]
       value.forEach((item)=>{
