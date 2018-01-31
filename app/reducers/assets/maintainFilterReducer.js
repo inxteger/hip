@@ -17,6 +17,7 @@ import {
   MAINTANCE_PART_SELECT_CHANGED,
   RECORD_EDIT_INFO_RESET,
   DEVICE_EXIT,
+  MAINTANCE_DATAS_RESET,
   // ALARM_LOAD_SUCCESS
 } from '../../actions/assetsAction.js';
 
@@ -261,8 +262,6 @@ export default function(state=defaultState,action){
       return mergeTempFilter(state,action);
     case MAINTANCE_FILTER_DIDCHANGED:
       return mergeStableFilter(state,action);
-    case MAINTANCE_FILTER_CLEAR:
-      return clearFilter(state,action);
     case MAINTANCE_NEXTPAGE:
       return nextPage(state,action);
     case MAINTANCE_FIRSTPAGE:
@@ -285,6 +284,8 @@ export default function(state=defaultState,action){
       return state.setIn(['temp','selectParts'],Immutable.fromJS([]));
     case MAINTANCE_FILTER_RESET:
       return resetFilter(state,action);
+    case MAINTANCE_DATAS_RESET:
+    case MAINTANCE_FILTER_CLEAR:
     case DEVICE_EXIT:
     case LOGOUT_SUCCESS:
       return defaultState;

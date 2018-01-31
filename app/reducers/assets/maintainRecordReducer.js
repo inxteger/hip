@@ -135,7 +135,6 @@ export default commonReducer((state,action)=>{
     case DEVICE_EXIT:
     case MAINTANCE_DATAS_RESET:
       return defaultState;
-
   }
   return state;
 },defaultState);
