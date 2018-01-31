@@ -31,7 +31,7 @@ export default class AdminListView extends Component{
           title={this.props.admin.get('Name')}
           navIcon="back"
           onIconClicked={this.props.onBack} />
-        <View style={styles.inputContainer}>
+        <View style={{}}>
           <View style={styles.connectionRow}>
             <Text style={styles.titleText}>{this.props.admin.get('Title')}
             </Text>
@@ -87,7 +87,7 @@ var styles = StyleSheet.create({
     paddingHorizontal:16,
     alignItems:'center',
     backgroundColor:'white',
-    flex:1,
+    // flex:1,
   },
   titleText:{
     fontSize:17,
