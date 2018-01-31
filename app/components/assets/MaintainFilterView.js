@@ -110,13 +110,13 @@ export default class MaintainFilterView extends Component{
 
   }
   componentWillReceiveProps(nextProps) {
-    if(nextProps.filter !== this.props.filter||this.props.selectUsers!==nextProps.selectUsers
-    ||this.props.selectParts!==nextProps.selectParts){
+    // if(nextProps.filter !== this.props.filter||this.props.selectUsers!==nextProps.selectUsers
+    // ||this.props.selectParts!==nextProps.selectParts){
       var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
       this.setState({
         dataSource: ds.cloneWithRows([0,1,2,3,4])
       });
-    }
+    // }
 
   }
   render() {
