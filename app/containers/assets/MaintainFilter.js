@@ -25,14 +25,9 @@ class MaintainFilter extends Component{
 
   }
   componentDidMount() {
-    // InteractionManager.runAfterInteractions(()=>{
-      // this.props.loadAlarmCode();
-      // this.props.loadAlarmBuildings();
-    // });
     backHelper.init(this.props.navigator,this.props.route.id);
   }
   componentWillReceiveProps(nextProps) {
-
   }
   componentWillUnmount() {
     backHelper.destroy(this.props.route.id);
@@ -159,8 +154,8 @@ MaintainFilter.propTypes = {
 function mapStateToProps(state) {
   var maintainFilter = state.asset.maintainFilter;
   var filter = maintainFilter.get('temp');
-  var selectUsers = maintainFilter.get('selectUsers');
-  var selectParts = maintainFilter.get('selectParts');
+  var selectUsers = filter.get('selectUsers');
+  var selectParts = filter.get('selectParts');
   return {
     filter,
     bugCodes:maintainFilter.get('bugCodes'),
