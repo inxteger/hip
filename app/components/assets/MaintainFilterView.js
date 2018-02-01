@@ -3,8 +3,8 @@
 import React,{Component} from 'react';
 import {
   View,
-  ListView,
   StyleSheet,
+  ScrollView,
 } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -20,10 +20,8 @@ import {localStr,localFormatStr} from '../../utils/Localizations/localization.js
 export default class MaintainFilterView extends Component{
   constructor(props){
     super(props);
-    var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    this.state = {dataSource: ds.cloneWithRows([0,1,2,3,4])};
   }
-  _renderSeparator(sectionId,rowId){
+  _renderSeparator(rowId){
     return (
       <View key={rowId} style={styles.sepView}></View>
     )
@@ -110,28 +108,26 @@ export default class MaintainFilterView extends Component{
 
   }
   componentWillReceiveProps(nextProps) {
-    // if(nextProps.filter !== this.props.filter||this.props.selectUsers!==nextProps.selectUsers
-    // ||this.props.selectParts!==nextProps.selectParts){
-      var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-      this.setState({
-        dataSource: ds.cloneWithRows([0,1,2,3,4])
-      });
-    // }
-
+  }
+  _getListView()
+  {
+    var views=[0,1,2,3,4].map((item,index)=>{
+      return (
+        <View style={{}}>
+          {this._renderRow(index)}
+          {this._renderSeparator(index)}
+        </View>
+      )
+    });
+    return views;
   }
   render() {
     var list = null
     if(!this.props.isFetching){
       list = (
-        <View style={{flex:1}}>
-          <ListView
-            style={{flex:1,backgroundColor:'transparent'}}
-            contentContainerStyle={{padding:16,paddingBottom:bottomHeight,backgroundColor:'transparent'}}
-            dataSource={this.state.dataSource}
-            renderSeparator={(sectionId, rowId, adjacentRowHighlighted)=> this._renderSeparator(sectionId,rowId)}
-            renderRow={(rowData,sectionId,rowId) => this._renderRow(rowData,sectionId,rowId)}
-          />
-        </View>
+        <ScrollView style={{padding:16,paddingBottom:bottomHeight,backgroundColor:'transparent'}}>
+          {this._getListView()}
+        </ScrollView>
       )
     }
     else {
