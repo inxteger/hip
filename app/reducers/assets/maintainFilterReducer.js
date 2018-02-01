@@ -280,10 +280,11 @@ export default function(state=defaultState,action){
       // return mergeAlarmBuilding(state,action);
     // case ALARM_BUILDING_FAILURE:
       // return handleError(state,action);
-    case RECORD_EDIT_INFO_RESET:
-      return state.setIn(['temp','selectParts'],Immutable.fromJS([]));
+    // case RECORD_EDIT_INFO_RESET:
+      // return state.setIn(['temp','selectParts'],Immutable.fromJS([]));
     case MAINTANCE_FILTER_RESET:
       return resetFilter(state,action);
+    case RECORD_EDIT_INFO_RESET:
     case MAINTANCE_DATAS_RESET:
     case MAINTANCE_FILTER_CLEAR:
     case DEVICE_EXIT:

@@ -45,15 +45,6 @@ class MRecordDetail extends Component{
   }
   _loadContentById(recordId){
     this.props.loadMtDetailById(recordId);
-    // if (!this.props.ticketInfo) {
-    //   if (!this.props.alarm) {
-    //     this.props.loadMRecordDetailData({'type':'createNormalTicket','value':{customer,alarm:this.props.alarm}});
-    //   }else {
-    //     this.props.loadMRecordDetailData({'type':'createAlarmTicket','value':{customer,alarm:this.props.alarm}});
-    //   }
-    // }else {
-    //   this.props.loadMRecordDetailData({'type':'editNormalTicket','value':{customer,ticket:this.props.ticketInfo}});
-    // }
   }
   _onChangeTicketType(type,value)
   {
