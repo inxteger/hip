@@ -17,6 +17,7 @@ import {localStr,localFormatStr} from '../../utils/Localizations/localization.js
 
 var defaultState = Immutable.fromJS({
   deviceId:null,
+  customerId:null,
   data:null,
   sectionData:[],
   arrCanCalcuDash:[],
@@ -153,7 +154,8 @@ function updateAssetDetailData(state,action) {
     hasRealtime,
     deviceId,
     strTkdyly,
-    classType
+    classType,
+    customerId:res.CustomerId,
   });
 
 }
