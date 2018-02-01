@@ -5,6 +5,7 @@ import {
   MAINTANCE_USERS_REQUEST, MAINTANCE_USERS_SUCCESS, MAINTANCE_USERS_FAILURE,
   RECORD_EDIT_INFO_RESET,
   MAINTANCE_FILTER_CLEAR,
+  MAINTANCE_DATAS_RESET,
 } from '../../actions/assetsAction.js';
 
 import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
@@ -153,6 +154,7 @@ export default function(state=defaultState,action){
       return userSelectInfoChange(state,action);
     case RECORD_EDIT_INFO_RESET:
     case MAINTANCE_FILTER_CLEAR:
+    case MAINTANCE_DATAS_RESET:
     case LOGOUT_SUCCESS:
       return defaultState;
     default:
