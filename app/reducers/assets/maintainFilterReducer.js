@@ -15,6 +15,9 @@ import {
   MAINTANCE_FILTER_RESET,
   MAINTANCE_USER_SELECT_CHANGED,
   MAINTANCE_PART_SELECT_CHANGED,
+  RECORD_EDIT_INFO_RESET,
+  DEVICE_EXIT,
+  MAINTANCE_DATAS_RESET,
   // ALARM_LOAD_SUCCESS
 } from '../../actions/assetsAction.js';
 
@@ -40,8 +43,7 @@ var defaultState = Immutable.fromJS({
     filterCodes: [localStr('lang_record_des09'),localStr('lang_record_des10'),localStr('lang_record_des11'),
     localStr('lang_record_des12'),localStr('lang_record_des13'),localStr('lang_record_des14')],
     filterProcessResult:[localStr('lang_record_des15'),localStr('lang_record_des16'),localStr('lang_record_des17')],
-    selectUsers:[],
-    selectParts:[],
+
     stable:{
       PageIndex:1,
       PageSize:20,
@@ -64,6 +66,8 @@ var defaultState = Immutable.fromJS({
       Parts:[],
       FaultJudgeType:[],
       DealResult:[],
+      selectUsers:[],
+      selectParts:[],
     },
     temp1:{
       StartTime:null,
@@ -72,6 +76,8 @@ var defaultState = Immutable.fromJS({
       Parts:[],
       FaultJudgeType:[],
       DealResult:[],
+      selectUsers:[],
+      selectParts:[],
     },
 });
 
@@ -148,7 +154,7 @@ function mappingDealResults(state,arrIndex) {
 
 function convertPersons(state) {
   // var persons = state.getIn(['temp','maintainPersons']);
-  var arrDatas=state.get('selectUsers');
+  var arrDatas=state.getIn(['temp','selectUsers']);
   var arrIds=arrDatas.map((item,index)=>{
     return item.get('RealName');
   });
@@ -157,7 +163,7 @@ function convertPersons(state) {
 
 function convertParts(state) {
   // var parts = state.getIn(['temp','parts']);
-  var arrDatas=state.get('selectParts');
+  var arrDatas=state.getIn(['temp','selectParts']);
   var arrIds=arrDatas.map((item,index)=>{
     return item.get('Id');
   });
@@ -220,7 +226,7 @@ function userSelectInfoChange(state,action){
   var {data:{type,value}}=action;
   var newState = state;
   if (type==='save') {
-    newState = newState.set('selectUsers', value);
+    newState = newState.setIn(['temp','selectUsers'], value);
   }
   return newState;
 }
@@ -229,7 +235,7 @@ function partsSelectInfoChange(state,action) {
   var {data:{type,value}}=action;
   var newState = state;
   if (type==='save') {
-    newState = newState.set('selectParts', value);
+    newState = newState.setIn(['temp','selectParts'], value);
   }
   return newState;
 }
@@ -256,8 +262,6 @@ export default function(state=defaultState,action){
       return mergeTempFilter(state,action);
     case MAINTANCE_FILTER_DIDCHANGED:
       return mergeStableFilter(state,action);
-    case MAINTANCE_FILTER_CLEAR:
-      return clearFilter(state,action);
     case MAINTANCE_NEXTPAGE:
       return nextPage(state,action);
     case MAINTANCE_FIRSTPAGE:
@@ -276,8 +280,14 @@ export default function(state=defaultState,action){
       // return mergeAlarmBuilding(state,action);
     // case ALARM_BUILDING_FAILURE:
       // return handleError(state,action);
+    // case RECORD_EDIT_INFO_RESET:
+      // return state.setIn(['temp','selectParts'],Immutable.fromJS([]));
     case MAINTANCE_FILTER_RESET:
       return resetFilter(state,action);
+    case RECORD_EDIT_INFO_RESET:
+    case MAINTANCE_DATAS_RESET:
+    case MAINTANCE_FILTER_CLEAR:
+    case DEVICE_EXIT:
     case LOGOUT_SUCCESS:
       return defaultState;
     default:

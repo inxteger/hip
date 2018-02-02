@@ -5,8 +5,6 @@ import {
   View,
   Platform,
   StyleSheet,
-  DatePickerAndroid,
-  DatePickerIOS,
   ScrollView,
   Dimensions,
   Alert,
@@ -42,51 +40,6 @@ export default class MRecordDetailView extends Component{
     var {width} = Dimensions.get('window');
     var picWid = parseInt((width-56)/4.0);
     this.state = {rowType:'',isDateTimePickerVisible:false,imageWidth:picWid,imageHeight:picWid,autoFocus:false};
-  }
-  async _showPicker(type) {
-    if(Platform.OS === 'android'){
-      try {
-        console.warn('_showPicker,type',type);
-        var value = undefined;
-        if (type==='StartTime') {
-          value = this.props.data.get('StartTime') || undefined;
-        }else if (type==='EndTime') {
-          value = this.props.data.get('EndTime') || undefined;
-        }
-        var date = moment(value);
-        var options = {date:date.toDate()}
-        var {action, year, month, day} = await DatePickerAndroid.open(options);
-        // console.warn('date',year,month,day);
-        if (action !== DatePickerAndroid.dismissedAction) {
-          var date = moment({year,month,day,hour:8});//from timezone
-          // console.warn('moment',date);
-          this.props.onDateChanged(type,date.toDate());
-        }
-
-      } catch ({code, message}) {
-        // console.warn(`Error in example '${stateKey}': `, message);
-      }
-    }
-  }
-  _getDatePicker(dateType){
-    var type = this.state.rowType;
-    if(Platform.OS === 'ios' && this.state.openDatePicker && type===dateType){
-      var value = undefined;
-      if (type==='StartTime') {
-        value = this.props.data.get('StartTime') || undefined;
-      }else if (type==='EndTime') {
-        value = this.props.data.get('EndTime') || undefined;
-      }
-      var date = moment(value);
-
-      return (
-        <DatePickerIOS style={{borderTopWidth:1,borderColor:LINE}} date={date.toDate()} mode="date"
-          onDateChange={(date1)=>{
-              this.props.onDateChanged(type,date1);
-            }} />
-      );
-    }
-    return null;
   }
   _getNavIcon(isNav){
     if(isNav){
@@ -503,7 +456,7 @@ export default class MRecordDetailView extends Component{
               backgroundColor:GREEN,
             }]}
             disabledStyle={[styles.button,{
-                backgroundColor:'#81dabc',
+                backgroundColor:'#B3E9D6',
               }]
             }
             textStyle={{
@@ -573,7 +526,7 @@ export default class MRecordDetailView extends Component{
     this.setState({ isDateTimePickerVisible: false });
   }
   render() {
-    if (!this.props.data) {
+    if (!this.props.data||this.props.isFetching) {
       return (
         <View style={{flex:1,backgroundColor:'white'}}>
           {this._getToolbar(this.props.data)}
@@ -585,6 +538,7 @@ export default class MRecordDetailView extends Component{
     if (this.props.viewType==='view') {
       marginBottom=0;
     }
+    var date=this.props.data.get('MaintainTime');
     return (
       <View style={{flex:1,backgroundColor:LIST_BG}}>
         {this._getToolbar(this.props.data)}
@@ -634,6 +588,7 @@ export default class MRecordDetailView extends Component{
           cancelTextIOS={localStr('lang_ticket_cancel')}
           confirmTextIOS={localStr('lang_record_des29')}
           mode={'datetime'}
+          date={moment(date).toDate()}
           isVisible={this.state.isDateTimePickerVisible}
           onConfirm={(date)=>this._handleDatePicked(date)}
           onCancel={()=>this._hideDateTimePicker()}
@@ -658,6 +613,7 @@ MRecordDetailView.propTypes = {
   checkAuth:PropTypes.func,
   isPosting:PropTypes.number,
   data:PropTypes.object,
+  isFetching:PropTypes.bool,
   viewType:PropTypes.string,
   onRefresh:PropTypes.func.isRequired,
   onEditDetail:PropTypes.func.isRequired,

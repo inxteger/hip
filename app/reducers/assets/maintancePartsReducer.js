@@ -4,7 +4,10 @@ import {
   MAINTANCE_PART_SELECT_CHANGED,
   MAINTANCE_PARTS_REQUEST, MAINTANCE_PARTS_SUCCESS, MAINTANCE_PARTS_FAILURE,
   RECORD_EDIT_INFO_RESET,
-  MAINTANCE_FILTER_CLEAR
+  MAINTANCE_FILTER_CLEAR,
+  MAINTANCE_FILTER_RESET,
+  MAINTANCE_DATAS_RESET,
+  CREATE_RECORD_DATA_INIT,
 } from '../../actions/assetsAction.js';
 
 import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
@@ -178,8 +181,11 @@ export default function(state=defaultState,action){
       return handleError(state,action);
     case MAINTANCE_PART_SELECT_CHANGED:
       return userSelectInfoChange(state,action);
+    case MAINTANCE_FILTER_RESET:
     case RECORD_EDIT_INFO_RESET:
     case MAINTANCE_FILTER_CLEAR:
+    case MAINTANCE_DATAS_RESET:
+    case CREATE_RECORD_DATA_INIT:
     case LOGOUT_SUCCESS:
       return defaultState;
     default:

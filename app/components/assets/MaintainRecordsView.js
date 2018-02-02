@@ -3,6 +3,7 @@
 import React,{Component} from 'react';
 import {
   View,
+  Platform,
 } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -148,7 +149,7 @@ export default class MaintainRecordsView extends Component{
           totalPage={this.props.totalPage}
           clearFilter={this.props.clearFilter}
           onFilterClick={this.props.onFilterClick}
-          swipable={true}
+          swipable={Platform.OS === 'ios'}
           renderSeperator={(sectionId,rowId)=>this._renderSeperator(sectionId,rowId)}
           renderRow={(rowData,sectionId,rowId,rowMap)=>this._renderRow(rowData,sectionId,rowId,rowMap)}
           renderHiddenRow={(rowData,sectionId,rowId,rowMap)=>this._renderHiddenRow(rowData,sectionId,rowId,rowMap)}
