@@ -75,6 +75,7 @@ function initCreateRecord(state,action) {
       "RemFiles": []
     }
   ));
+  state=state.set('selectParts',Immutable.fromJS([])).set('isFetching',false);
   return state;
 }
 
@@ -172,8 +173,6 @@ export default function(state=defaultState,action){
       return recordLoadedStart(state,action);
     case MAINTANCE_DETAIL_SUCCESS:
       return recordLoadedSuccess(state,action);
-    case MAINTANCE_DETAIL_REQUEST:
-      return state.set('isFetching',false);
     case CREATE_RECORD_DATA_INIT:
       return initCreateRecord(state,action);
     case MAINTANCE_DETAIL_CHANGED:

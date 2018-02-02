@@ -51,3 +51,5 @@ android/keystores/debug.keystore
 
 #vscode
 .vscode/
+
+buildTemp

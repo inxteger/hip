@@ -526,7 +526,7 @@ export default class MRecordDetailView extends Component{
     this.setState({ isDateTimePickerVisible: false });
   }
   render() {
-    if (!this.props.data) {
+    if (!this.props.data||this.props.isFetching) {
       return (
         <View style={{flex:1,backgroundColor:'white'}}>
           {this._getToolbar(this.props.data)}
@@ -613,6 +613,7 @@ MRecordDetailView.propTypes = {
   checkAuth:PropTypes.func,
   isPosting:PropTypes.number,
   data:PropTypes.object,
+  isFetching:PropTypes.bool,
   viewType:PropTypes.string,
   onRefresh:PropTypes.func.isRequired,
   onEditDetail:PropTypes.func.isRequired,

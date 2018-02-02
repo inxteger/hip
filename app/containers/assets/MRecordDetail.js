@@ -150,6 +150,7 @@ class MRecordDetail extends Component{
         }
       });
     }else if (type === 'Parts') {
+      console.warn('cacheParts...',this.props.selectParts);
       this.props.updateMaintancePartsSelectInfo({type:'init',value:this.props.selectParts});
       this.props.updateMaintancePartsSelectInfo({type:'initSingleSelect',value:true});
       var customerId=this.props.customerId;
@@ -218,23 +219,6 @@ class MRecordDetail extends Component{
     });
     this.props.modifyRecordDetail(objData);
   }
-  _onDeleteTicket(){
-    var {ticketInfo} = this.props;
-    var alertText = localFormatStr('lang_ticket_remove_notice',ticketInfo.get('TicketNum'));
-    Alert.alert(
-      '',
-      alertText,
-      [
-        {text: localStr('lang_ticket_cancel'), onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-        {text: localStr('lang_ticket_remove'), onPress: () => {
-
-          this.props.deleteTicket(ticketInfo.get('Id'));
-          this.props.onPostingCallback('delete');
-        }}
-      ]
-    )
-
-  }
   componentDidMount() {
     if (this.props.recordId) {
       InteractionManager.runAfterInteractions(()=>{
@@ -254,19 +238,24 @@ class MRecordDetail extends Component{
       // console.warn('hideHud 1');
       this.context.hideHud();
       // console.warn('ticketCreate edit componentWillReceiveProps...',this.props.isFetching,this.props.isPosting,this.props.isEnableCreate);
-      this.props.onPostingCallback(this.props.ticketInfo?'edit':'create');
+      this.props.onPostingCallback();
       InteractionManager.runAfterInteractions(()=>{
-        this.props.navigator.pop();
+
+        if (this.state.viewType==='edit') {
+          this.setState({viewType:'view'});
+        }else if (this.state.viewType==='create') {
+          this.props.navigator.pop();
+          this.props.resetEditRecord();
+        }
       });
       return ;
     }else if (nextProps.isPosting===3 && this.props.isPosting===1) {
-
+      this.context.hideHud();
     }
   }
 
   componentWillUnmount() {
     backHelper.destroy(this.props.route.id);
-    this.props.resetEditRecord();
   }
   _dataChanged(type,action,value){
     this.props.maintanceRecordInfoChangeChange(
@@ -353,6 +342,7 @@ class MRecordDetail extends Component{
         title={title}
         isPosting={this.props.isPosting}
         data={this.props.data}
+        isFetching={this.props.isFetching}
         viewType={this.state.viewType}
         types={this.types}
         results={this.results}
