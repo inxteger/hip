@@ -1,6 +1,7 @@
 language: objective-c
 sudo: required
 before_install:
+- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then rvm get stable; fi
 - openssl aes-256-cbc -K $encrypted_53b7518c7470_key -iv $encrypted_53b7518c7470_iv
   -in hiprock.jks.enc -out ./android/app/hiprock.jks -d
 - openssl aes-256-cbc -K $encrypted_53b7518c7470_key -iv $encrypted_53b7518c7470_iv
