@@ -1,16 +1,11 @@
 language: objective-c
 sudo: required
 before_install:
-- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then rvm get stable; fi
-- openssl aes-256-cbc -K $encrypted_53b7518c7470_key -iv $encrypted_53b7518c7470_iv
-  -in hiprock.jks.enc -out ./android/app/hiprock.jks -d
-- openssl aes-256-cbc -K $encrypted_53b7518c7470_key -iv $encrypted_53b7518c7470_iv
-  -in hocHipRock.mobileprovision.enc -out ./ios/RockCer/hocHipRock.mobileprovision
-  -d
-- openssl aes-256-cbc -K $encrypted_53b7518c7470_key -iv $encrypted_53b7518c7470_iv
-  -in ios_distribution.cer.enc -out ./ios/RockCer/ios_distribution.cer -d
-- openssl aes-256-cbc -K $encrypted_53b7518c7470_key -iv $encrypted_53b7518c7470_iv
-  -in privateKey.p12.enc -out ./ios/RockCer/privateKey.p12 -d
+- openssl aes-256-cbc -k "$keyEncryption" -in android/app/hiprock.jks.enc  -d -a -out android/app/hiprock.jks
+- openssl aes-256-cbc -k "$keyEncryption" -in ios/RockCer/privateKey.p12.enc  -d -a -out ios/RockCer/privateKey.p12
+- openssl aes-256-cbc -k "$keyEncryption" -in ios/RockCer/ios_distribution.cer.enc  -d -a -out ios/RockCer/ios_distribution.cer
+- openssl aes-256-cbc -k "$keyEncryption" -in ios/RockCer/hocHipRock.mobileprovision.enc  -d -a -out ios/RockCer/hocHipRock.mobileprovision
+
 - DevToolsSecurity -status
 - DevToolsSecurity -enable
 install:
@@ -19,3 +14,7 @@ before_script:
 - source ios/RockCer/add-key.sh
 script:
 - source ./buildTestIpa.sh
+env:
+  global:
+  - secure: Pm5jJ/pfCZ22e7uxxaayV4WeYcNmRfDQV/NOWVLWYT3jb7dxe9Czhn+Y4uJqgvNMdpX8BIZW8PbkQ+oOXHA1PR2IfTksnY0zSyvvkG74cU2ZxkfyJDsbFSFpIkagIYCQ8lC06kGHLw3m/ju7i6p5UJwGzfE9x49KdjxgbhpxFcPTOgk7LdI5dQkEF4kGya/Ybw9tkwDrI2uJxxd17GxDjVt8GjumI3okBAmrD8n+BpsEkR+JK7C72LO1hS1R88pPz+SuPUJlKJ4u6TDh4XKSFCupigdmLbKZNuB/ikNWOi+9DvVU4b6R4Fe2vgzgdYHLVPzYD6d+Pxh83ccj/umWDIDywQsbEv6ewH8Dz9c8M06i9suFUmhILuCiuJAK2RX8Wb1TRKlxAH9UITaKbGzyfpZYo41wSgHa0KYwXuN4tYCtkaNKjEjtIZXLOE79ZApa73x6Gi16ebLh29sEe05qYCTriq4LWSCCUM5rSnN7PN/JMQNFpZoUTq9vHb4wW/2W7bhcvGzi+toG2R8fnDWdXpRU2j2tQyLd5HhBXev7lK0nU+Csh/mzN/PvWYZqkpEFvzSe6wqbbFF4QUSBnlhXiO5bM6dDbOs6YbfiO/3v9d1XDC8dxlgf1yafw8vHpDnFT9LNeEI+e18rQj7Hi6evh5Cr1F2OUnHpxw6A40HPjAc=
+  - secure: puiIFREcZI2MUS36zM51MaQ1qNQcPHRSLsnC4MpUczQFprq0R7ew2mU+FXPbNFGQCWQhgBlIrsd4OyHW1LUuSuBMBWA6gSffQFHt8UZY/6H8BAQRB5i7RPWfgRCyq1kGuAG5ztzAjGn+5S5AbvpGxwbyx6fknx4ctwbckfrP6M9xUPR/QqmRL7b8t0KtqC0nWd0cxvTLICH9h44jSCjqr2kU7Szt2Cm6uv7gBIK+pj8d7Jc0SIGonbjmHlKeh9ryHM7RMjyvABd6i+mo+aOZKRxqeDn9Ej/Fv0wYWsJfO63mn0xm6VZd0+lyQqO1gwMaUqGKGWuPdJyffWRCVPIEubgHtc9LS2Vn0H/+MrwDJYwzF2w5x4C8TrUWG8R1sJahM2fx3jGWyS1NzQ8e4DVu+u+HlJfhwEuJYW0kiakQqgHmAJobb4ppx6FqH3xMgvLvC6Ib1uTEBx1xr6FJSbsaiwGYLF54SAc2wuR8cRDB7RKYSJz/xbFtLpBFnbGKFDJRI4M4E1UQ2mk9r+ytBunNK/KEKMD7v9939Qjs7hilNGqh+kiuvnsBsbWFUyuJJEIMknnxM59nD0LHFYLiaTFMEuh7BjoRhdw1s4/jrhrysv6AunrM3O0izx8Yezy0E5PeBUmk/3CnNTQfQLvfLw3J60KmywbkrLJK0XSA7BIikeM=
