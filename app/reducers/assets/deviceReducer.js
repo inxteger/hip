@@ -24,7 +24,7 @@ var defaultState = Immutable.fromJS({
   hasRuntime:false,
   hasRealtime:false,
   isFetching:false,
-  logCount:'',
+  numStructures:'',
   strTkdyly:null,
   classType:null,
   errorMessage:null,
@@ -35,8 +35,6 @@ function updateAssetDetailData(state,action) {
   // let {url,body,types} = action;
   var res = Result;
   var deviceDescption = [
-    {'title':localStr('lang_asset_des43'),'value':res.Class,'isNav':false,},
-    {'title':localStr('lang_asset_des44'),'value':res.DeviceType,'isNav':false,},
   ];
   if (res.Description) {
     deviceDescption.splice(0,0,
@@ -65,6 +63,10 @@ function updateAssetDetailData(state,action) {
   // }
   var strTkdyly=null;
   var classType=res.Class;
+  var arrParamDatas=[
+    {'title':localStr('lang_asset_des43'),'value':res.Class,'isNav':false,},
+    {'title':localStr('lang_asset_des44'),'value':res.DeviceType,'isNav':false,},
+  ];
   var parameters = res.LedgerParameters.
                         map((item)=>{
                           if(item.Values.length > 1){
@@ -91,7 +93,7 @@ function updateAssetDetailData(state,action) {
                           }
 
                         });
-
+  arrParamDatas.push(...parameters);
   var runtimeSetting = res.RuntimeSettingParameter;
   if((runtimeSetting.MaintenanceParameters && runtimeSetting.MaintenanceParameters.length > 0)
       || (runtimeSetting.SettingParameters && runtimeSetting.SettingParameters.length > 0)){
@@ -104,27 +106,27 @@ function updateAssetDetailData(state,action) {
   //   {'title':'现场照片','value':'','isNav':false,},
   //   {'title':localStr('lang_asset_des31'),'value':'','isNav':false,},
   // ];
-  // var logCount = res.SceneLogs.length;
-  // var tendingCount=res.HistoryTicketsCount;
+  var numStructures = 11;//res.SceneLogs.length;
+  var tendingCount='';//res.HistoryTicketsCount;
 
   var allElements=[
-    [{title:'',value:res.LogoKey}],
+    // [{title:'',value:res.LogoKey}],
     deviceDescption,
-    parameters,
-    // [{title:localStr('lang_asset_des31'),value:logCount,isNav:true,type:'log',secType:'logSection'}],
-    // [{title:localStr('lang_asset_des34'),value:tendingCount,isNav:true,type:'tending'}]
+    arrParamDatas,
+    [{title:localStr('机器结构'),value:numStructures,isNav:true,type:'structure',secType:'strucSection'}],
+    [{title:localStr('机器文件'),value:tendingCount,isNav:true,type:'files'}]
   ];
 
   var allSecTitle=[
-    '',
+    // '',
     '',
     localStr('lang_asset_des50'),
     ' ',
     ' '
   ];
-  if (!parameters||parameters.length===0) {
-    allElements.splice(2,1);
-    allSecTitle.splice(2,1);
+  if (!arrParamDatas||arrParamDatas.length===0) {
+    allElements.splice(1,1);
+    allSecTitle.splice(1,1);
   }
   var hasRuntime = false,hasRealtime=false;
   if(runtimeSetting){
@@ -167,9 +169,9 @@ function addLogsCount(state,action) {
       Result = [];
     }
     var len = Result.length;
-    if(state.get('logCount') !== len){
-      var newState = state.set('logCount',len);
-      var indexSec=findSectioniIndexByType(newState.get('data'),'logSection');
+    if(state.get('numStructures') !== len){
+      var newState = state.set('numStructures',len);
+      var indexSec=findSectioniIndexByType(newState.get('data'),'strucSection');
       var data = newState.get('data');
       data = data.setIn([indexSec,0,'value'],len);
       return newState.set('data',data);

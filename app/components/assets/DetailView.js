@@ -37,7 +37,7 @@ export default class DetailView extends Component{
   }
   _renderRow(rowData,sectionId,rowId){
     // console.warn('renderRow',rowData);
-    if(sectionId === '0'){
+    if(sectionId === '0'&&this.props.hasDetailImg){
       let imageUri = rowData.get('value');
       var touchItem = null;
       if(this.props.canEdit){
@@ -162,6 +162,7 @@ DetailView.propTypes = {
   navigator:PropTypes.object,
   onBack:PropTypes.func,
   sectionData:PropTypes.object,
+  hasDetailImg:PropTypes.bool,
   pendingImageUri:PropTypes.string,
   emptyImageText:PropTypes.string,
   changeImageComplete:PropTypes.func.isRequired,

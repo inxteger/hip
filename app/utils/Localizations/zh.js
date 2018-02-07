@@ -269,7 +269,7 @@ export default {
 
   lang_asset_des43:'设备总称',
   lang_asset_des44:'设备类型',
-  lang_asset_des45:'资产描述',
+  lang_asset_des45:'设备描述',
   lang_asset_des46:'出厂日期',
   lang_asset_des47:'设备厂家',
   lang_asset_des48:'资产编号',
