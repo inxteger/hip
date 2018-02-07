@@ -634,3 +634,27 @@ export function initCreateRecord(data){
     });
   }
 }
+
+export const STRUCTURE_PHOTOS_REQUEST = 'STRUCTURE_PHOTOS_REQUEST';
+export const STRUCTURE_PHOTOS_SUCCESS = 'STRUCTURE_PHOTOS_SUCCESS';
+export const STRUCTURE_PHOTOS_FAILURE = 'STRUCTURE_PHOTOS_FAILURE';
+
+export function loadStructurePhotos(recordId){
+  return (dispatch, getState) => {
+    return dispatch({
+        types: [STRUCTURE_PHOTOS_REQUEST, STRUCTURE_PHOTOS_SUCCESS, STRUCTURE_PHOTOS_FAILURE],
+        url: `device/maintainrecord/${recordId}`,
+        body:{}
+    });
+  }
+}
+
+export const STRUCTURE_PHOTOS_CHANGED = 'STRUCTURE_PHOTOS_CHANGED';
+export function structurePhotoInfoChange(data){
+  return (dispatch,getState)=>{
+    return dispatch({
+      type:STRUCTURE_PHOTOS_CHANGED,
+      data
+    });
+  }
+}
