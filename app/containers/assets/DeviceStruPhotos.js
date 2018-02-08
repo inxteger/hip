@@ -23,7 +23,7 @@ import Immutable from 'immutable';
 import moment from 'moment';
 const MAX = 100;
 
-class MRecordDetail extends Component{
+class DeviceStruPhotos extends Component{
   static contextTypes = {
     showSpinner: PropTypes.func,
     hideHud: PropTypes.func
@@ -31,19 +31,11 @@ class MRecordDetail extends Component{
   constructor(props){
     super(props);
     this.state = {viewType:'view',};
-    this.types=[
-      {'Code':2,'Type':localStr('lang_record_des09')},
-      {'Code':4,'Type':localStr('lang_record_des10')},
-      {'Code':8,'Type':localStr('lang_record_des11')},
-      {'Code':16,'Type':localStr('lang_record_des12')},
-      {'Code':32,'Type':localStr('lang_record_des13')},
-      {'Code':1,'Type':localStr('lang_record_des14')}];
-    this.results=[{'Code':1,'Type':localStr('lang_record_des15')},{'Code':2,'Type':localStr('lang_record_des16')},{'Code':3,'Type':localStr('lang_record_des17')}];
   }
   componentDidMount() {
     if (this.props.deviceId) {
       InteractionManager.runAfterInteractions(()=>{
-        // this._loadContentById(this.props.deviceId);
+        this.props.loadStructurePhotos(this.props.deviceId);
       });
     }
 
@@ -57,14 +49,14 @@ class MRecordDetail extends Component{
   }
   _addPhoto()
   {
-
+    this._openImagePicker()
   }
   _deleteImage(imageId){
     // console.warn('_deleteImage...',imageId);
     this.props.deleteImages(imageId);
   }
   _dataChanged(type,action,value){
-    this.props.logInfoChanged({
+    this.props.structurePhotoInfoChange({
       log:this.props.log,
       hierarchyId:this.props.hierarchyId,
       userId:this.props.user.get('Id'),
@@ -91,7 +83,6 @@ class MRecordDetail extends Component{
     }
     return true;
   }
-
   _photoViewDeleteImage(item)
   {
     // console.warn('AssetLogEdit...',item);
@@ -105,7 +96,7 @@ class MRecordDetail extends Component{
       id:'imagePicker',
       component:ImagePicker,
       passProps:{
-        max:MAX-this.props.assetLog.get('Pictures').size,
+        max:MAX-this.props.data.get('Pictures').size,
         dataChanged:(chosenImages)=>this._dataChanged('image','add',chosenImages)
       }
     });
@@ -120,12 +111,16 @@ class MRecordDetail extends Component{
         index:index,
         arrPhotos:items,
         thumbImageInfo:thumbImageInfo,
-        type:'recordLog',
+        type:'structure',
         onRemove:(item)=>this._photoViewDeleteImage(item),
         checkAuth:()=>this._checkAuth(),
         canEdit:canEdit,
       }
     });
+  }
+  _onBackClick()
+  {
+    this.props.navigator.pop();
   }
   render() {
     var title=localStr('机器结构');
@@ -138,6 +133,7 @@ class MRecordDetail extends Component{
         data={this.props.data}
         isFetching={this.props.isFetching}
         isSameUser={this.props.isSameUser}
+        deviceId={this.props.deviceId}
         openImagePicker={()=>this._openImagePicker()}
         checkAuth={()=>this._checkAuth()}
         onAddPhoto={()=>this._addPhoto()}
@@ -150,7 +146,7 @@ class MRecordDetail extends Component{
   }
 }
 
-MRecordDetail.propTypes = {
+DeviceStruPhotos.propTypes = {
   navigator:PropTypes.object,
   route:PropTypes.object,
   deviceId:PropTypes.number,
@@ -168,24 +164,24 @@ MRecordDetail.propTypes = {
 }
 
 function mapStateToProps(state,ownProps) {
-  var recordDetail = state.asset.mRecordDetail,
-      isFetching = recordDetail.get('isFetching');
-  var data = recordDetail.get('data');
-  // // console.warn('mapStateToProps...',startTime,endTime);
-  // if (ownProps.customer.get('CustomerId') !== data.get('CustomerId')) {
-  //   data = null;
-  // }
-  var deviceId=ownProps.deviceId;
+  var structure = state.asset.strucPhotos,
+      isFetching = structure.get('isFetching');
+  var data = structure.get('data');
+
+  if (ownProps.hierarchyId !== structure.get('deviceId')) {
+    data = null;
+  }
+
+  var deviceId=ownProps.hierarchyId;
   var user = state.user.get('user');
   var isSameUser = true;
   if(data && data.get('CreateUserId') !== user.get('Id')){
     isSameUser = false;
   }
-  // var isEnableCreate = customer && ticketType!==0 && selectAssets.size>=1 && startTime && endTime && selectUsers.size>=1 && content.length>0;
-  // console.warn('mapStateToProps',data);
+
   return {
     deviceId,
-    data,
+    data:data,
     isFetching,
     isSameUser,
     user:state.user.get('user'),
@@ -200,4 +196,4 @@ export default connect(mapStateToProps,{
   // initCreateRecord,
   // updateMaintancePartsSelectInfo,
   deleteImages,
-})(MRecordDetail);
+})(DeviceStruPhotos);

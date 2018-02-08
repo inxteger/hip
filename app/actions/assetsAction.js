@@ -639,12 +639,12 @@ export const STRUCTURE_PHOTOS_REQUEST = 'STRUCTURE_PHOTOS_REQUEST';
 export const STRUCTURE_PHOTOS_SUCCESS = 'STRUCTURE_PHOTOS_SUCCESS';
 export const STRUCTURE_PHOTOS_FAILURE = 'STRUCTURE_PHOTOS_FAILURE';
 
-export function loadStructurePhotos(recordId){
+export function loadStructurePhotos(deviceId){
   return (dispatch, getState) => {
     return dispatch({
         types: [STRUCTURE_PHOTOS_REQUEST, STRUCTURE_PHOTOS_SUCCESS, STRUCTURE_PHOTOS_FAILURE],
-        url: `device/maintainrecord/${recordId}`,
-        body:{}
+        url: `device/structurephoto/${deviceId}`,
+        data:{deviceId}
     });
   }
 }

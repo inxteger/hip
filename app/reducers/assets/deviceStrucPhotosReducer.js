@@ -1,14 +1,10 @@
 'use strict';
 
 import {
-  STRUCTURE_LOAD_REQUEST,
-  STRUCTURE_LOAD_SUCCESS,
-  STRUCTURE_LOAD_FAILURE,
-  ROOM_SAVE_ENV_SUCCESS,
-  ROOM_SAVE_ENV_FAILURE,
-  ASSET_LOGS_SUCCESS,
-  ASSET_IMAGE_CHANGED,
-  ASSET_IMAGE_CHANGED_COMPLETE
+  STRUCTURE_PHOTOS_REQUEST,
+  STRUCTURE_PHOTOS_SUCCESS,
+  STRUCTURE_PHOTOS_FAILURE,
+  STRUCTURE_PHOTOS_CHANGED
 } from '../../actions/assetsAction.js';
 
 import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
@@ -21,55 +17,89 @@ import {localStr,localFormatStr} from '../../utils/Localizations/localization.js
 
 var defaultState = Immutable.fromJS({
   deviceId:null,
-  data:null,
+  data:Immutable.fromJS({Pictures:null}),
   sectionData:[],
   isFetching:false,
 });
 
-function updateAssetDetailData(state,action) {
-  var {body:{deviceId},response:{Result}} = action;
-  // let {url,body,types} = action;
-  var res = Result;
+// Immutable.fromJS({
+//   "Pictures": [{
+//     "Id": 13705,
+//     "Name": "image-maintaince--log-378-301479-1517987951425-0.png",
+//     "Url": "http://sejazz-test.images.energymost.com/image-maintaince--log-378-301479-1517987951425-0?x-oss-process=image/resize,m_pad,w_112,limit_0",
+//     "CreateUserName": "Rap0昵称",
+//     "CreateTime": "2018-02-07T10:40:04.87",
+//     "PictureId": "image-maintaince--log-378-301479-1517987951425-0"
+//   },]
+// }),
 
-  var allElements={
-    "ArrPhotos": [{
-			"Id": 13705,
-			"Name": "image-maintaince--log-378-301479-1517987951425-0.png",
-			"Url": "http://sejazz-test.images.energymost.com/image-maintaince--log-378-301479-1517987951425-0?x-oss-process=image/resize,m_pad,w_112,limit_0",
-			"CreateUserName": "Rap0昵称",
-			"CreateTime": "2018-02-07T10:40:04.87",
-			"Key": "image-maintaince--log-378-301479-1517987951425-0"
-		}, {
-			"Id": 13706,
-			"Name": "image-maintaince--log-378-301479-1517987951425-1.png",
-			"Url": "http://sejazz-test.images.energymost.com/image-maintaince--log-378-301479-1517987951425-1?x-oss-process=image/resize,m_pad,w_112,limit_0",
-			"CreateUserName": "Rap0昵称",
-			"CreateTime": "2018-02-07T10:40:04.87",
-			"Key": "image-maintaince--log-378-301479-1517987951425-1"
-		}, {
-			"Id": 13707,
-			"Name": "image-maintaince--log-378-301479-1517987951425-2.png",
-			"Url": "http://sejazz-test.images.energymost.com/image-maintaince--log-378-301479-1517987951425-2?x-oss-process=image/resize,m_pad,w_112,limit_0",
-			"CreateUserName": "Rap0昵称",
-			"CreateTime": "2018-02-07T10:40:04.87",
-			"Key": "image-maintaince--log-378-301479-1517987951425-2"
-		}, {
-			"Id": 13708,
-			"Name": "image-maintaince--log-378-301479-1517987951425-3.png",
-			"Url": "http://sejazz-test.images.energymost.com/image-maintaince--log-378-301479-1517987951425-3?x-oss-process=image/resize,m_pad,w_112,limit_0",
-			"CreateUserName": "Rap0昵称",
-			"CreateTime": "2018-02-07T10:40:04.87",
-			"Key": "image-maintaince--log-378-301479-1517987951425-3"
-		}]
-  };
+function generateName(pics,hierarchyId,userId) {
+  //key image-ticket-log-${ticketId}-${userId}-time
+  var time = new Date().getTime();
+  return `image-structure-log-${hierarchyId}-${userId}-${time}-${pics.size}`;
+}
 
-  return Immutable.fromJS({
-    data:Immutable.fromJS(allElements),
-    isFetching:false,
-    logCount,
-    deviceId,
+function infoChanged(state,action1) {
+
+  var {data:{hierarchyId,userId,type,action,value}} = action1;
+
+  if(type === 'init'){
+    return initDefaultState(state,action1);
+  }
+  if(!state) return state; //fast back #14581,must put behind init
+
+  var newState = state;
+  if(type === 'content'){
+    return newState.set('Content',value);
+  }
+  else {
+    var pics = newState.getIn(['data','Pictures']);
+    if(action === 'add'){
+      //[{name,uri}]
+      value.forEach((item)=>{
+        pics = pics.insert(0,
+          Immutable.Map({
+            PictureId:generateName(pics,hierarchyId,userId),
+            uri:item.uri
+          }));
+      })
+
+    }
+    else if (action === 'uploaded') {
+      console.warn('uploaded');
+      var index = pics.findIndex((item)=>item === value);
+      pics = pics.update(index,(item)=>item.set('loaded',true));
+    }
+    else if (action === 'delete'){
+      var index = pics.findIndex((item)=>item === value);
+      pics = pics.delete(index);
+    }
+    // console.warn('pics',pics);
+    return newState.setIn(['data','Pictures'],pics);
+  }
+}
+
+function startGetStructure(state,action)
+{
+  var {data:{deviceId}} = action;
+  return state.set('deviceId',deviceId).set('isFetching',true);
+}
+
+function updateStructureData(state,action) {
+  var {data:{deviceId},response:{Result}} = action;
+  var arrPhotos = Result;
+
+  if (!arrPhotos) {
+    return state;
+  }
+  arrPhotos.forEach((item)=>{
+    item.PictureId=item.Key;//"image-maintaince--log-378-301479-1517987951425-0";
   });
 
+  state=state.setIn(['data','Pictures'],Immutable.fromJS(arrPhotos))
+  .set('isFetching',false)
+  .set('deviceId',deviceId);
+  return state;
 }
 
 function handleError(state,action) {
@@ -86,13 +116,14 @@ function handleError(state,action) {
 
 export default function(state=defaultState,action){
   switch (action.type) {
-    case STRUCTURE_LOAD_REQUEST:
-      return state.set('isFetching',true);
-    case STRUCTURE_LOAD_SUCCESS:
-      return updateAssetDetailData(state,action);
-    case STRUCTURE_LOAD_FAILURE:
-    case ROOM_SAVE_ENV_FAILURE:
+    case STRUCTURE_PHOTOS_REQUEST:
+      return startGetStructure(state,action);
+    case STRUCTURE_PHOTOS_SUCCESS:
+      return updateStructureData(state,action);
+    case STRUCTURE_PHOTOS_FAILURE:
       return handleError(state,action);
+    case STRUCTURE_PHOTOS_CHANGED:
+      return infoChanged(state,action);
     case LOGOUT_SUCCESS:
       return defaultState;
     default:

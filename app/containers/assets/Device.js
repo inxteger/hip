@@ -26,6 +26,7 @@ import TendingHistory from './TendingHistory.js';
 import ImagePicker from '../ImagePicker.js';
 import privilegeHelper from '../../utils/privilegeHelper.js';
 import History from './History.js';
+import DeviceStruPhotos from './DeviceStruPhotos.js';
 var Orientation = require('react-native-orientation');
 import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
@@ -130,6 +131,14 @@ console.warn('_gotoDetail...',type);
           uniqueId:data.get('uniqueId'),
           unit:data.get('unit'),
           name:data.get('title'),
+        }
+      });
+    }else if (type === 'structure') {
+      this.props.navigator.push({
+        id:'structure_view',
+        component:DeviceStruPhotos,
+        passProps:{
+          hierarchyId:this.props.ownData.get('Id')
         }
       });
     }

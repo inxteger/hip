@@ -119,7 +119,7 @@ function updateAssetDetailData(state,action) {
 
   var allSecTitle=[
     // '',
-    '',
+    '基本信息',
     localStr('lang_asset_des50'),
     ' ',
     ' '

@@ -66,14 +66,14 @@ export default class DeviceStuPhotosView extends Component{
   }
   _getToolbar(data){
     var actions = null;
-    if(data){
-      if (this.props.viewType==='view'&&this.props.isSameUser) {
+    // if(data){
+      // if (this.props.isSameUser) {
         actions = [{
-        title:'',
-        iconType:'edit',
-        show: 'always', showWithText: false}];
-      }
-    }
+          title:localStr('lang_commons_notice24'),
+          iconType:'add',
+          show:'always'}];
+      // }
+    // }
     return (
       <Toolbar title={this.props.title}
         navIcon="back"
@@ -115,7 +115,7 @@ export default class DeviceStuPhotosView extends Component{
         {text: localStr('lang_ticket_remove'), onPress: () => {
           this.props.dataChanged('image','delete',item);
           // AliyunOSS.delete(appInfo.get().ossBucket,item.get('PictureId'));
-          this.props.deleteImage([item.get('ArrPhotos')]);
+          this.props.deleteImage([item.get('Pictures')]);
         }}
       ]
     )
@@ -143,8 +143,8 @@ export default class DeviceStuPhotosView extends Component{
     );
   }
   _getImageView(){
-    // console.warn("pics",this.props.data.get('ArrPhotos'));
-    var images = this.props.data.get('ArrPhotos').map((item,index)=>{
+    // console.warn("pics",this.props.data.get('Pictures'));
+    var images = this.props.data.get('Pictures').map((item,index)=>{
       if (!checkFileNameIsImage(item.get('FileName'))) {
         return (
           <View key={index} style={{margin:4,
@@ -180,12 +180,13 @@ export default class DeviceStuPhotosView extends Component{
               uri={item.get('uri')}
               loaded={item.get('loaded')}
               resizeMode="cover"
+              postUri={`device/structurephoto/upload/${item.get('PictureId')}/${this.props.deviceId}`}
               height={this.state.imageHeight-2} width={this.state.imageWidth-2}
               loadComplete = {()=>this._imageLoadComplete(item)}>
               <TouchFeedback
                 style={{flex:1,backgroundColor:'transparent'}}
                 key={index}
-                onPress={()=>this._goToDetail(this.props.data.get('ArrPhotos'),item)}
+                onPress={()=>this._goToDetail(this.props.data.get('Pictures'),item)}
                 onLongPress={()=>this._deleteImage(item)}>
                 <View style={{flex:1}}></View>
               </TouchFeedback>
@@ -213,7 +214,7 @@ export default class DeviceStuPhotosView extends Component{
                <TouchFeedback
                  style={{flex:1,backgroundColor:'transparent'}}
                  key={String(index)}
-                 onPress={()=>this._goToDetail(this.props.data.get('ArrPhotos'),item)}
+                 onPress={()=>this._goToDetail(this.props.data.get('Pictures'),item)}
                  onLongPress={()=>this._deleteImage(item)}>
                  <View style={{flex:1}}></View>
                </TouchFeedback>
@@ -222,9 +223,9 @@ export default class DeviceStuPhotosView extends Component{
         );
       }
     });
-    if (this.props.viewType!=='view') {// && this.props.data.get('ArrPhotos').size < 9
-      images = images.push(this._getAddButton(images.size));
-    }
+    // if (this.props.viewType!=='view') {// && this.props.data.get('Pictures').size < 9
+      // images = images.push(this._getAddButton(images.size));
+    // }
     if(images && images.size >0){
       return (
         <View style={{flexDirection:'row',flexWrap:'wrap',padding:4}}>
@@ -287,18 +288,16 @@ export default class DeviceStuPhotosView extends Component{
   }
   _getImagesAndFiles()
   {
-    var arrFiles=this.props.data.get('ArrPhotos');
+    var arrFiles=this.props.data.get('Pictures');
+
+      console.warn("pics",this.props.data.get('Pictures'));
+
     if(!arrFiles||arrFiles.size===0&&this.props.viewType==='view')
       return null;
     var imagesView = this._getImageView();
     return (
-    <View style={{paddingBottom:8,backgroundColor:'white'}}>
-      <ListSeperator/>
-      <View style={{paddingHorizontal:8,backgroundColor:'white'}}>
-        <View style={{marginTop:10,marginBottom:6,marginLeft:8,flexDirection:'row',alignItems:'flex-end'}}>
-          <Text style={{fontSize:17,color:BLACK}}>{localStr('lang_record_des30')}</Text>
-          <Text style={{fontSize:13,color:GRAY}}>{localStr('lang_record_des31')}</Text>
-        </View>
+    <View style={{paddingBottom:8,}}>
+      <View style={{paddingHorizontal:8,}}>
         {imagesView}
       </View>
     </View>
@@ -322,14 +321,9 @@ export default class DeviceStuPhotosView extends Component{
     return (
       <View style={{flex:1,backgroundColor:LIST_BG}}>
         {this._getToolbar(this.props.data)}
-
         <ScrollView style={[styles.wrapper,{marginBottom}]}>
-
-          {this._getSection()}
-          <ListSeperator/>
+          {this._getSection(8)}
           {this._getImagesAndFiles()}
-
-          {this._getSection(25)}
         </ScrollView>
       </View>
     );
@@ -342,6 +336,7 @@ DeviceStuPhotosView.propTypes = {
   onBack:PropTypes.func.isRequired,
   onRowClick:PropTypes.func.isRequired,
   isSameUser:PropTypes.bool,
+  deviceId:PropTypes.number,
   dataChanged:PropTypes.func.isRequired,
   deleteImage:PropTypes.func.isRequired,
   gotoDetail:PropTypes.func.isRequired,
