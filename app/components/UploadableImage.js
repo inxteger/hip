@@ -16,7 +16,7 @@ import storage from '../utils/storage.js';
 class UploadableImage extends Component {
   constructor(props){
     super(props);
-    this.state = {percent:0,load:false};
+    this.state = {percent:0,loaded:false};
     if(props.loaded){
       this.state.loaded = true;
     }
