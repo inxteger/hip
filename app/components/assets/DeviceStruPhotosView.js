@@ -304,6 +304,25 @@ export default class DeviceStuPhotosView extends Component{
 
     );
   }
+  _getContentsView()
+  {
+    var arrFiles=this.props.data.get('Pictures');
+
+    var emptyView=(
+      <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+        <Text style={{color:GRAY,fontSize:16}}>{'没有图片'}</Text>
+      </View>
+    )
+    if (!arrFiles||arrFiles.size===0) {
+      return emptyView;
+    }
+    return (
+      <ScrollView style={[styles.wrapper]}>
+        {this._getSection(8)}
+        {this._getImagesAndFiles()}
+      </ScrollView>
+    );
+  }
   render() {
     if (!this.props.data||this.props.isFetching) {
       return (
@@ -313,18 +332,10 @@ export default class DeviceStuPhotosView extends Component{
         </View>
       );
     }
-    var marginBottom=49;
-    if (this.props.viewType==='view') {
-      marginBottom=0;
-    }
-    var date=this.props.data.get('MaintainTime');
     return (
       <View style={{flex:1,backgroundColor:LIST_BG}}>
         {this._getToolbar(this.props.data)}
-        <ScrollView style={[styles.wrapper,{marginBottom}]}>
-          {this._getSection(8)}
-          {this._getImagesAndFiles()}
-        </ScrollView>
+        {this._getContentsView()}
       </View>
     );
   }

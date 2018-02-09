@@ -106,8 +106,11 @@ function updateAssetDetailData(state,action) {
   //   {'title':'现场照片','value':'','isNav':false,},
   //   {'title':localStr('lang_asset_des31'),'value':'','isNav':false,},
   // ];
-  var numStructures = 11;//res.SceneLogs.length;
+  var numStructures = res.StructurePhotoCount;
   var tendingCount='';//res.HistoryTicketsCount;
+  if (!numStructures) {
+    numStructures='';
+  }
 
   var allElements=[
     // [{title:'',value:res.LogoKey}],
