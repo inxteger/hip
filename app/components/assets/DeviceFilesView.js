@@ -4,6 +4,7 @@ import React,{Component} from 'react';
 import {
   View,
   Platform,
+  Dimensions,
 } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -15,6 +16,7 @@ import ListSeperator from '../ListSeperator';
 import Toolbar from '../Toolbar';
 import List from '../List.js';
 import DeviceFilesRow from './DeviceFilesRow.js';
+import DeviceUploadFilesRow from './DeviceUploadFilesRow.js';
 import Section from '../Section.js';
 import RowDelete from '../RowDelete.js'
 import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
@@ -34,17 +36,34 @@ export default class DeviceFilesView extends Component{
       <ListSeperator key={sectionId+rowId} marginWithLeft={isLastRow?0:16}/>
     );
   }
+  _imageLoadComplete(item){
+    this.props.filesInfoChange('image','uploaded',item);
+  }
   _renderRow(rowData,sectionId,rowId){
     // console.warn('rowData',rowData);
-    return (
-      <DeviceFilesRow
-        key={rowId}
-        rowData={rowData}
-        onRowClick={(rowData)=>{
-          this.props.onRowClick(rowData)
-        }}
-        />
-    );
+    var {width} = Dimensions.get('window');
+    // if (rowData.get('isUpdateing')) {
+      // console.warn('aaa',width);
+      return (
+        <DeviceUploadFilesRow
+          name={rowData.get('Name')}
+          uri={rowData.get('uri')}
+          loaded={rowData.get('loaded')}
+          width={width}
+          postUri={`device/dirfile/upload/${rowData.get('PictureId')}/${this.props.deviceId}/${this.props.dirid}`}
+          loadComplete = {()=>this._imageLoadComplete(rowData)}>
+        </DeviceUploadFilesRow>
+      )
+    // }
+    // return (
+    //   <DeviceFilesRow
+    //     key={rowId}
+    //     rowData={rowData}
+    //     onRowClick={(rowData)=>{
+    //       this.props.onRowClick(rowData)
+    //     }}
+    //     />
+    // );
   }
 
   _renderSection(sectionData,sectionId,sectionIndex){
@@ -109,7 +128,10 @@ DeviceFilesView.propTypes = {
   canEdit:PropTypes.bool,
   onRowClick:PropTypes.func.isRequired,
   onAddClick:PropTypes.func.isRequired,
-  clearFilter:PropTypes.func.isRequired,
+  clearFilter:PropTypes.func,
+  filesInfoChange:PropTypes.func.isRequired,
+  dirid:PropTypes.number.isRequired,
+  deviceId:PropTypes.number.isRequired,
   isFetching:PropTypes.bool.isRequired,
   listData:PropTypes.object,
   sectionData:PropTypes.object,

@@ -174,9 +174,16 @@ class DeviceFiles extends Component{
         totalPage={this.props.deviceFiles.get('pageCount')}
         onRowClick={(rowData)=>this._gotoDetail(rowData)}
         onAddClick={()=>this._onAddClick()}
+        dirid={this.props.dirid}
+        deviceId={this.props.hierarchyId}
+        filesInfoChange={(type,action,value)=>this._dataChanged(type,action,value)}
         onBack={()=>this.props.navigator.pop()} />
     );
   }
+}
+
+DeviceFiles.defaultProps = {
+  dirid:0,
 }
 
 DeviceFiles.propTypes = {
@@ -188,6 +195,7 @@ DeviceFiles.propTypes = {
   filesInfoChange:PropTypes.func,
   deleteImages:PropTypes.func,
   hierarchyId:PropTypes.number,
+  dirid:PropTypes.number,
   deviceFiles:PropTypes.object,//immutable
   filter:PropTypes.object,
 }

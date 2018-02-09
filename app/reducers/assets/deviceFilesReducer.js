@@ -36,7 +36,7 @@ var defaultState = Immutable.fromJS({
 function generateName(pics,hierarchyId,userId) {
   //key image-ticket-log-${ticketId}-${userId}-time
   var time = new Date().getTime();
-  return `image-structure-log-${hierarchyId}-${userId}-${time}-${pics.size}`;
+  return `image-device-file-${hierarchyId}-${userId}-${time}-${pics.size}`;
 }
 
 function infoChanged(state,action1) {
@@ -62,6 +62,7 @@ function infoChanged(state,action1) {
             PictureId:generateName(pics,hierarchyId,userId),
             uri:item.uri,
             Name:item.filename,
+            isUpdateing:true,
           }));
       })
 
@@ -115,19 +116,16 @@ function mergeData(state,action) {
   var page = action.body.PageIndex;
 
   var items = response.Items;
-  // items.forEach((item)=>{
-  //   item.Status.push({'Timestamp':item.AlarmTime, 'Content':localStr('lang_alarm_create'),User:'self'});
-  //   if (!!item.SecureTime) {
-  //     item.Status.unshift({'Timestamp':item.SecureTime, 'Content':localStr('lang_alarm_des0'),User:'self'});
-  //   }
-  // })
+  items.forEach((item)=>{
+    item.isUpdateing=false;
+  })
 
   if(page === 1){
-    newState = newState.set('Pictures',Immutable.fromJS(response.Items));
+    newState = newState.set('Pictures',Immutable.fromJS(items));
   }
   else {
     var oldData = newState.get('Pictures');
-    var newList = Immutable.fromJS(response.Items);
+    var newList = Immutable.fromJS(items);
     if (oldData) {
       newList = oldData.push(...newList.toArray());
     }

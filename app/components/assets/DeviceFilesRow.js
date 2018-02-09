@@ -34,18 +34,24 @@ export default class DeviceFilesRow extends Component{
   render(){
     var {rowData} = this.props;
     // icon_file
-    var iconType=rowData.get('Type')==='dir'?'icon_folder':'icon_file';
-    var iconColor=rowData.get('Type')==='dir'?'#f6ca36':'#358de7';
+    var isDir=rowData.get('Type')==='dir';
+    var iconType=isDir?'icon_folder':'icon_file';
+    var iconColor=isDir?'#f6ca36':'#358de7';
+    var iconSize=isDir?16:0.1;
     return (
       <View style={{flex:1,backgroundColor:'white'}}>
-        <TouchFeedback onPress={()=>this.props.onRowClick(rowData)}>
+        <TouchFeedback onPress={()=>{
+            if (isDir) {
+              this.props.onRowClick(rowData);
+            }
+          }}>
           <View style={[styles.row,styles.rowHeight]}>
             <View style={{marginHorizontal:16,flexDirection:'row',justifyContent:'flex-end'}}>
               <Icon type={iconType} size={16} color={iconColor} />
               <View style={{flex:1,marginLeft:8,marginRight:8}}>
                 <Text numberOfLines={1} style={styles.nameText}>{rowData.get('Name')}</Text>
               </View>
-              <Icon type='arrow_right' size={16} color={GRAY} />
+              <Icon type='arrow_right' size={iconSize} color={GRAY} />
             </View>
           </View>
         </TouchFeedback>

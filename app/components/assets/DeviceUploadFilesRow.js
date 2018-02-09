@@ -18,11 +18,11 @@ import {getBaseUri} from '../../middleware/api.js';
 import {TOKENHEADER,HEADERDEVICEID} from '../../middleware/api.js';
 import storage from '../../utils/storage.js';
 
-export default class DeviceFilesRow extends Component{
+export default class DeviceUploadFilesRow extends Component{
   constructor(props){
     super(props);
 
-    this.state = {percent:0,load:false};
+    this.state = {percent:0,loaded:false};
     if(props.loaded){
       this.state.loaded = true;
     }
@@ -116,48 +116,53 @@ export default class DeviceFilesRow extends Component{
           }}>{progress+'%'}</Text>
       )
     }
-
     var overlay = (
       <View style={
         {
-          height: this.props.height*(1-this.state.percent),
-          width: this.props.width,
+          height: 44,
+          width: this.props.width*(this.state.percent),
           position:'absolute',
           left:0,
           bottom:0,
           right:0,
-          backgroundColor:'black',
-          opacity:0.4
+          backgroundColor:'#03b679',
+          opacity:0.1
         }
       }>
     </View>);
+    if(this.state.loaded){
+      text = null;
+      overlay = null;
+    }
 
-    var {rowData} = this.props;
     // icon_file
-    var iconType=rowData.get('Type')==='dir'?'icon_folder':'icon_file';
-    var iconColor=rowData.get('Type')==='dir'?'#f6ca36':'#358de7';
+    var iconType='icon_file';
+    var iconColor='#358de7';
     return (
-      <View style={{flex:1,backgroundColor:'white'}}>
+      <View style={{flex:1,backgroundColor:'white',height:44}}>
         <TouchFeedback onPress={()=>this.props.onRowClick(rowData)}>
           <View style={[styles.row,styles.rowHeight]}>
             <View style={{marginHorizontal:16,flexDirection:'row',justifyContent:'flex-end'}}>
               <Icon type={iconType} size={16} color={iconColor} />
               <View style={{flex:1,marginLeft:8,marginRight:8}}>
-                <Text numberOfLines={1} style={styles.nameText}>{rowData.get('Name')}</Text>
+                <Text numberOfLines={1} style={styles.nameText}>{this.props.name}</Text>
               </View>
               <Icon type='arrow_right' size={16} color={GRAY} />
             </View>
           </View>
         </TouchFeedback>
+        {overlay}
+        {text}
       </View>
     );
   }
 }
 
-DeviceFilesRow.propTypes = {
+DeviceUploadFilesRow.propTypes = {
   user:PropTypes.object,
   onRowClick:PropTypes.func.isRequired,
-  rowData:PropTypes.object.isRequired,
+  name:PropTypes.string,
+  width:PropTypes.number,
 }
 
 var styles = StyleSheet.create({
