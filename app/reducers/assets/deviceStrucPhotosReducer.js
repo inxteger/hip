@@ -94,6 +94,7 @@ function updateStructureData(state,action) {
   }
   arrPhotos.forEach((item)=>{
     item.PictureId=item.Key;//"image-maintaince--log-378-301479-1517987951425-0";
+    item.Content=item.Description;
   });
 
   state=state.setIn(['data','Pictures'],Immutable.fromJS(arrPhotos))
