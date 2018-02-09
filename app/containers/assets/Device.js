@@ -27,6 +27,7 @@ import ImagePicker from '../ImagePicker.js';
 import privilegeHelper from '../../utils/privilegeHelper.js';
 import History from './History.js';
 import DeviceStruPhotos from './DeviceStruPhotos.js';
+import DeviceFiles from './DeviceFiles.js';
 var Orientation = require('react-native-orientation');
 import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
@@ -137,6 +138,15 @@ console.warn('_gotoDetail...',type);
       this.props.navigator.push({
         id:'structure_view',
         component:DeviceStruPhotos,
+        passProps:{
+          hierarchyId:this.props.ownData.get('Id')
+        }
+      });
+    }else if (type === 'files') {
+
+      this.props.navigator.push({
+        id:'device_files',
+        component:DeviceFiles,
         passProps:{
           hierarchyId:this.props.ownData.get('Id')
         }

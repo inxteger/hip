@@ -658,3 +658,29 @@ export function structurePhotoInfoChange(data){
     });
   }
 }
+
+
+export const DEVICE_FILES_REQUEST = 'DEVICE_FILES_REQUEST';
+export const DEVICE_FILES_SUCCESS = 'DEVICE_FILES_SUCCESS';
+export const DEVICE_FILES_FAILURE = 'DEVICE_FILES_FAILURE';
+
+export function loadDeviceFiles(body){
+  return (dispatch, getState) => {
+    return dispatch({
+        types: [DEVICE_FILES_REQUEST, DEVICE_FILES_SUCCESS, DEVICE_FILES_FAILURE],
+        url: 'device/dirfile/search',
+        body
+    });
+
+  }
+}
+
+export const FILES_PHOTOS_CHANGED = 'FILES_PHOTOS_CHANGED';
+export function filesInfoChange(data){
+  return (dispatch,getState)=>{
+    return dispatch({
+      type:FILES_PHOTOS_CHANGED,
+      data
+    });
+  }
+}
