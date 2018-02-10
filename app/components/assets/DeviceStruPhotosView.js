@@ -120,7 +120,13 @@ export default class DeviceStuPhotosView extends Component{
       ]
     )
   }
-  _imageLoadComplete(item){
+  _imageLoadComplete(item,response){
+    var key='';
+    response=JSON.parse(response);
+    if (response&&response.Result&&response.Result.Key) {
+      key=response.Result.Key;
+      item=item.set('Key',key);
+    }
     this.props.dataChanged('image','uploaded',item);
   }
   _getAddButton(index)
@@ -182,7 +188,7 @@ export default class DeviceStuPhotosView extends Component{
               resizeMode="cover"
               postUri={`device/structurephoto/upload/${item.get('PictureId')}/${this.props.deviceId}`}
               height={this.state.imageHeight-2} width={this.state.imageWidth-2}
-              loadComplete = {()=>this._imageLoadComplete(item)}>
+              loadComplete = {(response)=>this._imageLoadComplete(item,response)}>
               <TouchFeedback
                 style={{flex:1,backgroundColor:'transparent'}}
                 key={index}
