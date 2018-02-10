@@ -139,6 +139,7 @@ class Panel extends Component{
         canEdit={privilegeHelper.hasAuth('AssetEditPrivilegeCode')}
         changeImageComplete={(data)=>this._onChangeImageComplete(data)}
         data={this.state.dataSource}
+        hasDetailImg={true}
         sectionData={this.props.sectionData}
         errorMessage={this.props.errorMessage}
         onRefresh={()=>this._onRefresh()}

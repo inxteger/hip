@@ -177,6 +177,14 @@ export default class Icon extends Component {
         return (
           <Text style={styles}>&#xf1b1;</Text>
         )
+      case 'icon_folder':
+        return (
+          <Text style={styles}>&#xf1c7;</Text>
+        )
+      case 'icon_file':
+        return (
+          <Text style={styles}>&#xf214;</Text>
+        )
     }
   }
 }

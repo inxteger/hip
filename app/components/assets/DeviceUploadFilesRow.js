@@ -1,21 +1,27 @@
-'use strict';
+'use strict'
 
 import React,{Component} from 'react';
-
 import {
   View,
-  ImageBackground,
+  StyleSheet,
 } from 'react-native';
 import PropTypes from 'prop-types';
 
-import Text from './Text.js';
-import {getBaseUri} from '../middleware/api.js';
-import {TOKENHEADER,HEADERDEVICEID} from '../middleware/api.js';
-import storage from '../utils/storage.js';
+import Text from '../Text';
+import {GRAY,BLACK,ALARM_RED} from '../../styles/color';
+import moment from 'moment';
+import Icon from '../Icon.js';
+import TouchFeedback from '../TouchFeedback';
+import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 
-class UploadableImage extends Component {
+import {getBaseUri} from '../../middleware/api.js';
+import {TOKENHEADER,HEADERDEVICEID} from '../../middleware/api.js';
+import storage from '../../utils/storage.js';
+
+export default class DeviceUploadFilesRow extends Component{
   constructor(props){
     super(props);
+
     this.state = {percent:0,loaded:false};
     if(props.loaded){
       this.state.loaded = true;
@@ -89,10 +95,7 @@ class UploadableImage extends Component {
       this._uploadImage();
     }
   }
-  render () {
-    var {resizeMode} = this.props;
-
-
+  render(){
     var progress = parseInt(this.state.percent*100);
     var text = null;
     if(progress !== 100){
@@ -104,90 +107,66 @@ class UploadableImage extends Component {
           }}>{progress+'%'}</Text>
       )
     }
-
     var overlay = (
       <View style={
         {
-          height: this.props.height*(1-this.state.percent),
-          width: this.props.width,
+          height: 44,
+          width: this.props.width*(this.state.percent),
           position:'absolute',
           left:0,
           bottom:0,
           right:0,
-          backgroundColor:'black',
-          opacity:0.4
+          backgroundColor:'#03b679',
+          opacity:0.1
         }
       }>
-
     </View>);
-    var children = null;
-    var imageStyle = {
-      height: this.props.height,
-      width: this.props.width,
-      margin: 0,
-      padding: 0,
-      justifyContent:'center',
-      alignItems:'center',
-    };
     if(this.state.loaded){
-
-      // return (
-      //   <Image
-      //     source={{uri:this.props.uri}}
-      //     resizeMode={resizeMode} style={{width:this.props.width,height:this.props.height}}>
-      //     {this.props.children}
-      //   </Image>
-      // );
       text = null;
       overlay = null;
-      children = this.props.children;
-      imageStyle = {
-        height: this.props.height,
-        width: this.props.width,
-        margin: 0,
-        padding: 0,
-      };
     }
 
+    // icon_file
+    var iconType='icon_file';
+    var iconColor='#358de7';
     return (
-      <View style={[{
-        overflow: 'hidden',
-        height: this.props.height,
-        width: this.props.width,
-        padding: 0,
-      },this.props.style]}>
-        <ImageBackground
-          source={{uri:this.props.uri}}
-          resizeMode={resizeMode}
-          style={imageStyle} >
-          {overlay}
-          {text}
-          {children}
-        </ImageBackground>
+      <View style={{flex:1,backgroundColor:'white',height:44}}>
+        <View style={[styles.row,styles.rowHeight]}>
+          <View style={{marginHorizontal:16,flexDirection:'row',justifyContent:'flex-end'}}>
+            <Icon type={iconType} size={16} color={iconColor} />
+            <View style={{flex:1,marginLeft:8,marginRight:8}}>
+              <Text numberOfLines={1} style={styles.nameText}>{this.props.name}</Text>
+            </View>
+          </View>
+        </View>
+        {overlay}
+        {text}
       </View>
     );
-
   }
 }
 
-UploadableImage.propTypes = {
-  uri:PropTypes.string,
-  children:PropTypes.object,
+DeviceUploadFilesRow.propTypes = {
+  user:PropTypes.object,
+  onRowClick:PropTypes.func.isRequired,
   name:PropTypes.string,
-  resizeMode:PropTypes.string,
-  loaded:PropTypes.bool,
-  style:PropTypes.object,
-  height:PropTypes.number,
   width:PropTypes.number,
-  postUri:PropTypes.string,
-  loadComplete:PropTypes.func,
-  onLongPress:PropTypes.func
-};
-
-UploadableImage.defaultProps = {
-  resizeMode:'cover',
-  postUri:''
 }
 
-
-module.exports = UploadableImage
+var styles = StyleSheet.create({
+  rowHeight:{
+    height:44
+  },
+  row:{
+    flexDirection:'row',
+    justifyContent:'space-between',
+    alignItems:'center',
+    backgroundColor:'white',
+    // padding:16,
+    overflow:'hidden'
+  },
+  nameText:{
+    fontSize:17,
+    color:BLACK
+  },
+});

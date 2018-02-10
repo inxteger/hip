@@ -634,3 +634,124 @@ export function initCreateRecord(data){
     });
   }
 }
+
+export const STRUCTURE_PHOTOS_REQUEST = 'STRUCTURE_PHOTOS_REQUEST';
+export const STRUCTURE_PHOTOS_SUCCESS = 'STRUCTURE_PHOTOS_SUCCESS';
+export const STRUCTURE_PHOTOS_FAILURE = 'STRUCTURE_PHOTOS_FAILURE';
+
+export function loadStructurePhotos(deviceId){
+  return (dispatch, getState) => {
+    return dispatch({
+        types: [STRUCTURE_PHOTOS_REQUEST, STRUCTURE_PHOTOS_SUCCESS, STRUCTURE_PHOTOS_FAILURE],
+        url: `device/structurephoto/${deviceId}`,
+        data:{deviceId}
+    });
+  }
+}
+
+export const STRUCTURE_PHOTOS_CHANGED = 'STRUCTURE_PHOTOS_CHANGED';
+export function structurePhotoInfoChange(data){
+  return (dispatch,getState)=>{
+    return dispatch({
+      type:STRUCTURE_PHOTOS_CHANGED,
+      data
+    });
+  }
+}
+
+
+export const DEVICE_FILES_REQUEST = 'DEVICE_FILES_REQUEST';
+export const DEVICE_FILES_SUCCESS = 'DEVICE_FILES_SUCCESS';
+export const DEVICE_FILES_FAILURE = 'DEVICE_FILES_FAILURE';
+
+export function loadDeviceFiles(body){
+  return (dispatch, getState) => {
+    return dispatch({
+        types: [DEVICE_FILES_REQUEST, DEVICE_FILES_SUCCESS, DEVICE_FILES_FAILURE],
+        url: 'device/dirfile/search',
+        body
+    });
+
+  }
+}
+
+export const DEVICE_FILES_FIRSTPAGE = 'DEVICE_FILES_FIRSTPAGE';
+export function firstFilesPage(){
+  return (dispatch,getState)=>{
+    return dispatch({
+      type:DEVICE_FILES_FIRSTPAGE,
+    });
+  }
+}
+
+export const DEVICE_FILES_NEXTPAGE = 'DEVICE_FILES_NEXTPAGE';
+export function nextFilesPage(){
+  return (dispatch,getState)=>{
+    return dispatch({
+      type:DEVICE_FILES_NEXTPAGE,
+    });
+  }
+}
+
+export const DEVICE_SUBFILES_FIRSTPAGE = 'DEVICE_SUBFILES_FIRSTPAGE';
+export function firstSubFilesPage(){
+  return (dispatch,getState)=>{
+    return dispatch({
+      type:DEVICE_SUBFILES_FIRSTPAGE,
+    });
+  }
+}
+
+export const DEVICE_SUBFILES_NEXTPAGE = 'DEVICE_SUBFILES_NEXTPAGE';
+export function nextSubFilesPage(){
+  return (dispatch,getState)=>{
+    return dispatch({
+      type:DEVICE_SUBFILES_NEXTPAGE,
+    });
+  }
+}
+
+export const DEVICE_FILES_EXIT = 'DEVICE_FILES_EXIT';
+
+export function exitDeviceFiles(data){
+  return (dispatch,getState)=>{
+    return dispatch({
+      type:DEVICE_FILES_EXIT,
+    });
+  }
+}
+
+export const DEVICE_SUBFILES_REQUEST = 'DEVICE_SUBFILES_REQUEST';
+export const DEVICE_SUBFILES_SUCCESS = 'DEVICE_SUBFILES_SUCCESS';
+export const DEVICE_SUBFILES_FAILURE = 'DEVICE_SUBFILES_FAILURE';
+
+export function loadDeviceSubFiles(body){
+  return (dispatch, getState) => {
+    return dispatch({
+        types: [DEVICE_SUBFILES_REQUEST, DEVICE_SUBFILES_SUCCESS, DEVICE_SUBFILES_FAILURE],
+        url: 'device/dirfile/search',
+        body
+    });
+
+  }
+}
+
+export const FILES_PHOTOS_CHANGED = 'FILES_PHOTOS_CHANGED';
+export function filesInfoChange(data){
+  return (dispatch,getState)=>{
+    return dispatch({
+      type:FILES_PHOTOS_CHANGED,
+      data
+    });
+  }
+}
+
+export const DEVICE_SUBFILES_EXIT = 'DEVICE_SUBFILES_EXIT';
+
+export function exitDeviceSubFiles(data){
+  return (dispatch,getState)=>{
+    return dispatch({
+      type:DEVICE_SUBFILES_EXIT,
+    });
+  }
+}

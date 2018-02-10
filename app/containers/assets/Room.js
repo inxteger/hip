@@ -152,6 +152,7 @@ class Room extends Component{
         changeImageComplete={(data)=>this._onChangeImageComplete(data)}
         isFetching={this.props.isFetching}
         data={this.state.dataSource}
+        hasDetailImg={true}
         sectionData={this.props.sectionData}
         onRefresh={()=>this._onRefresh()}
         onRowClick={(rowData)=>this._gotoDetail(rowData)}/>

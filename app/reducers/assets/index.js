@@ -20,11 +20,16 @@ import historyData from './historyReducer.js';
 import maintances from './maintanceUsersReducer.js';
 import mRecordDetail from './mRecordDetReducer.js';
 import mSingleSelect from './mSingleSelectReducer.js';
+import strucPhotos from './deviceStrucPhotosReducer.js';
+import deviceFiles from './deviceFilesReducer.js';
+import deviceSubFiles from './deviceSubFilesReducer.js';
 
 import { combineReducers } from 'redux'
 
 export default combineReducers({
   assetData,buildHierarchyData,hierarchyBindData,
   scan,roomDetailData,panelDetailData,deviceDetailData,
-  deviceRuntimSetting,deviceRealtime,dashboardDatas,maintainRecordData,maintainPartsData,maintainFilter,maintances,mRecordDetail,logs,assetLog,historyData,assetTickets,mSingleSelect
+  deviceRuntimSetting,deviceRealtime,dashboardDatas,maintainRecordData,
+  maintainPartsData,maintainFilter,maintances,mRecordDetail,logs,assetLog,
+  historyData,assetTickets,mSingleSelect,strucPhotos,deviceFiles,deviceSubFiles
 })
