@@ -13,7 +13,7 @@ import backHelper from '../../utils/backHelper';
 import DeviceFilesView from '../../components/assets/DeviceFilesView.js';
 import TicketDetail from '../ticket/TicketDetail.js';
 import privilegeHelper from '../../utils/privilegeHelper.js';
-import {loadDeviceFiles,filesInfoChange,exitDeviceFiles} from '../../actions/assetsAction.js';
+import {loadDeviceFiles,firstFilesPage,nextFilesPage,filesInfoChange,exitDeviceFiles} from '../../actions/assetsAction.js';
 import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 import ImagePicker from '../ImagePicker.js';
 import PhotoShow from './PhotoShow';
@@ -132,7 +132,7 @@ class DeviceFiles extends Component{
     if (this.props.filter.get('PageIndex')===1) {
       this._loadDeviceFilesData(this.props.filter);
     }else {
-      this.props.firstPage();
+      this.props.firstFilesPage();
     }
   }
   componentDidMount() {
@@ -169,7 +169,7 @@ class DeviceFiles extends Component{
         isFetching={this.props.deviceFiles.get('isFetching')}
         hasFilter={false}
         listData={this.state.dataSource}
-        nextPage={()=>this.props.nextPage()}
+        nextPage={()=>this.props.nextFilesPage()}
         emptyText={localStr('lang_asset_des35')}
         currentPage={this.props.filter.get('PageIndex')}
         onRefresh={()=>this._onRefresh()}
@@ -198,6 +198,8 @@ DeviceFiles.propTypes = {
   title:PropTypes.string,
   isFetching:PropTypes.bool,
   loadDeviceFiles:PropTypes.func,
+  firstFilesPage:PropTypes.func,
+  nextFilesPage:PropTypes.func,
   filesInfoChange:PropTypes.func,
   exitDeviceFiles:PropTypes.func,
   deleteImages:PropTypes.func,
@@ -226,4 +228,4 @@ function mapStateToProps(state,ownProps) {
   };
 }
 
-export default connect(mapStateToProps,{loadDeviceFiles,filesInfoChange,exitDeviceFiles,deleteImages})(DeviceFiles);
+export default connect(mapStateToProps,{loadDeviceFiles,firstFilesPage,nextFilesPage,filesInfoChange,exitDeviceFiles,deleteImages})(DeviceFiles);

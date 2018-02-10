@@ -6,6 +6,8 @@ import {
   DEVICE_FILES_SUCCESS,
   DEVICE_FILES_FAILURE,
   FILES_PHOTOS_CHANGED,
+  DEVICE_FILES_FIRSTPAGE,
+  DEVICE_FILES_NEXTPAGE,
   DEVICE_EXIT,
   DEVICE_FILES_EXIT,
 } from '../../actions/assetsAction.js';
@@ -162,6 +164,19 @@ function removeData(state,action) {
   return newState;
 }
 
+function nextPage(state,action) {
+  var filter = state.get('filter');
+  filter = filter.set('PageIndex',filter.get('PageIndex')+1);
+  return state.set('filter',filter);
+}
+
+function firstPage(state,action) {
+  var filter = state.get('filter');
+  filter = filter.set('PageIndex',1);
+
+  return state.set('filter',filter);
+}
+
 function handleError(state,action) {
   var {Error} = action.error;
   // console.warn('handleError',action);
@@ -186,6 +201,10 @@ export default commonReducer((state,action)=>{
       return handleError(state,action);
     case FILES_PHOTOS_CHANGED:
       return infoChanged(state,action);
+    case DEVICE_FILES_NEXTPAGE:
+      return nextPage(state,action);
+    case DEVICE_FILES_FIRSTPAGE:
+      return firstPage(state,action);
     case DEVICE_EXIT:
     case DEVICE_FILES_EXIT:
       return defaultState;

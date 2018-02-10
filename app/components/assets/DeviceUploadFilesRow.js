@@ -131,17 +131,14 @@ export default class DeviceUploadFilesRow extends Component{
     var iconColor='#358de7';
     return (
       <View style={{flex:1,backgroundColor:'white',height:44}}>
-        <TouchFeedback onPress={()=>this.props.onRowClick(rowData)}>
-          <View style={[styles.row,styles.rowHeight]}>
-            <View style={{marginHorizontal:16,flexDirection:'row',justifyContent:'flex-end'}}>
-              <Icon type={iconType} size={16} color={iconColor} />
-              <View style={{flex:1,marginLeft:8,marginRight:8}}>
-                <Text numberOfLines={1} style={styles.nameText}>{this.props.name}</Text>
-              </View>
-              <Icon type='arrow_right' size={16} color={GRAY} />
+        <View style={[styles.row,styles.rowHeight]}>
+          <View style={{marginHorizontal:16,flexDirection:'row',justifyContent:'flex-end'}}>
+            <Icon type={iconType} size={16} color={iconColor} />
+            <View style={{flex:1,marginLeft:8,marginRight:8}}>
+              <Text numberOfLines={1} style={styles.nameText}>{this.props.name}</Text>
             </View>
           </View>
-        </TouchFeedback>
+        </View>
         {overlay}
         {text}
       </View>

@@ -675,6 +675,42 @@ export function loadDeviceFiles(body){
   }
 }
 
+export const DEVICE_FILES_FIRSTPAGE = 'DEVICE_FILES_FIRSTPAGE';
+export function firstFilesPage(){
+  return (dispatch,getState)=>{
+    return dispatch({
+      type:DEVICE_FILES_FIRSTPAGE,
+    });
+  }
+}
+
+export const DEVICE_FILES_NEXTPAGE = 'DEVICE_FILES_NEXTPAGE';
+export function nextFilesPage(){
+  return (dispatch,getState)=>{
+    return dispatch({
+      type:DEVICE_FILES_NEXTPAGE,
+    });
+  }
+}
+
+export const DEVICE_SUBFILES_FIRSTPAGE = 'DEVICE_SUBFILES_FIRSTPAGE';
+export function firstSubFilesPage(){
+  return (dispatch,getState)=>{
+    return dispatch({
+      type:DEVICE_SUBFILES_FIRSTPAGE,
+    });
+  }
+}
+
+export const DEVICE_SUBFILES_NEXTPAGE = 'DEVICE_SUBFILES_NEXTPAGE';
+export function nextSubFilesPage(){
+  return (dispatch,getState)=>{
+    return dispatch({
+      type:DEVICE_SUBFILES_NEXTPAGE,
+    });
+  }
+}
+
 export const DEVICE_FILES_EXIT = 'DEVICE_FILES_EXIT';
 
 export function exitDeviceFiles(data){

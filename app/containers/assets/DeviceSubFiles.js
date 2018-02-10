@@ -13,7 +13,7 @@ import backHelper from '../../utils/backHelper';
 import DeviceFilesView from '../../components/assets/DeviceFilesView.js';
 import TicketDetail from '../ticket/TicketDetail.js';
 import privilegeHelper from '../../utils/privilegeHelper.js';
-import {loadDeviceSubFiles,filesInfoChange,exitDeviceSubFiles} from '../../actions/assetsAction.js';
+import {loadDeviceSubFiles,firstSubFilesPage,nextSubFilesPage,filesInfoChange,exitDeviceSubFiles} from '../../actions/assetsAction.js';
 import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 import ImagePicker from '../ImagePicker.js';
 import PhotoShow from './PhotoShow';
@@ -124,7 +124,7 @@ class DeviceSubFiles extends Component{
     if (this.props.filter.get('PageIndex')===1) {
       this._loadDeviceSubFilesData(this.props.filter);
     }else {
-      this.props.firstPage();
+      this.props.firstSubFilesPage();
     }
   }
   componentDidMount() {
@@ -161,7 +161,7 @@ class DeviceSubFiles extends Component{
         isFetching={this.props.deviceFiles.get('isFetching')}
         hasFilter={false}
         listData={this.state.dataSource}
-        nextPage={()=>this.props.nextPage()}
+        nextPage={()=>this.props.nextSubFilesPage()}
         emptyText={localStr('lang_asset_des35')}
         currentPage={this.props.filter.get('PageIndex')}
         onRefresh={()=>this._onRefresh()}
@@ -190,6 +190,8 @@ DeviceSubFiles.propTypes = {
   title:PropTypes.string,
   isFetching:PropTypes.bool,
   loadDeviceSubFiles:PropTypes.func,
+  firstSubFilesPage:PropTypes.func,
+  nextSubFilesPage:PropTypes.func,
   filesInfoChange:PropTypes.func,
   exitDeviceSubFiles:PropTypes.func,
   deleteImages:PropTypes.func,
@@ -218,4 +220,4 @@ function mapStateToProps(state,ownProps) {
   };
 }
 
-export default connect(mapStateToProps,{loadDeviceSubFiles,filesInfoChange,exitDeviceSubFiles,deleteImages})(DeviceSubFiles);
+export default connect(mapStateToProps,{loadDeviceSubFiles,firstSubFilesPage,nextSubFilesPage,filesInfoChange,exitDeviceSubFiles,deleteImages})(DeviceSubFiles);
