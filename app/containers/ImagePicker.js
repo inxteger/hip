@@ -3,12 +3,14 @@
 import React,{Component} from 'react';
 import {
   InteractionManager,
+  Platform,
 } from 'react-native';
 import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
 import backHelper from '../utils/backHelper';
 import ImagePickerView from '../components/ImagePicker.js';
+import {getFileNameFromFilePath} from '../utils/fileHelper.js';
 
 class ImagePicker extends Component{
   constructor(props){
@@ -19,6 +21,12 @@ class ImagePicker extends Component{
     this.props.navigator.pop();
   }
   _done(chosenImages){
+    if (Platform.OS==='android') {
+      chosenImages.forEach((item,index)=>{
+        var fileName=getFileNameFromFilePath(item.uri);
+        item.filename=fileName+'.jpg';
+      });
+    }
     this.props.dataChanged(chosenImages);
     this.props.navigator.pop();
   }
