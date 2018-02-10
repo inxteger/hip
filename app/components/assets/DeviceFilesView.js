@@ -36,11 +36,16 @@ export default class DeviceFilesView extends Component{
       <ListSeperator key={sectionId+rowId} marginWithLeft={isLastRow?0:16}/>
     );
   }
-  _imageLoadComplete(item){
+  _imageLoadComplete(item,response){
+    var key='';
+    response=JSON.parse(response);
+    if (response&&response.Result&&response.Result.Key) {
+      key=response.Result.Key;
+      item=item.set('Key',key);
+    }
     this.props.filesInfoChange('image','uploaded',item);
   }
   _renderRow(rowData,sectionId,rowId){
-    // console.warn('rowData',rowData);
     var {width} = Dimensions.get('window');
     if (rowData.get('isUpdateing')) {
       // console.warn('aaa',width);
@@ -51,10 +56,11 @@ export default class DeviceFilesView extends Component{
           loaded={rowData.get('loaded')}
           width={width}
           postUri={`device/dirfile/upload/${rowData.get('PictureId')}/${this.props.deviceId}/${this.props.dirid}`}
-          loadComplete = {()=>this._imageLoadComplete(rowData)}>
+          loadComplete = {(response)=>this._imageLoadComplete(rowData,response)}>
         </DeviceUploadFilesRow>
       )
     }
+      console.warn('rowData',rowData.get('PictureId'),rowData.get('Key'));
     return (
       <DeviceFilesRow
         key={rowId}
@@ -79,12 +85,12 @@ export default class DeviceFilesView extends Component{
   {
     var actions = null;
     // if(data){
-      // if (this.props.isSameUser) {
+      if (this.props.canEdit) {
         actions = [{
           title:this.props.title,
           iconType:'add',
           show:'always'}];
-      // }
+      }
     // }
     return (
       <Toolbar title={this.props.title}

@@ -99,7 +99,6 @@ class DeviceSubFiles extends Component{
   }
   _gotoDetail(rowData)
   {
-    console.warn('de...',rowData);
     if (rowData.get('Type')==='dir') {
     }else {
 
@@ -171,6 +170,7 @@ class DeviceSubFiles extends Component{
         }}
         onAddClick={()=>this._onAddClick()}
         dirid={this.props.dirid}
+        canEdit={privilegeHelper.hasAuth('AssetEditPrivilegeCode')}
         deviceId={this.props.hierarchyId}
         filesInfoChange={(type,action,value)=>this._dataChanged(type,action,value)}
         onBack={()=>this.props.navigator.pop()} />

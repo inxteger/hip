@@ -43,7 +43,7 @@ class DeviceFiles extends Component{
     this.props.deleteImages(imageId);
   }
   _dataChanged(type,action,value){
-    console.warn('aaaa',value);
+    // console.warn('aaaa',value);
     this.props.filesInfoChange({
       log:this.props.log,
       hierarchyId:this.props.hierarchyId,
@@ -179,6 +179,7 @@ class DeviceFiles extends Component{
         }}
         onAddClick={()=>this._onAddClick()}
         dirid={this.props.dirid}
+        canEdit={privilegeHelper.hasAuth('AssetEditPrivilegeCode')}
         deviceId={this.props.hierarchyId}
         filesInfoChange={(type,action,value)=>this._dataChanged(type,action,value)}
         onBack={()=>this.props.navigator.pop()} />
