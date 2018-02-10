@@ -42,7 +42,6 @@ function generateName(pics,hierarchyId,userId) {
 }
 
 function infoChanged(state,action1) {
-
   var {data:{hierarchyId,userId,type,action,value}} = action1;
 
   if(type === 'init'){
@@ -77,9 +76,15 @@ function infoChanged(state,action1) {
 
     }
     else if (action === 'uploaded') {
-      console.warn('uploaded');
-      var index = pics.findIndex((item)=>item === value);
-      pics = pics.update(index,(item)=>item.set('loaded',true).set('isUpdateing',false));
+      var index = pics.findIndex((item)=>item.get('PictureId') === value.get('PictureId'));
+      // console.warn('aaaaaaaaaa',index,value.get('Key'),value);
+      pics = pics.update(index,(item)=>{
+          item=item.set('loaded',true)
+          .set('isUpdateing',false)
+          .set('PictureId',value.get('Key'))
+          .set('Key',value.get('Key'));
+          return item;
+        });
     }
     else if (action === 'delete'){
       var index = pics.findIndex((item)=>item === value);

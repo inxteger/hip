@@ -60,7 +60,6 @@ export default class DeviceFilesView extends Component{
         </DeviceUploadFilesRow>
       )
     }
-      console.warn('rowData',rowData.get('PictureId'),rowData.get('Key'));
     return (
       <DeviceFilesRow
         key={rowId}

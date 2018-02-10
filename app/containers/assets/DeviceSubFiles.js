@@ -42,7 +42,7 @@ class DeviceSubFiles extends Component{
     this.props.deleteImages(imageId);
   }
   _dataChanged(type,action,value){
-    console.warn('aaaa',value);
+    // console.warn('aaaa',value);
     this.props.filesInfoChange({
       log:this.props.log,
       hierarchyId:this.props.hierarchyId,
