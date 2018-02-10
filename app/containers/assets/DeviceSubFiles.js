@@ -13,15 +13,14 @@ import backHelper from '../../utils/backHelper';
 import DeviceFilesView from '../../components/assets/DeviceFilesView.js';
 import TicketDetail from '../ticket/TicketDetail.js';
 import privilegeHelper from '../../utils/privilegeHelper.js';
-import {loadDeviceFiles,filesInfoChange,exitDeviceFiles} from '../../actions/assetsAction.js';
+import {loadDeviceSubFiles,filesInfoChange,exitDeviceSubFiles} from '../../actions/assetsAction.js';
 import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 import ImagePicker from '../ImagePicker.js';
 import PhotoShow from './PhotoShow';
-import DeviceSubFiles from './DeviceSubFiles.js';
 import {deleteImages} from '../../actions/imageAction';
 const MAX = 100;
 
-class DeviceFiles extends Component{
+class DeviceSubFiles extends Component{
   constructor(props){
     super(props);
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -89,10 +88,10 @@ class DeviceFiles extends Component{
       }
     });
   }
-  _loadDeviceFilesData(filter){
+  _loadDeviceSubFilesData(filter){
     filter=filter.setIn(['Criteria','HierarchyId'],this.props.hierarchyId);
     filter=filter.setIn(['Criteria','DirId'],this.props.dirid);
-    this.props.loadDeviceFiles(filter.toJSON());
+    this.props.loadDeviceSubFiles(filter.toJSON());
   }
   _onAddClick()
   {
@@ -100,17 +99,10 @@ class DeviceFiles extends Component{
   }
   _gotoDetail(rowData)
   {
-    console.warn('de...',rowData.get('Name'));
+    console.warn('de...',rowData);
     if (rowData.get('Type')==='dir') {
-      this.props.navigator.push({
-        id:'device_sub_files',
-        component:DeviceSubFiles,
-        passProps:{
-          hierarchyId:this.props.hierarchyId,
-          dirid:rowData.get('Id'),
-          title:rowData.get('Name'),
-        }
-      });
+    }else {
+
     }
   }
   // var canEdit=this.props.isSameUser;
@@ -130,7 +122,7 @@ class DeviceFiles extends Component{
   _onRefresh(){
     // console.warn('_onRefresh',this.props.filter.get('PageIndex'));
     if (this.props.filter.get('PageIndex')===1) {
-      this._loadDeviceFilesData(this.props.filter);
+      this._loadDeviceSubFilesData(this.props.filter);
     }else {
       this.props.firstPage();
     }
@@ -138,7 +130,7 @@ class DeviceFiles extends Component{
   componentDidMount() {
     backHelper.init(this.props.navigator,this.props.route.id);
     InteractionManager.runAfterInteractions(() => {
-      this._loadDeviceFilesData(this.props.filter);
+      this._loadDeviceSubFilesData(this.props.filter);
     });
   }
   componentWillReceiveProps(nextProps) {
@@ -154,12 +146,12 @@ class DeviceFiles extends Component{
 
     if(this.props.filter !== nextProps.filter){
       InteractionManager.runAfterInteractions(()=>{
-        this._loadDeviceFilesData(nextProps.filter);
+        this._loadDeviceSubFilesData(nextProps.filter);
       });
     }
   }
   componentWillUnmount() {
-    this.props.exitDeviceFiles();
+    this.props.exitDeviceSubFiles();
     backHelper.destroy(this.props.route.id);
   }
   render() {
@@ -186,20 +178,20 @@ class DeviceFiles extends Component{
   }
 }
 
-DeviceFiles.defaultProps = {
+DeviceSubFiles.defaultProps = {
   dirid:0,
   title:'机器文件'
 }
 
-DeviceFiles.propTypes = {
+DeviceSubFiles.propTypes = {
   navigator:PropTypes.object,
   route:PropTypes.object,
   user:PropTypes.object,
   title:PropTypes.string,
   isFetching:PropTypes.bool,
-  loadDeviceFiles:PropTypes.func,
+  loadDeviceSubFiles:PropTypes.func,
   filesInfoChange:PropTypes.func,
-  exitDeviceFiles:PropTypes.func,
+  exitDeviceSubFiles:PropTypes.func,
   deleteImages:PropTypes.func,
   hierarchyId:PropTypes.number,
   dirid:PropTypes.number,
@@ -226,4 +218,4 @@ function mapStateToProps(state,ownProps) {
   };
 }
 
-export default connect(mapStateToProps,{loadDeviceFiles,filesInfoChange,exitDeviceFiles,deleteImages})(DeviceFiles);
+export default connect(mapStateToProps,{loadDeviceSubFiles,filesInfoChange,exitDeviceSubFiles,deleteImages})(DeviceSubFiles);

@@ -2,12 +2,12 @@
 
 
 import {
-  DEVICE_FILES_REQUEST,
-  DEVICE_FILES_SUCCESS,
-  DEVICE_FILES_FAILURE,
+  DEVICE_SUBFILES_REQUEST,
+  DEVICE_SUBFILES_SUCCESS,
+  DEVICE_SUBFILES_FAILURE,
   FILES_PHOTOS_CHANGED,
   DEVICE_EXIT,
-  DEVICE_FILES_EXIT,
+  DEVICE_SUBFILES_EXIT,
 } from '../../actions/assetsAction.js';
 
 // import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
@@ -178,16 +178,16 @@ function handleError(state,action) {
 export default commonReducer((state,action)=>{
 
   switch (action.type) {
-    case DEVICE_FILES_REQUEST:
+    case DEVICE_SUBFILES_REQUEST:
       return state.set('isFetching',true);
-    case DEVICE_FILES_SUCCESS:
+    case DEVICE_SUBFILES_SUCCESS:
       return mergeData(state,action);
-    case DEVICE_FILES_FAILURE:
+    case DEVICE_SUBFILES_FAILURE:
       return handleError(state,action);
     case FILES_PHOTOS_CHANGED:
       return infoChanged(state,action);
     case DEVICE_EXIT:
-    case DEVICE_FILES_EXIT:
+    case DEVICE_SUBFILES_EXIT:
       return defaultState;
   }
   return state;

@@ -56,19 +56,25 @@ function infoChanged(state,action1) {
     var pics = newState.getIn(['data','Pictures']);
     if(action === 'add'){
       //[{name,uri}]
+      if (!pics) {
+        pics=Immutable.fromJS([]);
+      }
+      var index=pics.findIndex((item)=>item.get('Type')==='dir');
+      if (index===-1) {
+        index=0;
+      }
       value.forEach((item)=>{
-        pics = pics.insert(0,
+        pics = pics.insert(index,
           Immutable.Map({
             PictureId:generateName(pics,hierarchyId,userId),
             uri:item.uri
           }));
-      })
-
+      });
     }
     else if (action === 'uploaded') {
       console.warn('uploaded');
       var index = pics.findIndex((item)=>item === value);
-      pics = pics.update(index,(item)=>item.set('loaded',true));
+      pics = pics.update(index,(item)=>item.set('loaded',true).set('isUpdateing',false));
     }
     else if (action === 'delete'){
       var index = pics.findIndex((item)=>item === value);

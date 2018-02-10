@@ -675,12 +675,47 @@ export function loadDeviceFiles(body){
   }
 }
 
+export const DEVICE_FILES_EXIT = 'DEVICE_FILES_EXIT';
+
+export function exitDeviceFiles(data){
+  return (dispatch,getState)=>{
+    return dispatch({
+      type:DEVICE_FILES_EXIT,
+    });
+  }
+}
+
+export const DEVICE_SUBFILES_REQUEST = 'DEVICE_SUBFILES_REQUEST';
+export const DEVICE_SUBFILES_SUCCESS = 'DEVICE_SUBFILES_SUCCESS';
+export const DEVICE_SUBFILES_FAILURE = 'DEVICE_SUBFILES_FAILURE';
+
+export function loadDeviceSubFiles(body){
+  return (dispatch, getState) => {
+    return dispatch({
+        types: [DEVICE_SUBFILES_REQUEST, DEVICE_SUBFILES_SUCCESS, DEVICE_SUBFILES_FAILURE],
+        url: 'device/dirfile/search',
+        body
+    });
+
+  }
+}
+
 export const FILES_PHOTOS_CHANGED = 'FILES_PHOTOS_CHANGED';
 export function filesInfoChange(data){
   return (dispatch,getState)=>{
     return dispatch({
       type:FILES_PHOTOS_CHANGED,
       data
+    });
+  }
+}
+
+export const DEVICE_SUBFILES_EXIT = 'DEVICE_SUBFILES_EXIT';
+
+export function exitDeviceSubFiles(data){
+  return (dispatch,getState)=>{
+    return dispatch({
+      type:DEVICE_SUBFILES_EXIT,
     });
   }
 }

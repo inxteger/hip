@@ -42,7 +42,7 @@ export default class DeviceFilesView extends Component{
   _renderRow(rowData,sectionId,rowId){
     // console.warn('rowData',rowData);
     var {width} = Dimensions.get('window');
-    // if (rowData.get('isUpdateing')) {
+    if (rowData.get('isUpdateing')) {
       // console.warn('aaa',width);
       return (
         <DeviceUploadFilesRow
@@ -54,16 +54,17 @@ export default class DeviceFilesView extends Component{
           loadComplete = {()=>this._imageLoadComplete(rowData)}>
         </DeviceUploadFilesRow>
       )
-    // }
-    // return (
-    //   <DeviceFilesRow
-    //     key={rowId}
-    //     rowData={rowData}
-    //     onRowClick={(rowData)=>{
-    //       this.props.onRowClick(rowData)
-    //     }}
-    //     />
-    // );
+    }
+    return (
+      <DeviceFilesRow
+        key={rowId}
+        width={width}
+        rowData={rowData}
+        onRowClick={(rowData)=>{
+          this.props.onRowClick(rowData);
+        }}
+        />
+    );
   }
 
   _renderSection(sectionData,sectionId,sectionIndex){
@@ -80,7 +81,7 @@ export default class DeviceFilesView extends Component{
     // if(data){
       // if (this.props.isSameUser) {
         actions = [{
-          title:localStr('机器文件'),
+          title:this.props.title,
           iconType:'add',
           show:'always'}];
       // }
@@ -122,6 +123,7 @@ export default class DeviceFilesView extends Component{
 //没有文件
 DeviceFilesView.propTypes = {
   user:PropTypes.object,
+  title:PropTypes.string,
   currentPage:PropTypes.number,
   totalPage:PropTypes.number,
   hasFilter:PropTypes.bool.isRequired,

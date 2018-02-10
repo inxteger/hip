@@ -22,6 +22,7 @@ import mRecordDetail from './mRecordDetReducer.js';
 import mSingleSelect from './mSingleSelectReducer.js';
 import strucPhotos from './deviceStrucPhotosReducer.js';
 import deviceFiles from './deviceFilesReducer.js';
+import deviceSubFiles from './deviceSubFilesReducer.js';
 
 import { combineReducers } from 'redux'
 
@@ -30,5 +31,5 @@ export default combineReducers({
   scan,roomDetailData,panelDetailData,deviceDetailData,
   deviceRuntimSetting,deviceRealtime,dashboardDatas,maintainRecordData,
   maintainPartsData,maintainFilter,maintances,mRecordDetail,logs,assetLog,
-  historyData,assetTickets,mSingleSelect,strucPhotos,deviceFiles
+  historyData,assetTickets,mSingleSelect,strucPhotos,deviceFiles,deviceSubFiles
 })

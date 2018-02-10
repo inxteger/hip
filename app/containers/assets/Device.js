@@ -143,12 +143,14 @@ console.warn('_gotoDetail...',type);
         }
       });
     }else if (type === 'files') {
-
+      console.warn('aaa');
       this.props.navigator.push({
         id:'device_files',
         component:DeviceFiles,
         passProps:{
-          hierarchyId:this.props.ownData.get('Id')
+          hierarchyId:this.props.ownData.get('Id'),
+          dirid:0,
+          // title:'机器文件'
         }
       });
     }

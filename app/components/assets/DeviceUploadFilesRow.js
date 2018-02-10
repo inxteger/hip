@@ -95,15 +95,6 @@ export default class DeviceUploadFilesRow extends Component{
       this._uploadImage();
     }
   }
-  _getTime(data){
-    var time = moment(data.get('MaintainTime'));
-    if(time.isSame(moment(),'day')){
-      return time.format('HH:mm');
-    }
-    else {
-      return time.format('MM-DD');
-    }
-  }
   render(){
     var progress = parseInt(this.state.percent*100);
     var text = null;
