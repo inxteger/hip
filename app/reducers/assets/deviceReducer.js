@@ -113,7 +113,7 @@ function updateAssetDetailData(state,action) {
   var numStructures = res.StructurePhotoCount;
   var tendingCount='';//res.HistoryTicketsCount;
   if (!numStructures) {
-    numStructures='';
+    numStructures=0;
   }
 
   var allElements=[
