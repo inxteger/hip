@@ -89,9 +89,9 @@ class Device extends Component{
   }
   _indexChanged(index){
     this.setState({currentIndex:index,dataSource:this._getDataSource(index)},()=>{
-      if(index !== 0){
+      // if(index !== 0){
         this._onRefresh();
-      }
+      // }
     });
 
   }
