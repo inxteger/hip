@@ -56,11 +56,6 @@ function updateAssetDetailData(state,action) {
       {'title':localStr('lang_asset_des48'),'value':res.SerialNumber,'isNav':false,}
     );
   }
-  // if(res.Specification){
-  //   deviceDescption.push({
-  //     'title':'设备型号','value':res.Specification,'isNav':false,
-  //   })
-  // }
   var strTkdyly=null;
   var classType=res.Class;
   var arrParamDatas=[
@@ -70,6 +65,11 @@ function updateAssetDetailData(state,action) {
     arrParamDatas.push(
       {'title':localStr('lang_asset_des44'),'value':res.DeviceType,'isNav':false,}
     );
+  }
+  if(res.Specification){
+    arrParamDatas.push({
+      'title':localStr('lang_asset_des102'),'value':res.Specification,'isNav':false,
+    })
   }
   var parameters = res.LedgerParameters.
                         map((item)=>{
