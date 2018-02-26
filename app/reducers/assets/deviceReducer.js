@@ -65,8 +65,12 @@ function updateAssetDetailData(state,action) {
   var classType=res.Class;
   var arrParamDatas=[
     {'title':localStr('lang_asset_des43'),'value':res.Class,'isNav':false,},
-    {'title':localStr('lang_asset_des44'),'value':res.DeviceType,'isNav':false,},
   ];
+  if (res.DeviceType) {
+    arrParamDatas.push(
+      {'title':localStr('lang_asset_des44'),'value':res.DeviceType,'isNav':false,}
+    );
+  }
   var parameters = res.LedgerParameters.
                         map((item)=>{
                           if(item.Values.length > 1){
