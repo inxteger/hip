@@ -76,15 +76,17 @@ function infoChanged(state,action1) {
 
     }
     else if (action === 'uploaded') {
-      var index = pics.findIndex((item)=>item.get('PictureId') === value.get('PictureId'));
-      // console.warn('aaaaaaaaaa',index,value.get('Key'),value);
-      pics = pics.update(index,(item)=>{
-          item=item.set('loaded',true)
-          .set('isUpdateing',false)
-          .set('PictureId',value.get('Key'))
-          .set('Key',value.get('Key'));
-          return item;
-        });
+      if (pics) {
+        var index = pics.findIndex((item)=>item.get('PictureId') === value.get('PictureId'));
+        // console.warn('aaaaaaaaaa',index,value.get('Key'),value);
+        pics = pics.update(index,(item)=>{
+            item=item.set('loaded',true)
+            .set('isUpdateing',false)
+            .set('PictureId',value.get('Key'))
+            .set('Key',value.get('Key'));
+            return item;
+          });
+      }
     }
     else if (action === 'delete'){
       var index = pics.findIndex((item)=>item === value);

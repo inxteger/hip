@@ -62,6 +62,9 @@ export default class DeviceFilesRow extends Component{
 
     var index = name.lastIndexOf('.');
     var type = name.substring(index+1);
+    if (index===-1) {
+      type='jpg';
+    }
     // var ossBucket = appInfo.get().ossBucket;
     // index = ossBucket.indexOf('.');
     // ossBucket = ossBucket.substring(0,index);
@@ -75,7 +78,6 @@ export default class DeviceFilesRow extends Component{
 
     // var url = `http://${bucketName}/${id}.${type}`
     var url = `${baseUri}doc/file/${id}`;
-
     var downFilePath=`${saveDocumentPath}/${id}.${type}`;
     var token = await storage.getToken();
     var deviceid=await storage.getDeviceId();
