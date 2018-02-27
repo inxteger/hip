@@ -62,19 +62,22 @@ export default class DeviceFilesRow extends Component{
 
     var index = name.lastIndexOf('.');
     var type = name.substring(index+1);
+    if (index===-1) {
+      type='jpg';
+    }
     // var ossBucket = appInfo.get().ossBucket;
     // index = ossBucket.indexOf('.');
     // ossBucket = ossBucket.substring(0,index);
     // var url = `http://${ossBucket}.oss-cn-hangzhou.aliyuncs.com/rem-file-${id}.${type}`;
     //api/tickets/docs/{fileId}.{ext}
-    // var baseUri = getBaseUri();
+    var baseUri = getBaseUri();
     // var url = 'http://www.pdf995.com/samples/pdf.pdf';
     // var url = `${baseUri}tickets/docs/${id}.${type}`;
 
     var bucketName = appInfo.get().ossBucket;
 
-    var url = `http://${bucketName}/${id}@.jpg`
-
+    // var url = `http://${bucketName}/${id}.${type}`
+    var url = `${baseUri}doc/file/${id}`;
     var downFilePath=`${saveDocumentPath}/${id}.${type}`;
     var token = await storage.getToken();
     var deviceid=await storage.getDeviceId();
@@ -173,7 +176,7 @@ export default class DeviceFilesRow extends Component{
             if (rowData.get('Type')==='dir') {
               this.props.onRowClick(rowData);
             }else {
-              this.downloadFile(rowData.get('Name'),rowData.get('Key'))
+              this.downloadFile(rowData.get('Name'),rowData.get('Id'))
             }
           }}>
           <View style={[styles.row,styles.rowHeight]}>

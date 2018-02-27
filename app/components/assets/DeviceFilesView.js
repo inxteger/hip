@@ -119,7 +119,7 @@ export default class DeviceFilesView extends Component{
           renderSeperator={(sectionId,rowId)=>this._renderSeperator(sectionId,rowId)}
           renderRow={(rowData,sectionId,rowId)=>this._renderRow(rowData,sectionId,rowId)}
           renderSectionHeader={(sectionData,sectionId)=>this._renderSection(sectionData,sectionId)}
-          emptyText={localStr('没有文件或文件夹')}
+          emptyText={this.props.dirid?localStr('没有文件'):localStr('没有文件或文件夹')}
         />
       </View>
     );

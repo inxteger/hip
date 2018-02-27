@@ -339,6 +339,8 @@ export default {
   lang_asset_des100:'/Schneider Electric Machine Advisor reminds you of a new ticket\(([a-zA-Z0-9]*)\)/',
   lang_asset_des101:'/Schneider Electric Machine Advisor reminds you of created ticket\(([a-zA-Z0-9]*)\)/',
 
+  lang_asset_des102:'设备型号',
+
   lang_record_des01:'时间',
   lang_record_des02:'维修人',
   lang_record_des03:'请选择维修人',

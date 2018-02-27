@@ -12,6 +12,7 @@ import backHelper from '../../utils/backHelper';
 import MaintancePartsSelect from './MaintancePartsSelect.js';
 import ImagePicker from '../ImagePicker.js';
 import PhotoShow from './PhotoShow';
+import privilegeHelper from '../../utils/privilegeHelper.js';
 
 import {
   loadStructurePhotos,structurePhotoInfoChange} from '../../actions/assetsAction.js';
@@ -174,10 +175,10 @@ function mapStateToProps(state,ownProps) {
 
   var deviceId=ownProps.hierarchyId;
   var user = state.user.get('user');
-  var isSameUser = true;
-  if(data && data.get('CreateUserId') !== user.get('Id')){
-    isSameUser = false;
-  }
+  var isSameUser = privilegeHelper.hasAuth('AssetEditPrivilegeCode');
+  // if(data && data.get('CreateUserId') !== user.get('Id')){
+  //   isSameUser = false;
+  // }
 
   return {
     deviceId,

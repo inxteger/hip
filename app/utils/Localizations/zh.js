@@ -339,6 +339,8 @@ export default {
   lang_asset_des100:'/施耐德电气机器顾问提示您有新工单\(([a-zA-Z0-9]*)\)/',
   lang_asset_des101:'/施耐德电气机器顾问通知您创建的工单\(([a-zA-Z0-9]*)\)/',
 
+  lang_asset_des102:'设备型号',
+
   lang_record_des01:'时间',
   lang_record_des02:'维修人',
   lang_record_des03:'请选择维修人',

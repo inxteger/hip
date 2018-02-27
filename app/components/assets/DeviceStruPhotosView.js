@@ -66,14 +66,14 @@ export default class DeviceStuPhotosView extends Component{
   }
   _getToolbar(data){
     var actions = null;
-    // if(data){
-      // if (this.props.isSameUser) {
+    if(data){
+      if (this.props.isSameUser) {
         actions = [{
           title:localStr('lang_commons_notice24'),
           iconType:'add',
           show:'always'}];
-      // }
-    // }
+      }
+    }
     return (
       <Toolbar title={this.props.title}
         navIcon="back"
