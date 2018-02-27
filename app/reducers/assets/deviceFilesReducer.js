@@ -82,8 +82,8 @@ function infoChanged(state,action1) {
         pics = pics.update(index,(item)=>{
             item=item.set('loaded',true)
             .set('isUpdateing',false)
-            .set('PictureId',value.get('Key'))
-            .set('Key',value.get('Key'));
+            .set('PictureId',value.get('Id'))
+            .set('Id',value.get('Id'));
             return item;
           });
       }

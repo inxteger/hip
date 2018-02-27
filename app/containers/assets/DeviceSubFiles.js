@@ -13,7 +13,7 @@ import backHelper from '../../utils/backHelper';
 import DeviceFilesView from '../../components/assets/DeviceFilesView.js';
 import TicketDetail from '../ticket/TicketDetail.js';
 import privilegeHelper from '../../utils/privilegeHelper.js';
-import {loadDeviceSubFiles,firstSubFilesPage,nextSubFilesPage,filesInfoChange,exitDeviceSubFiles} from '../../actions/assetsAction.js';
+import {loadDeviceSubFiles,firstSubFilesPage,nextSubFilesPage,subFilesInfoChange,exitDeviceSubFiles} from '../../actions/assetsAction.js';
 import {localStr,localFormatStr} from '../../utils/Localizations/localization.js';
 import ImagePicker from '../ImagePicker.js';
 import PhotoShow from './PhotoShow';
@@ -43,7 +43,7 @@ class DeviceSubFiles extends Component{
   }
   _dataChanged(type,action,value){
     // console.warn('aaaa',value);
-    this.props.filesInfoChange({
+    this.props.subFilesInfoChange({
       log:this.props.log,
       hierarchyId:this.props.hierarchyId,
       userId:this.props.user.get('Id'),
@@ -192,7 +192,7 @@ DeviceSubFiles.propTypes = {
   loadDeviceSubFiles:PropTypes.func,
   firstSubFilesPage:PropTypes.func,
   nextSubFilesPage:PropTypes.func,
-  filesInfoChange:PropTypes.func,
+  subFilesInfoChange:PropTypes.func,
   exitDeviceSubFiles:PropTypes.func,
   deleteImages:PropTypes.func,
   hierarchyId:PropTypes.number,
@@ -220,4 +220,4 @@ function mapStateToProps(state,ownProps) {
   };
 }
 
-export default connect(mapStateToProps,{loadDeviceSubFiles,firstSubFilesPage,nextSubFilesPage,filesInfoChange,exitDeviceSubFiles,deleteImages})(DeviceSubFiles);
+export default connect(mapStateToProps,{loadDeviceSubFiles,firstSubFilesPage,nextSubFilesPage,subFilesInfoChange,exitDeviceSubFiles,deleteImages})(DeviceSubFiles);

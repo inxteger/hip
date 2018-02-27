@@ -756,6 +756,16 @@ export function filesInfoChange(data){
   }
 }
 
+export const SUBFILES_PHOTOS_CHANGED = 'SUBFILES_PHOTOS_CHANGED';
+export function subFilesInfoChange(data){
+  return (dispatch,getState)=>{
+    return dispatch({
+      type:SUBFILES_PHOTOS_CHANGED,
+      data
+    });
+  }
+}
+
 export const DEVICE_SUBFILES_EXIT = 'DEVICE_SUBFILES_EXIT';
 
 export function exitDeviceSubFiles(data){
