@@ -176,6 +176,7 @@ export default class DeviceFilesRow extends Component{
             if (rowData.get('Type')==='dir') {
               this.props.onRowClick(rowData);
             }else {
+              console.warn('aaaaa',rowData);
               this.downloadFile(rowData.get('Name'),rowData.get('Id'))
             }
           }}>

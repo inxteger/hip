@@ -62,7 +62,7 @@ function infoChanged(state,action1) {
       }
       var index=pics.findIndex((item)=>item.get('Type')!=='dir');
       if (index===-1) {
-        index=0;
+        index=pics.size;
       }
       value.forEach((item)=>{
         pics = pics.insert(index,
@@ -82,8 +82,8 @@ function infoChanged(state,action1) {
         pics = pics.update(index,(item)=>{
             item=item.set('loaded',true)
             .set('isUpdateing',false)
-            .set('PictureId',value.get('Key'))
-            .set('Key',value.get('Key'));
+            .set('PictureId',value.get('Id'))
+            .set('Id',value.get('Id'));
             return item;
           });
       }

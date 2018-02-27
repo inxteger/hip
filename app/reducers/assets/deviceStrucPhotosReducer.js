@@ -4,7 +4,8 @@ import {
   STRUCTURE_PHOTOS_REQUEST,
   STRUCTURE_PHOTOS_SUCCESS,
   STRUCTURE_PHOTOS_FAILURE,
-  STRUCTURE_PHOTOS_CHANGED
+  STRUCTURE_PHOTOS_CHANGED,
+  EXIT_STRUCTURE_PHOTOS,
 } from '../../actions/assetsAction.js';
 
 import {LOGOUT_SUCCESS} from '../../actions/loginAction.js';
@@ -139,6 +140,7 @@ export default function(state=defaultState,action){
       return handleError(state,action);
     case STRUCTURE_PHOTOS_CHANGED:
       return infoChanged(state,action);
+    case EXIT_STRUCTURE_PHOTOS:
     case LOGOUT_SUCCESS:
       return defaultState;
     default:

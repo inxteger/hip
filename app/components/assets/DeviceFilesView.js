@@ -42,6 +42,7 @@ export default class DeviceFilesView extends Component{
     if (response&&response.Result&&response.Result.Key) {
       key=response.Result.Key;
       item=item.set('Key',key);
+      item=item.set('Id',response.Result.Id);
     }
     this.props.filesInfoChange('image','uploaded',item);
   }

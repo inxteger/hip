@@ -649,6 +649,16 @@ export function loadStructurePhotos(deviceId){
   }
 }
 
+export const EXIT_STRUCTURE_PHOTOS = 'EXIT_STRUCTURE_PHOTOS';
+export function exitStructurePhotos(data){
+  return (dispatch,getState)=>{
+    return dispatch({
+      type:EXIT_STRUCTURE_PHOTOS,
+      data
+    });
+  }
+}
+
 export const STRUCTURE_PHOTOS_CHANGED = 'STRUCTURE_PHOTOS_CHANGED';
 export function structurePhotoInfoChange(data){
   return (dispatch,getState)=>{
@@ -741,6 +751,16 @@ export function filesInfoChange(data){
   return (dispatch,getState)=>{
     return dispatch({
       type:FILES_PHOTOS_CHANGED,
+      data
+    });
+  }
+}
+
+export const SUBFILES_PHOTOS_CHANGED = 'SUBFILES_PHOTOS_CHANGED';
+export function subFilesInfoChange(data){
+  return (dispatch,getState)=>{
+    return dispatch({
+      type:SUBFILES_PHOTOS_CHANGED,
       data
     });
   }
