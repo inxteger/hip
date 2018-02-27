@@ -113,7 +113,7 @@ class DeviceStruPhotos extends Component{
   }
   _goToDetail(items,index,thumbImageInfo)
   {
-    var canEdit=this.props.isSameUser;
+    var canEdit=false;
     this.props.navigator.push({
       id:'photo_show',
       component:PhotoShow,
