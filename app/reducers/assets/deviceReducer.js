@@ -4,7 +4,7 @@ import {
   DEVICE_LOAD_REQUEST,
   DEVICE_LOAD_SUCCESS,
   DEVICE_LOAD_FAILURE,
-  ASSET_LOGS_SUCCESS,
+  STRUCTURE_PHOTOS_CHANGED,
   ASSET_IMAGE_CHANGED,
   ASSET_IMAGE_CHANGED_COMPLETE,
   DEVICE_EXIT
@@ -169,18 +169,20 @@ function updateAssetDetailData(state,action) {
 
 }
 
-function addLogsCount(state,action) {
-  var {hierarchyId,response:{Result}} = action;
-  if(state.get('deviceId') === hierarchyId){
-    if(!Result){
-      Result = [];
-    }
-    var len = Result.length;
-    if(state.get('numStructures') !== len){
-      var newState = state.set('numStructures',len);
-      var indexSec=findSectioniIndexByType(newState.get('data'),'strucSection');
+function addPhotosCount(state,action) {
+  // var {hierarchyId,response:{Result}} = action;
+  var {data:{hierarchyId,action,numPhotos}} = action;
+  console.warn('addPhotosCount,,,,',hierarchyId,numPhotos,action);
+  if(state.get('deviceId') === hierarchyId&&action==='uploaded'){
+    // if(!Result){
+    //   Result = [];
+    // }
+    // var len = Result.length;
+    if(state.get('numStructures') !== numPhotos){
+      var newState = state.set('numStructures',numPhotos);
+      var indexSec=2;//findSectioniIndexByType(newState.get('data'),'strucSection');
       var data = newState.get('data');
-      data = data.setIn([indexSec,0,'value'],len);
+      data = data.setIn([indexSec,0,'value'],numPhotos);
       return newState.set('data',data);
     }
   }
@@ -235,8 +237,8 @@ export default function(state=defaultState,action){
     case DEVICE_LOAD_FAILURE:
       var newState = state.set('isFetching',false);
       return handleError(newState,action);
-    case ASSET_LOGS_SUCCESS:
-      return addLogsCount(state,action);
+    case STRUCTURE_PHOTOS_CHANGED:
+      return addPhotosCount(state,action);
     case ASSET_IMAGE_CHANGED:
       return imageChanged(state,action);
     case ASSET_IMAGE_CHANGED_COMPLETE:

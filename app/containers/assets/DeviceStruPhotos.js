@@ -15,7 +15,7 @@ import PhotoShow from './PhotoShow';
 import privilegeHelper from '../../utils/privilegeHelper.js';
 
 import {
-  loadStructurePhotos,structurePhotoInfoChange} from '../../actions/assetsAction.js';
+  loadStructurePhotos,structurePhotoInfoChange,exitStructurePhotos} from '../../actions/assetsAction.js';
 import {deleteImages} from '../../actions/imageAction';
 import DeviceStruPhotosView from '../../components/assets/DeviceStruPhotosView.js';
 import MSingleSelect from './MSingleSelect.js';
@@ -57,11 +57,20 @@ class DeviceStruPhotos extends Component{
     this.props.deleteImages(imageId);
   }
   _dataChanged(type,action,value){
+    var numPhotos=0;
+    if (action==='uploaded') {
+      this.props.data.get('Pictures').forEach((item,index)=>{
+        if (item.get('Key')) {
+          numPhotos++;
+        }
+      });
+      numPhotos++;
+    }
     this.props.structurePhotoInfoChange({
       log:this.props.log,
       hierarchyId:this.props.hierarchyId,
       userId:this.props.user.get('Id'),
-      type,action,value
+      type,action,value,numPhotos,
     });
   }
   _checkAuth(){
@@ -122,6 +131,7 @@ class DeviceStruPhotos extends Component{
   _onBackClick()
   {
     this.props.navigator.pop();
+    this.props.exitStructurePhotos();
   }
   render() {
     var title=localStr('机器结构');
@@ -154,6 +164,7 @@ DeviceStruPhotos.propTypes = {
   data:PropTypes.object,
   user:PropTypes.object,
   loadStructurePhotos:PropTypes.func,
+  exitStructurePhotos:PropTypes.func,
   structurePhotoInfoChange:PropTypes.func,
   // modifyRecordDetail:PropTypes.func,
   // onPostingCallback:PropTypes.func,
@@ -191,6 +202,7 @@ function mapStateToProps(state,ownProps) {
 
 export default connect(mapStateToProps,{
   loadStructurePhotos,
+  exitStructurePhotos,
   structurePhotoInfoChange,
   // modifyRecordDetail,
   // resetEditRecord,
