@@ -58,7 +58,7 @@ class DeviceStruPhotos extends Component{
   }
   _dataChanged(type,action,value){
     var numPhotos=0;
-    if (action==='uploaded') {
+    if (action==='uploaded'&&this.props.data) {
       this.props.data.get('Pictures').forEach((item,index)=>{
         if (item.get('Key')) {
           numPhotos++;
