@@ -32,6 +32,7 @@ ios/RockCer/*.mobileprovision
 .idea
 .gradle
 local.properties
+gradle.propertiesg
 #travixci
 #android/app/hiprock.jks
 
