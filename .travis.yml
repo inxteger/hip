@@ -1,7 +1,9 @@
 language: android
 sudo: required
-
+os: osx
 before_install:
+  - openssl aes-256-cbc -k "$keyEncryption" -in android/app/hiprock.jks.enc  -d -a -out
+  android/app/hiprock.jks
   - nvm install 6
   - node --version
   - wget http://dl.google.com/android/ndk/android-ndk-r10e-linux-x86_64.bin
