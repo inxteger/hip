@@ -18,16 +18,17 @@ function buildNumberPlusOne()
 	description="$currCommit"_"$buildNumber"
 }
 
+function version_ge() { test "$(echo "$@" | tr " " "\n" | sort -rV | head -n 1)" == "$1"; }
 # 版本号 放在了version
 function versionPlusOne()
 {
 	oldVer=`/usr/libexec/PlistBuddy -c "Print :CFBundleShortVersionString" ./ios/HipRock/Info.plist`
 	version=$(echo $pgyerLog | tr ',' '\n' | awk -F : '/buildVersion/{print $2}' | head -1 | sed 's/"//g')
-	if [ $version == $oldVer ]
-	then 
+	if version_ge $version $oldVer
+	then
 		version=${version%.*}.$((${version##*.}+1))
-	# else   有待商榷 
-	# 	version=$oldVer 
+	else
+		version=$oldVer
 	fi
 	APPNAME='HipRock_V'$version
 }
@@ -55,5 +56,3 @@ function package()
 buildNumberPlusOne
 versionPlusOne
 package
-
-

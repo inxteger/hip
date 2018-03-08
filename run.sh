@@ -12,16 +12,17 @@ function buildNumberPlusOne()
 	description="$currCommit"_"$buildNumber"
 }
 
+function version_ge() { test "$(echo "$@" | tr " " "\n" | sort -rV | head -n 1)" == "$1"; }
 # 版本号 放在了pgy的buildVersion，从pgy得到并加1，之后修改本地的version配置
 function versionPlusOne()
 {
 	oldVer=`awk -F= '/ROCK_VERSION/{print $2}' android/gradle.properties |tail -n 1`
 	version=$(echo $pgyerLog | tr ',' '\n' | awk -F : '/buildVersion/{print $2}' | head -1 | sed 's/"//g')
-	if [ $version == $oldVer ]
-	then 
+	if version_ge $version $oldVer
+	then
 		version=${version%.*}.$((${version##*.}+1))
-	# else 
-	# 	version=$oldVer
+	else
+		version=$oldVer
 	fi
 	sed -ig "s/$oldVer/$version/g" android/gradle.properties
 }

@@ -2,8 +2,6 @@ language: android
 sudo: required
 
 before_install:
-  - openssl aes-256-cbc -K $encrypted_53b7518c7470_key -iv $encrypted_53b7518c7470_iv
-    -in hiprock.jks.enc -out ./android/app/hiprock.jks -d
   - nvm install 6
   - node --version
   - wget http://dl.google.com/android/ndk/android-ndk-r10e-linux-x86_64.bin
@@ -11,24 +9,24 @@ before_install:
   - ./android-ndk-r10e-linux-x86_64.bin | grep ndk-build.cmd
   - export ANDROID_NDK=`pwd`/android-ndk-r10e
   - echo $ANDROID_NDK
+  - bash ci/.travis-android-license-bugfix.sh
+  - echo y | android update sdk --no-ui --all --filter ${ANDROID_EMULATOR},${ANDROID_PKGS},build-tools-23.0.1
+  - echo y | android update sdk -u -a -t tools
+  - echo y | android update sdk -u -a -t platform-tools
+  - echo y | android update sdk -u -a -t build-tools-23.0.1
+  - echo y | android update sdk -u -a -t build-tools-23.0.2
+  - echo y | android update sdk -u -a -t build-tools-25.0.0
+  - echo y | android update sdk -u -a -t build-tools-25.0.1
+  - echo y | android update sdk -u -a -t build-tools-26.0.1
+  - echo y | android update sdk -u -a -t build-tools-26.0.2
+  - echo y | android update sdk -u -a -t android-23
+  - echo y | android update sdk -u -a -t android-25
+  - echo y | android update sdk -u -a -t extra-google-google_play_services
+  - echo y | android update sdk -u -a -t extra-google-m2repository
+  - echo y | android update sdk -u -a -t extra-android-m2repository
+  - echo y | android update sdk -u -a -t addon-google_apis-google-26
+
 install:
   - npm install
-android:
-  components:
-  - tools
-  - platform-tools
-
-  - build-tools-23.0.1
-  - build-tools-23.0.2
-  - build-tools-25.0.0
-  - build-tools-25.0.1
-  - build-tools-26.0.1
-  - build-tools-26.0.2
-  - android-23
-  - android-25
-  - extra-google-google_play_services
-  - extra-google-m2repository
-  - extra-android-m2repository
-  - addon-google_apis-google-26
 script:
   - source run.sh
