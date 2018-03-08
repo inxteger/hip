@@ -6,9 +6,9 @@ before_install:
   android/app/hiprock.jks
   - nvm install 6
   - node --version
-  - wget http://dl.google.com/android/ndk/android-ndk-r10e-linux-x86_64.bin
-  - chmod +x android-ndk-r10e-linux-x86_64.bin
-  - ./android-ndk-r10e-linux-x86_64.bin | grep ndk-build.cmd
+  - wget http://dl.google.com/android/ndk/android-ndk-r10e-darwin-x86_64.bin
+  - chmod +x android-ndk-r10e-darwin-x86_64.bin
+  - ./android-ndk-r10e-darwin-x86_64.bin | grep ndk-build.cmd
   - export ANDROID_NDK=`pwd`/android-ndk-r10e
   - echo $ANDROID_NDK
   - bash ci/.travis-android-license-bugfix.sh
